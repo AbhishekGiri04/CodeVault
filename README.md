@@ -103,9 +103,13 @@ CodeVault is a comprehensive learning repository built to:
 ```
 CodeVault/
 ├── 📄 README.md                    # 📖 Repository overview and documentation
+├── 📄 .gitignore                   # 🚫 Git ignore rules
 ├── 📂 daily-notes/                 # 📚 Daily learning notes and insights
-│   └── 📄 day1.md                 # 📝 Daily coding concepts and learnings
-├── 📂 practice/                    # 🎯 Problem-solving exercises (to be organized)
+│   └── 📄 day1.md                 # 📝 DSA Fundamentals and Classification
+├── 📂 practice/                    # 🎯 Problem-solving exercises
+│   └── 📂 array/                   # 📊 Array-based problems and solutions
+│       ├── 📄 day1                 # 🔍 LeetCode 1480 - Running Sum solution
+│       └── 📄 day1.cpp             # 🔍 C++ implementation
 └── 📂 projects/                    # 🚀 Mini-projects and implementations
 ```
 <br>
@@ -118,12 +122,12 @@ CodeVault/
 
 | 📈 Metric | 📊 Progress |
 |:----------|:------------|
-| **Daily Streak** | 🔥 Consistent contributions |
-| **Problems Solved** | 🎯 Growing collection |
-| **Concepts Covered** | 📚 Comprehensive topics |
-| **Projects Built** | 🚀 Practical applications |
-| **Notes Written** | 📝 Daily documentation |
-| **Skills Developed** | 💪 Continuous improvement |
+| **Daily Streak** | 🔥 Day 1 - Started! |
+| **Problems Solved** | 🎯 1 (LeetCode 1480) |
+| **Concepts Covered** | 📚 DSA Fundamentals |
+| **Projects Built** | 🚀 0 (Coming soon) |
+| **Notes Written** | 📝 1 (DSA Overview) |
+| **Skills Developed** | 💪 Array Operations |
 
 </div>
 

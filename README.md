@@ -133,13 +133,15 @@ CodeVault/
 ├── 📄 README.md                              # 📖 Comprehensive project documentation
 ├── 📄 .gitignore                             # 🚫 Version control ignore rules
 ├── 📂 learning-notes/                        # 📚 Daily learning documentation
-│   ├── 📄 01-dsa-fundamentals.md            # 🎯 Data Structures & Algorithms Foundation
-│   └── 📄 02-arrays-deep-dive.md            # 🔢 Array Data Structure Mastery
+│   ├── 📄 dsa-fundamentals.md               # 🎯 Data Structures & Algorithms Foundation
+│   ├── 📄 arrays-complete-guide.md          # 🔢 Array Data Structure Mastery
+│   └── 📄 strings-complete-guide.md         # 🔤 String Manipulation & Processing
 ├── 📂 coding-practice/                       # 💻 Problem-solving implementations
 │   ├── 📂 array/                            # 📊 Array-based algorithmic challenges
-│   │   └── 📄 running-sum-1d-array.cpp      # 🔍 LeetCode 1480: Prefix Sum Technique
+│   │   ├── 📄 leetcode-1480-running-sum.cpp  # 🔍 LeetCode 1480: Prefix Sum Technique
+│   │   └── 📄 leetcode-1-two-sum.cpp         # 🎯 LeetCode 1: Hash Map Technique
 │   └── 📂 string/                           # 🔤 String manipulation & processing
-│       └── 📄 reverse-string-two-pointers.cpp # 🔄 LeetCode 344: Two-Pointer Technique
+│       └── 📄 leetcode-344-reverse-string.cpp # 🔄 LeetCode 344: Two-Pointer Technique
 ├── 📂 mini-projects/                         # 🚀 Practical application projects
 └── 📂 resources/                             # 📚 Learning materials & references
 ```
@@ -155,15 +157,15 @@ CodeVault/
 <table>
 <tr>
 <td align="center" width="16.66%">
-<img src="https://img.shields.io/badge/Daily_Streak-2_Days-FF6B6B?style=for-the-badge&logo=fire&logoColor=white"/><br>
+<img src="https://img.shields.io/badge/Daily_Streak-3_Days-FF6B6B?style=for-the-badge&logo=fire&logoColor=white"/><br>
 <strong>🔥 Consistency</strong>
 </td>
 <td align="center" width="16.66%">
-<img src="https://img.shields.io/badge/Problems_Solved-2-4ECDC4?style=for-the-badge&logo=checkmark&logoColor=white"/><br>
+<img src="https://img.shields.io/badge/Problems_Solved-3-4ECDC4?style=for-the-badge&logo=checkmark&logoColor=white"/><br>
 <strong>🎯 Practice</strong>
 </td>
 <td align="center" width="16.66%">
-<img src="https://img.shields.io/badge/Concepts_Covered-2-45B7D1?style=for-the-badge&logo=book&logoColor=white"/><br>
+<img src="https://img.shields.io/badge/Concepts_Covered-3-45B7D1?style=for-the-badge&logo=book&logoColor=white"/><br>
 <strong>📚 Learning</strong>
 </td>
 <td align="center" width="16.66%">
@@ -171,11 +173,11 @@ CodeVault/
 <strong>🚀 Building</strong>
 </td>
 <td align="center" width="16.66%">
-<img src="https://img.shields.io/badge/Notes_Written-2-98D8C8?style=for-the-badge&logo=edit&logoColor=white"/><br>
+<img src="https://img.shields.io/badge/Notes_Written-3-98D8C8?style=for-the-badge&logo=edit&logoColor=white"/><br>
 <strong>📝 Documentation</strong>
 </td>
 <td align="center" width="16.66%">
-<img src="https://img.shields.io/badge/Skills_Developed-3-F7DC6F?style=for-the-badge&logo=star&logoColor=white"/><br>
+<img src="https://img.shields.io/badge/Skills_Developed-4-F7DC6F?style=for-the-badge&logo=star&logoColor=white"/><br>
 <strong>💪 Growth</strong>
 </td>
 </tr>
@@ -185,12 +187,12 @@ CodeVault/
 
 | 📊 Category | 🎯 Current Status | 📈 Progress | 🎪 Next Milestone |
 |:------------|:------------------|:------------|:-------------------|
-| **🔥 Daily Streak** | Day 2 - Building momentum! | ████████░░ 80% | Reach 7-day streak |
-| **🎯 LeetCode Problems** | 2 solved (Easy: 2, Medium: 0) | ██░░░░░░░░ 20% | Solve 10 problems |
-| **📚 Core Concepts** | DSA Fundamentals, Arrays | ███░░░░░░░ 30% | Complete Linked Lists |
+| **🔥 Daily Streak** | Day 3 - Consistent progress! | █████████░ 90% | Reach 7-day streak |
+| **🎯 LeetCode Problems** | 3 solved (Easy: 3, Medium: 0) | ███░░░░░░░ 30% | Solve 10 problems |
+| **📚 Core Concepts** | DSA, Arrays, Strings | █████░░░░░ 50% | Complete Linked Lists |
 | **🚀 Mini Projects** | Planning phase | ░░░░░░░░░░ 0% | Build first calculator |
-| **📝 Learning Notes** | 2 comprehensive guides | ████░░░░░░ 40% | Document 5 topics |
-| **💪 Technical Skills** | Array ops, String manipulation, Two pointers | ███░░░░░░░ 30% | Master recursion |
+| **📝 Learning Notes** | 3 comprehensive guides | ██████░░░░ 60% | Document 5 topics |
+| **💪 Technical Skills** | Arrays, Strings, Hash Maps, Two Pointers | ████░░░░░░ 40% | Master recursion |
 
 </div>
 
@@ -366,11 +368,11 @@ git push origin main
 
 | 🏆 Milestone | 📊 Progress | 🎯 Target | 🏁 Reward |
 |:-------------|:------------|:----------|:-----------|
-| **First Week Streak** | 2/7 days | 7 days | 🎉 Celebration post |
-| **10 Problems Solved** | 2/10 problems | 10 problems | 🏅 LinkedIn update |
+| **First Week Streak** | 3/7 days | 7 days | 🎉 Celebration post |
+| **10 Problems Solved** | 3/10 problems | 10 problems | 🏅 LinkedIn update |
 | **First Mini Project** | 0/1 projects | 1 project | 🚀 Portfolio addition |
 | **50 GitHub Commits** | 4/50 commits | 50 commits | 📊 Progress analysis |
-| **5 Core Topics** | 2/5 topics | 5 topics | 📚 Knowledge milestone |
+| **5 Core Topics** | 3/5 topics | 5 topics | 📚 Knowledge milestone |
 
 ---
 

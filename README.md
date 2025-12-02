@@ -117,7 +117,7 @@ CodeVault addresses the common challenges developers face: **inconsistent learni
 <tr>
 <td><img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white"/></td>
 <td>Object-oriented programming, enterprise solutions, Android development</td>
-<td>🔵 Planned</td>
+<td>🟢 Active</td>
 </tr>
 </tbody>
 </table>
@@ -152,7 +152,8 @@ CodeVault/
 │   │   ├── 📄 leetcode-74-search-2d-matrix.cpp # 🔍 LeetCode 74: Binary Search Matrix
 │   │   ├── 📄 leetcode-75-sort-colors.cpp      # 🎨 LeetCode 75: Dutch National Flag
 │   │   ├── 📄 leetcode-33-search-rotated-array.cpp # 🔄 LeetCode 33: Modified Binary Search
-│   │   └── 📄 leetcode-2141-maximum-running-time.py # 🔋 LeetCode 2141: Binary Search + Greedy
+│   │   ├── 📄 leetcode-2141-maximum-running-time.py # 🔋 LeetCode 2141: Binary Search + Greedy
+│   │   └── 📄 leetcode-3623-count-trapezoids.java # 🔢 LeetCode 3623: Combinatorics + Hash Map
 │   ├── 📂 string/                           # 🔤 String manipulation & processing
 │   │   └── 📄 leetcode-344-reverse-string.cpp # 🔄 LeetCode 344: Two-Pointer Technique
 │   └── 📂 math/                             # 🧮 Mathematical & number problems
@@ -179,7 +180,7 @@ CodeVault/
 <strong>🔥 Consistency</strong>
 </td>
 <td align="center" width="16.66%">
-<img src="https://img.shields.io/badge/Problems_Solved-11-4ECDC4?style=for-the-badge&logo=checkmark&logoColor=white"/><br>
+<img src="https://img.shields.io/badge/Problems_Solved-12-4ECDC4?style=for-the-badge&logo=checkmark&logoColor=white"/><br>
 <strong>🎯 Practice</strong>
 </td>
 <td align="center" width="16.66%">
@@ -206,7 +207,7 @@ CodeVault/
 | 📊 Category | 🎯 Current Status | 📈 Progress | 🎪 Next Milestone |
 |:------------|:------------------|:------------|:-------------------|
 | **🔥 Daily Streak** | Day 13 - Consistent progress! | ██████████ 100% | Two weeks target |
-| **🎯 LeetCode Problems** | 11 solved (Easy: 5, Medium: 5, Hard: 1) | ██████████ 100% | 15 problems next |
+| **🎯 LeetCode Problems** | 12 solved (Easy: 5, Medium: 6, Hard: 1) | ██████████ 100% | 15 problems next |
 | **📚 Core Concepts** | DSA, Arrays, Strings, Linked Lists, Stacks, Queues, Trees, Graphs, Sorting, Searching, DP, Hashing | ██████████ 100% | Advanced patterns |
 | **🚀 Mini Projects** | Planning phase | ░░░░░░░░░░ 0% | Build first calculator |
 | **📝 Learning Notes** | 12 comprehensive guides | ██████████ 100% | Advanced algorithms |
@@ -394,6 +395,7 @@ git push origin main
 ![Achievement](https://img.shields.io/badge/🐍_Python-First_Solution-success?style=for-the-badge)
 ![Achievement](https://img.shields.io/badge/🔐_Hashing-Mastered-success?style=for-the-badge)
 ![Achievement](https://img.shields.io/badge/📚_12_Topics-COMPLETE-gold?style=for-the-badge)
+![Achievement](https://img.shields.io/badge/☕_Java-First_Solution-success?style=for-the-badge)
 
 ### 🎯 **Upcoming Milestones**
 
@@ -534,16 +536,17 @@ If you find CodeVault helpful for your learning journey:
 | **Day 10** | 2025-11-30 | Searching mastery | Searching Algorithms Guide | - |
 | **Day 11** | 2025-12-01 | Advanced Binary Search | Modified Binary Search | LeetCode 33 |
 | **Day 12** | 2025-12-02 | Dynamic Programming + Python | DP Fundamentals, Binary Search | LeetCode 2141 |
-| **Day 13** | 2025-12-03 | Hashing Fundamentals | Hash Tables, Collision Handling | - |
+| **Day 13** | 2025-12-03 | Hashing + Java | Hash Tables, Combinatorics | LeetCode 3623 |
 
 ### 🏆 **Major Milestones Achieved**
 
 - 🎉 **First Week Complete** - 7 consecutive days of learning
 - 📚 **10 Core Topics Mastered** - Complete DSA foundation
-- 🎯 **11 Problems Solved** - Including first Hard problem!
+- 🎯 **12 Problems Solved** - Including first Hard problem!
 - 🐍 **Python Added** - Multi-language practice started
+- ☕ **Java Added** - Three languages mastered
 - 🔐 **Hashing Mastered** - 12 core topics completed
-- 📊 **15 Commits** - Consistent daily contributions
+- 📊 **16 Commits** - Consistent daily contributions
 - 📝 **10 Comprehensive Guides** - Professional documentation
 - 🚀 **Advanced Algorithms** - Ready for complex topics
 - 🔟 **10-Day Streak** - Double digits milestone achieved!

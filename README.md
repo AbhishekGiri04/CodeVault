@@ -183,7 +183,7 @@ CodeVault/
 <table>
 <tr>
 <td align="center" width="16.66%">
-<img src="https://img.shields.io/badge/Daily_Streak-15_Days-FF6B6B?style=for-the-badge&logo=fire&logoColor=white"/><br>
+<img src="https://img.shields.io/badge/Daily_Streak-16_Days-FF6B6B?style=for-the-badge&logo=fire&logoColor=white"/><br>
 <strong>🔥 Consistency</strong>
 </td>
 <td align="center" width="16.66%">
@@ -213,7 +213,7 @@ CodeVault/
 
 | 📊 Category | 🎯 Current Status | 📈 Progress | 🎪 Next Milestone |
 |:------------|:------------------|:------------|:-------------------|
-| **🔥 Daily Streak** | Day 15 - Momentum strong! | ██████████ 100% | 20 days target |
+| **🔥 Daily Streak** | Day 16 - Consistency maintained! | ██████████ 100% | 20 days target |
 | **🎯 LeetCode Problems** | 15 solved (Easy: 5, Medium: 8, Hard: 2) | ██████████ 100% | 🎉 15 ACHIEVED! |
 | **📚 Core Concepts** | DSA, Arrays, Strings, Linked Lists, Stacks, Queues, Trees, Graphs, Sorting, Searching, DP, Hashing, Heap, Recursion, Backtracking | ██████████ 100% | Advanced patterns |
 | **🚀 Mini Projects** | Planning phase | ░░░░░░░░░░ 0% | Build first calculator |
@@ -403,9 +403,9 @@ git push origin main
 | **Two Week Streak** | 15/14 days | 14 days | 🎉 ACHIEVED |
 | **15 Problems Solved** | 15/15 problems | 15 problems | 🎉 ACHIEVED |
 | **15 Core Topics** | 15/15 topics | 15 topics | 🎉 ACHIEVED |
-| **20 Days Streak** | 15/20 days | 20 days | 🔥 In Progress |
+| **20 Days Streak** | 16/20 days | 20 days | 🔥 In Progress |
 | **First Mini Project** | 0/1 projects | 1 project | 🚀 Planned |
-| **50 GitHub Commits** | 24/50 commits | 50 commits | 📊 In Progress |
+| **50 GitHub Commits** | 25/50 commits | 50 commits | 📊 In Progress |
 
 ---
 
@@ -542,6 +542,7 @@ If you find CodeVault helpful for your learning journey:
 | **Day 13** | 2025-12-03 | Hashing + Java | Hash Tables, Combinatorics | LeetCode 3623 |
 | **Day 14** | 2025-12-04 | Heap & Priority Queue + Java | Heap Operations, Advanced Geometry | LeetCode 3625 |
 | **Day 15** | 2025-12-05 | Recursion + Backtracking | Recursion, Backtracking, Binary Search | LeetCode 2211, 540 |
+| **Day 16** | 2025-12-06 | Documentation & Optimization | Heap Guide Update, README Enhancement | - |
 
 ### 🏆 **Major Milestones Achieved**
 
@@ -552,8 +553,8 @@ If you find CodeVault helpful for your learning journey:
 - ☕ **Java Added** - Three languages mastered (C++, Python, Java)
 - 🔍 **Backtracking Added** - 15 core topics completed
 - 📦 **Heap Guide Updated** - Professional documentation
-- 🎉 **15 Days Streak** - Over two weeks of consistency!
-- 📊 **24 Commits** - Steady daily contributions
+- 🎉 **16 Days Streak** - Over two weeks of consistency!
+- 📊 **25 Commits** - Steady daily contributions
 - 📚 **15 Comprehensive Guides** - Complete topic coverage
 - 📝 **10 Comprehensive Guides** - Professional documentation
 - 🚀 **Advanced Algorithms** - Ready for complex topics

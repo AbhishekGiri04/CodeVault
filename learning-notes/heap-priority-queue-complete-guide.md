@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🚀 Day 14: Heap & Priority Queue Fundamentals
+# 🚀 Heap & Priority Queue – Complete Notes
 
 *Mastering Efficient Priority-Based Data Management*
 
@@ -62,11 +62,11 @@
 
 #### **Max Heap**
 ```
-        100
-       /   \
-     50     90
-    /  \   / \
-   20  40 30  10
+        50
+      /    \
+    30      20
+   /  \    /  \
+ 10  15  5    8
 ```
 
 **Property:** Root = Maximum
@@ -76,11 +76,11 @@
 
 #### **Min Heap**
 ```
-        10
-       /   \
-     20     30
-    /  \   / \
-   40  50 90  100
+        5
+      /   \
+    10     15
+   /  \   /  \
+ 20  30  40  50
 ```
 
 **Property:** Root = Minimum
@@ -91,7 +91,34 @@
 
 ---
 
-## 🏗️ **2. Heap Operations**
+## 🏗️ **2. Heap Properties**
+
+### 📊 **Essential Characteristics**
+
+<div align="center">
+
+| Property | Description | Importance |
+|:---------|:------------|:-----------|
+| **🌳 Complete Binary Tree** | All levels filled except last | 🟢 Critical |
+| **📊 Heap Property** | Parent-child ordering | 🟢 Critical |
+| **📦 Array Storage** | Efficient representation | 🟡 Important |
+| **⚡ Fast Operations** | O(log n) insert/delete | 🟢 Critical |
+
+</div>
+
+### 🔢 **Array Representation**
+
+**Index Relationships:**
+```
+For element at index i:
+- Parent:      (i - 1) / 2
+- Left Child:  2 * i + 1
+- Right Child: 2 * i + 2
+```
+
+---
+
+## 🏗️ **3. Heap Operations**
 
 ### 📊 **Core Operations**
 
@@ -123,11 +150,11 @@
 **Example (Max Heap):**
 ```
 Insert 95:
-   100          100          100
-   / \    →    / \     →    / \
-  50  90      50  90       95  90
+   50          50          95
+   / \    →    / \     →   / \
+  30  20      30  20      50  20
  /           / \          / \
-20          20  95       50  20
+10          10  95       30  10
 ```
 
 </td>
@@ -143,10 +170,10 @@ Insert 95:
 
 **Example (Max Heap):**
 ```
-Delete 100:
-   100          20          90
+Delete 50:
+   50          10          30
    / \    →    / \     →   / \
-  90  50      90  50      20  50
+  30  20      30  20      10  20
 ```
 
 </td>
@@ -155,7 +182,7 @@ Delete 100:
 
 ---
 
-## ⚡ **3. Heapify Algorithm**
+## ⚡ **4. Heapify Algorithm**
 
 ### 🔧 **Building a Heap**
 
@@ -163,10 +190,10 @@ Delete 100:
 <tr>
 <td width="50%">
 
-#### **Max Heap Heapify**
+#### **Heapify Down (Max Heap)**
 
 ```cpp
-void heapify(int arr[], int n, int i) {
+void heapifyDown(int arr[], int n, int i) {
     int largest = i;
     int left = 2 * i + 1;
     int right = 2 * i + 2;
@@ -179,7 +206,7 @@ void heapify(int arr[], int n, int i) {
     
     if (largest != i) {
         swap(arr[i], arr[largest]);
-        heapify(arr, n, largest);
+        heapifyDown(arr, n, largest);
     }
 }
 ```
@@ -193,7 +220,7 @@ void heapify(int arr[], int n, int i) {
 void buildHeap(int arr[], int n) {
     // Start from last non-leaf node
     for (int i = n/2 - 1; i >= 0; i--) {
-        heapify(arr, n, i);
+        heapifyDown(arr, n, i);
     }
 }
 ```
@@ -209,7 +236,7 @@ void buildHeap(int arr[], int n) {
 
 ---
 
-## 🎯 **4. Priority Queue**
+## 🎯 **5. Priority Queue**
 
 ### 📊 **Abstract Data Type**
 
@@ -273,7 +300,7 @@ minHeap.pop();
 
 ---
 
-## ⏱️ **5. Time & Space Complexity**
+## ⏱️ **6. Time & Space Complexity**
 
 ### 📊 **Performance Analysis**
 
@@ -289,16 +316,9 @@ minHeap.pop();
 
 </div>
 
-### 📈 **Array Representation**
-
-**Index Relationships:**
-- Parent of `i`: `(i-1)/2`
-- Left child of `i`: `2*i + 1`
-- Right child of `i`: `2*i + 2`
-
 ---
 
-## 🌟 **6. Applications of Heap**
+## 🌟 **7. Applications of Heap**
 
 <table>
 <tr>
@@ -327,7 +347,7 @@ minHeap.pop();
 
 ---
 
-## 🎯 **7. Classic Heap Problems**
+## 🎯 **8. Classic Heap Problems**
 
 ### 📘 **Must-Solve Problems**
 
@@ -348,7 +368,7 @@ minHeap.pop();
 
 ---
 
-## 🧠 **8. Heap vs Other Structures**
+## 🔄 **9. Heap vs Other Structures**
 
 <div align="center">
 
@@ -363,7 +383,7 @@ minHeap.pop();
 
 ---
 
-## 🎯 **9. Key Takeaways**
+## 🎯 **10. Key Takeaways**
 
 <div align="center">
 
@@ -375,10 +395,11 @@ minHeap.pop();
 > ⚡ **O(log n) Operations**: Fast insert and delete  
 > 🎯 **Priority Queue**: Best implemented with heap  
 > 🔧 **Heapify is O(n)**: Not O(n log n)!  
+> 🌟 **Two Heap Pattern**: Powerful for median problems  
 
 ---
 
-## 📚 **10. Next Steps**
+## 📚 **11. Next Steps**
 
 <table>
 <tr>
@@ -405,6 +426,35 @@ minHeap.pop();
 
 ---
 
+## ⚖️ **12. Advantages & Disadvantages**
+
+<table>
+<tr>
+<td width="50%">
+
+### ✅ **Advantages**
+- ⚡ Fast insertion & deletion O(log n)
+- 📈 Predictable time complexity
+- 📦 Array-based implementation
+- 🚀 Efficient priority management
+- 💾 Space efficient
+
+</td>
+<td width="50%">
+
+### ❌ **Disadvantages**
+- 🔍 Slow arbitrary search O(n)
+- ❌ No predecessor/successor queries
+- 🚫 Not suitable for range queries
+- 🔄 Requires reheapify on updates
+- 📉 Not cache-friendly for large heaps
+
+</td>
+</tr>
+</table>
+
+---
+
 <div align="center">
 
 ### 📊 **Learning Progress**
@@ -415,7 +465,7 @@ minHeap.pop();
 
 ---
 
-**📅 Session Date**: Day 14 | **🎯 Focus**: Heap & Priority Queue | **⏰ Duration**: Deep Learning Session
+**📅 Topic**: Heap & Priority Queue | **🎯 Focus**: Priority Management | **⏰ Level**: Intermediate
 
 *"Heap: Where priority meets efficiency"*
 

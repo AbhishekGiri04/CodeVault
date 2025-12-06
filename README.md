@@ -569,8 +569,9 @@ If you find CodeVault helpful for your learning journey:
 - 🐍 **Python Added** - Multi-language practice started
 - ☕ **Java Added** - Three languages mastered
 - 🔍 **Backtracking Added** - 15 core topics completed
+- 📦 **Heap Guide Updated** - Professional documentation
 - 🎉 **15 Days Streak** - Over two weeks!
-- 📊 **22 Commits** - Consistent daily contributions
+- 📊 **23 Commits** - Consistent daily contributions
 - 📝 **10 Comprehensive Guides** - Professional documentation
 - 🚀 **Advanced Algorithms** - Ready for complex topics
 - 🔟 **10-Day Streak** - Double digits milestone achieved!

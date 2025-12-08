@@ -147,7 +147,8 @@ CodeVault/
 │   ├── 📄 hashing-complete-guide.md         # 🔐 Hashing Fundamentals Mastery
 │   ├── 📄 heap-priority-queue-complete-guide.md # 📦 Heap & Priority Queue Mastery
 │   ├── 📄 recursion-complete-guide.md        # 🔁 Recursion Fundamentals Mastery
-│   └── 📄 backtracking-complete-guide.md     # 🔍 Backtracking Reference Guide
+│   ├── 📄 backtracking-complete-guide.md     # 🔍 Backtracking Reference Guide
+│   └── 📄 divide-and-conquer-complete-guide.md # 🔪 Divide and Conquer Mastery
 ├── 📂 coding-practice/                       # 💻 Problem-solving implementations
 │   ├── 📂 array/                            # 📊 Array-based algorithmic challenges
 │   │   ├── 📄 leetcode-1480-running-sum.cpp  # 🔍 LeetCode 1480: Prefix Sum Technique
@@ -191,7 +192,7 @@ CodeVault/
 <strong>🎯 Practice</strong>
 </td>
 <td align="center" width="16.66%">
-<img src="https://img.shields.io/badge/Concepts_Covered-15-45B7D1?style=for-the-badge&logo=book&logoColor=white"/><br>
+<img src="https://img.shields.io/badge/Concepts_Covered-16-45B7D1?style=for-the-badge&logo=book&logoColor=white"/><br>
 <strong>📚 Learning</strong>
 </td>
 <td align="center" width="16.66%">
@@ -199,7 +200,7 @@ CodeVault/
 <strong>🚀 Building</strong>
 </td>
 <td align="center" width="16.66%">
-<img src="https://img.shields.io/badge/Notes_Written-15-98D8C8?style=for-the-badge&logo=edit&logoColor=white"/><br>
+<img src="https://img.shields.io/badge/Notes_Written-16-98D8C8?style=for-the-badge&logo=edit&logoColor=white"/><br>
 <strong>📝 Documentation</strong>
 </td>
 <td align="center" width="16.66%">
@@ -217,7 +218,7 @@ CodeVault/
 | **🎯 LeetCode Problems** | 15 solved (Easy: 5, Medium: 8, Hard: 2) | ██████████ 100% | 🎉 15 ACHIEVED! |
 | **📚 Core Concepts** | DSA, Arrays, Strings, Linked Lists, Stacks, Queues, Trees, Graphs, Sorting, Searching, DP, Hashing, Heap, Recursion, Backtracking | ██████████ 100% | Advanced patterns |
 | **🚀 Mini Projects** | Planning phase | ░░░░░░░░░░ 0% | Build first calculator |
-| **📝 Learning Notes** | 15 comprehensive guides | ██████████ 100% | Advanced algorithms |
+| **📝 Learning Notes** | 16 comprehensive guides | ██████████ 100% | Advanced algorithms |
 | **💪 Technical Skills** | Binary Search, Linear Search, Algorithm Templates, Optimization | ██████████ 100% | Dynamic Programming |
 
 </div>
@@ -388,7 +389,7 @@ git push origin main
 ![Achievement](https://img.shields.io/badge/🎉_Two_Weeks-ACHIEVED-gold?style=for-the-badge)
 ![Achievement](https://img.shields.io/badge/🎯_15_Problems-SOLVED-gold?style=for-the-badge)
 ![Achievement](https://img.shields.io/badge/🔴_2_Hard-SOLVED-gold?style=for-the-badge)
-![Achievement](https://img.shields.io/badge/📚_15_Topics-COMPLETE-gold?style=for-the-badge)
+![Achievement](https://img.shields.io/badge/📚_16_Topics-COMPLETE-gold?style=for-the-badge)
 ![Achievement](https://img.shields.io/badge/🐍_Python-Active-success?style=for-the-badge)
 ![Achievement](https://img.shields.io/badge/☕_Java-Active-success?style=for-the-badge)
 ![Achievement](https://img.shields.io/badge/C++-Active-success?style=for-the-badge)
@@ -402,7 +403,7 @@ git push origin main
 | **First Week Streak** | 7/7 days | 7 days | 🎉 ACHIEVED |
 | **Two Week Streak** | 15/14 days | 14 days | 🎉 ACHIEVED |
 | **15 Problems Solved** | 15/15 problems | 15 problems | 🎉 ACHIEVED |
-| **15 Core Topics** | 15/15 topics | 15 topics | 🎉 ACHIEVED |
+| **16 Core Topics** | 16/16 topics | 16 topics | 🎉 ACHIEVED |
 | **20 Days Streak** | 16/20 days | 20 days | 🔥 In Progress |
 | **First Mini Project** | 0/1 projects | 1 project | 🚀 Planned |
 | **50 GitHub Commits** | 25/50 commits | 50 commits | 📊 In Progress |
@@ -542,7 +543,7 @@ If you find CodeVault helpful for your learning journey:
 | **Day 13** | 2025-12-03 | Hashing + Java | Hash Tables, Combinatorics | LeetCode 3623 |
 | **Day 14** | 2025-12-04 | Heap & Priority Queue + Java | Heap Operations, Advanced Geometry | LeetCode 3625 |
 | **Day 15** | 2025-12-05 | Recursion + Backtracking | Recursion, Backtracking, Binary Search | LeetCode 2211, 540 |
-| **Day 16** | 2025-12-06 | Documentation & Optimization | Heap Guide Update, README Enhancement | - |
+| **Day 16** | 2025-12-06 | Divide and Conquer | Binary Search, Merge Sort, Quick Sort | - |
 
 ### 🏆 **Major Milestones Achieved**
 

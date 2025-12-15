@@ -154,7 +154,8 @@ CodeVault/
 │   ├── 📄 complexity-analysis-complete-guide.md # ⚡ Complexity Analysis Mastery
 │   ├── 📄 math-for-dsa-complete-guide.md # 🧮 Math for DSA Mastery
 │   ├── 📄 huffman-coding-complete-guide.md # 🗜️ Huffman Coding Mastery
-│   └── 📄 advanced-trees-complete-guide.md # 🌲 Advanced Trees Mastery
+│   ├── 📄 advanced-trees-complete-guide.md # 🌲 Advanced Trees Mastery
+│   └── 📄 topological-sort-complete-guide.md # 🔄 Topological Sort Mastery
 ├── 📂 coding-practice/                       # 💻 Problem-solving implementations
 │   ├── 📂 array/                            # 📊 Array-based algorithmic challenges
 │   │   ├── 📄 leetcode-1480-running-sum.cpp  # 🔍 LeetCode 1480: Prefix Sum Technique
@@ -190,7 +191,7 @@ CodeVault/
 <table>
 <tr>
 <td align="center" width="16.66%">
-<img src="https://img.shields.io/badge/Daily_Streak-22_Days-FF6B6B?style=for-the-badge&logo=fire&logoColor=white"/><br>
+<img src="https://img.shields.io/badge/Daily_Streak-23_Days-FF6B6B?style=for-the-badge&logo=fire&logoColor=white"/><br>
 <strong>🔥 Consistency</strong>
 </td>
 <td align="center" width="16.66%">
@@ -198,7 +199,7 @@ CodeVault/
 <strong>🎯 Practice</strong>
 </td>
 <td align="center" width="16.66%">
-<img src="https://img.shields.io/badge/Concepts_Covered-22-45B7D1?style=for-the-badge&logo=book&logoColor=white"/><br>
+<img src="https://img.shields.io/badge/Concepts_Covered-23-45B7D1?style=for-the-badge&logo=book&logoColor=white"/><br>
 <strong>📚 Learning</strong>
 </td>
 <td align="center" width="16.66%">
@@ -206,11 +207,11 @@ CodeVault/
 <strong>🚀 Building</strong>
 </td>
 <td align="center" width="16.66%">
-<img src="https://img.shields.io/badge/Notes_Written-22-98D8C8?style=for-the-badge&logo=edit&logoColor=white"/><br>
+<img src="https://img.shields.io/badge/Notes_Written-23-98D8C8?style=for-the-badge&logo=edit&logoColor=white"/><br>
 <strong>📝 Documentation</strong>
 </td>
 <td align="center" width="16.66%">
-<img src="https://img.shields.io/badge/Skills_Developed-22-F7DC6F?style=for-the-badge&logo=star&logoColor=white"/><br>
+<img src="https://img.shields.io/badge/Skills_Developed-23-F7DC6F?style=for-the-badge&logo=star&logoColor=white"/><br>
 <strong>💪 Growth</strong>
 </td>
 </tr>
@@ -220,12 +221,12 @@ CodeVault/
 
 | 📊 Category | 🎯 Current Status | 📈 Progress | 🎪 Next Milestone |
 |:------------|:------------------|:------------|:-------------------|
-| **🔥 Daily Streak** | Day 22 - Beyond 20-day milestone! | ██████████ 73% | 30 days target |
+| **🔥 Daily Streak** | Day 23 - Beyond 20-day milestone! | ██████████ 77% | 30 days target |
 | **🎯 LeetCode Problems** | 15 solved (Easy: 5, Medium: 8, Hard: 2) | ██████████ 100% | 🎉 15 ACHIEVED! |
-| **📚 Core Concepts** | DSA, Arrays, Strings, Linked Lists, Stacks, Queues, Trees, Graphs, Sorting, Searching, DP, Hashing, Heap, Recursion, Backtracking, Bit Manipulation, Tries, Complexity Analysis, Math for DSA, Huffman Coding, Advanced Trees | ██████████ 100% | Advanced patterns |
+| **📚 Core Concepts** | DSA, Arrays, Strings, Linked Lists, Stacks, Queues, Trees, Graphs, Sorting, Searching, DP, Hashing, Heap, Recursion, Backtracking, Bit Manipulation, Tries, Complexity Analysis, Math for DSA, Huffman Coding, Advanced Trees, Topological Sort | ██████████ 100% | Advanced patterns |
 | **🚀 Mini Projects** | Planning phase | ░░░░░░░░░░ 0% | Build first calculator |
-| **📝 Learning Notes** | 22 comprehensive guides | ██████████ 100% | Advanced algorithms |
-| **💪 Technical Skills** | Self-Balancing Trees, AVL Trees, Red-Black Trees, B-Trees, Segment Trees, Fenwick Trees | ██████████ 100% | System Design |
+| **📝 Learning Notes** | 23 comprehensive guides | ██████████ 100% | Advanced algorithms |
+| **💪 Technical Skills** | Dependency Resolution, Graph Ordering, Kahn's Algorithm, DFS Traversal, Cycle Detection | ██████████ 100% | System Design |
 
 </div>
 
@@ -395,9 +396,9 @@ git push origin main
 ![Achievement](https://img.shields.io/badge/🎉_Two_Weeks-ACHIEVED-gold?style=for-the-badge)
 ![Achievement](https://img.shields.io/badge/🎯_15_Problems-SOLVED-gold?style=for-the-badge)
 ![Achievement](https://img.shields.io/badge/🔴_2_Hard-SOLVED-gold?style=for-the-badge)
-![Achievement](https://img.shields.io/badge/📚_22_Topics-COMPLETE-gold?style=for-the-badge)
+![Achievement](https://img.shields.io/badge/📚_23_Topics-COMPLETE-gold?style=for-the-badge)
 ![Achievement](https://img.shields.io/badge/🎉_20_Days-MILESTONE-gold?style=for-the-badge)
-![Achievement](https://img.shields.io/badge/🌲_Advanced_Trees-MASTERED-gold?style=for-the-badge)
+![Achievement](https://img.shields.io/badge/🔄_Topological_Sort-MASTERED-gold?style=for-the-badge)
 ![Achievement](https://img.shields.io/badge/🐍_Python-Active-success?style=for-the-badge)
 ![Achievement](https://img.shields.io/badge/☕_Java-Active-success?style=for-the-badge)
 ![Achievement](https://img.shields.io/badge/C++-Active-success?style=for-the-badge)
@@ -418,8 +419,9 @@ git push origin main
 | **20 Core Topics** | 20/20 topics | 20 topics | 🎉 ACHIEVED |
 | **21 Core Topics** | 21/21 topics | 21 topics | 🎉 ACHIEVED |
 | **22 Core Topics** | 22/22 topics | 22 topics | 🎉 ACHIEVED |
+| **23 Core Topics** | 23/23 topics | 23 topics | 🎉 ACHIEVED |
 | **20 Days Streak** | 20/20 days | 20 days | 🎉 ACHIEVED |
-| **30 Days Streak** | 22/30 days | 30 days | 🔥 In Progress |
+| **30 Days Streak** | 23/30 days | 30 days | 🔥 In Progress |
 | **First Mini Project** | 0/1 projects | 1 project | 🚀 Planned |
 | **50 GitHub Commits** | 25/50 commits | 50 commits | 📊 In Progress |
 
@@ -565,6 +567,7 @@ If you find CodeVault helpful for your learning journey:
 | **Day 20** | 2025-12-10 | Math for DSA | Number Theory, Modular Arithmetic, Combinatorics | - |
 | **Day 21** | 2025-12-11 | Huffman Coding | Data Compression, Greedy Algorithms, Prefix Codes | - |
 | **Day 22** | 2025-12-12 | Advanced Trees | AVL Trees, Red-Black Trees, B-Trees, Segment Trees | - |
+| **Day 23** | 2025-12-13 | Topological Sort | Dependency Resolution, Kahn's Algorithm, DFS Traversal | - |
 
 ### 🏆 **Major Milestones Achieved**
 
@@ -575,9 +578,10 @@ If you find CodeVault helpful for your learning journey:
 - ☕ **Java Added** - Three languages mastered (C++, Python, Java)
 - 🔍 **Backtracking Added** - 15 core topics completed
 - 📦 **Heap Guide Updated** - Professional documentation
-- 🎉 **22 Days Streak** - Beyond 20-day milestone!
-- 📊 **31 Commits** - Steady daily contributions
-- 📚 **22 Comprehensive Guides** - Complete topic coverage
+- 🎉 **23 Days Streak** - Beyond 20-day milestone!
+- 📊 **32 Commits** - Steady daily contributions
+- 📚 **23 Comprehensive Guides** - Complete topic coverage
+- 🔄 **Topological Sort Mastered** - Dependency resolution expertise
 - 🌲 **Advanced Trees Mastered** - Self-balancing trees expertise
 - 🗜️ **Huffman Coding Mastered** - Data compression expertise
 - 🧮 **Math for DSA Mastered** - Mathematical foundations expertise

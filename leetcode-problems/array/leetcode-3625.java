@@ -1,12 +1,12 @@
 /*
 ╔══════════════════════════════════════════════════════════════════════════════╗
-║                          LEETCODE PROBLEM SOLUTION                          ║
+║                          LEETCODE PROBLEM SOLUTION                           ║
 ╠══════════════════════════════════════════════════════════════════════════════╣
 ║ Problem ID    : 3625                                                         ║
-║ Problem Name  : Count Number of Trapezoids II                               ║
+║ Problem Name  : Count Number of Trapezoids II                                ║
 ║ Difficulty    : Hard                                                         ║
-║ Topic         : Geometry, Hash Map, Math, Combinatorics                     ║
-║ Company Tags  : Google, Meta                                                ║
+║ Topic         : Geometry, Hash Map, Math, Combinatorics                      ║
+║ Company Tags  : Google, Meta                                                 ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 
 📋 PROBLEM STATEMENT:

@@ -1,12 +1,12 @@
 /*
 ╔══════════════════════════════════════════════════════════════════════════════╗
-║                          LEETCODE PROBLEM SOLUTION                          ║
+║                          LEETCODE PROBLEM SOLUTION                           ║
 ╠══════════════════════════════════════════════════════════════════════════════╣
 ║ Problem ID    : 1492                                                         ║
-║ Problem Name  : The kth Factor of n                                         ║
+║ Problem Name  : The kth Factor of n                                          ║
 ║ Difficulty    : Medium                                                       ║
-║ Topic         : Math, Number Theory                                         ║
-║ Company Tags  : Amazon, Microsoft, Google, Facebook                         ║
+║ Topic         : Math, Number Theory                                          ║
+║ Company Tags  : Amazon, Microsoft, Google, Facebook                          ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 
 📋 PROBLEM STATEMENT:

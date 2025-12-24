@@ -138,7 +138,7 @@ flowchart TD
 ## 🔍 Problem Identification
 
 <div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Dynamic-Programming-Problem-Types.webp" alt="DP Problem Types" width="700" height="400"/>
+<img src="https://favtutor.com/resources/images/uploads/mceu_89754191831631707077421.jpg" alt="DP Problem Types" width="700" height="400"/>
 </div>
 
 ### 🎯 DP Problem Patterns
@@ -298,7 +298,7 @@ public:
 ## 📊 Tabulation Approach
 
 <div align="center">
-<img src="https://files.codingninjas.in/article_images/memoization-vs-tabulation-1-1634917570.jpg" alt="Tabulation Approach" width="650" height="350"/>
+<img src="https://astikanand.github.io/techblogs/algorithms/assets/coin_change_unique_ways_dp.png" alt="Tabulation Approach" width="650" height="350"/>
 </div>
 
 ### 🎯 Bottom-Up Strategy
@@ -437,7 +437,7 @@ int rob(vector<int>& nums) {
 ## 🚀 Optimization Techniques
 
 <div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Space-Optimization-in-DP.webp" alt="Bottom-Up Strategy" width="650" height="350"/>
+<img src="https://www.log2base2.com/images/algo/top-down-fib.png" alt="Optimization Techniques" width="650" height="350"/>
 </div>
 
 ### 🎯 Space Optimization

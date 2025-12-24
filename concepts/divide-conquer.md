@@ -1,6 +1,6 @@
-<div align="center">
-
 # 🚀 Divide and Conquer – Complete Professional Guide
+
+<div align="center">
 
 *Mastering Problem Decomposition and Efficient Solutions*
 
@@ -9,10 +9,6 @@
 ![Divide and Conquer](https://img.shields.io/badge/Topic-Divide_and_Conquer-FF6B6B?style=for-the-badge&logo=databricks&logoColor=white)
 ![Difficulty](https://img.shields.io/badge/Level-Intermediate-4ECDC4?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-Completed-45B7D1?style=for-the-badge)
-
-<img src="https://deen3evddmddt.cloudfront.net/uploads/content-images/divide-and-conquer-algorithm.webp" alt="Divide and Conquer Algorithm" width="700" height="400"/>
-
-<img src="https://deen3evddmddt.cloudfront.net/uploads/content-images/how-divide-and-conquer-algorithm-works.webp" alt="How Divide and Conquer Works" width="650" height="350"/>
 
 </div>
 
@@ -57,6 +53,10 @@ flowchart TD
 
 ## 📖 **1. What is Divide and Conquer?**
 
+<div align="center">
+<img src="https://deen3evddmddt.cloudfront.net/uploads/content-images/divide-and-conquer-algorithm.webp" alt="Divide and Conquer Algorithm" width="700" height="400"/>
+</div>
+
 <table>
 <tr>
 <td width="50%">
@@ -100,6 +100,10 @@ flowchart TD
 ### ⚡ **The D&C Formula**
 *Divide → Solve → Combine*
 
+<div align="center">
+<img src="https://deen3evddmddt.cloudfront.net/uploads/content-images/how-divide-and-conquer-algorithm-works.webp" alt="How Divide and Conquer Works" width="450" height="300"/>
+</div>
+
 **Process:**
 ```
 Problem
@@ -128,7 +132,7 @@ mindmap
   root))🚀 Divide & Conquer Benefits((
     ⚡ Efficiency
       Reduces complexity
-      O(n log n) algorithms
+      Better algorithms
       Better than brute force
       Optimal solutions
     📊 Scalability
@@ -146,6 +150,8 @@ mindmap
       Multi-threading friendly
       Distributed computing
       Modern hardware utilization
+
+%%{init: {'theme':'base', 'themeVariables': {'primaryColor':'#2E86AB', 'primaryTextColor':'#ffffff', 'primaryBorderColor':'#ffffff', 'lineColor':'#4A4A4A', 'secondaryColor':'#A23B72', 'tertiaryColor':'#F18F01', 'background':'#C73E1D', 'mainBkg':'#2E86AB', 'secondBkg':'#A23B72', 'tertiaryBkg':'#F18F01'}}}%%
 ```
 
 ---
@@ -200,10 +206,6 @@ flowchart TD
 ## 🔍 **3. Binary Search**
 
 ### 📊 **Classic D&C Algorithm**
-
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Binary-Search-Visualization.webp" alt="Binary Search Visualization" width="600" height="350"/>
-</div>
 
 <table>
 <tr>
@@ -269,7 +271,7 @@ int binarySearch(int arr[], int n, int target) {
 ### 📊 **Stable Sorting Algorithm**
 
 <div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Merge-Sort-Animation.webp" alt="Merge Sort Animation" width="650" height="400"/>
+<img src="https://www.programiz.com/sites/tutorial2program/files/stable-sorting.png" alt="Stable Sorting Algorithm" width="650" height="400"/>
 </div>
 
 <table>
@@ -326,7 +328,7 @@ int binarySearch(int arr[], int n, int target) {
 ### 📊 **Fast In-Place Sorting**
 
 <div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Quick-Sort-Pivot-Selection.webp" alt="Quick Sort Pivot Selection" width="600" height="350"/>
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240926172924/Heap-Sort-Recursive-Illustration.webp" alt="Fast In-Place Sorting" width="600" height="350"/>
 </div>
 
 <table>

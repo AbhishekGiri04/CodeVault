@@ -15,7 +15,7 @@
 ## 🎯 Introduction
 
 <div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Heap-Data-Structure.webp" alt="Heap Data Structure" width="700" height="400"/>
+<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20221220165711/MinHeapAndMaxHeap1.png" alt="Introduction" width="700" height="400"/>
 </div>
 
 **Heap** is a complete binary tree that satisfies the heap property: parent nodes are either greater (max-heap) or smaller (min-heap) than their children.
@@ -145,34 +145,39 @@ public:
 ## 🎯 Applications
 
 <div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Heap-Applications.webp" alt="Heap Applications" width="650" height="350"/>
+<img src="https://fastercapital.com/i/Heap-sort--Unveiling-the-Sortinoratio-in-the-Binary-Heap-Sorting-Algorithm--Understanding-Binary-Heap-Data-Structure.webp" alt="Applications" width="650" height="350"/>
 </div>
 
 ### 🔧 Priority Queue Problems
 
 ```mermaid
-mindmap
-  root))📦 Heap Applications((
-    🎯 Priority Queues
-      Task scheduling
-      Event simulation
-      Dijkstra's algorithm
-      A* pathfinding
-    🔢 Top-K Problems
-      K largest elements
-      K smallest elements
-      K frequent elements
-      Sliding window maximum
-    🔀 Merge Operations
-      Merge K sorted arrays
-      Merge K sorted lists
-      External sorting
-      Stream processing
-    📊 Graph Algorithms
-      Minimum spanning tree
-      Shortest path algorithms
-      Network flow
-      Huffman coding
+flowchart TD
+    A["📦 Heap Applications"] --> B["🎯 Priority Queues"]
+    A --> C["🔢 Top-K Problems"]
+    A --> D["🔀 Merge Operations"]
+    A --> E["📊 Graph Algorithms"]
+    
+    B --> F["Task scheduling"]
+    B --> G["Event simulation"]
+    B --> H["Dijkstra's algorithm"]
+    B --> I["A* pathfinding"]
+    
+    C --> J["K largest elements"]
+    C --> K["K smallest elements"]
+    C --> L["K frequent elements"]
+    C --> M["Sliding window maximum"]
+    
+    D --> N["Merge K sorted arrays"]
+    D --> O["Merge K sorted lists"]
+    D --> P["External sorting"]
+    D --> Q["Stream processing"]
+    
+    E --> R["Minimum spanning tree"]
+    E --> S["Shortest path algorithms"]
+    E --> T["Network flow"]
+    E --> U["Huffman coding"]
+    
+    classDef default fill:#333,stroke:#fff,stroke-width:2px,color:#fff
 ```
 
 ```cpp

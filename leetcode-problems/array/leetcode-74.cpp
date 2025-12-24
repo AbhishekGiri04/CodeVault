@@ -1,12 +1,12 @@
 /*
 ╔══════════════════════════════════════════════════════════════════════════════╗
-║                          LEETCODE PROBLEM SOLUTION                          ║
+║                          LEETCODE PROBLEM SOLUTION                           ║
 ╠══════════════════════════════════════════════════════════════════════════════╣
 ║ Problem ID    : 74                                                           ║
-║ Problem Name  : Search a 2D Matrix                                          ║
+║ Problem Name  : Search a 2D Matrix                                           ║
 ║ Difficulty    : Medium                                                       ║
-║ Topic         : Array, Binary Search, Matrix                                ║
-║ Company Tags  : Amazon, Microsoft, Google, Facebook, Apple                  ║
+║ Topic         : Array, Binary Search, Matrix                                 ║
+║ Company Tags  : Amazon, Microsoft, Google, Facebook, Apple                   ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 
 📋 PROBLEM STATEMENT:

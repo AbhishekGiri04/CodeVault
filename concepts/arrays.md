@@ -366,7 +366,7 @@ int binarySearch(vector<int>& arr, int target) {
 ### 🎯 Two Pointer Technique
 
 <div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Two-Pointer-Technique.webp" alt="Two Pointer Technique" width="650" height="350"/>
+<img src="https://www.scaler.com/topics/images/two-pointer-technique.webp" alt="Two Pointer Technique" width="650" height="350"/>
 </div>
 
 ```mermaid
@@ -420,7 +420,7 @@ int removeDuplicates(vector<int>& arr) {
 ### 🎯 Sliding Window Technique
 
 <div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Sliding-Window-Technique.webp" alt="Sliding Window Technique" width="700" height="350"/>
+<img src="https://www.scaler.com/topics/images/thumbnail-sliding-window-algorithm.webp" alt="Sliding Window Technique" width="700" height="350"/>
 </div>
 
 ```mermaid
@@ -481,7 +481,7 @@ int longestSubarrayWithSumK(vector<int>& arr, int k) {
 ### 🎯 Prefix Sum Technique
 
 <div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Prefix-Sum-Array.webp" alt="Prefix Sum Array" width="650" height="300"/>
+<img src="https://preview.redd.it/a-visual-guide-to-prefix-sums-v0-mgmfuin90ujd1.png?width=598&format=png&auto=webp&s=e5180190bddba5cdfaa3b7b7fabc6adcbf754966" alt="Prefix Sum Array" width="650" height="300"/>
 </div>
 
 ```mermaid

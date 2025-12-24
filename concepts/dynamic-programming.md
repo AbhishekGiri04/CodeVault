@@ -2,11 +2,11 @@
 
 <div align="center">
 
-![Dynamic Programming](https://img.shields.io/badge/Dynamic_Programming-Optimization-4ECDC4?style=for-the-badge&logo=algorithm&logoColor=white)
-![Difficulty](https://img.shields.io/badge/Difficulty-Advanced-orange?style=for-the-badge)
-![Importance](https://img.shields.io/badge/Importance-Critical-red?style=for-the-badge)
+![Dynamic Programming](https://img.shields.io/badge/Dynamic_Programming-Expert-FF6B6B?style=for-the-badge&logo=databricks&logoColor=white)
+![Difficulty](https://img.shields.io/badge/Difficulty-Advanced-red?style=for-the-badge)
+![Importance](https://img.shields.io/badge/Importance-Critical-gold?style=for-the-badge)
 
-*Master the art of solving complex problems by breaking them into optimal subproblems*
+**Master the art of solving complex problems by breaking them into optimal subproblems**
 
 </div>
 
@@ -15,15 +15,14 @@
 ## 📑 Table of Contents
 
 1. [Introduction](#-introduction)
-2. [Core Concepts](#-core-concepts)
+2. [Core Concepts](#️-core-concepts)
 3. [Problem Identification](#-problem-identification)
 4. [Memoization Approach](#-memoization-approach)
 5. [Tabulation Approach](#-tabulation-approach)
 6. [Classic Problems](#-classic-problems)
 7. [DP Patterns](#-dp-patterns)
 8. [Optimization Techniques](#-optimization-techniques)
-9. [Advanced Topics](#-advanced-topics)
-10. [Best Practices](#-best-practices)
+9. [Best Practices](#-best-practices)
 
 ---
 
@@ -34,10 +33,6 @@
 </div>
 
 **Dynamic Programming (DP)** is an algorithmic paradigm that solves complex problems by breaking them down into simpler subproblems and storing the results to avoid redundant calculations.
-
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20241223140520452888/Dynamic-Programming.webp" alt="Dynamic Programming Overview" width="650" height="350"/>
-</div>
 
 ### 🔑 Why Dynamic Programming?
 
@@ -54,7 +49,7 @@ flowchart TD
     C --> H["Build solution from smaller solutions"]
     
     D --> I["Exponential → Polynomial"]
-    D --> J["O(2^n) → O(n^2)"]
+    D --> J["O(2^n) → O(n²)"]
     
     E --> K["📝 Memoization"]
     F --> K
@@ -63,21 +58,16 @@ flowchart TD
     
     K --> M["Top-Down Approach"]
     L --> N["Bottom-Up Approach"]
-    
-    style A fill:#e3f2fd
-    style D fill:#c8e6c9
-    style K fill:#fff3e0
-    style L fill:#fce4ec
 ```
 
 ### 📊 DP vs Other Approaches
 
 | Approach | Time Complexity | Space Usage | Implementation |
-|:---------|:----------------|:------------|:---------------|
-| **Brute Force** | O(2^n) or worse | O(1) | Simple |
-| **Memoization** | O(n×m) | O(n×m) | Recursive |
-| **Tabulation** | O(n×m) | O(n×m) | Iterative |
-| **Space Optimized** | O(n×m) | O(min(n,m)) | Advanced |
+|----------|----------------|-------------|----------------|
+| Brute Force | O(2^n) or worse | O(1) | Simple |
+| Memoization | O(n×m) | O(n×m) | Recursive |
+| Tabulation | O(n×m) | O(n×m) | Iterative |
+| Space Optimized | O(n×m) | O(min(n,m)) | Advanced |
 
 ---
 
@@ -104,21 +94,20 @@ graph TD
 #### 2. Overlapping Subproblems
 ```mermaid
 graph TD
-    A[fib(5)] --> B[fib(4)]
-    A --> C[fib(3)]
+    A[fib5] --> B[fib4]
+    A --> C[fib3]
     
-    B --> D[fib(3)]
-    B --> E[fib(2)]
+    B --> D[fib3]
+    B --> E[fib2]
     
-    C --> F[fib(2)]
-    C --> G[fib(1)]
+    C --> F[fib2]
+    C --> G[fib1]
     
-    D --> H[fib(2)]
-    D --> I[fib(1)]
+    D --> H[fib2]
+    D --> I[fib1]
     
-    style D fill:#ff9999
-    style F fill:#ff9999
-    style H fill:#ff9999
+    classDef overlap fill:#ff9999
+    class D,F,H overlap
 ```
 
 ### 🔧 DP Decision Framework
@@ -133,16 +122,11 @@ flowchart TD
     D -->|Yes| F["🧠 Use Dynamic Programming"]
     
     F --> G{"Natural Recursion?"}
-    G -->|Yes| H["📝 Memoization (Top-Down)"]
-    G -->|No| I["📊 Tabulation (Bottom-Up)"]
+    G -->|Yes| H["📝 Memoization Top-Down"]
+    G -->|No| I["📊 Tabulation Bottom-Up"]
     
     H --> J["Recursive + Cache"]
     I --> K["Iterative + Table"]
-    
-    style A fill:#e3f2fd
-    style F fill:#c8e6c9
-    style H fill:#fff3e0
-    style I fill:#fce4ec
 ```
 
 ---
@@ -214,15 +198,9 @@ int minPathSum(vector<vector<int>>& grid) {
     
     dp[0][0] = grid[0][0];
     
-    // Initialize first row
-    for (int j = 1; j < n; j++) {
-        dp[0][j] = dp[0][j-1] + grid[0][j];
-    }
-    
-    // Initialize first column
-    for (int i = 1; i < m; i++) {
-        dp[i][0] = dp[i-1][0] + grid[i][0];
-    }
+    // Initialize first row and column
+    for (int j = 1; j < n; j++) dp[0][j] = dp[0][j-1] + grid[0][j];
+    for (int i = 1; i < m; i++) dp[i][0] = dp[i-1][0] + grid[i][0];
     
     // Fill the DP table
     for (int i = 1; i < m; i++) {
@@ -277,43 +255,7 @@ public:
 };
 ```
 
-#### 2. Longest Common Subsequence
-```cpp
-class LCSMemo {
-private:
-    vector<vector<int>> memo;
-    string text1, text2;
-    
-    int solve(int i, int j) {
-        if (i == text1.length() || j == text2.length()) {
-            return 0;
-        }
-        
-        if (memo[i][j] != -1) {
-            return memo[i][j];
-        }
-        
-        if (text1[i] == text2[j]) {
-            memo[i][j] = 1 + solve(i+1, j+1);
-        } else {
-            memo[i][j] = max(solve(i+1, j), solve(i, j+1));
-        }
-        
-        return memo[i][j];
-    }
-    
-public:
-    int longestCommonSubsequence(string text1, string text2) {
-        this->text1 = text1;
-        this->text2 = text2;
-        memo.assign(text1.length(), vector<int>(text2.length(), -1));
-        
-        return solve(0, 0);
-    }
-};
-```
-
-#### 3. 0/1 Knapsack Problem
+#### 2. 0/1 Knapsack Problem
 ```cpp
 class KnapsackMemo {
 private:
@@ -321,13 +263,9 @@ private:
     vector<int> weights, values;
     
     int solve(int i, int capacity) {
-        if (i == weights.size() || capacity == 0) {
-            return 0;
-        }
+        if (i == weights.size() || capacity == 0) return 0;
         
-        if (memo[i][capacity] != -1) {
-            return memo[i][capacity];
-        }
+        if (memo[i][capacity] != -1) return memo[i][capacity];
         
         // Don't take current item
         int exclude = solve(i+1, capacity);
@@ -344,10 +282,8 @@ private:
     
 public:
     int knapsack(vector<int>& w, vector<int>& v, int W) {
-        weights = w;
-        values = v;
+        weights = w; values = v;
         memo.assign(w.size(), vector<int>(W+1, -1));
-        
         return solve(0, W);
     }
 };
@@ -369,10 +305,10 @@ graph TD
     B --> C[Use Previous Results]
     C --> D[Final Answer]
     
-    E[dp[0]] --> F[dp[1]]
-    F --> G[dp[2]]
+    E[dp0] --> F[dp1]
+    F --> G[dp2]
     G --> H[...]
-    H --> I[dp[n]]
+    H --> I[dpn]
 ```
 
 ### 💻 Implementation Examples
@@ -395,25 +331,7 @@ int coinChange(vector<int>& coins, int amount) {
 }
 ```
 
-#### 2. Longest Increasing Subsequence
-```cpp
-int lengthOfLIS(vector<int>& nums) {
-    int n = nums.size();
-    vector<int> dp(n, 1);
-    
-    for (int i = 1; i < n; i++) {
-        for (int j = 0; j < i; j++) {
-            if (nums[j] < nums[i]) {
-                dp[i] = max(dp[i], dp[j] + 1);
-            }
-        }
-    }
-    
-    return *max_element(dp.begin(), dp.end());
-}
-```
-
-#### 3. Edit Distance
+#### 2. Edit Distance
 ```cpp
 int minDistance(string word1, string word2) {
     int m = word1.length(), n = word2.length();
@@ -496,7 +414,6 @@ int rob(vector<int>& nums) {
     if (n == 1) return nums[0];
     if (n == 2) return max(nums[0], nums[1]);
     
-    // Case 1: Rob houses 0 to n-2
     auto robLinear = [](vector<int>& houses, int start, int end) {
         int prev2 = 0, prev1 = 0;
         for (int i = start; i <= end; i++) {
@@ -507,47 +424,7 @@ int rob(vector<int>& nums) {
         return prev1;
     };
     
-    int case1 = robLinear(nums, 0, n-2);
-    int case2 = robLinear(nums, 1, n-1);
-    
-    return max(case1, case2);
-}
-```
-
-#### 3. Palindromic Substrings
-```cpp
-int countSubstrings(string s) {
-    int n = s.length();
-    vector<vector<bool>> dp(n, vector<bool>(n, false));
-    int count = 0;
-    
-    // Single characters are palindromes
-    for (int i = 0; i < n; i++) {
-        dp[i][i] = true;
-        count++;
-    }
-    
-    // Check for 2-character palindromes
-    for (int i = 0; i < n-1; i++) {
-        if (s[i] == s[i+1]) {
-            dp[i][i+1] = true;
-            count++;
-        }
-    }
-    
-    // Check for palindromes of length 3 and more
-    for (int len = 3; len <= n; len++) {
-        for (int i = 0; i <= n - len; i++) {
-            int j = i + len - 1;
-            
-            if (s[i] == s[j] && dp[i+1][j-1]) {
-                dp[i][j] = true;
-                count++;
-            }
-        }
-    }
-    
-    return count;
+    return max(robLinear(nums, 0, n-2), robLinear(nums, 1, n-1));
 }
 ```
 
@@ -564,8 +441,8 @@ graph TD
     C -->|Yes| D[1D Array]
     C -->|No| E[Rolling Array]
     
-    D --> F[O(n) Space]
-    E --> G[O(2×n) Space]
+    D --> F[On Space]
+    E --> G[O2n Space]
 ```
 
 ### 💻 Space-Optimized Examples
@@ -587,22 +464,7 @@ int fibOptimized(int n) {
 }
 ```
 
-#### 2. Unique Paths (Space Optimized)
-```cpp
-int uniquePaths(int m, int n) {
-    vector<int> dp(n, 1);
-    
-    for (int i = 1; i < m; i++) {
-        for (int j = 1; j < n; j++) {
-            dp[j] += dp[j-1];
-        }
-    }
-    
-    return dp[n-1];
-}
-```
-
-#### 3. Knapsack (Space Optimized)
+#### 2. Knapsack (Space Optimized)
 ```cpp
 int knapsackOptimized(vector<int>& weights, vector<int>& values, int W) {
     vector<int> dp(W + 1, 0);
@@ -631,70 +493,11 @@ graph TD
     A --> E[Tree DP]
     A --> F[State Machine DP]
     
-    B --> G[dp[i] depends on dp[i-1]]
-    C --> H[dp[i][j] depends on neighbors]
-    D --> I[dp[i][j] for range [i,j]]
-    E --> J[dp[node] for subtree]
-    F --> K[dp[i][state] for transitions]
-```
-
-### 💻 Pattern Templates
-
-#### 1. Linear DP Template
-```cpp
-template<typename T>
-class LinearDP {
-public:
-    vector<T> solve(vector<T>& input) {
-        int n = input.size();
-        vector<T> dp(n);
-        
-        // Base case
-        dp[0] = baseCase(input[0]);
-        
-        // Fill DP array
-        for (int i = 1; i < n; i++) {
-            dp[i] = transition(dp, input, i);
-        }
-        
-        return dp;
-    }
-    
-private:
-    virtual T baseCase(T first) = 0;
-    virtual T transition(vector<T>& dp, vector<T>& input, int i) = 0;
-};
-```
-
-#### 2. Grid DP Template
-```cpp
-template<typename T>
-class GridDP {
-public:
-    vector<vector<T>> solve(vector<vector<T>>& grid) {
-        int m = grid.size(), n = grid[0].size();
-        vector<vector<T>> dp(m, vector<T>(n));
-        
-        // Initialize base cases
-        initializeBase(dp, grid);
-        
-        // Fill DP table
-        for (int i = 1; i < m; i++) {
-            for (int j = 1; j < n; j++) {
-                dp[i][j] = transition(dp, grid, i, j);
-            }
-        }
-        
-        return dp;
-    }
-    
-private:
-    virtual void initializeBase(vector<vector<T>>& dp, 
-                               vector<vector<T>>& grid) = 0;
-    virtual T transition(vector<vector<T>>& dp, 
-                        vector<vector<T>>& grid, 
-                        int i, int j) = 0;
-};
+    B --> G[dpi depends on dpi-1]
+    C --> H[dpij depends on neighbors]
+    D --> I[dpij for range ij]
+    E --> J[dpnode for subtree]
+    F --> K[dpistate for transitions]
 ```
 
 ---
@@ -709,13 +512,6 @@ struct DPState {
     int position;
     int capacity;
     bool canUse;
-    
-    // Define hash function for memoization
-    bool operator==(const DPState& other) const {
-        return position == other.position && 
-               capacity == other.capacity && 
-               canUse == other.canUse;
-    }
 };
 
 // 2. Handle edge cases
@@ -723,25 +519,16 @@ int dpSolution(vector<int>& input) {
     if (input.empty()) return 0;
     if (input.size() == 1) return input[0];
     
-    // Main DP logic
     vector<int> dp(input.size());
-    // ... implementation
-    
+    // Main DP logic
     return dp.back();
 }
 
 // 3. Use appropriate data types
 class DPSolver {
 private:
-    // Use long long for large sums
-    vector<vector<long long>> memo;
-    
-    // Use unordered_map for sparse states
-    unordered_map<string, int> cache;
-    
-public:
-    // Clear interface
-    int solve(const vector<int>& input, int target);
+    vector<vector<long long>> memo;  // For large sums
+    unordered_map<string, int> cache;  // For sparse states
 };
 ```
 
@@ -756,38 +543,6 @@ public:
 
 // Don't: Ignore integer overflow
 // int result = dp[i] + dp[j]; // May overflow
-
-// Don't: Use inefficient state representation
-// map<vector<int>, int> memo; // Slow for large vectors
-```
-
-### 🎯 Debugging Tips
-
-```cpp
-class DPDebugger {
-public:
-    template<typename T>
-    void printDPTable(const vector<vector<T>>& dp, 
-                     const string& name = "DP") {
-        cout << name << " Table:\n";
-        for (int i = 0; i < dp.size(); i++) {
-            for (int j = 0; j < dp[i].size(); j++) {
-                cout << setw(4) << dp[i][j] << " ";
-            }
-            cout << "\n";
-        }
-        cout << "\n";
-    }
-    
-    void validateTransition(int expected, int actual, 
-                          int i, int j) {
-        if (expected != actual) {
-            cout << "Transition error at (" << i << "," << j 
-                 << "): expected " << expected 
-                 << ", got " << actual << "\n";
-        }
-    }
-};
 ```
 
 ---

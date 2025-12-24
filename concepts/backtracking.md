@@ -360,18 +360,6 @@ private:
 <img src="https://www.scaler.com/topics/images/pruning5.webp" alt="Pruning Strategies" width="650" height="400"/>
 </div>
 
-### 🧠 Memoization in Backtracking
-
-<div align="center">
-<img src="https://storage.googleapis.com/algodailyrandomassets/curriculum/dynamic-programming/dp1.png" alt="Memoization in Backtracking" width="600" height="350"/>
-</div>
-
-### 🔧 Pruning Strategies
-
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Backtracking-Pruning-Strategies.webp" alt="Backtracking Pruning Strategies" width="600" height="350"/>
-</div>
-
 ```cpp
 class BacktrackingOptimizations {
 public:
@@ -404,10 +392,10 @@ private:
 };
 ```
 
-### 🔧 Memoization in Backtracking
+### 🧠 Memoization in Backtracking
 
 <div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Memoization-in-Backtracking.webp" alt="Memoization in Backtracking" width="650" height="350"/>
+<img src="https://storage.googleapis.com/algodailyrandomassets/curriculum/dynamic-programming/dp1.png" alt="Memoization in Backtracking" width="600" height="350"/>
 </div>
 
 ```cpp

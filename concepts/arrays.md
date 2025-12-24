@@ -371,14 +371,14 @@ int binarySearch(vector<int>& arr, int target) {
 
 ```mermaid
 graph LR
-    A[Two Pointers] --> B[Same Direction]
-    A --> C[Opposite Direction]
+    A["Two Pointers"] --> B["Same Direction"]
+    A --> C["Opposite Direction"]
     
-    B --> D[Fast & Slow]
-    B --> E[Sliding Window]
+    B --> D["Fast & Slow"]
+    B --> E["Sliding Window"]
     
-    C --> F[Two Sum]
-    C --> G[Palindrome Check]
+    C --> F["Two Sum"]
+    C --> G["Palindrome Check"]
 ```
 
 #### Implementation Examples
@@ -425,14 +425,14 @@ int removeDuplicates(vector<int>& arr) {
 
 ```mermaid
 graph TD
-    A[Sliding Window] --> B[Fixed Size Window]
-    A --> C[Variable Size Window]
+    A["Sliding Window"] --> B["Fixed Size Window"]
+    A --> C["Variable Size Window"]
     
-    B --> D[Maximum Sum Subarray]
-    C --> E[Longest Substring]
+    B --> D["Maximum Sum Subarray"]
+    C --> E["Longest Substring"]
     
-    D --> F[Move window by 1]
-    E --> G[Expand/Contract based on condition]
+    D --> F["Move window by 1"]
+    E --> G["Expand/Contract based on condition"]
 ```
 
 #### Implementation Examples

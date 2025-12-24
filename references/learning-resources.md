@@ -52,6 +52,8 @@ mindmap
         Interview preparation
         Problem patterns
         Company insights
+
+%%{init: {'theme':'base', 'themeVariables': {'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#000000', 'lineColor':'#000000'}}}%%
 ```
 
 ---

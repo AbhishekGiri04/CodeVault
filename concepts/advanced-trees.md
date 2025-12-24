@@ -51,6 +51,8 @@ mindmap
         Prefix sums
         Bit manipulation
         Space efficient
+
+%%{init: {'theme':'base', 'themeVariables': {'primaryColor':'#2E86AB', 'primaryTextColor':'#ffffff', 'primaryBorderColor':'#ffffff', 'lineColor':'#4A4A4A', 'secondaryColor':'#A23B72', 'tertiaryColor':'#F18F01', 'background':'#C73E1D', 'mainBkg':'#2E86AB', 'secondBkg':'#A23B72', 'tertiaryBkg':'#F18F01'}}}%%
 ```
 
 <div align="center">

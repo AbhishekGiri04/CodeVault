@@ -6,13 +6,7 @@
 ![Difficulty](https://img.shields.io/badge/Difficulty-Beginner-green?style=for-the-badge)
 ![Importance](https://img.shields.io/badge/Importance-Critical-red?style=for-the-badge)
 
-<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20230807133054/Data-structure-algorithm.png" alt="Data Structures and Algorithms Overview" width="700" height="400"/>
-
-<img src="https://dotnettrickscloud.blob.core.windows.net/article/data%20structures/2720231115130534.png" alt="DSA Concepts Visualization" width="650" height="350"/>
-
-<img src="https://storage.googleapis.com/algodailyrandomassets/curriculum/fundamentals/space1.png" alt="Space Complexity Analysis" width="600" height="300"/>
-
-*Build a solid foundation in Data Structures and Algorithms*
+**Build a solid foundation in Data Structures and Algorithms**
 
 </div>
 

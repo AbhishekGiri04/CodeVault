@@ -1,12 +1,12 @@
 /*
 ╔══════════════════════════════════════════════════════════════════════════════╗
-║                          LEETCODE PROBLEM SOLUTION                          ║
+║                          LEETCODE PROBLEM SOLUTION                           ║
 ╠══════════════════════════════════════════════════════════════════════════════╣
 ║ Problem ID    : 540                                                          ║
-║ Problem Name  : Single Element in a Sorted Array                            ║
+║ Problem Name  : Single Element in a Sorted Array                             ║
 ║ Difficulty    : Medium                                                       ║
-║ Topic         : Array, Binary Search, Bit Manipulation                      ║
-║ Company Tags  : Amazon, Microsoft, Google, Facebook                         ║
+║ Topic         : Array, Binary Search, Bit Manipulation                       ║
+║ Company Tags  : Amazon, Microsoft, Google, Facebook                          ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 
 📋 PROBLEM STATEMENT:

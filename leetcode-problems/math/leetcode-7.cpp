@@ -1,12 +1,12 @@
 /*
 ╔══════════════════════════════════════════════════════════════════════════════╗
-║                          LEETCODE PROBLEM SOLUTION                          ║
+║                          LEETCODE PROBLEM SOLUTION                           ║
 ╠══════════════════════════════════════════════════════════════════════════════╣
 ║ Problem ID    : 7                                                            ║
-║ Problem Name  : Reverse Integer                                             ║
+║ Problem Name  : Reverse Integer                                              ║
 ║ Difficulty    : Medium                                                       ║
-║ Topic         : Math, Integer Manipulation                                  ║
-║ Company Tags  : Amazon, Apple, Microsoft, Google, Facebook                  ║
+║ Topic         : Math, Integer Manipulation                                   ║
+║ Company Tags  : Amazon, Apple, Microsoft, Google, Facebook                   ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 
 📋 PROBLEM STATEMENT:

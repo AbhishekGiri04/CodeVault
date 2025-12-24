@@ -1,12 +1,10 @@
-# 🌳 Branch & Bound Complete Professional Guide
+# 🌳 Branch & Bound — Complete Professional Guide
 
 <div align="center">
 
 ![Branch & Bound](https://img.shields.io/badge/Branch_&_Bound-Optimization_Technique-4ECDC4?style=for-the-badge&logo=tree&logoColor=white)
 ![Difficulty](https://img.shields.io/badge/Difficulty-Advanced-red?style=for-the-badge)
 ![Importance](https://img.shields.io/badge/Importance-High-red?style=for-the-badge)
-
-<img src="https://miro.medium.com/v2/resize:fit:1400/1*qCxAtAiwt22K4csLG-6big.png" alt="Branch and Bound Algorithm Visualization" width="700" height="450"/>
 
 *Master systematic optimization through intelligent search space exploration*
 
@@ -98,6 +96,8 @@ mindmap
       Resource allocation
       Deadline constraints
       Optimization problems
+
+%%{init: {'theme':'base', 'themeVariables': {'primaryColor':'#2E86AB', 'primaryTextColor':'#ffffff', 'primaryBorderColor':'#ffffff', 'lineColor':'#4A4A4A', 'secondaryColor':'#A23B72', 'tertiaryColor':'#F18F01', 'background':'#C73E1D', 'mainBkg':'#2E86AB', 'secondBkg':'#A23B72', 'tertiaryBkg':'#F18F01'}}}%%
 ```
 
 - **Job Assignment**: Minimize total assignment cost
@@ -113,7 +113,7 @@ mindmap
 Divide the problem into smaller subproblems by making decisions.
 
 <div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Branch-and-Bound-Branching.webp" alt="Branch and Bound Branching Strategy" width="600" height="350"/>
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20221017115728/22.png" alt="Branch and Bound Branching Strategy" width="600" height="350"/>
 </div>
 
 ```cpp
@@ -153,7 +153,7 @@ private:
 ### 🎯 Bounding
 
 <div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Branch-and-Bound-Bounding.webp" alt="Branch and Bound Bounding Function" width="650" height="400"/>
+<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/TSP.png" alt="Branch and Bound Bounding Function" width="650" height="400"/>
 </div>
 
 ```mermaid
@@ -202,7 +202,7 @@ protected:
 Eliminate branches that cannot lead to better solutions.
 
 <div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Branch-and-Bound-Pruning.webp" alt="Branch and Bound Pruning Strategy" width="600" height="350"/>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8UXDvofQXzR6cRZ_UlUovoGALQlv-PKFABg&s" alt="Branch and Bound Pruning Strategy" width="600" height="350"/>
 </div>
 
 ```cpp
@@ -467,7 +467,7 @@ public:
 Assign n jobs to n workers to minimize total cost, with each job assigned to exactly one worker.
 
 <div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Job-Assignment-Problem.webp" alt="Job Assignment Problem Visualization" width="650" height="400"/>
+<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/jobassignment6.png" alt="Job Assignment Problem Visualization" width="650" height="400"/>
 </div>
 
 ```cpp
@@ -591,7 +591,7 @@ void solveJobAssignmentExample() {
 Select items to maximize profit while staying within weight capacity, each item can be taken at most once.
 
 <div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Knapsack-Branch-Bound.webp" alt="0/1 Knapsack using Branch and Bound" width="700" height="400"/>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbfpmV-PS-pLyyBbzLXCnrjfTlOpYUeGTCrg&s" alt="0/1 Knapsack using Branch and Bound" width="700" height="400"/>
 </div>
 
 ```cpp
@@ -1018,164 +1018,6 @@ private:
 };
 ```
 
-### Problem 2: N-Queens using Branch & Bound
-```cpp
-class NQueensBB {
-private:
-    struct QueenNode {
-        vector<int> queens; // queens[i] = column of queen in row i
-        int level;
-        int conflicts;
-        
-        bool operator>(const QueenNode& other) const {
-            return conflicts > other.conflicts;
-        }
-    };
-    
-    int n;
-    
-public:
-    NQueensBB(int size) : n(size) {}
-    
-    vector<int> solveNQueens() {
-        priority_queue<QueenNode, vector<QueenNode>, greater<QueenNode>> pq;
-        
-        QueenNode root;
-        root.queens = vector<int>(n, -1);
-        root.level = 0;
-        root.conflicts = 0;
-        
-        pq.push(root);
-        
-        while (!pq.empty()) {
-            QueenNode current = pq.top();
-            pq.pop();
-            
-            if (current.level == n) {
-                return current.queens; // Solution found
-            }
-            
-            // Try placing queen in each column of current row
-            for (int col = 0; col < n; col++) {
-                if (isSafe(current.queens, current.level, col)) {
-                    QueenNode child = current;
-                    child.queens[current.level] = col;
-                    child.level = current.level + 1;
-                    child.conflicts = calculateConflicts(child.queens, child.level);
-                    
-                    pq.push(child);
-                }
-            }
-        }
-        
-        return vector<int>(); // No solution
-    }
-    
-private:
-    bool isSafe(const vector<int>& queens, int row, int col) {
-        for (int i = 0; i < row; i++) {
-            if (queens[i] == col || 
-                abs(queens[i] - col) == abs(i - row)) {
-                return false;
-            }
-        }
-        return true;
-    }
-    
-    int calculateConflicts(const vector<int>& queens, int level) {
-        int conflicts = 0;
-        // Estimate conflicts for remaining queens
-        return conflicts;
-    }
-};
-```
-
-### Problem 3: Subset Sum with Branch & Bound
-```cpp
-class SubsetSumBB {
-private:
-    struct SubsetNode {
-        vector<int> subset;
-        int level;
-        int currentSum;
-        int bound;
-        
-        bool operator>(const SubsetNode& other) const {
-            return abs(bound - target) > abs(other.bound - target);
-        }
-    };
-    
-    vector<int> numbers;
-    int target;
-    int n;
-    
-public:
-    SubsetSumBB(vector<int>& nums, int t) : numbers(nums), target(t), n(nums.size()) {
-        sort(numbers.begin(), numbers.end());
-    }
-    
-    vector<int> findSubsetSum() {
-        priority_queue<SubsetNode, vector<SubsetNode>, greater<SubsetNode>> pq;
-        
-        SubsetNode root;
-        root.subset = vector<int>();
-        root.level = 0;
-        root.currentSum = 0;
-        root.bound = calculateBound(root);
-        
-        pq.push(root);
-        
-        while (!pq.empty()) {
-            SubsetNode current = pq.top();
-            pq.pop();
-            
-            if (current.currentSum == target) {
-                return current.subset;
-            }
-            
-            if (current.level >= n || current.currentSum > target) {
-                continue;
-            }
-            
-            // Include current number
-            SubsetNode include = current;
-            include.subset.push_back(numbers[current.level]);
-            include.currentSum += numbers[current.level];
-            include.level = current.level + 1;
-            include.bound = calculateBound(include);
-            
-            if (include.currentSum <= target) {
-                pq.push(include);
-            }
-            
-            // Exclude current number
-            SubsetNode exclude = current;
-            exclude.level = current.level + 1;
-            exclude.bound = calculateBound(exclude);
-            
-            pq.push(exclude);
-        }
-        
-        return vector<int>(); // No solution
-    }
-    
-private:
-    int calculateBound(const SubsetNode& node) {
-        int bound = node.currentSum;
-        int remaining = target - node.currentSum;
-        
-        for (int i = node.level; i < n && remaining > 0; i++) {
-            if (numbers[i] <= remaining) {
-                bound += numbers[i];
-                remaining -= numbers[i];
-            }
-        }
-        
-        return bound;
-    }
-};
-```
-
 ---
 
 ## 💡 Best Practices
@@ -1220,82 +1062,6 @@ private:
     double getDualBound(const Node& node, const Problem& problem) {
         // Use dual problem or Lagrangian relaxation
         return 0.0;
-    }
-};
-```
-
-### 🔧 Implementation Optimization
-```cpp
-class ImplementationOptimization {
-public:
-    // Memory management for large search trees
-    void optimizeMemoryUsage() {
-        // Use object pooling for nodes
-        // Implement iterative deepening
-        // Use bit manipulation for compact representation
-    }
-    
-    // Parallel branch and bound
-    void parallelBranchBound() {
-        // Distribute nodes across threads
-        // Shared best solution with synchronization
-        // Load balancing strategies
-    }
-    
-    // Early termination strategies
-    bool shouldTerminateEarly(double currentBest, double targetQuality, 
-                             int nodesExplored, int timeLimit) {
-        // Stop if good enough solution found
-        if (currentBest >= targetQuality) return true;
-        
-        // Stop if time limit exceeded
-        if (getElapsedTime() > timeLimit) return true;
-        
-        // Stop if too many nodes explored
-        if (nodesExplored > getNodeLimit()) return true;
-        
-        return false;
-    }
-    
-private:
-    int getElapsedTime() { return 0; }
-    int getNodeLimit() { return 1000000; }
-};
-```
-
-### 🧪 Testing and Validation
-```cpp
-class BranchBoundTesting {
-public:
-    void testBranchBoundSolver() {
-        // Test with known optimal solutions
-        testKnownInstances();
-        
-        // Test bound quality
-        testBoundTightness();
-        
-        // Test pruning effectiveness
-        testPruningRatio();
-        
-        // Test scalability
-        testPerformance();
-    }
-    
-private:
-    void testKnownInstances() {
-        cout << "Testing with benchmark instances..." << endl;
-    }
-    
-    void testBoundTightness() {
-        cout << "Measuring bound quality..." << endl;
-    }
-    
-    void testPruningRatio() {
-        cout << "Analyzing pruning effectiveness..." << endl;
-    }
-    
-    void testPerformance() {
-        cout << "Performance testing..." << endl;
     }
 };
 ```

@@ -71,7 +71,7 @@ mindmap
   root))🚀 Binary Lifting Applications((
     🌳 LCA Queries
       Find common ancestors
-      O(log n) per query
+      Fast query processing
       Tree path problems
       Genealogy systems
     🔢 K-th Ancestor

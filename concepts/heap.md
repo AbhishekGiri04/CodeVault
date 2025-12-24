@@ -389,26 +389,31 @@ void useCustomComparator() {
 ## 🎓 Summary
 
 ```mermaid
-mindmap
-  root))📦 Heap Mastery((
-    🌳 Structure
-      Complete Binary Tree
-      Array Representation
-      Heap Property
-    ⚡ Operations
-      Insert: O(log n)
-      Extract: O(log n)
-      Peek: O(1)
-      Build: O(n)
-    🎯 Applications
-      Priority Queues
-      Heap Sort
-      Graph Algorithms
-      Top-K Problems
-    📊 Performance
-      Time Efficient
-      Space Efficient
-      Cache Friendly
+flowchart TD
+    A["📦 Heap Mastery"] --> B["🌳 Structure"]
+    A --> C["⚡ Operations"]
+    A --> D["🎯 Applications"]
+    A --> E["📊 Performance"]
+    
+    B --> F["Complete Binary Tree"]
+    B --> G["Array Representation"]
+    B --> H["Heap Property"]
+    
+    C --> I["Insert: O(log n)"]
+    C --> J["Extract: O(log n)"]
+    C --> K["Peek: O(1)"]
+    C --> L["Build: O(n)"]
+    
+    D --> M["Priority Queues"]
+    D --> N["Heap Sort"]
+    D --> O["Graph Algorithms"]
+    D --> P["Top-K Problems"]
+    
+    E --> Q["Time Efficient"]
+    E --> R["Space Efficient"]
+    E --> S["Cache Friendly"]
+    
+    classDef default fill:#333,stroke:#fff,stroke-width:2px,color:#fff
 ```
 
 Heaps provide efficient priority-based operations:

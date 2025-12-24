@@ -234,26 +234,28 @@ flowchart TD
 
 ```mermaid
 gantt
-    title DSA Learning Timeline
-    dateFormat  X
-    axisFormat %s
+    title DSA Learning Timeline (12 Weeks)
+    dateFormat  YYYY-MM-DD
+    axisFormat %m/%d
     
-    section Fundamentals
-    Basics & Syntax           :done, basics, 0, 2w
-    Arrays & Strings          :done, arrays, after basics, 2w
+    section Phase 1: Fundamentals
+    Basics & Syntax           :done, basics, 2024-01-01, 2024-01-14
+    Arrays & Strings          :done, arrays, 2024-01-15, 2024-01-28
     
-    section Core DSA
-    Linked Lists & Stacks     :active, lists, after arrays, 2w
-    Trees & Graphs            :trees, after lists, 3w
-    Sorting & Searching       :sorting, after trees, 2w
+    section Phase 2: Core DSA
+    Linked Lists & Stacks     :active, lists, 2024-01-29, 2024-02-11
+    Trees & Graphs            :trees, 2024-02-12, 2024-03-04
+    Sorting & Searching       :sorting, 2024-03-05, 2024-03-18
     
-    section Advanced
-    Dynamic Programming       :dp, after sorting, 3w
-    Advanced Data Structures  :advanced, after dp, 2w
+    section Phase 3: Advanced
+    Dynamic Programming       :dp, 2024-03-19, 2024-04-08
+    Advanced Data Structures  :advanced, 2024-04-09, 2024-04-22
     
-    section Interview Prep
-    Mock Interviews           :interviews, after advanced, 2w
-    System Design            :system, after interviews, 2w
+    section Phase 4: Interview Prep
+    Mock Interviews           :interviews, 2024-04-23, 2024-05-06
+    System Design            :system, 2024-05-07, 2024-05-20
+
+%%{init: {'theme':'base', 'themeVariables': {'primaryColor':'#ff6b6b', 'primaryTextColor':'#ffffff', 'primaryBorderColor':'#ffffff', 'gridColor':'#333333', 'section0':'#ff6b6b', 'section1':'#4ecdc4', 'section2':'#45b7d1', 'section3':'#ffa500'}}}%%
 ```
 
 ### 🗓️ **Suggested Timeline**

@@ -28,7 +28,7 @@
 ### 🔑 Backtracking Framework
 
 <div align="center">
-<img src="https://towardsdatascience.com/wp-content/uploads/2022/02/11wVvuJUuCTDMg-uT8g3ig.png" alt="Backtracking Tree" width="700" height="300"/>
+<img src="https://scaler.com/topics/images/working-of-backtracking-algorithm" alt="Working of Backtracking Algorithm" width="700" height="300"/>
 </div>
 
 ```mermaid
@@ -254,7 +254,7 @@ private:
 ### 🔧 Sudoku Solver
 
 <div align="center">
-<img src="https://www.scaler.com/topics/images/pruning5.webp" alt="Backtracking Pruning" width="650" height="400"/>
+<img src="https://towardsdatascience.com/wp-content/uploads/2022/02/11wVvuJUuCTDMg-uT8g3ig.png" alt="Sudoku Solver Backtracking" width="650" height="400"/>
 </div>
 
 ```cpp
@@ -353,6 +353,18 @@ private:
 ---
 
 ## 🎯 Optimization Techniques
+
+### 🌿 Pruning Strategies
+
+<div align="center">
+<img src="https://www.scaler.com/topics/images/pruning5.webp" alt="Pruning Strategies" width="650" height="400"/>
+</div>
+
+### 🧠 Memoization in Backtracking
+
+<div align="center">
+<img src="https://storage.googleapis.com/algodailyrandomassets/curriculum/dynamic-programming/dp1.png" alt="Memoization in Backtracking" width="600" height="350"/>
+</div>
 
 ### 🔧 Pruning Strategies
 

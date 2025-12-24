@@ -1,4 +1,16 @@
-# 🎲 Randomized Algorithms Complete Guide
+# 🎲 Randomized Algorithms — Complete Professional Guide
+
+<div align="center">
+
+<img src="https://miro.medium.com/v2/resize:fit:1276/1*rKt-gIoYmnPaBd39XK3B1g.jpeg" alt="Randomized Algorithms" width="600" height="300"/>
+
+![Randomized](https://img.shields.io/badge/Randomized-Probabilistic_Computing-6f42c1?style=for-the-badge&logo=dice&logoColor=white)
+![Difficulty](https://img.shields.io/badge/Difficulty-Advanced-orange?style=for-the-badge)
+![Importance](https://img.shields.io/badge/Importance-High-red?style=for-the-badge)
+
+*Master probabilistic algorithms that use randomness for elegant and efficient solutions*
+
+</div>
 
 ## 📋 Table of Contents
 - [Introduction](#introduction)
@@ -18,6 +30,41 @@
 ## 🎯 Introduction
 
 **Randomized Algorithms** use random numbers to make decisions during execution, providing elegant solutions to complex problems while avoiding worst-case scenarios through probabilistic guarantees.
+
+## 📊 Randomized Algorithms Gallery
+
+<div align="center">
+
+<img src="https://miro.medium.com/1*rmBh3iUeVc7LywTJFHR2Fg.png" alt="Monte Carlo vs Las Vegas" width="500" height="300"/>
+<img src="https://cyberenlightener.com/wp-content/uploads/2024/03/Randomized.png" alt="Randomized Algorithm Types" width="500" height="300"/>
+
+</div>
+
+### 🌊 Randomized Algorithm Flow
+
+```mermaid
+graph TD
+    A[Randomized Algorithms] --> B[Monte Carlo]
+    A --> C[Las Vegas]
+    A --> D[Atlantic City]
+    
+    B --> E[Fixed Time]
+    B --> F[Probabilistic Correctness]
+    B --> G[May give wrong answer]
+    
+    C --> H[Always Correct]
+    C --> I[Random Time]
+    C --> J[Expected performance]
+    
+    D --> K[Bounded Time]
+    D --> L[Bounded Error]
+    D --> M[Hybrid approach]
+    
+    N[Applications] --> O[Primality Testing]
+    N --> P[Sorting Algorithms]
+    N --> Q[Data Structures]
+    N --> R[Optimization]
+```
 
 ### 🔑 Key Principles
 - **Random Choices**: Use randomness to guide algorithm decisions

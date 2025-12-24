@@ -6,6 +6,12 @@
 ![Difficulty](https://img.shields.io/badge/Difficulty-Intermediate-yellow?style=for-the-badge)
 ![Importance](https://img.shields.io/badge/Importance-High-red?style=for-the-badge)
 
+<img src="https://scaler.com/topics/images/steps-in-arithmetic-operation.webp" alt="Steps in Arithmetic Operations" width="600" height="350"/>
+
+<img src="https://scaler.com/topics/images/types-of-java-bitwise-operators-in-java.webp" alt="Types of Bitwise Operators" width="700" height="400"/>
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl8GE3LnW0r_nshc4EDM41o5T-zYLq0FXUgw&s" alt="Bit Manipulation Concepts" width="650" height="300"/>
+
 *Master the art of binary operations for ultra-efficient problem solving*
 
 </div>
@@ -56,12 +62,40 @@
 
 ### ✅ Advantages
 
-```
-🔥 Ultra-Fast Performance    → O(1) operations
-💾 Memory Efficient          → Compact data representation
-⚡ CPU-Level Operations      → Direct hardware support
-🎯 Elegant Solutions         → Simple code for complex problems
-🔐 Security Applications     → Cryptographic operations
+```mermaid
+flowchart TD
+    A["🔢 Bit Manipulation Benefits"] --> B["🔥 Ultra-Fast Performance"]
+    A --> C["💾 Memory Efficient"]
+    A --> D["⚡ CPU-Level Operations"]
+    A --> E["🎯 Elegant Solutions"]
+    A --> F["🔐 Security Applications"]
+    
+    B --> G["O(1) operations"]
+    B --> H["Hardware optimized"]
+    B --> I["No function calls"]
+    
+    C --> J["Compact representation"]
+    C --> K["State compression"]
+    C --> L["Flag systems"]
+    
+    D --> M["Direct hardware support"]
+    D --> N["Assembly level"]
+    D --> O["Processor instructions"]
+    
+    E --> P["Simple code"]
+    E --> Q["Complex problems"]
+    E --> R["Mathematical elegance"]
+    
+    F --> S["Cryptographic operations"]
+    F --> T["Hash functions"]
+    F --> U["Encryption algorithms"]
+    
+    style A fill:#e3f2fd
+    style B fill:#c8e6c9
+    style C fill:#fff3e0
+    style D fill:#fce4ec
+    style E fill:#f3e5f5
+    style F fill:#e8f5e8
 ```
 
 ### 📊 Performance Comparison
@@ -119,6 +153,48 @@ MSB (Most Significant Bit)  ←  1101  →  LSB (Least Significant Bit)
 ---
 
 ## ⚙️ Bitwise Operators
+
+```mermaid
+flowchart TD
+    A["Bitwise Operators"] --> B["AND (&)"]
+    A --> C["OR (|)"]
+    A --> D["XOR (^)"]
+    A --> E["NOT (~)"]
+    A --> F["Left Shift (<<)"]
+    A --> G["Right Shift (>>)"]
+    
+    B --> H["Both bits must be 1"]
+    B --> I["Masking operations"]
+    B --> J["Check/clear bits"]
+    
+    C --> K["Any bit is 1"]
+    C --> L["Set bits"]
+    C --> M["Combine flags"]
+    
+    D --> N["Bits are different"]
+    D --> O["Toggle bits"]
+    D --> P["Find unique elements"]
+    
+    E --> Q["Flip all bits"]
+    E --> R["Create masks"]
+    E --> S["Complement operations"]
+    
+    F --> T["Multiply by 2^k"]
+    F --> U["Position bits"]
+    F --> V["Create powers"]
+    
+    G --> W["Divide by 2^k"]
+    G --> X["Extract higher bits"]
+    G --> Y["Reduce numbers"]
+    
+    style A fill:#e3f2fd
+    style B fill:#ffcdd2
+    style C fill:#c8e6c9
+    style D fill:#fff3e0
+    style E fill:#fce4ec
+    style F fill:#f3e5f5
+    style G fill:#e8f5e8
+```
 
 ### 1️⃣ AND Operator (&)
 
@@ -262,6 +338,38 @@ Formula: n >> k = n ÷ 2^k
 ---
 
 ## 🎪 Essential Bit Tricks
+
+```mermaid
+flowchart TD
+    A["🎪 Essential Bit Tricks"] --> B["Check Even/Odd"]
+    A --> C["Set/Clear/Toggle Bits"]
+    A --> D["Power of 2 Operations"]
+    A --> E["Count Set Bits"]
+    A --> F["Remove Rightmost Set Bit"]
+    
+    B --> G["n & 1"]
+    B --> H["O(1) operation"]
+    
+    C --> I["Set: n | (1 << i)"]
+    C --> J["Clear: n & ~(1 << i)"]
+    C --> K["Toggle: n ^ (1 << i)"]
+    
+    D --> L["Check: n & (n-1) == 0"]
+    D --> M["Most important trick"]
+    
+    E --> N["Brian Kernighan's"]
+    E --> O["O(set bits)"]
+    
+    F --> P["n & (n-1)"]
+    F --> Q["Core operation"]
+    
+    style A fill:#e3f2fd
+    style B fill:#c8e6c9
+    style C fill:#fff3e0
+    style D fill:#fce4ec
+    style E fill:#f3e5f5
+    style F fill:#e8f5e8
+```
 
 ### 1. Check Even or Odd
 

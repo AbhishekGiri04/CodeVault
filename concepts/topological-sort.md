@@ -2,6 +2,8 @@
 
 <div align="center">
 
+<img src="https://scaler.com/topics/images/practice-problem-based-on-topological-sort-addition-seven.webp" alt="Topological Sort" width="600" height="300"/>
+
 ![Topological Sort](https://img.shields.io/badge/Topological_Sort-Graph_Ordering-4ECDC4?style=for-the-badge&logo=sort&logoColor=white)
 ![Difficulty](https://img.shields.io/badge/Difficulty-Intermediate-yellow?style=for-the-badge)
 ![Importance](https://img.shields.io/badge/Importance-High-red?style=for-the-badge)
@@ -32,6 +34,29 @@
 ## 🎯 Introduction
 
 **Topological Sort** is a linear ordering of vertices in a Directed Acyclic Graph (DAG) such that for every directed edge u → v, vertex u appears before vertex v in the ordering.
+
+### 🎆 Topological Sort Flow
+
+```mermaid
+graph TD
+    A[Topological Sort] --> B[Check DAG]
+    B -->|Yes| C[Choose Algorithm]
+    B -->|No| D[Error: Cycle Exists]
+    
+    C --> E[Kahn's Algorithm]
+    C --> F[DFS Algorithm]
+    
+    E --> G[Calculate In-degrees]
+    G --> H[Queue Zero In-degree]
+    H --> I[Process & Update]
+    
+    F --> J[DFS Traversal]
+    J --> K[Post-order Stack]
+    K --> L[Reverse Order]
+    
+    I --> M[Linear Ordering]
+    L --> M
+```
 
 ### 🔑 Key Concept
 

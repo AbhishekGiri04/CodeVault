@@ -6,6 +6,8 @@
 ![Difficulty](https://img.shields.io/badge/Difficulty-Advanced-red?style=for-the-badge)
 ![Importance](https://img.shields.io/badge/Importance-High-red?style=for-the-badge)
 
+<img src="https://scaler.com/topics/images/mos-algorithm-example.webp" alt="Mo's Algorithm Example" width="700" height="400"/>
+
 *Master offline query processing and square root decomposition for competitive programming excellence*
 
 </div>
@@ -48,6 +50,24 @@ Mo's Algorithm: 2×10^7 operations (500x speedup!)
 
 Instead of processing queries in given order, **reorder queries** to minimize pointer movements and reuse computations.
 
+```mermaid
+flowchart TD
+    A["📋 Input Queries"] --> B["🔄 Sort by Block Order"]
+    B --> C["📊 Block Decomposition"]
+    C --> D["🎯 Process Queries"]
+    D --> E["⚡ Optimized Results"]
+    
+    B --> F["Block Size = √N"]
+    C --> G["Sort by (L/√N, R)"]
+    D --> H["Two Pointers Movement"]
+    
+    style A fill:#e1f5fe
+    style E fill:#c8e6c9
+    style F fill:#fff3e0
+    style G fill:#fff3e0
+    style H fill:#fff3e0
+```
+
 ---
 
 ## 🏗️ Core Concepts
@@ -60,6 +80,22 @@ Instead of processing queries in given order, **reorder queries** to minimize po
 4. **Range Queries**: Queries of form [L, R]
 
 ### 📊 Block Decomposition
+
+```mermaid
+graph TD
+    A["Array of size N"] --> B["Block 0<br/>[0 to √N-1]"]
+    A --> C["Block 1<br/>[√N to 2√N-1]"]
+    A --> D["Block 2<br/>[2√N to 3√N-1]"]
+    A --> E["..."] 
+    A --> F["Block √N-1<br/>[...to N-1]"]
+    
+    G["Query Sorting Strategy"] --> H["Primary: Block of L"]
+    H --> I["Secondary: R value"]
+    I --> J["Optimization: Alternate R direction"]
+    
+    style A fill:#e1f5fe
+    style G fill:#fff3e0
+```
 
 ```cpp
 int blockSize = sqrt(N);
@@ -94,6 +130,24 @@ struct Query {
 
 ### 🎯 Algorithm Steps
 
+```mermaid
+flowchart LR
+    A["🔢 Array[N]"] --> B["📊 Divide into √N blocks"]
+    B --> C["📋 Sort queries by (L/√N, R)"]
+    C --> D["🎯 Initialize pointers curL=0, curR=-1"]
+    D --> E["🔄 Process each query"]
+    E --> F["⬅️➡️ Move pointers"]
+    F --> G["➕➖ Add/Remove elements"]
+    G --> H["💾 Store answer"]
+    H --> I{"More queries?"}
+    I -->|Yes| E
+    I -->|No| J["✅ Return results"]
+    
+    style A fill:#e3f2fd
+    style J fill:#c8e6c9
+```
+
+**Detailed Steps:**
 1. **Divide** array into √N blocks
 2. **Sort** queries by (L/√N, R)
 3. **Process** queries with two pointers

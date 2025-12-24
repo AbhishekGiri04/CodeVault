@@ -6,6 +6,16 @@
 ![Difficulty](https://img.shields.io/badge/Difficulty-Advanced-red?style=for-the-badge)
 ![Importance](https://img.shields.io/badge/Importance-Critical-red?style=for-the-badge)
 
+<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/hld1.png" alt="Heavy-Light Decomposition Concept" width="600" height="400"/>
+
+<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/hld2.png" alt="HLD Tree Structure" width="650" height="350"/>
+
+<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/hld321.png" alt="HLD Chain Formation" width="700" height="400"/>
+
+<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/Heavy-Light-Decompostion.png" alt="Complete HLD Process" width="750" height="450"/>
+
+<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/hld8.png" alt="HLD Query Processing" width="600" height="350"/>
+
 *Master advanced tree decomposition for lightning-fast path queries and competitive programming excellence*
 
 </div>
@@ -44,6 +54,29 @@ Speedup: From linear to logarithmic!
 
 ### 💡 Core Idea
 
+```mermaid
+flowchart TD
+    A["🌳 Original Tree"] --> B["⚖️ Classify Edges"]
+    B --> C["🔗 Form Chains"]
+    C --> D["📊 Map to Segment Tree"]
+    D --> E["⚡ Fast Queries"]
+    
+    B --> F["Heavy: Largest subtree"]
+    B --> G["Light: All others"]
+    
+    C --> H["Chain heavy edges"]
+    C --> I["At most log n chains"]
+    
+    D --> J["Contiguous indices"]
+    D --> K["Range operations"]
+    
+    E --> L["O(log²n) path queries"]
+    
+    style A fill:#e3f2fd
+    style E fill:#c8e6c9
+    style L fill:#c8e6c9
+```
+
 - **Decompose** tree into heavy and light edges
 - **Chain** heavy edges together
 - **Map** chains to segment tree indices
@@ -54,6 +87,25 @@ Speedup: From linear to logarithmic!
 ## 🏗️ Core Concepts
 
 ### 🎯 Definitions
+
+```mermaid
+flowchart TD
+    A["Tree Node u"] --> B["Find All Children"]
+    B --> C["Calculate Subtree Sizes"]
+    C --> D["Identify Heavy Child"]
+    D --> E["Heavy Child = Max Subtree Size"]
+    
+    F["Edge Classification"] --> G["Heavy Edge: u → heavy_child"]
+    F --> H["Light Edge: u → other_children"]
+    
+    I["Chain Formation"] --> J["Maximal Heavy Edge Sequence"]
+    I --> K["Each Chain has Head Node"]
+    
+    style A fill:#e3f2fd
+    style E fill:#c8e6c9
+    style G fill:#fff3e0
+    style H fill:#ffcdd2
+```
 
 #### Heavy Child
 ```cpp
@@ -79,6 +131,21 @@ Each chain has a head (topmost node)
 ```
 
 ### 📊 Key Property
+
+```mermaid
+flowchart LR
+    A["Root to Leaf Path"] --> B["At most log n light edges"]
+    B --> C["Each light edge halves subtree"]
+    C --> D["Logarithmic bound guaranteed"]
+    
+    E["Path Query Complexity"] --> F["Traverse ≤ log n chains"]
+    F --> G["Each chain: O(log n) segment tree"]
+    G --> H["Total: O(log²n)"]
+    
+    style A fill:#e3f2fd
+    style D fill:#c8e6c9
+    style H fill:#c8e6c9
+```
 
 **Logarithmic Light Edges**: On any root-to-leaf path, there are at most **log n** light edges.
 

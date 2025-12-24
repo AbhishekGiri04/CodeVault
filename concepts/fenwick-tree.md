@@ -1,5 +1,21 @@
 # 🌲 Fenwick Tree (Binary Indexed Tree) Complete Guide
 
+<div align="center">
+
+![Fenwick Tree](https://img.shields.io/badge/Fenwick_Tree-Binary_Indexed_Tree-4ECDC4?style=for-the-badge&logo=tree&logoColor=white)
+![Difficulty](https://img.shields.io/badge/Difficulty-Advanced-red?style=for-the-badge)
+![Importance](https://img.shields.io/badge/Importance-High-red?style=for-the-badge)
+
+<img src="https://www.scaler.com/topics/images/frenwich_tree_thumbnail.webp" alt="Fenwick Tree Overview" width="600" height="350"/>
+
+<img src="https://scaler.com/topics/images/different_operations_of_fenwick_tree.webp" alt="Fenwick Tree Operations" width="650" height="400"/>
+
+<img src="https://scaler.com/topics/images/binary_representation_of_number.webp" alt="Binary Representation in Fenwick Tree" width="700" height="300"/>
+
+*Master space-efficient data structure for dynamic prefix sum queries*
+
+</div>
+
 ## 📋 Table of Contents
 - [Introduction](#introduction)
 - [Core Concepts](#core-concepts)
@@ -18,12 +34,62 @@
 **Fenwick Tree (Binary Indexed Tree - BIT)** is a space-efficient data structure that supports prefix sum queries and point updates in O(log n) time, making it ideal for dynamic array problems with frequent updates and range queries.
 
 ### 🔑 Key Features
+
+```mermaid
+mindmap
+  root))🌲 Fenwick Tree((
+    ⚡ Efficient Operations
+      O(log n) updates
+      O(log n) queries
+      Fast prefix sums
+      Range operations
+    💾 Space Efficient
+      O(n) space complexity
+      Array-based structure
+      No extra pointers
+      Cache friendly
+    🔧 Implementation
+      Bit manipulation
+      LSB operations
+      Simple code
+      Elegant design
+    🎯 Applications
+      Dynamic arrays
+      Range sum queries
+      Frequency counting
+      Inversion counting
+```
+
 - **Efficient Updates**: O(log n) point updates
 - **Fast Queries**: O(log n) prefix sum queries
 - **Space Efficient**: O(n) space complexity
 - **Simple Implementation**: Elegant bit manipulation based approach
 
 ### 🌟 When to Use Fenwick Tree
+
+```mermaid
+flowchart TD
+    A["Problem Analysis"] --> B{"Frequent Updates?"}
+    B -->|Yes| C{"Range Queries?"}
+    B -->|No| D["Use Prefix Sum Array"]
+    
+    C -->|Yes| E{"Point Updates Only?"}
+    C -->|No| F["Use Simple Array"]
+    
+    E -->|Yes| G["🌲 Use Fenwick Tree"]
+    E -->|No| H["Consider Segment Tree"]
+    
+    G --> I["Perfect for:"]
+    I --> J["Dynamic prefix sums"]
+    I --> K["Frequency counting"]
+    I --> L["Inversion counting"]
+    I --> M["Range sum queries"]
+    
+    style A fill:#e3f2fd
+    style G fill:#c8e6c9
+    style I fill:#fff3e0
+```
+
 - **Frequent Updates**: Array elements change frequently
 - **Range Sum Queries**: Need cumulative sums over ranges
 - **Dynamic Arrays**: Array size and values change during execution
@@ -34,6 +100,30 @@
 ## 🧩 Core Concepts
 
 ### 🔢 Binary Index Manipulation
+
+```mermaid
+flowchart TD
+    A["Binary Index Magic"] --> B["LSB Operation"]
+    A --> C["Index Responsibility"]
+    A --> D["Tree Structure"]
+    
+    B --> E["x & (-x)"]
+    B --> F["Isolates rightmost 1-bit"]
+    B --> G["Determines range size"]
+    
+    C --> H["Each index covers range"]
+    C --> I["Range size = LSB value"]
+    C --> J["Hierarchical coverage"]
+    
+    D --> K["Implicit tree structure"]
+    D --> L["Parent-child relationships"]
+    D --> M["Efficient traversal"]
+    
+    style A fill:#e3f2fd
+    style B fill:#c8e6c9
+    style C fill:#fff3e0
+    style D fill:#fce4ec
+```
 
 ```cpp
 class BinaryIndexConcepts {

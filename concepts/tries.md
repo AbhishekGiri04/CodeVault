@@ -2,6 +2,8 @@
 
 <div align="center">
 
+<img src="https://bs-uploads.toptal.io/blackfish-uploads/components/blog_post_page/4086866/cover_image/retina_1708x683/1125_The_Trie_Data_Structure_Lina_Newsletter___blog-39245318d5f6413aab2ef675a26dac37.png" alt="Trie Data Structure" width="600" height="300"/>
+
 ![Tries](https://img.shields.io/badge/Tries-Prefix_Tree-4ECDC4?style=for-the-badge&logo=tree&logoColor=white)
 ![Difficulty](https://img.shields.io/badge/Difficulty-Intermediate-yellow?style=for-the-badge)
 ![Importance](https://img.shields.io/badge/Importance-High-red?style=for-the-badge)
@@ -57,6 +59,29 @@ The name "Trie" comes from "re**trie**val" - emphasizing its primary purpose of 
 🎯 No Collisions        → Unlike hash tables
 📊 Lexicographical Order → Natural alphabetical sorting
 🔍 Pattern Matching     → Excellent for string algorithms
+```
+
+### 🎆 Trie Operations Flow
+
+```mermaid
+graph TD
+    A[Trie Operations] --> B[Insert]
+    A --> C[Search]
+    A --> D[Delete]
+    A --> E[Prefix Search]
+    
+    B --> F[Traverse Path]
+    B --> G[Create Missing Nodes]
+    B --> H[Mark End of Word]
+    
+    C --> I[Follow Path]
+    C --> J[Check End Flag]
+    
+    D --> K[Find Node]
+    D --> L[Remove if No Children]
+    
+    E --> M[Find Prefix Node]
+    E --> N[Collect All Words]
 ```
 
 ### 📊 Performance Comparison

@@ -6,6 +6,10 @@
 ![Difficulty](https://img.shields.io/badge/Difficulty-Advanced-red?style=for-the-badge)
 ![Importance](https://img.shields.io/badge/Importance-Critical-red?style=for-the-badge)
 
+<img src="https://miro.medium.com/v2/resize:fit:1400/1*9FbVkz1HVa1kh4YBnD8sqA.png" alt="Binary Lifting Concept" width="700" height="450"/>
+
+<img src="https://scaler.com/topics/images/lowest-common-ancestor.webp" alt="Lowest Common Ancestor" width="650" height="400"/>
+
 *Master efficient tree traversal and ancestor queries for competitive programming and advanced tree algorithms*
 
 </div>
@@ -35,6 +39,24 @@
 
 ### 🔑 Key Innovation
 
+```mermaid
+flowchart LR
+    A["Naive Ancestor Query"] --> B["O(n) Time"]
+    C["Binary Lifting"] --> D["O(log n) Time"]
+    
+    B --> E["Linear traversal"]
+    B --> F["Inefficient"]
+    
+    D --> G["Logarithmic jumps"]
+    D --> H["Exponential speedup"]
+    
+    I["Improvement"] --> J["From linear to logarithmic!"]
+    
+    style A fill:#ffcdd2
+    style C fill:#c8e6c9
+    style I fill:#fff3e0
+```
+
 ```
 Naive Ancestor Query: O(n)
 Binary Lifting: O(log n)
@@ -43,6 +65,31 @@ Speedup: From linear to logarithmic!
 ```
 
 ### 💡 Core Applications
+
+```mermaid
+mindmap
+  root))🚀 Binary Lifting Applications((
+    🌳 LCA Queries
+      Find common ancestors
+      O(log n) per query
+      Tree path problems
+      Genealogy systems
+    🔢 K-th Ancestor
+      Jump k steps up
+      Binary representation
+      Efficient traversal
+      Path compression
+    📍 Distance Queries
+      Calculate path lengths
+      Tree distances
+      Shortest paths
+      Network analysis
+    📊 Tree DP
+      Dynamic programming
+      Optimization problems
+      State transitions
+      Recursive solutions
+```
 
 - **LCA Queries**: Find common ancestors efficiently
 - **K-th Ancestor**: Jump k steps up in O(log n)
@@ -89,6 +136,23 @@ LCA(4, 8) = 4
 
 ### 🎯 Core Idea
 
+```mermaid
+flowchart TD
+    A["Binary Lifting Concept"] --> B["Store 2^i-th Ancestors"]
+    B --> C["up[v][0] = parent"]
+    B --> D["up[v][1] = grandparent"]
+    B --> E["up[v][2] = great-great-grandparent"]
+    B --> F["up[v][i] = 2^i steps above"]
+    
+    G["Key Insight"] --> H["Any number k = sum of powers of 2"]
+    H --> I["k = 2^i1 + 2^i2 + ... + 2^ij"]
+    I --> J["Combine jumps efficiently"]
+    
+    style A fill:#e3f2fd
+    style G fill:#fff3e0
+    style J fill:#c8e6c9
+```
+
 Store **2^i-th ancestor** for each node and each power i.
 
 ```cpp
@@ -111,6 +175,22 @@ up[i][2]: -1 -1 -1 -1 -1 -1 -1 1
 ```
 
 ### 💡 Key Insight
+
+```mermaid
+flowchart LR
+    A["Number k"] --> B["Binary Representation"]
+    B --> C["k = 2^i1 + 2^i2 + ... + 2^ij"]
+    C --> D["Jump k Steps"]
+    D --> E["Combine jumps of 2^i1, 2^i2, etc."]
+    
+    F["Example: k = 13"] --> G["13 = 8 + 4 + 1"]
+    G --> H["13 = 2^3 + 2^2 + 2^0"]
+    H --> I["Jump 8, then 4, then 1"]
+    
+    style A fill:#e3f2fd
+    style F fill:#fff3e0
+    style I fill:#c8e6c9
+```
 
 Any number k can be represented as sum of powers of 2:
 ```

@@ -6,6 +6,12 @@
 ![Difficulty](https://img.shields.io/badge/Difficulty-Fundamental-green?style=for-the-badge)
 ![Importance](https://img.shields.io/badge/Importance-Critical-red?style=for-the-badge)
 
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd4Nk_Auw96zQ7Ubi6ggATqHhsWMk30Ulw6Q&s" alt="Algorithm Complexity Analysis" width="600" height="350"/>
+
+<img src="https://deen3evddmddt.cloudfront.net/uploads/content-images/types-of-time-complexities.webp" alt="Types of Time Complexities" width="700" height="400"/>
+
+<img src="https://miro.medium.com/v2/resize:fit:1400/1*5ZLci3SuR0zM_QlZOADv8Q.jpeg" alt="Big O Notation Complexity Chart" width="650" height="450"/>
+
 *Master the science of measuring algorithm efficiency and performance optimization*
 
 </div>
@@ -43,12 +49,40 @@
 
 ### 💡 Why It Matters
 
-```
-🚀 Performance Prediction    → Estimate algorithm behavior
-⚖️ Algorithm Comparison     → Choose the best solution
-🎯 Optimization Guidance    → Identify bottlenecks
-💼 Interview Success        → Essential for technical interviews
-🏗️ System Design          → Scale applications effectively
+```mermaid
+flowchart TD
+    A["⚡ Complexity Analysis Importance"] --> B["🚀 Performance Prediction"]
+    A --> C["⚖️ Algorithm Comparison"]
+    A --> D["🎯 Optimization Guidance"]
+    A --> E["💼 Interview Success"]
+    A --> F["🏗️ System Design"]
+    
+    B --> G["Estimate algorithm behavior"]
+    B --> H["Scalability assessment"]
+    B --> I["Resource planning"]
+    
+    C --> J["Choose best solution"]
+    C --> K["Trade-off analysis"]
+    C --> L["Performance comparison"]
+    
+    D --> M["Identify bottlenecks"]
+    D --> N["Optimization opportunities"]
+    D --> O["Efficiency improvements"]
+    
+    E --> P["Technical interviews"]
+    E --> Q["Problem-solving skills"]
+    E --> R["Algorithm knowledge"]
+    
+    F --> S["Scale applications"]
+    F --> T["Architecture decisions"]
+    F --> U["Resource allocation"]
+    
+    style A fill:#e3f2fd
+    style B fill:#c8e6c9
+    style C fill:#fff3e0
+    style D fill:#fce4ec
+    style E fill:#f3e5f5
+    style F fill:#e8f5e8
 ```
 
 ---
@@ -56,6 +90,25 @@
 ## 🚀 Why Complexity Analysis?
 
 ### ✅ Hardware Independence
+
+```mermaid
+flowchart LR
+    A["Hardware Factors"] --> B["Variable Across Systems"]
+    A --> C["Complexity Analysis"]
+    
+    B --> D["CPU Speed: 1 GHz vs 3 GHz"]
+    B --> E["Memory: 8GB vs 32GB"]
+    B --> F["Language: Python vs C++"]
+    B --> G["OS: Windows vs Linux"]
+    
+    C --> H["✅ Consistent Results"]
+    C --> I["✅ Machine Independent"]
+    C --> J["✅ Universal Metrics"]
+    C --> K["✅ Reliable Predictions"]
+    
+    style A fill:#e3f2fd
+    style C fill:#c8e6c9
+```
 
 Complexity analysis provides **machine-independent** performance metrics:
 
@@ -90,6 +143,30 @@ Quadratic: O(n²)  → 100,000,000 operations
 ## 📐 Asymptotic Notations
 
 Asymptotic analysis describes algorithm behavior as **n → ∞**.
+
+```mermaid
+flowchart TD
+    A["Asymptotic Notations"] --> B["Big-O (O)"] 
+    A --> C["Big-Omega (Ω)"]
+    A --> D["Big-Theta (Θ)"]
+    
+    B --> E["Upper Bound"]
+    B --> F["Worst Case"]
+    B --> G["At most this time"]
+    
+    C --> H["Lower Bound"]
+    C --> I["Best Case"]
+    C --> J["At least this time"]
+    
+    D --> K["Tight Bound"]
+    D --> L["Average Case"]
+    D --> M["Exactly this growth"]
+    
+    style A fill:#e3f2fd
+    style B fill:#ffcdd2
+    style C fill:#c8e6c9
+    style D fill:#fff3e0
+```
 
 ### 1️⃣ Big-O Notation (Upper Bound)
 

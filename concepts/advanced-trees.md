@@ -8,7 +8,83 @@
 
 *Master sophisticated tree structures for high-performance data operations and system-level programming*
 
+<img src="https://cdn.sanity.io/images/oaglaatp/production/f26d524cf32b3f500ffefe5c94b2502ae772303b-6991x2018.webp?w=6991&h=2018&auto=format" alt="Advanced Trees Overview" width="700" height="200"/>
+
+<img src="https://www.scaler.com/topics/images/types%20of%20trees%20in%20data%20structure.webp" alt="Types of Trees" width="650" height="400"/>
+
+<img src="https://ik.imagekit.io/upgrad1/abroad-images/imageCompo/images/__visual_selection30GN4F.png?pr-true" alt="Tree Structures Visualization" width="600" height="350"/>
+
+<img src="https://scaler.com/topics/images/degenerate-binary-trees.webp" alt="Degenerate Binary Trees" width="550" height="300"/>
+
 </div>
+
+---
+
+## 🌳 Advanced Trees Classification
+
+```mermaid
+mindmap
+  root((Advanced<br/>Trees))
+    Self-Balancing BST
+      AVL Trees
+        Height balanced
+        Strict balance factor
+        More rotations
+      Red-Black Trees
+        Color properties
+        Looser balance
+        Fewer rotations
+      Splay Trees
+        Self-adjusting
+        Recently accessed at root
+    Multi-way Trees
+      B-Trees
+        Disk optimization
+        Multiple keys per node
+        Database indexing
+      B+ Trees
+        Leaf-linked
+        Range queries
+        File systems
+    Range Query Trees
+      Segment Trees
+        Range operations
+        Lazy propagation
+        Complex queries
+      Fenwick Trees
+        Prefix sums
+        Bit manipulation
+        Space efficient
+```
+
+### 🎯 Tree Selection Strategy
+
+```mermaid
+flowchart TD
+    A["Data Structure Need"] --> B{"Primary Operation?"}
+    
+    B -->|"Search Heavy"| C["AVL Tree"]
+    B -->|"Balanced R/W"| D["Red-Black Tree"]
+    B -->|"Disk Storage"| E["B-Tree"]
+    B -->|"Range Queries"| F{"Query Type?"}
+    B -->|"Recent Access"| G["Splay Tree"]
+    
+    F -->|"Sum/Simple"| H["Fenwick Tree"]
+    F -->|"Complex/Updates"| I["Segment Tree"]
+    
+    C --> J["O(1.44 log n) height"]
+    D --> K["O(2 log n) height"]
+    E --> L["O(log_m n) height"]
+    H --> M["O(log n) operations"]
+    I --> N["O(log n) + lazy prop"]
+    
+    style A fill:#ff6b6b
+    style C fill:#4ecdc4
+    style D fill:#96ceb4
+    style E fill:#ffa500
+    style H fill:#45b7d1
+    style I fill:#dda0dd
+```
 
 ---
 
@@ -59,6 +135,41 @@
 ### 🎯 Definition
 
 **AVL Tree** is a self-balancing Binary Search Tree where the height difference between left and right subtrees (balance factor) is at most 1 for every node.
+
+### ⚖️ AVL Balance and Rotation Strategy
+
+```mermaid
+flowchart TD
+    A["Insert/Delete Operation"] --> B["Update Heights"]
+    B --> C["Calculate Balance Factor"]
+    C --> D{"Balance Factor"}
+    
+    D -->|"BF > 1"| E["Left Heavy"]
+    D -->|"BF < -1"| F["Right Heavy"]
+    D -->|"BF ∈ [-1,1]"| G["Balanced"]
+    
+    E --> H{"Left Child BF?"}
+    F --> I{"Right Child BF?"}
+    
+    H -->|"≥ 0"| J["LL Case<br/>Right Rotate"]
+    H -->|"< 0"| K["LR Case<br/>Left-Right Rotate"]
+    
+    I -->|"≤ 0"| L["RR Case<br/>Left Rotate"]
+    I -->|"> 0"| M["RL Case<br/>Right-Left Rotate"]
+    
+    J --> N["Tree Balanced"]
+    K --> N
+    L --> N
+    M --> N
+    G --> N
+    
+    style A fill:#ff6b6b
+    style N fill:#4ecdc4
+    style J fill:#96ceb4
+    style K fill:#ffa500
+    style L fill:#45b7d1
+    style M fill:#dda0dd
+```
 
 ### 📐 Balance Factor
 
@@ -211,6 +322,39 @@ public:
 
 **Red-Black Tree** is a self-balancing BST where each node has a color (red or black) and follows specific coloring rules to maintain balance.
 
+### 🎨 Red-Black Tree Properties and Operations
+
+```mermaid
+flowchart TD
+    A["Red-Black Tree Properties"] --> B["1. Every node is Red or Black"]
+    A --> C["2. Root is always Black"]
+    A --> D["3. No adjacent Red nodes"]
+    A --> E["4. Equal Black nodes on all paths"]
+    A --> F["5. All leaves (NIL) are Black"]
+    
+    G["Insert Operation"] --> H["Standard BST Insert"]
+    H --> I["Color new node Red"]
+    I --> J{"Violates Properties?"}
+    
+    J -->|"Yes"| K["Fix Violations"]
+    J -->|"No"| L["Done"]
+    
+    K --> M{"Uncle Color?"}
+    M -->|"Red"| N["Recolor<br/>Move up tree"]
+    M -->|"Black"| O["Rotate<br/>Recolor"]
+    
+    N --> P{"More violations?"}
+    O --> P
+    P -->|"Yes"| M
+    P -->|"No"| Q["Root = Black"]
+    Q --> L
+    
+    style A fill:#ff6b6b
+    style L fill:#4ecdc4
+    style N fill:#ffa500
+    style O fill:#45b7d1
+```
+
 ### 📋 Properties
 
 1. **Every node is either red or black**
@@ -343,6 +487,38 @@ public:
 
 **B-Tree** is a self-balancing multi-way search tree optimized for systems that read and write large blocks of data, particularly databases and file systems.
 
+### 🏗️ B-Tree Structure and Operations
+
+```mermaid
+flowchart TD
+    A["B-Tree of Order m"] --> B["Properties"]
+    B --> C["Max m children per node"]
+    B --> D["Min ⌈m/2⌉ children (non-root)"]
+    B --> E["All leaves at same level"]
+    B --> F["k children = k-1 keys"]
+    
+    G["Insert Operation"] --> H{"Node Full?"}
+    H -->|"No"| I["Insert in sorted order"]
+    H -->|"Yes"| J["Split Node"]
+    
+    J --> K["Create new node"]
+    K --> L["Move half keys to new node"]
+    L --> M["Promote middle key"]
+    M --> N{"Parent Full?"}
+    
+    N -->|"No"| O["Insert promoted key"]
+    N -->|"Yes"| P["Recursively split parent"]
+    
+    I --> Q["Operation Complete"]
+    O --> Q
+    P --> Q
+    
+    style A fill:#ff6b6b
+    style Q fill:#4ecdc4
+    style J fill:#ffa500
+    style P fill:#45b7d1
+```
+
 ### 📋 Properties
 
 For a B-Tree of order m:
@@ -431,6 +607,35 @@ public:
 ### 🎯 Definition
 
 **Segment Tree** is a binary tree used for storing information about array segments, enabling efficient range queries and updates.
+
+### 🔧 Segment Tree Operations Flow
+
+```mermaid
+flowchart TD
+    A["Array [a₀, a₁, ..., aₙ₋₁]"] --> B["Build Segment Tree"]
+    B --> C["Recursive Construction"]
+    C --> D["Leaf nodes = Array elements"]
+    C --> E["Internal nodes = Combined values"]
+    
+    F["Query(l, r)"] --> G{"Range Overlap?"}
+    G -->|"No overlap"| H["Return identity"]
+    G -->|"Complete overlap"| I["Return node value"]
+    G -->|"Partial overlap"| J["Query both children"]
+    J --> K["Combine results"]
+    
+    L["Update(idx, val)"] --> M["Update leaf node"]
+    M --> N["Propagate up tree"]
+    N --> O["Update parent values"]
+    
+    P["Lazy Propagation"] --> Q["Mark lazy updates"]
+    Q --> R["Push down when needed"]
+    R --> S["Efficient range updates"]
+    
+    style A fill:#ff6b6b
+    style K fill:#4ecdc4
+    style O fill:#96ceb4
+    style S fill:#ffa500
+```
 
 ### 🔧 Basic Structure
 
@@ -551,6 +756,37 @@ private:
 ### 🎯 Definition
 
 **Binary Indexed Tree (BIT)** or **Fenwick Tree** is a data structure that efficiently calculates prefix sums in O(log n) time using bit manipulation.
+
+### 🔧 Fenwick Tree Bit Manipulation
+
+```mermaid
+flowchart TD
+    A["Fenwick Tree Operations"] --> B["Update(idx, val)"]
+    A --> C["Query(idx)"]
+    
+    B --> D["Start at idx+1"]
+    D --> E["Add val to tree[idx]"]
+    E --> F["idx += idx & (-idx)"]
+    F --> G{"idx <= n?"}
+    G -->|"Yes"| E
+    G -->|"No"| H["Update Complete"]
+    
+    C --> I["Start at idx+1"]
+    I --> J["sum += tree[idx]"]
+    J --> K["idx -= idx & (-idx)"]
+    K --> L{"idx > 0?"}
+    L -->|"Yes"| J
+    L -->|"No"| M["Return sum"]
+    
+    N["Key Insight: LSB"] --> O["idx & (-idx) = LSB"]
+    O --> P["Example: 12 & (-12) = 4"]
+    P --> Q["Binary: 1100 & 0100 = 0100"]
+    
+    style A fill:#ff6b6b
+    style H fill:#4ecdc4
+    style M fill:#4ecdc4
+    style N fill:#ffa500
+```
 
 ### 💻 Implementation
 

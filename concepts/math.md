@@ -6,6 +6,10 @@
 ![Difficulty](https://img.shields.io/badge/Difficulty-Intermediate-yellow?style=for-the-badge)
 ![Importance](https://img.shields.io/badge/Importance-Critical-red?style=for-the-badge)
 
+<img src="https://miro.medium.com/1*I0ehhkeCT40IRNvecnEHSQ.jpeg" alt="Mathematical Foundations for DSA" width="600" height="350"/>
+
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20241218154920107295/Maths.webp" alt="Math Concepts in Programming" width="700" height="400"/>
+
 *Master essential mathematical concepts for competitive programming and algorithm optimization*
 
 </div>
@@ -36,6 +40,36 @@
 
 ### 🔑 Core Areas
 
+```mermaid
+mindmap
+  root))🧮 Math for DSA((
+    🔢 Number Theory
+      GCD & LCM
+      Prime Numbers
+      Divisibility
+      Factorization
+    ⚙️ Modular Arithmetic
+      Basic Operations
+      Modular Inverse
+      Fermat's Theorem
+      Chinese Remainder
+    🎲 Combinatorics
+      Permutations
+      Combinations
+      Pascal's Triangle
+      Catalan Numbers
+    📊 Probability
+      Expected Value
+      Distributions
+      Game Theory
+      Random Variables
+    ⚡ Fast Algorithms
+      Binary Exponentiation
+      Matrix Exponentiation
+      Fast Fourier Transform
+      Sieve Algorithms
+```
+
 - **Number Theory**: GCD, LCM, Prime numbers
 - **Modular Arithmetic**: Operations under modulo
 - **Combinatorics**: Counting and arrangements
@@ -44,12 +78,35 @@
 
 ### 💡 Why Math Matters in DSA
 
-```
-🚀 Algorithm Optimization    → Reduce time complexity
-🎯 Problem Solving          → Mathematical insights
-🔢 Large Number Handling    → Prevent overflow
-🎪 Competitive Programming  → Essential for contests
-🏗️ System Design          → Mathematical modeling
+```mermaid
+flowchart TD
+    A["🧮 Mathematics in DSA"] --> B["🚀 Algorithm Optimization"]
+    A --> C["🎯 Problem Solving"]
+    A --> D["🔢 Large Number Handling"]
+    A --> E["🎪 Competitive Programming"]
+    A --> F["🏗️ System Design"]
+    
+    B --> B1["Reduce Time Complexity"]
+    B --> B2["Space Optimization"]
+    
+    C --> C1["Mathematical Insights"]
+    C --> C2["Pattern Recognition"]
+    
+    D --> D1["Prevent Overflow"]
+    D --> D2["Modular Arithmetic"]
+    
+    E --> E1["Contest Problems"]
+    E --> E2["Fast Solutions"]
+    
+    F --> F1["Mathematical Modeling"]
+    F --> F2["Performance Analysis"]
+    
+    style A fill:#e1f5fe
+    style B fill:#c8e6c9
+    style C fill:#fff3e0
+    style D fill:#fce4ec
+    style E fill:#f3e5f5
+    style F fill:#e8f5e8
 ```
 
 ---
@@ -92,6 +149,23 @@ bool isPowerOfTwo(int n) {
 ### 🎯 Greatest Common Divisor (GCD)
 
 **Definition**: Largest positive integer that divides both numbers without remainder.
+
+```mermaid
+flowchart TD
+    A["GCD(a, b)"] --> B{"b == 0?"}
+    B -->|Yes| C["Return a"]
+    B -->|No| D["GCD(b, a % b)"]
+    D --> A
+    
+    E["Example: GCD(48, 18)"] --> F["GCD(18, 12)"]
+    F --> G["GCD(12, 6)"]
+    G --> H["GCD(6, 0)"]
+    H --> I["Result: 6"]
+    
+    style A fill:#e3f2fd
+    style C fill:#c8e6c9
+    style I fill:#c8e6c9
+```
 
 #### Euclidean Algorithm
 
@@ -141,6 +215,20 @@ int extendedGCD(int a, int b, int& x, int& y) {
 
 **Definition**: Smallest positive integer divisible by both numbers.
 
+```mermaid
+flowchart LR
+    A["LCM(a, b)"] --> B["Calculate GCD(a, b)"]
+    B --> C["LCM = (a × b) / GCD"]
+    C --> D["Avoid Overflow: (a / GCD) × b"]
+    
+    E["Example: LCM(12, 18)"] --> F["GCD(12, 18) = 6"]
+    F --> G["LCM = (12 × 18) / 6 = 36"]
+    
+    style A fill:#e3f2fd
+    style D fill:#fff3e0
+    style G fill:#c8e6c9
+```
+
 ```cpp
 long long lcm(long long a, long long b) {
     return (a / gcd(a, b)) * b;  // Avoid overflow
@@ -157,6 +245,22 @@ long long lcm_array(vector<int>& arr) {
 ```
 
 ### 📊 GCD/LCM Properties
+
+```mermaid
+graph TD
+    A["GCD/LCM Properties"] --> B["gcd(a, 0) = a"]
+    A --> C["gcd(a, b) = gcd(b, a)"]
+    A --> D["gcd(a, b) = gcd(a - b, b)"]
+    A --> E["lcm(a, b) × gcd(a, b) = a × b"]
+    A --> F["gcd(ka, kb) = k × gcd(a, b)"]
+    
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#f3e5f5
+    style D fill:#f3e5f5
+    style E fill:#fff3e0
+    style F fill:#f3e5f5
+```
 
 ```
 gcd(a, 0) = a
@@ -192,6 +296,24 @@ long long mul(long long a, long long b) {
 ```
 
 ### 🔥 Modular Properties
+
+```mermaid
+flowchart TD
+    A["Modular Arithmetic Properties"] --> B["(a + b) % m = (a % m + b % m) % m"]
+    A --> C["(a - b) % m = (a % m - b % m + m) % m"]
+    A --> D["(a × b) % m = (a % m × b % m) % m"]
+    A --> E["(a^n) % m = ((a % m)^n) % m"]
+    
+    F["Key Benefits"] --> G["Prevents Integer Overflow"]
+    F --> H["Maintains Mathematical Properties"]
+    F --> I["Enables Large Number Computations"]
+    
+    style A fill:#e3f2fd
+    style F fill:#fff3e0
+    style G fill:#c8e6c9
+    style H fill:#c8e6c9
+    style I fill:#c8e6c9
+```
 
 ```
 (a + b) % m = (a % m + b % m) % m
@@ -256,6 +378,29 @@ bool isPrime(int n) {
 ---
 
 ### 🔥 Sieve of Eratosthenes
+
+```mermaid
+flowchart TD
+    A["Initialize array[2..n] = true"] --> B["Start with p = 2"]
+    B --> C{"p² ≤ n?"}
+    C -->|Yes| D{"array[p] == true?"}
+    C -->|No| H["Return all true indices"]
+    
+    D -->|Yes| E["Mark multiples of p as false"]
+    D -->|No| F["p = next number"]
+    
+    E --> G["Start from p², increment by p"]
+    G --> F
+    F --> C
+    
+    I["Example: n = 10"] --> J["Mark 4,6,8,10 (multiples of 2)"]
+    J --> K["Mark 9 (multiple of 3)"]
+    K --> L["Primes: 2,3,5,7"]
+    
+    style A fill:#e3f2fd
+    style H fill:#c8e6c9
+    style L fill:#c8e6c9
+```
 
 ```cpp
 vector<bool> sieve(int n) {
@@ -328,6 +473,28 @@ vector<bool> segmentedSieve(long long L, long long R) {
 
 ### 🎯 Binary Exponentiation
 
+```mermaid
+flowchart TD
+    A["power(a, b)"] --> B["result = 1"]
+    B --> C{"b > 0?"}
+    C -->|No| D["Return result"]
+    C -->|Yes| E{"b is odd?"}
+    
+    E -->|Yes| F["result *= a"]
+    E -->|No| G["a *= a"]
+    F --> G
+    G --> H["b >>= 1"]
+    H --> C
+    
+    I["Example: 3⁴"] --> J["3⁴ = 3² × 3²"]
+    J --> K["= 9 × 9 = 81"]
+    K --> L["Only 2 multiplications!"]
+    
+    style A fill:#e3f2fd
+    style D fill:#c8e6c9
+    style L fill:#fff3e0
+```
+
 ```cpp
 long long power(long long a, long long b) {
     long long result = 1;
@@ -397,6 +564,21 @@ long long fibonacci(long long n, int mod) {
 ## 🎲 Combinatorics
 
 ### 🎯 Factorial Precomputation
+
+```mermaid
+flowchart LR
+    A["Precompute Phase"] --> B["fact[0] = 1"]
+    B --> C["fact[i] = fact[i-1] * i"]
+    C --> D["inv_fact[n] = modInverse(fact[n])"]
+    D --> E["inv_fact[i] = inv_fact[i+1] * (i+1)"]
+    
+    F["Query Phase"] --> G["nCr(n,r) = fact[n] * inv_fact[r] * inv_fact[n-r]"]
+    G --> H["O(1) per query!"]
+    
+    style A fill:#e3f2fd
+    style F fill:#fff3e0
+    style H fill:#c8e6c9
+```
 
 ```cpp
 const int MAXN = 1e6;
@@ -501,6 +683,24 @@ double geometricExpected(double p) {
 
 ### 🎯 Arithmetic Progression (AP)
 
+```mermaid
+flowchart TD
+    A["AP: a, a+d, a+2d, ..., a+(n-1)d"] --> B["First Term: a"]
+    A --> C["Common Difference: d"]
+    A --> D["Number of Terms: n"]
+    
+    E["Formulas"] --> F["nth Term = a + (n-1)d"]
+    E --> G["Sum = n/2 * [2a + (n-1)d]"]
+    E --> H["Sum = n/2 * (first + last)"]
+    
+    I["Example: 2,5,8,11,14"] --> J["a=2, d=3, n=5"]
+    J --> K["Sum = 5/2 * [4 + 12] = 40"]
+    
+    style A fill:#e3f2fd
+    style E fill:#fff3e0
+    style K fill:#c8e6c9
+```
+
 ```cpp
 // Sum of AP: a + (a+d) + (a+2d) + ... + (a+(n-1)d)
 long long apSum(long long a, long long d, int n) {
@@ -514,6 +714,28 @@ long long apNthTerm(long long a, long long d, int n) {
 ```
 
 ### 🔥 Geometric Progression (GP)
+
+```mermaid
+flowchart TD
+    A["GP: a, ar, ar², ..., ar^(n-1)"] --> B["First Term: a"]
+    A --> C["Common Ratio: r"]
+    A --> D["Number of Terms: n"]
+    
+    E["Formulas"] --> F["nth Term = a * r^(n-1)"]
+    E --> G{"r = 1?"}
+    G -->|Yes| H["Sum = a * n"]
+    G -->|No| I["Sum = a * (r^n - 1) / (r - 1)"]
+    
+    J["Infinite GP (|r| < 1)"] --> K["Sum = a / (1 - r)"]
+    
+    L["Example: 3,6,12,24"] --> M["a=3, r=2, n=4"]
+    M --> N["Sum = 3 * (16-1) / 1 = 45"]
+    
+    style A fill:#e3f2fd
+    style E fill:#fff3e0
+    style J fill:#f3e5f5
+    style N fill:#c8e6c9
+```
 
 ```cpp
 // Sum of GP: a + ar + ar² + ... + ar^(n-1)
@@ -613,6 +835,36 @@ bool millerRabin(long long n, long long a) {
 ## 🎯 Problem-Solving Strategies
 
 ### 🔍 Pattern Recognition
+
+```mermaid
+mindmap
+  root))🔍 Problem Types((
+    📊 Counting
+      Combinatorics
+      Permutations
+      Arrangements
+      Selections
+    🎯 Optimization
+      Calculus
+      Inequalities
+      Min/Max functions
+      Lagrange multipliers
+    🔄 Periodicity
+      Modular arithmetic
+      Cyclic patterns
+      Repeating sequences
+      Fourier analysis
+    🎲 Probability
+      Expected value
+      Game theory
+      Random variables
+      Markov chains
+    🔢 Number Theory
+      GCD problems
+      Prime factorization
+      Divisibility
+      Congruences
+```
 
 | Problem Type | Mathematical Concept | Example |
 |:-------------|:-------------------|:--------|

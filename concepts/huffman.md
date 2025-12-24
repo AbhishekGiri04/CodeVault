@@ -6,6 +6,10 @@
 ![Difficulty](https://img.shields.io/badge/Difficulty-Intermediate-yellow?style=for-the-badge)
 ![Importance](https://img.shields.io/badge/Importance-High-red?style=for-the-badge)
 
+<img src="https://scaler.com/topics/images/huffman-tree.webp" alt="Huffman Tree Structure" width="600" height="400"/>
+
+<img src="https://storage.googleapis.com/algodailyrandomassets/curriculum/algorithm_tutorial/Huffman%20Coding/Huffman-compress-img7-.png" alt="Huffman Coding Process" width="700" height="450"/>
+
 *Master the art of optimal lossless data compression using greedy algorithms*
 
 </div>
@@ -42,6 +46,25 @@
 - **Binary Tree Structure**: Codes derived from tree paths
 
 ### 💡 Core Principle
+
+```mermaid
+flowchart TD
+    A["📊 Symbol Frequency Analysis"] --> B["🔢 High Frequency"]
+    A --> C["🔢 Low Frequency"]
+    
+    B --> D["📏 Short Code"]
+    C --> E["📏 Long Code"]
+    
+    D --> F["🗜️ Optimal Compression"]
+    E --> F
+    
+    G["Example:"] --> H["'A' appears 100 times → Code: '0'"]
+    G --> I["'Z' appears 1 time → Code: '11010'"]
+    
+    style A fill:#e3f2fd
+    style F fill:#c8e6c9
+    style G fill:#fff3e0
+```
 
 ```
 High Frequency → Short Code
@@ -80,6 +103,27 @@ Average: 1.6 bits/symbol (20% compression!)
 
 ### ✅ Benefits
 
+```mermaid
+mindmap
+  root))🗜️ Huffman Benefits((
+    🔥 Optimal Compression
+      Minimum average code length
+      Mathematically proven
+      Greedy approach works
+    ⚡ Lossless
+      Perfect reconstruction
+      No data loss
+      Reversible process
+    🎯 Prefix-Free
+      Unambiguous decoding
+      No code conflicts
+      Self-synchronizing
+    🏗️ Widely Adopted
+      Industry standard
+      Well-tested
+      Broad support
+```
+
 ```
 🔥 Optimal Compression     → Minimum average code length
 ⚡ Lossless               → Perfect reconstruction
@@ -93,6 +137,24 @@ Average: 1.6 bits/symbol (20% compression!)
 
 ### 🎯 Huffman Algorithm Steps
 
+```mermaid
+flowchart TD
+    A["📝 Input Text"] --> B["1️⃣ Count Frequencies"]
+    B --> C["2️⃣ Build Min-Heap"]
+    C --> D["3️⃣ Construct Tree"]
+    D --> E["4️⃣ Assign Codes"]
+    E --> F["5️⃣ Encode Data"]
+    
+    B --> B1["Scan each character"]
+    C --> C1["Insert all symbols"]
+    D --> D1["Merge two minimum nodes"]
+    E --> E1["Traverse tree paths"]
+    F --> F1["Replace symbols with codes"]
+    
+    style A fill:#e3f2fd
+    style F fill:#c8e6c9
+```
+
 1. **Count Frequencies**: Calculate occurrence of each symbol
 2. **Build Min-Heap**: Insert all symbols with frequencies
 3. **Construct Tree**: Repeatedly merge two minimum nodes
@@ -100,6 +162,22 @@ Average: 1.6 bits/symbol (20% compression!)
 5. **Encode Data**: Replace symbols with their codes
 
 ### 📐 Tree Construction Process
+
+```mermaid
+flowchart TD
+    A["Initial Heap: [A:5, B:9, C:12, D:13, E:16, F:45]"] --> B["Step 1: Merge A(5) + B(9) = AB(14)"]
+    B --> C["Heap: [C:12, D:13, AB:14, E:16, F:45]"]
+    C --> D["Step 2: Merge C(12) + D(13) = CD(25)"]
+    D --> E["Heap: [AB:14, E:16, CD:25, F:45]"]
+    E --> F["Step 3: Merge AB(14) + E(16) = ABE(30)"]
+    F --> G["Heap: [CD:25, ABE:30, F:45]"]
+    G --> H["Step 4: Merge CD(25) + ABE(30) = CDABE(55)"]
+    H --> I["Heap: [F:45, CDABE:55]"]
+    I --> J["Step 5: Merge F(45) + CDABE(55) = Root(100)"]
+    
+    style A fill:#e3f2fd
+    style J fill:#c8e6c9
+```
 
 ```
 Initial: [A:5, B:9, C:12, D:13, E:16, F:45]

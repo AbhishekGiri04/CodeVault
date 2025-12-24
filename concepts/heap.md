@@ -1,472 +1,416 @@
+# 📦 Heap — Complete Professional Guide
+
 <div align="center">
 
-# 🚀 Heap & Priority Queue – Complete Notes
+![Heap](https://img.shields.io/badge/Heap-Priority_Queue-ff6b6b?style=for-the-badge&logo=heap&logoColor=white)
+![Difficulty](https://img.shields.io/badge/Difficulty-Intermediate-orange?style=for-the-badge)
+![Importance](https://img.shields.io/badge/Importance-High-red?style=for-the-badge)
 
-*Mastering Efficient Priority-Based Data Management*
-
----
-
-![Heap](https://img.shields.io/badge/Topic-Heap_Priority_Queue-FF6B6B?style=for-the-badge&logo=databricks&logoColor=white)
-![Difficulty](https://img.shields.io/badge/Level-Intermediate-4ECDC4?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Completed-45B7D1?style=for-the-badge)
+*Master priority-based data structure for efficient operations*
 
 </div>
 
 ---
 
-## 🎯 **Learning Objectives**
+## 🎯 Introduction
 
-> *Achieve efficient priority management through heap data structures*
+**Heap** is a complete binary tree that satisfies the heap property: parent nodes are either greater (max-heap) or smaller (min-heap) than their children.
 
-- 📦 Understand heap structure and properties
-- ⚡ Master heap operations and heapify
-- 🎯 Implement priority queues efficiently
-- 🔧 Apply heaps to solve real problems
+### 🔑 Heap Properties
 
----
-
-## 📖 **1. What is a Heap?**
-
-<table>
-<tr>
-<td width="50%">
-
-### 📦 **Core Concept**
-*Complete binary tree with heap property*
-
-**Key Properties:**
-- 🌳 Complete binary tree
-- 📊 Heap property maintained
-- 🚀 Efficient operations
-
-</td>
-<td width="50%">
-
-### ⚡ **Heap Types**
-*Two main variants based on ordering*
-
-**Max Heap:** Parent ≥ Children  
-**Min Heap:** Parent ≤ Children
-
-**Complete Tree:** All levels filled except last (left-aligned)
-
-</td>
-</tr>
-</table>
-
-### 🌟 **Visual Representation**
-
-<table>
-<tr>
-<td width="50%">
-
-#### **Max Heap**
-```
-        50
-      /    \
-    30      20
-   /  \    /  \
- 10  15  5    8
+```mermaid
+graph TD
+    A[Heap Properties] --> B[Complete Binary Tree]
+    A --> C[Heap Property]
+    A --> D[Array Representation]
+    
+    B --> E[All levels filled except last]
+    C --> F[Max-heap: parent ≥ children]
+    C --> G[Min-heap: parent ≤ children]
+    D --> H[Parent at i/2, children at 2i, 2i+1]
 ```
 
-**Property:** Root = Maximum
+### 🔄 Heap Operations Flow
 
-</td>
-<td width="50%">
-
-#### **Min Heap**
-```
-        5
-      /   \
-    10     15
-   /  \   /  \
- 20  30  40  50
-```
-
-**Property:** Root = Minimum
-
-</td>
-</tr>
-</table>
-
----
-
-## 🏗️ **2. Heap Properties**
-
-### 📊 **Essential Characteristics**
-
-<div align="center">
-
-| Property | Description | Importance |
-|:---------|:------------|:-----------|
-| **🌳 Complete Binary Tree** | All levels filled except last | 🟢 Critical |
-| **📊 Heap Property** | Parent-child ordering | 🟢 Critical |
-| **📦 Array Storage** | Efficient representation | 🟡 Important |
-| **⚡ Fast Operations** | O(log n) insert/delete | 🟢 Critical |
-
-</div>
-
-### 🔢 **Array Representation**
-
-**Index Relationships:**
-```
-For element at index i:
-- Parent:      (i - 1) / 2
-- Left Child:  2 * i + 1
-- Right Child: 2 * i + 2
+```mermaid
+flowchart TD
+    A["📦 Heap Operations"] --> B["⬆️ Insert"]
+    A --> C["⬇️ Extract"]
+    A --> D["👁️ Peek"]
+    A --> E["🏗️ Build"]
+    
+    B --> F["Add to end"]
+    F --> G["Heapify Up"]
+    G --> H["O(log n)"]
+    
+    C --> I["Remove root"]
+    I --> J["Move last to root"]
+    J --> K["Heapify Down"]
+    K --> L["O(log n)"]
+    
+    D --> M["Return root"]
+    M --> N["O(1)"]
+    
+    E --> O["Bottom-up approach"]
+    O --> P["O(n)"]
+    
+    style A fill:#e3f2fd
+    style H fill:#c8e6c9
+    style L fill:#c8e6c9
+    style N fill:#c8e6c9
+    style P fill:#c8e6c9
 ```
 
----
-
-## 🏗️ **3. Heap Operations**
-
-### 📊 **Core Operations**
-
-<div align="center">
-
-| Operation | Description | Time Complexity | Use Case |
-|:----------|:------------|:----------------|:---------|
-| **➕ Insert** | Add element and bubble up | O(log n) | Add priority item |
-| **➖ Delete** | Remove root and heapify down | O(log n) | Extract max/min |
-| **👁️ Peek** | View root element | O(1) | Check priority |
-| **🔧 Heapify** | Build heap from array | O(n) | Initialize heap |
-
-</div>
-
-### 🔄 **Operation Details**
-
-<table>
-<tr>
-<td width="50%">
-
-#### **1️⃣ Insertion (Bubble Up)**
-
-**Process:**
-1. Add element at end
-2. Compare with parent
-3. Swap if heap property violated
-4. Repeat until property satisfied
-
-**Example (Max Heap):**
-```
-Insert 95:
-   50          50          95
-   / \    →    / \     →   / \
-  30  20      30  20      50  20
- /           / \          / \
-10          10  95       30  10
-```
-
-</td>
-<td width="50%">
-
-#### **2️⃣ Deletion (Bubble Down)**
-
-**Process:**
-1. Replace root with last element
-2. Compare with children
-3. Swap with larger child (max heap)
-4. Repeat until property satisfied
-
-**Example (Max Heap):**
-```
-Delete 50:
-   50          10          30
-   / \    →    / \     →   / \
-  30  20      30  20      10  20
-```
-
-</td>
-</tr>
-</table>
-
----
-
-## ⚡ **4. Heapify Algorithm**
-
-### 🔧 **Building a Heap**
-
-<table>
-<tr>
-<td width="50%">
-
-#### **Heapify Down (Max Heap)**
+### 💻 Complete Heap Implementation
 
 ```cpp
-void heapifyDown(int arr[], int n, int i) {
+class MaxHeap {
+private:
+    vector<int> heap;
+    
+    void heapifyUp(int index) {
+        while (index > 0) {
+            int parent = (index - 1) / 2;
+            if (heap[index] <= heap[parent]) break;
+            
+            swap(heap[index], heap[parent]);
+            index = parent;
+        }
+    }
+    
+    void heapifyDown(int index) {
+        int size = heap.size();
+        
+        while (true) {
+            int largest = index;
+            int left = 2 * index + 1;
+            int right = 2 * index + 2;
+            
+            if (left < size && heap[left] > heap[largest]) {
+                largest = left;
+            }
+            
+            if (right < size && heap[right] > heap[largest]) {
+                largest = right;
+            }
+            
+            if (largest == index) break;
+            
+            swap(heap[index], heap[largest]);
+            index = largest;
+        }
+    }
+    
+public:
+    void insert(int val) {
+        heap.push_back(val);
+        heapifyUp(heap.size() - 1);
+    }
+    
+    int extractMax() {
+        if (heap.empty()) throw runtime_error("Heap is empty");
+        
+        int maxVal = heap[0];
+        heap[0] = heap.back();
+        heap.pop_back();
+        
+        if (!heap.empty()) {
+            heapifyDown(0);
+        }
+        
+        return maxVal;
+    }
+    
+    int peek() {
+        if (heap.empty()) throw runtime_error("Heap is empty");
+        return heap[0];
+    }
+    
+    bool empty() {
+        return heap.empty();
+    }
+    
+    int size() {
+        return heap.size();
+    }
+};
+```
+
+---
+
+## 🎯 Applications
+
+### 🔧 Priority Queue Problems
+
+```mermaid
+mindmap
+  root))📦 Heap Applications((
+    🎯 Priority Queues
+      Task scheduling
+      Event simulation
+      Dijkstra's algorithm
+      A* pathfinding
+    🔢 Top-K Problems
+      K largest elements
+      K smallest elements
+      K frequent elements
+      Sliding window maximum
+    🔀 Merge Operations
+      Merge K sorted arrays
+      Merge K sorted lists
+      External sorting
+      Stream processing
+    📊 Graph Algorithms
+      Minimum spanning tree
+      Shortest path algorithms
+      Network flow
+      Huffman coding
+```
+
+```cpp
+class HeapProblems {
+public:
+    // K largest elements
+    vector<int> findKLargest(vector<int>& nums, int k) {
+        priority_queue<int, vector<int>, greater<int>> minHeap;
+        
+        for (int num : nums) {
+            minHeap.push(num);
+            if (minHeap.size() > k) {
+                minHeap.pop();
+            }
+        }
+        
+        vector<int> result;
+        while (!minHeap.empty()) {
+            result.push_back(minHeap.top());
+            minHeap.pop();
+        }
+        
+        return result;
+    }
+    
+    // Merge K sorted lists
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        auto compare = [](ListNode* a, ListNode* b) {
+            return a->val > b->val;
+        };
+        
+        priority_queue<ListNode*, vector<ListNode*>, decltype(compare)> minHeap(compare);
+        
+        for (ListNode* list : lists) {
+            if (list) minHeap.push(list);
+        }
+        
+        ListNode dummy(0);
+        ListNode* current = &dummy;
+        
+        while (!minHeap.empty()) {
+            ListNode* node = minHeap.top();
+            minHeap.pop();
+            
+            current->next = node;
+            current = current->next;
+            
+            if (node->next) {
+                minHeap.push(node->next);
+            }
+        }
+        
+        return dummy.next;
+    }
+    
+    // Top K frequent elements
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        unordered_map<int, int> freq;
+        for (int num : nums) {
+            freq[num]++;
+        }
+        
+        auto compare = [](const pair<int, int>& a, const pair<int, int>& b) {
+            return a.second > b.second;
+        };
+        
+        priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(compare)> minHeap(compare);
+        
+        for (const auto& p : freq) {
+            minHeap.push(p);
+            if (minHeap.size() > k) {
+                minHeap.pop();
+            }
+        }
+        
+        vector<int> result;
+        while (!minHeap.empty()) {
+            result.push_back(minHeap.top().first);
+            minHeap.pop();
+        }
+        
+        return result;
+    }
+};
+```
+
+### 🔧 Heap Sort Algorithm
+
+```mermaid
+flowchart TD
+    A["Unsorted Array"] --> B["Build Max Heap"]
+    B --> C["Extract Maximum"]
+    C --> D["Place at End"]
+    D --> E["Heapify Remaining"]
+    E --> F{"More Elements?"}
+    F -->|Yes| C
+    F -->|No| G["Sorted Array"]
+    
+    H["Time Complexity"] --> I["Build Heap: O(n)"]
+    H --> J["n Extractions: O(n log n)"]
+    H --> K["Total: O(n log n)"]
+    
+    L["Space Complexity"] --> M["In-place: O(1)"]
+    
+    style A fill:#e3f2fd
+    style G fill:#c8e6c9
+    style K fill:#fff3e0
+    style M fill:#fff3e0
+```
+
+```cpp
+void heapSort(vector<int>& arr) {
+    int n = arr.size();
+    
+    // Build max heap
+    for (int i = n / 2 - 1; i >= 0; i--) {
+        heapify(arr, n, i);
+    }
+    
+    // Extract elements one by one
+    for (int i = n - 1; i > 0; i--) {
+        swap(arr[0], arr[i]);
+        heapify(arr, i, 0);
+    }
+}
+
+void heapify(vector<int>& arr, int n, int i) {
     int largest = i;
     int left = 2 * i + 1;
     int right = 2 * i + 2;
     
-    if (left < n && arr[left] > arr[largest])
+    if (left < n && arr[left] > arr[largest]) {
         largest = left;
+    }
     
-    if (right < n && arr[right] > arr[largest])
+    if (right < n && arr[right] > arr[largest]) {
         largest = right;
+    }
     
     if (largest != i) {
         swap(arr[i], arr[largest]);
-        heapifyDown(arr, n, largest);
+        heapify(arr, n, largest);
     }
 }
 ```
 
-</td>
-<td width="50%">
+---
 
-#### **Build Heap**
+## 🏆 Best Practices
+
+### ✅ Do's
+
+```mermaid
+flowchart TD
+    A["✅ Heap Best Practices"] --> B["Use STL priority_queue"]
+    A --> C["Custom Comparators"]
+    A --> D["Memory Management"]
+    A --> E["Edge Cases"]
+    
+    B --> F["Built-in optimization"]
+    B --> G["Well-tested implementation"]
+    
+    C --> H["Complex object sorting"]
+    C --> I["Multiple criteria"]
+    
+    D --> J["Avoid memory leaks"]
+    D --> K["Efficient allocation"]
+    
+    E --> L["Empty heap checks"]
+    E --> M["Single element handling"]
+    
+    style A fill:#e3f2fd
+    style B fill:#c8e6c9
+    style C fill:#c8e6c9
+    style D fill:#c8e6c9
+    style E fill:#c8e6c9
+```
 
 ```cpp
-void buildHeap(int arr[], int n) {
-    // Start from last non-leaf node
-    for (int i = n/2 - 1; i >= 0; i--) {
-        heapifyDown(arr, n, i);
+// 1. Use STL priority_queue for most cases
+void useSTLHeap() {
+    priority_queue<int> maxHeap;                    // Max heap
+    priority_queue<int, vector<int>, greater<int>> minHeap; // Min heap
+    
+    maxHeap.push(10);
+    int max = maxHeap.top();
+    maxHeap.pop();
+}
+
+// 2. Custom comparator for complex objects
+struct Task {
+    int priority;
+    string name;
+};
+
+struct TaskComparator {
+    bool operator()(const Task& a, const Task& b) {
+        return a.priority < b.priority; // Higher priority first
     }
+};
+
+void useCustomComparator() {
+    priority_queue<Task, vector<Task>, TaskComparator> taskQueue;
 }
 ```
 
-**Key Insight:**
-- Start from last non-leaf: `n/2 - 1`
-- Work backwards to root
-- Time: O(n) not O(n log n)!
-
-</td>
-</tr>
-</table>
-
 ---
 
-## 🎯 **5. Priority Queue**
+## 🎓 Summary
 
-### 📊 **Abstract Data Type**
-
-<div align="center">
-
-| Feature | Description | Implementation |
-|:--------|:------------|:---------------|
-| **🎯 Priority-Based** | Elements served by priority | Heap |
-| **⚡ Efficient** | O(log n) operations | Binary Heap |
-| **🔄 Dynamic** | Insert/delete anytime | Flexible |
-
-</div>
-
-### 💻 **Implementation in C++**
-
-<table>
-<tr>
-<td width="50%">
-
-#### **Max Heap (Default)**
-
-```cpp
-#include <queue>
-using namespace std;
-
-// Max Heap
-priority_queue<int> maxHeap;
-
-maxHeap.push(10);
-maxHeap.push(30);
-maxHeap.push(20);
-
-cout << maxHeap.top(); // 30
-maxHeap.pop();
+```mermaid
+mindmap
+  root))📦 Heap Mastery((
+    🌳 Structure
+      Complete Binary Tree
+      Array Representation
+      Heap Property
+    ⚡ Operations
+      Insert: O(log n)
+      Extract: O(log n)
+      Peek: O(1)
+      Build: O(n)
+    🎯 Applications
+      Priority Queues
+      Heap Sort
+      Graph Algorithms
+      Top-K Problems
+    📊 Performance
+      Time Efficient
+      Space Efficient
+      Cache Friendly
 ```
 
-</td>
-<td width="50%">
+Heaps provide efficient priority-based operations:
 
-#### **Min Heap**
-
-```cpp
-#include <queue>
-using namespace std;
-
-// Min Heap
-priority_queue<int, vector<int>, 
-               greater<int>> minHeap;
-
-minHeap.push(10);
-minHeap.push(30);
-minHeap.push(20);
-
-cout << minHeap.top(); // 10
-minHeap.pop();
-```
-
-</td>
-</tr>
-</table>
-
----
-
-## ⏱️ **6. Time & Space Complexity**
-
-### 📊 **Performance Analysis**
-
-<div align="center">
-
-| Operation | Time Complexity | Space Complexity | Notes |
-|:----------|:----------------|:-----------------|:------|
-| **Insert** | O(log n) | O(1) | Bubble up |
-| **Delete** | O(log n) | O(1) | Bubble down |
-| **Peek** | O(1) | O(1) | Direct access |
-| **Heapify** | O(n) | O(1) | Build heap |
-| **Heap Sort** | O(n log n) | O(1) | In-place |
-
-</div>
-
----
-
-## 🌟 **7. Applications of Heap**
-
-<table>
-<tr>
-<td width="50%">
-
-### 🌍 **Real-World Uses**
-- 🖥️ CPU task scheduling
-- 🎮 Game AI priority systems
-- 📊 Event-driven simulation
-- 🚦 Traffic management
-- 📞 Call center routing
-
-</td>
-<td width="50%">
-
-### 💻 **Algorithm Applications**
-- 🔄 Heap Sort (O(n log n))
-- 🗺️ Dijkstra's shortest path
-- 🌳 Prim's MST algorithm
-- 🔢 Kth largest/smallest
-- 📊 Median in stream
-
-</td>
-</tr>
-</table>
-
----
-
-## 🎯 **8. Classic Heap Problems**
-
-### 📘 **Must-Solve Problems**
-
-<div align="center">
-
-| Difficulty | Problem | Pattern | Priority |
-|:-----------|:--------|:--------|:---------|
-| **🟢 Easy** | Kth Largest Element | Max Heap | ⭐⭐⭐ |
-| **🟢 Easy** | Last Stone Weight | Max Heap | ⭐⭐⭐ |
-| **🟡 Medium** | Top K Frequent Elements | Min Heap | ⭐⭐⭐ |
-| **🟡 Medium** | Kth Largest in Stream | Min Heap | ⭐⭐⭐ |
-| **🟡 Medium** | Find Median from Data Stream | Two Heaps | ⭐⭐⭐ |
-| **🟡 Medium** | Merge K Sorted Lists | Min Heap | ⭐⭐ |
-| **🔴 Hard** | Sliding Window Median | Two Heaps | ⭐⭐ |
-| **🔴 Hard** | IPO | Max + Min Heap | ⭐ |
-
-</div>
-
----
-
-## 🔄 **9. Heap vs Other Structures**
-
-<div align="center">
-
-| Structure | Insert | Delete | Find Min/Max | Use Case |
-|:----------|:-------|:-------|:-------------|:---------|
-| **Heap** | O(log n) | O(log n) | O(1) | Priority queue |
-| **BST** | O(log n) | O(log n) | O(log n) | Ordered data |
-| **Array (sorted)** | O(n) | O(n) | O(1) | Static data |
-| **Array (unsorted)** | O(1) | O(n) | O(n) | No priority |
-
-</div>
-
----
-
-## 🎯 **10. Key Takeaways**
-
-<div align="center">
-
-### 💡 **Essential Insights**
-
-</div>
-
-> 📦 **Heap = Complete Binary Tree**: Efficient array representation  
-> ⚡ **O(log n) Operations**: Fast insert and delete  
-> 🎯 **Priority Queue**: Best implemented with heap  
-> 🔧 **Heapify is O(n)**: Not O(n log n)!  
-> 🌟 **Two Heap Pattern**: Powerful for median problems  
-
----
-
-## 📚 **11. Next Steps**
-
-<table>
-<tr>
-<td width="50%">
-
-### 🎯 **Immediate Goals**
-- [ ] Implement heap from scratch
-- [ ] Solve Kth largest problem
-- [ ] Practice heapify algorithm
-- [ ] Master priority_queue STL
-
-</td>
-<td width="50%">
-
-### 🚀 **Long-term Objectives**
-- [ ] Solve 15+ heap problems
-- [ ] Implement heap sort
-- [ ] Master two-heap pattern
-- [ ] Learn advanced heap variants
-
-</td>
-</tr>
-</table>
-
----
-
-## ⚖️ **12. Advantages & Disadvantages**
-
-<table>
-<tr>
-<td width="50%">
-
-### ✅ **Advantages**
-- ⚡ Fast insertion & deletion O(log n)
-- 📈 Predictable time complexity
-- 📦 Array-based implementation
-- 🚀 Efficient priority management
-- 💾 Space efficient
-
-</td>
-<td width="50%">
-
-### ❌ **Disadvantages**
-- 🔍 Slow arbitrary search O(n)
-- ❌ No predecessor/successor queries
-- 🚫 Not suitable for range queries
-- 🔄 Requires reheapify on updates
-- 📉 Not cache-friendly for large heaps
-
-</td>
-</tr>
-</table>
+✅ **Complete Binary Tree**: Efficient array representation  
+✅ **O(log n)**: Insert and extract operations  
+✅ **O(1)**: Peek at min/max element  
+✅ **Applications**: Priority queues, heap sort, graph algorithms  
 
 ---
 
 <div align="center">
 
-### 📊 **Learning Progress**
+**📦 Heap Up the Performance**
 
-![Progress](https://img.shields.io/badge/Completion-100%25-success?style=for-the-badge)
-![Time](https://img.shields.io/badge/Study_Time-2_Hours-blue?style=for-the-badge)
-![Difficulty](https://img.shields.io/badge/Difficulty-Intermediate-orange?style=for-the-badge)
-
----
-
-**📅 Topic**: Heap & Priority Queue | **🎯 Focus**: Priority Management | **⏰ Level**: Intermediate
-
-*"Heap: Where priority meets efficiency"*
+*Priority-driven data organization*
 
 </div>

@@ -1,18 +1,89 @@
-# ⚖️ Amortized Analysis Complete Guide
+# ⚖️ Amortized Analysis — Complete Professional Guide
 
-## 📋 Table of Contents
-- [Introduction](#introduction)
-- [Core Concepts](#core-concepts)
-- [Aggregate Method](#aggregate-method)
-- [Accounting Method](#accounting-method)
-- [Potential Method](#potential-method)
-- [Dynamic Array Analysis](#dynamic-array-analysis)
-- [Stack Operations](#stack-operations)
-- [Binary Counter](#binary-counter)
-- [Splay Trees](#splay-trees)
-- [Fibonacci Heap](#fibonacci-heap)
-- [Interview Problems](#interview-problems)
-- [Best Practices](#best-practices)
+<div align="center">
+
+![Amortized Analysis](https://img.shields.io/badge/Amortized_Analysis-Performance_Optimization-FF6B6B?style=for-the-badge&logo=analytics&logoColor=white)
+![Difficulty](https://img.shields.io/badge/Difficulty-Advanced-red?style=for-the-badge)
+![Importance](https://img.shields.io/badge/Importance-Critical-darkred?style=for-the-badge)
+
+*Master advanced performance analysis techniques for guaranteed algorithmic efficiency*
+
+<img src="https://i0.wp.com/vijinimallawaarachchi.com/wp-content/uploads/2017/05/capture31.png?fit=1200%2C794&ssl=1" alt="Amortized Analysis Visualization" width="700" height="400"/>
+
+</div>
+
+---
+
+## 🔄 Amortized Analysis Overview
+
+```mermaid
+mindmap
+  root((Amortized<br/>Analysis))
+    Methods
+      Aggregate Method
+        Total cost / n operations
+        Simple calculation
+        Direct approach
+      Accounting Method
+        Credit system
+        Prepay operations
+        Banker's method
+      Potential Method
+        Energy function
+        Mathematical rigor
+        State-based analysis
+    Applications
+      Dynamic Arrays
+        Resize operations
+        O(1) amortized insertion
+      Stack Operations
+        Multipop analysis
+        Credit per push
+      Binary Counter
+        Bit flip analysis
+        O(1) amortized increment
+      Advanced Structures
+        Splay Trees
+        Fibonacci Heaps
+        Disjoint Sets
+```
+
+### 📊 Analysis Types Comparison
+
+```mermaid
+flowchart TD
+    A["Analysis Types"] --> B["Worst-Case Analysis"]
+    A --> C["Average-Case Analysis"]
+    A --> D["Amortized Analysis"]
+    
+    B --> E["Maximum cost<br/>Single operation<br/>Often pessimistic"]
+    C --> F["Expected cost<br/>Random inputs<br/>Probabilistic"]
+    D --> G["Average over sequence<br/>Guaranteed bounds<br/>No assumptions"]
+    
+    E --> H["Example: Array resize O(n)"]
+    F --> I["Example: Quicksort O(n log n)"]
+    G --> J["Example: Array insert O(1)"]
+    
+    style A fill:#ff6b6b
+    style D fill:#4ecdc4
+    style G fill:#4ecdc4
+    style J fill:#4ecdc4
+```
+
+## 📑 Table of Contents
+
+1. [🎯 Introduction](#-introduction)
+2. [🧩 Core Concepts](#-core-concepts)
+3. [📈 Aggregate Method](#-aggregate-method)
+4. [💰 Accounting Method](#-accounting-method)
+5. [⚡ Potential Method](#-potential-method)
+6. [📊 Dynamic Array Analysis](#-dynamic-array-analysis)
+7. [📚 Stack Operations](#-stack-operations)
+8. [🔢 Binary Counter](#-binary-counter)
+9. [🌳 Splay Trees](#-splay-trees)
+10. [🔥 Fibonacci Heap](#-fibonacci-heap)
+11. [🎯 Interview Problems](#-interview-problems)
+12. [💡 Best Practices](#-best-practices)
 
 ---
 
@@ -95,6 +166,28 @@ public:
 Calculate total cost of n operations, then divide by n.
 
 **Formula**: Amortized Cost = Total Cost of n operations / n
+
+### 🔄 Aggregate Method Process
+
+```mermaid
+flowchart TD
+    A["Sequence of n Operations"] --> B["Calculate Total Cost"]
+    B --> C["Sum all operation costs"]
+    C --> D["Include expensive operations"]
+    D --> E["Divide by n"]
+    E --> F["Amortized Cost per Operation"]
+    
+    G["Example: Dynamic Array"] --> H["n insertions"]
+    H --> I["Insert costs: n × 1 = n"]
+    I --> J["Resize costs: 1+2+4+...+n/2 < 2n"]
+    J --> K["Total cost < 3n"]
+    K --> L["Amortized cost < 3"]
+    
+    style A fill:#ff6b6b
+    style F fill:#4ecdc4
+    style G fill:#ffa500
+    style L fill:#4ecdc4
+```
 
 ```cpp
 class AggregateMethod {
@@ -202,6 +295,31 @@ public:
 
 ### 📝 Definition
 Assign artificial costs to operations and store extra cost as credit for future expensive operations.
+
+### 🏦 Accounting Method Flow
+
+```mermaid
+flowchart TD
+    A["Operation Request"] --> B["Assign Artificial Cost"]
+    B --> C["Pay Actual Cost"]
+    C --> D{"Excess Credit?"}
+    D -->|Yes| E["Store as Credit"]
+    D -->|No| F["Use Stored Credit"]
+    E --> G["Credit Bank"]
+    F --> H["Deduct from Bank"]
+    G --> I["Ready for Future"]
+    H --> I
+    
+    J["Example: Dynamic Array"] --> K["Charge 3 per insert"]
+    K --> L["Pay 1 for insertion"]
+    L --> M["Store 2 as credit"]
+    M --> N["Use credit for resize"]
+    
+    style A fill:#ff6b6b
+    style I fill:#4ecdc4
+    style J fill:#ffa500
+    style N fill:#4ecdc4
+```
 
 ```cpp
 class AccountingMethod {
@@ -321,6 +439,26 @@ public:
 Uses a potential function Φ that maps data structure state to a number representing stored work.
 
 **Formula**: Amortized Cost = Actual Cost + (Φ_after - Φ_before)
+
+### ⚡ Potential Method Visualization
+
+```mermaid
+flowchart TD
+    A["Initial State<br/>Φ(D₀) = 0"] --> B["Operation i"]
+    B --> C["Actual Cost: cᵢ"]
+    B --> D["State Change<br/>Dᵢ₋₁ → Dᵢ"]
+    D --> E["Potential Change<br/>Φ(Dᵢ) - Φ(Dᵢ₋₁)"]
+    C --> F["Amortized Cost<br/>âᵢ = cᵢ + ΔΦᵢ"]
+    E --> F
+    
+    G["Potential Function Properties"] --> H["Φ(D₀) = 0"]
+    G --> I["Φ(Dᵢ) ≥ 0 for all i"]
+    G --> J["Reflects stored work"]
+    
+    style A fill:#ff6b6b
+    style F fill:#4ecdc4
+    style G fill:#ffa500
+```
 
 ```cpp
 class PotentialMethod {

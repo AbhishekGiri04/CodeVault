@@ -4,6 +4,10 @@
 
 *Curated collection of high-quality educational content for mastering Data Structures & Algorithms*
 
+<img src="https://i.ytimg.com/vi/0bHoB32fuj0/hq720.jpg?sqp=-oaymwEXCK4FEIIDSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBzL5UZg5lNvDPO4thYFLPH8mbrVg" alt="DSA Learning Journey" width="700" height="400"/>
+
+<img src="https://i.ytimg.com/vi/1OTX-WXQHCQ/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAZo7uQyGzCanPf1qzC1LEXgcFchA" alt="Complete DSA Course" width="650" height="400"/>
+
 ---
 
 ![Resources](https://img.shields.io/badge/Category-Learning_Resources-FF6B6B?style=for-the-badge&logo=youtube&logoColor=white)
@@ -11,6 +15,50 @@
 ![Status](https://img.shields.io/badge/Status-Active-45B7D1?style=for-the-badge)
 
 </div>
+
+---
+
+## 🎯 **Learning Resource Overview**
+
+```mermaid
+mindmap
+  root((DSA Learning<br/>Resources))
+    Video Content
+      Striver A2Z
+        Complete DSA coverage
+        Interview focused
+        Advanced techniques
+      Code With Harry
+        Beginner friendly
+        Hindi support
+        Practical examples
+      Additional Channels
+        Abdul Bari
+        Jenny's Lectures
+        Tushar Roy
+    Practice Platforms
+      LeetCode
+        Problem solving
+        Interview prep
+        Discussion forums
+      Codeforces
+        Competitive programming
+        Contest practice
+        Rating system
+      GeeksforGeeks
+        Tutorials
+        Practice problems
+        Interview experiences
+    Books & References
+      CLRS
+        Theoretical foundation
+        Mathematical proofs
+        Comprehensive coverage
+      Cracking Coding Interview
+        Interview preparation
+        Problem patterns
+        Company insights
+```
 
 ---
 
@@ -153,18 +201,59 @@ Beginner-friendly DSA course with clear explanations and practical examples. Foc
 
 ## 🎓 **Learning Path Recommendation**
 
-### 📊 **Structured Approach**
+### 📊 **Complete Learning Journey**
 
 ```mermaid
-graph TD
-    A[Start: Choose Your Level] --> B{Beginner?}
-    B -->|Yes| C[Code With Harry Playlist]
-    B -->|No| D[Striver's A2Z Course]
-    C --> E[Practice Basic Problems]
-    E --> D
-    D --> F[Solve Medium Problems]
-    F --> G[Advanced Topics]
-    G --> H[Interview Preparation]
+flowchart TD
+    A["🎯 Start Learning DSA"] --> B{"Programming Experience?"}
+    
+    B -->|"Beginner"| C["📚 Code With Harry<br/>Fundamentals"]
+    B -->|"Intermediate"| D["🚀 Striver A2Z<br/>Direct Start"]
+    
+    C --> E["📝 Basic Problems<br/>Arrays & Strings"]
+    E --> F["⚡ Build Confidence<br/>Easy LeetCode"]
+    F --> D
+    
+    D --> G["📊 Core Data Structures"]
+    G --> H["🔍 Algorithm Techniques"]
+    H --> I["🧠 Advanced Topics"]
+    I --> J["💼 Interview Preparation"]
+    
+    G --> K["Arrays, Linked Lists<br/>Stacks, Queues"]
+    H --> L["Sorting, Searching<br/>Recursion, DP"]
+    I --> M["Graphs, Trees<br/>Advanced DS"]
+    J --> N["🎯 Mock Interviews<br/>System Design"]
+    
+    style A fill:#ff6b6b
+    style N fill:#4ecdc4
+    style C fill:#ffa500
+    style D fill:#45b7d1
+```
+
+### 🗓️ **Structured Timeline**
+
+```mermaid
+gantt
+    title DSA Learning Timeline
+    dateFormat  X
+    axisFormat %s
+    
+    section Fundamentals
+    Basics & Syntax           :done, basics, 0, 2w
+    Arrays & Strings          :done, arrays, after basics, 2w
+    
+    section Core DSA
+    Linked Lists & Stacks     :active, lists, after arrays, 2w
+    Trees & Graphs            :trees, after lists, 3w
+    Sorting & Searching       :sorting, after trees, 2w
+    
+    section Advanced
+    Dynamic Programming       :dp, after sorting, 3w
+    Advanced Data Structures  :advanced, after dp, 2w
+    
+    section Interview Prep
+    Mock Interviews           :interviews, after advanced, 2w
+    System Design            :system, after interviews, 2w
 ```
 
 ### 🗓️ **Suggested Timeline**
@@ -182,7 +271,44 @@ graph TD
 
 ---
 
-## 💡 **Additional Resources**
+## 💡 **Study Strategy & Best Practices**
+
+### 🎯 **Optimal Learning Flow**
+
+```mermaid
+flowchart LR
+    A["📖 Learn Concept"] --> B["💻 Code Implementation"]
+    B --> C["🧪 Practice Problems"]
+    C --> D["📊 Analyze Complexity"]
+    D --> E["🔄 Review & Optimize"]
+    E --> F{"Mastered?"}
+    F -->|"No"| A
+    F -->|"Yes"| G["➡️ Next Topic"]
+    
+    style A fill:#ff6b6b
+    style G fill:#4ecdc4
+    style F fill:#ffa500
+```
+
+### 📚 **Resource Utilization Strategy**
+
+```mermaid
+flowchart TD
+    A["🎯 Topic Selection"] --> B["📺 Watch Striver Video"]
+    B --> C["📝 Take Notes"]
+    C --> D["💻 Code Along"]
+    D --> E["🔍 Check Harry's Explanation"]
+    E --> F["📊 Solve LeetCode Problems"]
+    F --> G["📖 Read GeeksforGeeks"]
+    G --> H["🧠 Understand Patterns"]
+    H --> I{"Confident?"}
+    I -->|"No"| E
+    I -->|"Yes"| J["✅ Mark Complete"]
+    
+    style A fill:#ff6b6b
+    style J fill:#4ecdc4
+    style I fill:#ffa500
+```
 
 ### 🌐 **Online Platforms**
 
@@ -228,7 +354,31 @@ graph TD
 
 ---
 
-## 📊 **Progress Tracking**
+## 📊 **Progress Tracking System**
+
+### ✅ **Skill Development Roadmap**
+
+```mermaid
+flowchart TD
+    A["🎯 DSA Mastery Journey"] --> B["📚 Foundation Phase"]
+    A --> C["🚀 Intermediate Phase"]
+    A --> D["💼 Advanced Phase"]
+    
+    B --> E["✅ Arrays & Strings<br/>✅ Basic Sorting<br/>✅ Linear Search<br/>✅ Time Complexity"]
+    
+    C --> F["✅ Linked Lists<br/>✅ Stacks & Queues<br/>✅ Binary Search<br/>✅ Recursion Basics<br/>✅ Tree Traversals"]
+    
+    D --> G["✅ Dynamic Programming<br/>✅ Graph Algorithms<br/>✅ Advanced Trees<br/>✅ System Design<br/>✅ Mock Interviews"]
+    
+    E --> H["📈 50+ Easy Problems"]
+    F --> I["📈 100+ Medium Problems"]
+    G --> J["📈 50+ Hard Problems"]
+    
+    style A fill:#ff6b6b
+    style H fill:#4ecdc4
+    style I fill:#ffa500
+    style J fill:#45b7d1
+```
 
 ### ✅ **Recommended Checklist**
 

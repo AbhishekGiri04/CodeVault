@@ -8,24 +8,62 @@
 
 *Master fundamental problem-solving paradigms for efficient algorithm design and competitive programming*
 
+<img src="https://repository-images.githubusercontent.com/312736455/cde37f79-89d1-4d6e-a287-83d184d17784" alt="Algorithm Design Overview" width="700" height="350"/>
+
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20251219123737199442/what_is_an_algorithm_.webp" alt="What is an Algorithm" width="600" height="400"/>
+
+<img src="https://cdn.educba.com/academy/wp-content/uploads/2019/05/types-of-algorithm.png" alt="Types of Algorithms" width="650" height="450"/>
+
 </div>
 
 ---
 
+## 🎯 Algorithm Design Strategy Selection
+
+```mermaid
+flowchart TD
+    A["Problem Analysis"] --> B{"Problem Characteristics"}
+    
+    B -->|"Small input size<br/>Correctness critical"| C["Brute Force"]
+    B -->|"Recursive structure<br/>Independent subproblems"| D["Divide & Conquer"]
+    B -->|"Optimal substructure<br/>Overlapping subproblems"| E["Dynamic Programming"]
+    B -->|"Greedy choice property<br/>Local optimum"| F["Greedy Method"]
+    B -->|"Constraint satisfaction<br/>Multiple solutions"| G["Backtracking"]
+    B -->|"Complex representation<br/>Transform problem"| H["Transform & Conquer"]
+    B -->|"Approximation acceptable<br/>Randomness beneficial"| I["Randomized"]
+    
+    C --> J["O(2^n), O(n!)"]
+    D --> K["O(n log n)"]
+    E --> L["O(n²), O(n³)"]
+    F --> M["O(n log n)"]
+    G --> N["O(2^n) with pruning"]
+    H --> O["Varies by transformation"]
+    I --> P["Expected performance"]
+    
+    style A fill:#ff6b6b
+    style C fill:#ffa500
+    style D fill:#4ecdc4
+    style E fill:#45b7d1
+    style F fill:#96ceb4
+    style G fill:#ffeaa7
+    style H fill:#dda0dd
+    style I fill:#fab1a0
+```
+
 ## 📑 Table of Contents
 
-1. [Introduction](#-introduction)
-2. [Brute Force](#-brute-force)
-3. [Divide & Conquer](#-divide--conquer)
-4. [Decrease & Conquer](#-decrease--conquer)
-5. [Transform & Conquer](#-transform--conquer)
-6. [Greedy Method](#-greedy-method)
-7. [Dynamic Programming](#-dynamic-programming)
-8. [Backtracking](#-backtracking)
-9. [Branch & Bound](#-branch--bound)
-10. [Randomized Algorithms](#-randomized-algorithms)
-11. [Comparison & Selection](#-comparison--selection)
-12. [Best Practices](#-best-practices)
+1. [🎯 Introduction](#-introduction)
+2. [💪 Brute Force](#-brute-force)
+3. [🔄 Divide & Conquer](#-divide--conquer)
+4. [📉 Decrease & Conquer](#-decrease--conquer)
+5. [🔄 Transform & Conquer](#-transform--conquer)
+6. [🎯 Greedy Method](#-greedy-method)
+7. [🧠 Dynamic Programming](#-dynamic-programming)
+8. [🔍 Backtracking](#-backtracking)
+9. [🌳 Branch & Bound](#-branch--bound)
+10. [🎲 Randomized Algorithms](#-randomized-algorithms)
+11. [📊 Comparison & Selection](#-comparison--selection)
+12. [💡 Best Practices](#-best-practices)
 
 ---
 
@@ -43,15 +81,109 @@
 🏆 Interview Success        → Demonstrate algorithmic thinking
 ```
 
-### 📊 Technique Categories
+### 📊 Algorithm Design Paradigms Overview
 
-| Category | Focus | Examples |
-|:---------|:------|:---------|
-| **Exhaustive** | Try all possibilities | Brute Force, Backtracking |
-| **Divide-Based** | Break into subproblems | Divide & Conquer, Decrease & Conquer |
-| **Optimization** | Find best solution | Greedy, Dynamic Programming |
-| **Transformation** | Change problem form | Transform & Conquer |
-| **Probabilistic** | Use randomness | Randomized Algorithms |
+```mermaid
+mindmap
+  root((Algorithm Design<br/>Techniques))
+    Exhaustive Search
+      Brute Force
+        Try all possibilities
+        Simple implementation
+        High time complexity
+      Backtracking
+        Systematic search
+        Pruning invalid paths
+        State space exploration
+    Divide-Based
+      Divide & Conquer
+        Break into subproblems
+        Solve recursively
+        Combine solutions
+      Decrease & Conquer
+        Reduce problem size
+        Solve smaller instance
+        Extend solution
+    Optimization
+      Greedy
+        Local optimal choices
+        No backtracking
+        Fast execution
+      Dynamic Programming
+        Optimal substructure
+        Overlapping subproblems
+        Memoization
+    Transformation
+      Transform & Conquer
+        Change representation
+        Solve transformed problem
+        Convert back
+    Probabilistic
+      Randomized
+        Use random choices
+        Expected performance
+        Monte Carlo methods
+```
+
+### 📊 Algorithm Complexity Landscape
+
+```mermaid
+flowchart LR
+    A["Algorithm Complexity"] --> B["Time Complexity"]
+    A --> C["Space Complexity"]
+    
+    B --> D["O(1) - Constant"]
+    B --> E["O(log n) - Logarithmic"]
+    B --> F["O(n) - Linear"]
+    B --> G["O(n log n) - Linearithmic"]
+    B --> H["O(n²) - Quadratic"]
+    B --> I["O(2^n) - Exponential"]
+    B --> J["O(n!) - Factorial"]
+    
+    D --> K["Hash table access"]
+    E --> L["Binary search"]
+    F --> M["Linear search"]
+    G --> N["Merge sort"]
+    H --> O["Bubble sort"]
+    I --> P["Subset enumeration"]
+    J --> Q["Permutation generation"]
+    
+    style D fill:#4ecdc4
+    style E fill:#96ceb4
+    style F fill:#ffeaa7
+    style G fill:#fab1a0
+    style H fill:#ff7675
+    style I fill:#e17055
+    style J fill:#d63031
+```
+
+### 🔄 Problem-Solving Flow
+
+```mermaid
+flowchart TD
+    A["Problem Analysis"] --> B{"Problem Type?"}
+    
+    B -->|"Search/Enumeration"| C["Brute Force<br/>Backtracking"]
+    B -->|"Recursive Structure"| D["Divide & Conquer<br/>Decrease & Conquer"]
+    B -->|"Optimization"| E["Greedy<br/>Dynamic Programming"]
+    B -->|"Complex Structure"| F["Transform & Conquer"]
+    B -->|"Approximation"| G["Randomized<br/>Heuristic"]
+    
+    C --> H["Implementation"]
+    D --> H
+    E --> H
+    F --> H
+    G --> H
+    
+    H --> I["Analysis & Testing"]
+    I --> J{"Satisfactory?"}
+    J -->|No| K["Try Different Technique"]
+    J -->|Yes| L["Solution Complete"]
+    K --> B
+    
+    style A fill:#ff6b6b
+    style L fill:#4ecdc4
+```
 
 ---
 
@@ -60,6 +192,28 @@
 ### 🎯 Definition
 
 **Brute Force** is the most straightforward approach that examines all possible solutions to find the correct or optimal one.
+
+### 🔄 Brute Force Strategy Flow
+
+```mermaid
+flowchart TD
+    A["Problem Instance"] --> B["Generate All<br/>Possible Solutions"]
+    B --> C["Evaluate Each<br/>Solution"]
+    C --> D{"Valid Solution?"}
+    D -->|Yes| E["Check if Optimal"]
+    D -->|No| F["Discard"]
+    E --> G{"Better than Current?"}
+    G -->|Yes| H["Update Best"]
+    G -->|No| I["Keep Current"]
+    F --> J{"More Solutions?"}
+    H --> J
+    I --> J
+    J -->|Yes| C
+    J -->|No| K["Return Best Solution"]
+    
+    style A fill:#ff6b6b
+    style K fill:#4ecdc4
+```
 
 ### 🔧 Core Strategy
 
@@ -144,6 +298,62 @@ bool hasSubsetSum(vector<int>& arr, int target) {
 ### 🎯 Definition
 
 **Divide & Conquer** breaks a problem into smaller independent subproblems, solves them recursively, and combines the results.
+
+### 🔄 Divide & Conquer Execution Flow
+
+```mermaid
+flowchart TD
+    A["Problem Size n"] --> B{"Base Case?"}
+    B -->|Yes| C["Solve Directly"]
+    B -->|No| D["Divide into Subproblems"]
+    
+    D --> E["Subproblem 1<br/>Size n/2"]
+    D --> F["Subproblem 2<br/>Size n/2"]
+    D --> G["...<br/>Size n/k"]
+    
+    E --> H["Recursive Solve"]
+    F --> I["Recursive Solve"]
+    G --> J["Recursive Solve"]
+    
+    H --> K["Solution 1"]
+    I --> L["Solution 2"]
+    J --> M["Solution k"]
+    
+    K --> N["Combine Solutions"]
+    L --> N
+    M --> N
+    C --> O["Return Result"]
+    N --> O
+    
+    style A fill:#ff6b6b
+    style O fill:#4ecdc4
+    style N fill:#ffa500
+```
+
+### 🎯 Greedy Algorithm Decision Process
+
+```mermaid
+flowchart TD
+    A["Start with Empty Solution"] --> B["Select Next Element"]
+    B --> C["Apply Greedy Criterion"]
+    C --> D{"Element Feasible?"}
+    D -->|Yes| E["Add to Solution"]
+    D -->|No| F["Reject Element"]
+    E --> G{"Solution Complete?"}
+    F --> G
+    G -->|No| H["Consider Next Element"]
+    G -->|Yes| I["Return Solution"]
+    H --> B
+    
+    J["Greedy Properties"] --> K["Greedy Choice Property"]
+    J --> L["Optimal Substructure"]
+    K --> M["Local optimum leads to global"]
+    L --> N["Optimal solution contains optimal subsolutions"]
+    
+    style A fill:#ff6b6b
+    style I fill:#4ecdc4
+    style J fill:#ffa500
+```
 
 ### 🔧 Core Strategy
 
@@ -243,15 +453,30 @@ int maxSubarraySum(vector<int>& arr, int left, int right) {
 // Time: O(n log n), Space: O(log n)
 ```
 
-### 📊 Recurrence Relations
+### 🎪 Dynamic Programming Strategy
 
-```
-T(n) = aT(n/b) + f(n)
-
-Examples:
-- Binary Search: T(n) = T(n/2) + O(1) → O(log n)
-- Merge Sort: T(n) = 2T(n/2) + O(n) → O(n log n)
-- Strassen's: T(n) = 7T(n/2) + O(n²) → O(n^2.81)
+```mermaid
+flowchart TD
+    A["Problem Analysis"] --> B{"Has Optimal Substructure?"}
+    B -->|No| C["DP Not Applicable"]
+    B -->|Yes| D{"Has Overlapping Subproblems?"}
+    D -->|No| E["Use Divide & Conquer"]
+    D -->|Yes| F["Apply Dynamic Programming"]
+    
+    F --> G["Choose Approach"]
+    G --> H["Top-Down (Memoization)"]
+    G --> I["Bottom-Up (Tabulation)"]
+    
+    H --> J["Recursive + Cache"]
+    I --> K["Iterative + Table"]
+    
+    J --> L["Space: O(subproblems)"]
+    K --> L
+    L --> M["Time: O(subproblems × time per subproblem)"]
+    
+    style A fill:#ff6b6b
+    style F fill:#4ecdc4
+    style M fill:#96ceb4
 ```
 
 ---
@@ -577,6 +802,36 @@ int longestCommonSubsequence(string text1, string text2) {
 ### 🎯 Definition
 
 **Backtracking** builds solutions incrementally and abandons candidates that cannot lead to a valid solution.
+
+### 🔙 Backtracking Search Tree
+
+```mermaid
+flowchart TD
+    A["Root: Empty Solution"] --> B["Level 1: First Choice"]
+    B --> C["Choice 1.1"]
+    B --> D["Choice 1.2"]
+    B --> E["Choice 1.3"]
+    
+    C --> F["Level 2: Second Choice"]
+    C --> G["❌ Pruned (Invalid)"]
+    D --> H["Level 2: Second Choice"]
+    E --> I["❌ Pruned (Invalid)"]
+    
+    F --> J["Choice 2.1"]
+    F --> K["Choice 2.2"]
+    H --> L["Choice 2.3"]
+    
+    J --> M["✓ Valid Solution"]
+    K --> N["❌ Dead End"]
+    L --> O["✓ Valid Solution"]
+    
+    style A fill:#ff6b6b
+    style M fill:#4ecdc4
+    style O fill:#4ecdc4
+    style G fill:#ff7675
+    style I fill:#ff7675
+    style N fill:#ff7675
+```
 
 ### 🔧 Core Strategy
 

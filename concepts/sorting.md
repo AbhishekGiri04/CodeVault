@@ -1,384 +1,310 @@
+# 🔃 Sorting Algorithms — Complete Professional Guide
+
 <div align="center">
 
-# 🔃 Day 9: Sorting Algorithms - Data Organization Mastery
+<img src="https://miro.medium.com/1*_qUuB7vQ716KuLp6bx3-oQ.png" alt="Sorting Algorithms" width="600" height="300"/>
 
-*Understanding Efficient Data Arrangement and Comparison-Based Algorithms*
+![Sorting](https://img.shields.io/badge/Sorting-Algorithm_Fundamentals-dc3545?style=for-the-badge&logo=sort&logoColor=white)
+![Difficulty](https://img.shields.io/badge/Difficulty-Fundamental-green?style=for-the-badge)
+![Importance](https://img.shields.io/badge/Importance-Critical-red?style=for-the-badge)
 
----
-
-![Sorting](https://img.shields.io/badge/Topic-Sorting_Algorithms-FF6B6B?style=for-the-badge&logo=sort&logoColor=white)
-![Difficulty](https://img.shields.io/badge/Level-Beginner_to_Advanced-4ECDC4?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Completed-45B7D1?style=for-the-badge)
+*Master the art of organizing data through efficient sorting algorithms*
 
 </div>
 
 ---
 
-## 🎯 **Learning Objectives**
+## 📑 Table of Contents
 
-> *Master data organization techniques and algorithmic efficiency concepts*
-
-- 🏗️ Understand sorting fundamentals and algorithm classifications
-- ⚡ Master various sorting techniques and their trade-offs
-- 🧩 Learn time/space complexity analysis for sorting algorithms
-- 🚀 Apply sorting in real-world optimization scenarios
+1. [Introduction](#-introduction)
+2. [Simple Sorting](#-simple-sorting)
+3. [Efficient Sorting](#-efficient-sorting)
+4. [Specialized Sorting](#-specialized-sorting)
+5. [Comparison Analysis](#-comparison-analysis)
+6. [Stability & Adaptability](#-stability--adaptability)
+7. [External Sorting](#-external-sorting)
+8. [Best Practices](#-best-practices)
 
 ---
 
-## 📖 **1. Sorting Fundamentals**
+## 🎯 Introduction
+
+**Sorting** is the process of arranging data in a particular order (ascending or descending). It's fundamental to computer science and serves as a prerequisite for many algorithms.
+
+## 📊 Sorting Algorithm Gallery
 
 <div align="center">
 
-### 🔃 **What Makes Sorting Essential?**
+<img src="https://scaler.com/topics/images/types-of-sorting-algorithms.webp" alt="Types of Sorting" width="500" height="300"/>
+<img src="https://miro.medium.com/1*zr053Q07JOcjpFPh4iDJCA.png" alt="Sorting Comparison" width="500" height="300"/>
 
 </div>
 
-<table>
-<tr>
-<td width="50%">
+### 🌊 Sorting Algorithm Flow
 
-### 🎯 **Core Benefits**
-- **🔍 Search Optimization**: Binary search requires sorted data
-- **📊 Data Organization**: Systematic arrangement for analysis
-- **⚡ Algorithm Efficiency**: Many algorithms work better on sorted data
-- **🎯 Problem Solving**: Foundation for advanced techniques
-
-</td>
-<td width="50%">
-
-### ⚡ **Why Sorting Matters?**
-- **🗄️ Database Operations**: Indexing and query optimization
-- **📈 Analytics**: Ranking, percentiles, statistical analysis
-- **🔍 Search Engines**: Relevance ranking and result ordering
-- **💼 Interview Essential**: Fundamental algorithmic concept
-
-</td>
-</tr>
-</table>
-
-### 🧮 **Sorting Process Visualization**
-
+```mermaid
+graph TD
+    A[Sorting Algorithms] --> B[Simple O(n²)]
+    A --> C[Efficient O(n log n)]
+    A --> D[Linear O(n+k)]
+    
+    B --> E[Bubble Sort]
+    B --> F[Selection Sort]
+    B --> G[Insertion Sort]
+    
+    C --> H[Merge Sort]
+    C --> I[Quick Sort]
+    C --> J[Heap Sort]
+    
+    D --> K[Counting Sort]
+    D --> L[Radix Sort]
+    D --> M[Bucket Sort]
 ```
-Unsorted Array: [64, 34, 25, 12, 22, 11, 90]
 
-Sorting Process (Bubble Sort Example):
-Pass 1: [34, 25, 12, 22, 11, 64, 90] → 64 bubbles to position
-Pass 2: [25, 12, 22, 11, 34, 64, 90] → 34 bubbles to position  
-Pass 3: [12, 22, 11, 25, 34, 64, 90] → 25 bubbles to position
-Pass 4: [12, 11, 22, 25, 34, 64, 90] → 22 bubbles to position
-Pass 5: [11, 12, 22, 25, 34, 64, 90] → 12 bubbles to position
+### 🔑 Why Study Sorting?
 
-Final Sorted: [11, 12, 22, 25, 34, 64, 90]
+```mermaid
+graph TD
+    A[Sorting] --> B[Search Optimization]
+    A --> C[Data Organization]
+    A --> D[Algorithm Foundation]
+    A --> E[Real-world Applications]
+    
+    B --> F[Binary Search]
+    C --> G[Database Indexing]
+    D --> H[Divide & Conquer]
+    E --> I[File Systems]
 ```
+
+### 📊 Sorting Algorithm Categories
+
+| Category | Algorithms | Time Complexity | Space |
+|:---------|:-----------|:----------------|:------|
+| **Simple** | Bubble, Selection, Insertion | O(n²) | O(1) |
+| **Efficient** | Merge, Quick, Heap | O(n log n) | O(n) or O(log n) |
+| **Linear** | Counting, Radix, Bucket | O(n+k) | O(n+k) |
 
 ---
 
-## 📚 **2. Essential Sorting Terminology**
+## 🔄 Simple Sorting
 
-<div align="center">
+### 🎯 Bubble Sort
 
-### 📊 **Key Concepts**
-
-| Term | Definition | Importance |
-|:-----|:-----------|:-----------|
-| **⏰ Time Complexity** | Algorithm's execution time growth | Performance analysis |
-| **💾 Space Complexity** | Extra memory required | Memory efficiency |
-| **⚖️ Stability** | Maintains relative order of equal elements | Data integrity |
-| **🏠 In-Place** | Sorts without extra space | Memory optimization |
-| **🔄 Adaptive** | Performs better on partially sorted data | Real-world efficiency |
-| **🔗 Comparison-Based** | Uses element comparisons for ordering | General applicability |
-
-</div>
-
----
-
-## 🧩 **3. Sorting Algorithm Categories**
-
-### 💻 **Classification by Complexity**
-
-<table>
-<tr>
-<td width="33%">
-
-#### 🐌 **O(n²) Algorithms**
-```
-Simple but Slow:
-- Bubble Sort
-- Selection Sort  
-- Insertion Sort
-
-Best for:
-- Small datasets (n < 50)
-- Educational purposes
-- Nearly sorted data (Insertion)
+```mermaid
+graph LR
+    A[Compare Adjacent] --> B[Swap if Wrong Order]
+    B --> C[Continue Through Array]
+    C --> D[Repeat Until No Swaps]
 ```
 
-</td>
-<td width="33%">
-
-#### ⚡ **O(n log n) Algorithms**
-```
-Efficient and Practical:
-- Merge Sort
-- Quick Sort
-- Heap Sort
-
-Best for:
-- Large datasets
-- General-purpose sorting
-- Production systems
-```
-
-</td>
-<td width="33%">
-
-#### 🚀 **O(n) Algorithms**
-```
-Linear Time (Special Cases):
-- Counting Sort
-- Radix Sort
-- Bucket Sort
-
-Best for:
-- Integer sorting
-- Limited range data
-- Specialized applications
-```
-
-</td>
-</tr>
-</table>
-
----
-
-## 🔧 **4. Detailed Algorithm Analysis**
-
-<div align="center">
-
-### 🎯 **Master These Sorting Techniques**
-
-</div>
-
-<table>
-<tr>
-<td width="50%">
-
-#### 🫧 **Bubble Sort**
 ```cpp
 void bubbleSort(vector<int>& arr) {
     int n = arr.size();
+    
     for (int i = 0; i < n - 1; i++) {
         bool swapped = false;
+        
         for (int j = 0; j < n - i - 1; j++) {
             if (arr[j] > arr[j + 1]) {
                 swap(arr[j], arr[j + 1]);
                 swapped = true;
             }
         }
-        if (!swapped) break; // Optimization
+        
+        if (!swapped) break; // Optimization: early termination
     }
 }
-
-// Time: O(n²), Space: O(1)
-// Stable: Yes, In-place: Yes
+// Time: O(n²), Space: O(1), Stable: Yes
 ```
 
-**Characteristics:**
-- Simple implementation
-- Stable sorting
-- Adaptive (optimized version)
-- Good for small datasets
+### 🎯 Selection Sort
 
-#### 🎯 **Selection Sort**
 ```cpp
 void selectionSort(vector<int>& arr) {
     int n = arr.size();
+    
     for (int i = 0; i < n - 1; i++) {
-        int minIdx = i;
+        int minIndex = i;
+        
+        // Find minimum element in remaining array
         for (int j = i + 1; j < n; j++) {
-            if (arr[j] < arr[minIdx]) {
-                minIdx = j;
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
             }
         }
-        swap(arr[i], arr[minIdx]);
+        
+        if (minIndex != i) {
+            swap(arr[i], arr[minIndex]);
+        }
     }
 }
-
-// Time: O(n²), Space: O(1)
-// Stable: No, In-place: Yes
+// Time: O(n²), Space: O(1), Stable: No
 ```
 
-**Characteristics:**
-- Minimum swaps (n-1)
-- Not stable
-- Consistent performance
-- Good for memory-constrained systems
+### 🎯 Insertion Sort
 
-</td>
-<td width="50%">
-
-#### 📝 **Insertion Sort**
 ```cpp
 void insertionSort(vector<int>& arr) {
-    int n = arr.size();
-    for (int i = 1; i < n; i++) {
+    for (int i = 1; i < arr.size(); i++) {
         int key = arr[i];
         int j = i - 1;
         
+        // Move elements greater than key one position ahead
         while (j >= 0 && arr[j] > key) {
             arr[j + 1] = arr[j];
             j--;
         }
+        
         arr[j + 1] = key;
     }
 }
-
-// Time: O(n²) worst, O(n) best
-// Space: O(1), Stable: Yes
+// Time: O(n²), Space: O(1), Stable: Yes
 ```
-
-**Characteristics:**
-- Excellent for nearly sorted data
-- Online algorithm (sorts as data arrives)
-- Stable and adaptive
-- Used in hybrid algorithms
-
-#### 🔀 **Merge Sort**
-```cpp
-void merge(vector<int>& arr, int left, int mid, int right) {
-    vector<int> temp(right - left + 1);
-    int i = left, j = mid + 1, k = 0;
-    
-    while (i <= mid && j <= right) {
-        if (arr[i] <= arr[j]) {
-            temp[k++] = arr[i++];
-        } else {
-            temp[k++] = arr[j++];
-        }
-    }
-    
-    while (i <= mid) temp[k++] = arr[i++];
-    while (j <= right) temp[k++] = arr[j++];
-    
-    for (i = left; i <= right; i++) {
-        arr[i] = temp[i - left];
-    }
-}
-
-void mergeSort(vector<int>& arr, int left, int right) {
-    if (left < right) {
-        int mid = left + (right - left) / 2;
-        mergeSort(arr, left, mid);
-        mergeSort(arr, mid + 1, right);
-        merge(arr, left, mid, right);
-    }
-}
-
-// Time: O(n log n), Space: O(n)
-// Stable: Yes, In-place: No
-```
-
-**Characteristics:**
-- Guaranteed O(n log n) performance
-- Stable sorting
-- Divide and conquer approach
-- Excellent for large datasets
-
-</td>
-</tr>
-</table>
 
 ---
 
-## ⚡ **5. Advanced Sorting Algorithms**
+## ⚡ Efficient Sorting
 
-<div align="center">
+### 🎯 Merge Sort
 
-### 🚀 **High-Performance Techniques**
+```mermaid
+graph TD
+    A[Divide Array] --> B[Sort Left Half]
+    A --> C[Sort Right Half]
+    B --> D[Merge Sorted Halves]
+    C --> D
+```
 
-</div>
-
-<table>
-<tr>
-<td width="50%">
-
-#### ⚡ **Quick Sort**
 ```cpp
-int partition(vector<int>& arr, int low, int high) {
-    int pivot = arr[high];
-    int i = low - 1;
-    
-    for (int j = low; j < high; j++) {
-        if (arr[j] < pivot) {
-            i++;
-            swap(arr[i], arr[j]);
+class MergeSort {
+public:
+    void mergeSort(vector<int>& arr, int left, int right) {
+        if (left < right) {
+            int mid = left + (right - left) / 2;
+            
+            mergeSort(arr, left, mid);
+            mergeSort(arr, mid + 1, right);
+            merge(arr, left, mid, right);
         }
     }
-    swap(arr[i + 1], arr[high]);
-    return i + 1;
-}
-
-void quickSort(vector<int>& arr, int low, int high) {
-    if (low < high) {
-        int pi = partition(arr, low, high);
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
+    
+private:
+    void merge(vector<int>& arr, int left, int mid, int right) {
+        vector<int> temp(right - left + 1);
+        int i = left, j = mid + 1, k = 0;
+        
+        while (i <= mid && j <= right) {
+            if (arr[i] <= arr[j]) {
+                temp[k++] = arr[i++];
+            } else {
+                temp[k++] = arr[j++];
+            }
+        }
+        
+        while (i <= mid) temp[k++] = arr[i++];
+        while (j <= right) temp[k++] = arr[j++];
+        
+        for (int i = 0; i < k; i++) {
+            arr[left + i] = temp[i];
+        }
     }
-}
-
-// Time: O(n log n) avg, O(n²) worst
-// Space: O(log n), Stable: No
+};
+// Time: O(n log n), Space: O(n), Stable: Yes
 ```
 
-**Optimizations:**
-- Random pivot selection
-- Three-way partitioning
-- Hybrid with insertion sort for small arrays
+### 🎯 Quick Sort
 
-#### 🏔️ **Heap Sort**
 ```cpp
-void heapify(vector<int>& arr, int n, int i) {
-    int largest = i;
-    int left = 2 * i + 1;
-    int right = 2 * i + 2;
-    
-    if (left < n && arr[left] > arr[largest])
-        largest = left;
-    
-    if (right < n && arr[right] > arr[largest])
-        largest = right;
-    
-    if (largest != i) {
-        swap(arr[i], arr[largest]);
-        heapify(arr, n, largest);
-    }
-}
-
-void heapSort(vector<int>& arr) {
-    int n = arr.size();
-    
-    // Build max heap
-    for (int i = n / 2 - 1; i >= 0; i--) {
-        heapify(arr, n, i);
+class QuickSort {
+public:
+    void quickSort(vector<int>& arr, int low, int high) {
+        if (low < high) {
+            int pi = partition(arr, low, high);
+            
+            quickSort(arr, low, pi - 1);
+            quickSort(arr, pi + 1, high);
+        }
     }
     
-    // Extract elements from heap
-    for (int i = n - 1; i > 0; i--) {
-        swap(arr[0], arr[i]);
-        heapify(arr, i, 0);
+private:
+    int partition(vector<int>& arr, int low, int high) {
+        int pivot = arr[high]; // Choose last element as pivot
+        int i = low - 1;
+        
+        for (int j = low; j < high; j++) {
+            if (arr[j] < pivot) {
+                i++;
+                swap(arr[i], arr[j]);
+            }
+        }
+        
+        swap(arr[i + 1], arr[high]);
+        return i + 1;
     }
-}
-
-// Time: O(n log n), Space: O(1)
-// Stable: No, In-place: Yes
+    
+    // Randomized partition for better average case
+    int randomizedPartition(vector<int>& arr, int low, int high) {
+        int randomIndex = low + rand() % (high - low + 1);
+        swap(arr[randomIndex], arr[high]);
+        return partition(arr, low, high);
+    }
+};
+// Time: O(n log n) avg, O(n²) worst, Space: O(log n), Stable: No
 ```
 
-</td>
-<td width="50%">
+### 🎯 Heap Sort
 
-#### 📊 **Counting Sort**
+```cpp
+class HeapSort {
+public:
+    void heapSort(vector<int>& arr) {
+        int n = arr.size();
+        
+        // Build max heap
+        for (int i = n / 2 - 1; i >= 0; i--) {
+            heapify(arr, n, i);
+        }
+        
+        // Extract elements from heap
+        for (int i = n - 1; i > 0; i--) {
+            swap(arr[0], arr[i]);
+            heapify(arr, i, 0);
+        }
+    }
+    
+private:
+    void heapify(vector<int>& arr, int n, int i) {
+        int largest = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+        
+        if (left < n && arr[left] > arr[largest]) {
+            largest = left;
+        }
+        
+        if (right < n && arr[right] > arr[largest]) {
+            largest = right;
+        }
+        
+        if (largest != i) {
+            swap(arr[i], arr[largest]);
+            heapify(arr, n, largest);
+        }
+    }
+};
+// Time: O(n log n), Space: O(1), Stable: No
+```
+
+---
+
+## 🎯 Specialized Sorting
+
+### 🎯 Counting Sort
+
 ```cpp
 void countingSort(vector<int>& arr) {
+    if (arr.empty()) return;
+    
     int maxVal = *max_element(arr.begin(), arr.end());
     int minVal = *min_element(arr.begin(), arr.end());
     int range = maxVal - minVal + 1;
@@ -404,244 +330,253 @@ void countingSort(vector<int>& arr) {
     
     arr = output;
 }
-
-// Time: O(n + k), Space: O(k)
-// Stable: Yes, k = range of input
+// Time: O(n+k), Space: O(n+k), Stable: Yes
 ```
 
-#### 🔢 **Radix Sort**
+### 🎯 Radix Sort
+
 ```cpp
-void countingSortForRadix(vector<int>& arr, int exp) {
-    vector<int> output(arr.size());
-    vector<int> count(10, 0);
-    
-    for (int num : arr) {
-        count[(num / exp) % 10]++;
+class RadixSort {
+public:
+    void radixSort(vector<int>& arr) {
+        if (arr.empty()) return;
+        
+        int maxVal = *max_element(arr.begin(), arr.end());
+        
+        for (int exp = 1; maxVal / exp > 0; exp *= 10) {
+            countingSortByDigit(arr, exp);
+        }
     }
     
-    for (int i = 1; i < 10; i++) {
-        count[i] += count[i - 1];
+private:
+    void countingSortByDigit(vector<int>& arr, int exp) {
+        vector<int> output(arr.size());
+        vector<int> count(10, 0);
+        
+        // Count occurrences of digits
+        for (int num : arr) {
+            count[(num / exp) % 10]++;
+        }
+        
+        // Calculate cumulative count
+        for (int i = 1; i < 10; i++) {
+            count[i] += count[i - 1];
+        }
+        
+        // Build output array
+        for (int i = arr.size() - 1; i >= 0; i--) {
+            int digit = (arr[i] / exp) % 10;
+            output[count[digit] - 1] = arr[i];
+            count[digit]--;
+        }
+        
+        arr = output;
     }
-    
-    for (int i = arr.size() - 1; i >= 0; i--) {
-        output[count[(arr[i] / exp) % 10] - 1] = arr[i];
-        count[(arr[i] / exp) % 10]--;
-    }
-    
-    arr = output;
-}
-
-void radixSort(vector<int>& arr) {
-    int maxVal = *max_element(arr.begin(), arr.end());
-    
-    for (int exp = 1; maxVal / exp > 0; exp *= 10) {
-        countingSortForRadix(arr, exp);
-    }
-}
-
-// Time: O(d * (n + k)), Space: O(n + k)
-// d = number of digits, k = range of digits
+};
+// Time: O(d×(n+k)), Space: O(n+k), Stable: Yes
 ```
 
-</td>
-</tr>
-</table>
+### 🎯 Bucket Sort
+
+```cpp
+void bucketSort(vector<float>& arr) {
+    if (arr.empty()) return;
+    
+    int n = arr.size();
+    vector<vector<float>> buckets(n);
+    
+    // Distribute elements into buckets
+    for (float num : arr) {
+        int bucketIndex = n * num; // Assuming values in [0, 1)
+        buckets[bucketIndex].push_back(num);
+    }
+    
+    // Sort individual buckets
+    for (auto& bucket : buckets) {
+        sort(bucket.begin(), bucket.end());
+    }
+    
+    // Concatenate buckets
+    int index = 0;
+    for (const auto& bucket : buckets) {
+        for (float num : bucket) {
+            arr[index++] = num;
+        }
+    }
+}
+// Time: O(n+k) avg, O(n²) worst, Space: O(n+k), Stable: Yes
+```
 
 ---
 
-## 📊 **6. Comprehensive Comparison Table**
+## 📊 Comparison Analysis
+
+### 🎯 Performance Comparison
+
+```mermaid
+graph TD
+    A[Sorting Algorithms] --> B[Time Complexity]
+    A --> C[Space Complexity]
+    A --> D[Stability]
+    
+    B --> E[Best: O(n) - Bubble optimized]
+    B --> F[Average: O(n log n) - Merge, Heap]
+    B --> G[Worst: O(n²) - Bubble, Selection]
+    
+    C --> H[O(1) - Heap, Selection]
+    C --> I[O(n) - Merge]
+    C --> J[O(log n) - Quick]
+```
+
+### 📊 Algorithm Selection Guide
+
+| Use Case | Algorithm | Reason |
+|:---------|:----------|:-------|
+| **Small arrays (n < 50)** | Insertion Sort | Simple, low overhead |
+| **Nearly sorted data** | Insertion Sort | O(n) best case |
+| **Guaranteed O(n log n)** | Merge Sort | Consistent performance |
+| **In-place sorting** | Heap Sort | O(1) space |
+| **Average case performance** | Quick Sort | Fastest in practice |
+| **Integer data, small range** | Counting Sort | Linear time |
+| **Stability required** | Merge Sort | Maintains relative order |
+
+---
+
+## 🎯 Stability & Adaptability
+
+### 🔧 Stable vs Unstable
+
+```cpp
+// Example showing stability importance
+struct Student {
+    string name;
+    int grade;
+    int rollNumber;
+};
+
+// Stable sort maintains relative order of equal elements
+bool compareByGrade(const Student& a, const Student& b) {
+    return a.grade < b.grade;
+}
+
+void demonstrateStability() {
+    vector<Student> students = {
+        {"Alice", 85, 1},
+        {"Bob", 90, 2},
+        {"Charlie", 85, 3}
+    };
+    
+    // Stable sort: Alice comes before Charlie (both have grade 85)
+    stable_sort(students.begin(), students.end(), compareByGrade);
+    
+    // Unstable sort might change relative order of Alice and Charlie
+    sort(students.begin(), students.end(), compareByGrade);
+}
+```
+
+### 🔧 Adaptive Algorithms
+
+```cpp
+// Insertion sort is adaptive - performs better on nearly sorted data
+void adaptiveInsertionSort(vector<int>& arr) {
+    for (int i = 1; i < arr.size(); i++) {
+        int key = arr[i];
+        int j = i - 1;
+        
+        // Early termination if element is in correct position
+        if (arr[j] <= key) continue;
+        
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        
+        arr[j + 1] = key;
+    }
+}
+```
+
+---
+
+## 🏆 Best Practices
+
+### ✅ Do's
+
+```cpp
+// 1. Choose appropriate algorithm based on data characteristics
+template<typename T>
+void smartSort(vector<T>& arr) {
+    if (arr.size() < 50) {
+        insertionSort(arr);
+    } else if (is_integral_v<T> && getRange(arr) < arr.size()) {
+        countingSort(arr);
+    } else {
+        sort(arr.begin(), arr.end()); // Introsort (hybrid)
+    }
+}
+
+// 2. Use iterative versions for large datasets to avoid stack overflow
+void iterativeQuickSort(vector<int>& arr) {
+    stack<pair<int, int>> stk;
+    stk.push({0, arr.size() - 1});
+    
+    while (!stk.empty()) {
+        auto [low, high] = stk.top();
+        stk.pop();
+        
+        if (low < high) {
+            int pi = partition(arr, low, high);
+            stk.push({low, pi - 1});
+            stk.push({pi + 1, high});
+        }
+    }
+}
+
+// 3. Handle edge cases
+template<typename T>
+void safeSortWrapper(vector<T>& arr) {
+    if (arr.empty() || arr.size() == 1) return;
+    
+    // Check for all equal elements
+    if (all_of(arr.begin(), arr.end(), 
+               [&](const T& x) { return x == arr[0]; })) {
+        return;
+    }
+    
+    sort(arr.begin(), arr.end());
+}
+```
+
+### ❌ Don'ts
+
+```cpp
+// Don't: Use bubble sort for large datasets
+// Don't: Ignore stability requirements
+// Don't: Use recursive algorithms for very large arrays without tail optimization
+// Don't: Forget to handle duplicate elements properly
+```
+
+---
+
+## 🎓 Summary
+
+Sorting algorithms are fundamental to computer science. Master these concepts:
+
+✅ **Simple Sorts**: Bubble, Selection, Insertion for small datasets  
+✅ **Efficient Sorts**: Merge, Quick, Heap for general purpose  
+✅ **Linear Sorts**: Counting, Radix, Bucket for special cases  
+✅ **Algorithm Selection**: Choose based on data characteristics  
+✅ **Stability**: Understand when relative order matters  
+✅ **Optimization**: Apply appropriate optimizations for your use case  
+
+**Next Steps**: Study advanced sorting techniques like external sorting and parallel sorting algorithms.
+
+---
 
 <div align="center">
 
-### 📈 **Algorithm Performance Analysis**
+**🔃 Order from Chaos**
 
-| Algorithm | Best Case | Average Case | Worst Case | Space | Stable | In-Place | Notes |
-|:----------|:----------|:-------------|:-----------|:------|:-------|:---------|:------|
-| **Bubble Sort** | O(n) | O(n²) | O(n²) | O(1) | ✅ | ✅ | Simple, educational |
-| **Selection Sort** | O(n²) | O(n²) | O(n²) | O(1) | ❌ | ✅ | Minimum swaps |
-| **Insertion Sort** | O(n) | O(n²) | O(n²) | O(1) | ✅ | ✅ | Good for small/sorted |
-| **Merge Sort** | O(n log n) | O(n log n) | O(n log n) | O(n) | ✅ | ❌ | Consistent performance |
-| **Quick Sort** | O(n log n) | O(n log n) | O(n²) | O(log n) | ❌ | ✅ | Fast in practice |
-| **Heap Sort** | O(n log n) | O(n log n) | O(n log n) | O(1) | ❌ | ✅ | Guaranteed performance |
-| **Counting Sort** | O(n + k) | O(n + k) | O(n + k) | O(k) | ✅ | ❌ | Integer sorting |
-| **Radix Sort** | O(d(n + k)) | O(d(n + k)) | O(d(n + k)) | O(n + k) | ✅ | ❌ | Multi-digit integers |
-
-</div>
-
----
-
-## 🚀 **7. Real-World Applications**
-
-<div align="center">
-
-### 🌍 **Where Sorting Excels**
-
-</div>
-
-<table>
-<tr>
-<td width="33%">
-
-#### 💻 **System Programming**
-- **Database Indexing**: B-tree sorting for fast queries
-- **Memory Management**: Sorting free blocks by size
-- **File Systems**: Directory listing organization
-- **Operating Systems**: Process scheduling by priority
-
-</td>
-<td width="33%">
-
-#### 🌐 **Web & Applications**
-- **Search Engines**: Ranking search results by relevance
-- **E-commerce**: Product sorting by price, rating, popularity
-- **Social Media**: Timeline sorting by timestamp
-- **Analytics**: Data visualization and reporting
-
-</td>
-<td width="33%">
-
-#### 🎯 **Specialized Domains**
-- **Graphics**: Z-buffer sorting for 3D rendering
-- **Bioinformatics**: DNA sequence alignment
-- **Finance**: Transaction processing and analysis
-- **Machine Learning**: Feature selection and data preprocessing
-
-</td>
-</tr>
-</table>
-
----
-
-## 🔥 **8. Interview-Level Problem Categories**
-
-<div align="center">
-
-### 🎯 **Must-Know Problem Types**
-
-</div>
-
-| Category | Problems | Difficulty | Key Technique |
-|:---------|:---------|:-----------|:--------------|
-| **🔧 Implementation** | Implement Merge Sort, Quick Sort | 🟡 Medium | Divide and conquer |
-| **🎨 Custom Sorting** | Sort Colors, Custom Comparator | 🟡 Medium | Dutch flag, lambda functions |
-| **🔍 Selection** | Kth Largest Element, Top K Frequent | 🟡 Medium | Quick select, heap |
-| **📊 Frequency** | Sort by Frequency, Group Anagrams | 🟡 Medium | Counting, hash maps |
-| **🔄 Partial Sorting** | Pancake Sorting, Wiggle Sort | 🔴 Hard | Specialized techniques |
-| **⚡ Optimization** | External Sorting, Parallel Sorting | 🔴 Hard | Advanced algorithms |
-
----
-
-## 🎯 **9. Algorithm Selection Guide**
-
-<div align="center">
-
-### 💡 **When to Use Which Algorithm**
-
-</div>
-
-<table>
-<tr>
-<td width="50%">
-
-### 🎯 **Choose Based on Requirements**
-
-**Small Arrays (n < 50):**
-- Insertion Sort (simple, fast for small data)
-
-**General Purpose:**
-- Quick Sort (average case performance)
-- Merge Sort (guaranteed performance, stable)
-
-**Memory Constrained:**
-- Heap Sort (O(1) space, guaranteed performance)
-- In-place Quick Sort
-
-**Stability Required:**
-- Merge Sort (stable, O(n log n))
-- Insertion Sort (stable, good for small data)
-
-</td>
-<td width="50%">
-
-### 🚀 **Specialized Cases**
-
-**Nearly Sorted Data:**
-- Insertion Sort (O(n) best case)
-- Bubble Sort (with early termination)
-
-**Integer Data with Small Range:**
-- Counting Sort (O(n + k))
-- Radix Sort (for larger integers)
-
-**External Sorting (Large Data):**
-- External Merge Sort
-- Multi-way merge techniques
-
-**Parallel Processing:**
-- Parallel Merge Sort
-- Parallel Quick Sort
-
-</td>
-</tr>
-</table>
-
----
-
-## 🎯 **10. Key Takeaways & Best Practices**
-
-<div align="center">
-
-### 💡 **Essential Insights**
-
-</div>
-
-> 🔃 **Algorithm Selection**: Choose based on data characteristics and constraints  
-> 🧠 **Complexity Analysis**: Understand time-space trade-offs for each algorithm  
-> 🔍 **Stability Matters**: Consider whether relative order of equal elements is important  
-> 📊 **Real-World Performance**: Average case often matters more than worst case  
-> 🧪 **Hybrid Approaches**: Modern libraries use combinations of algorithms  
-
----
-
-## 📚 **11. Next Learning Path**
-
-<table>
-<tr>
-<td width="50%">
-
-### 🎯 **Immediate Next Steps**
-- [ ] Implement all major sorting algorithms
-- [ ] Practice sorting-based problems
-- [ ] Learn hybrid sorting techniques
-- [ ] Understand external sorting concepts
-
-</td>
-<td width="50%">
-
-### 🚀 **Advanced Topics**
-- [ ] Parallel sorting algorithms
-- [ ] External sorting for big data
-- [ ] Specialized sorting (strings, objects)
-- [ ] Sorting in distributed systems
-
-</td>
-</tr>
-</table>
-
----
-
-<div align="center">
-
-### 📊 **Learning Progress**
-
-![Progress](https://img.shields.io/badge/Completion-100%25-success?style=for-the-badge)
-![Concepts](https://img.shields.io/badge/Concepts_Learned-18-blue?style=for-the-badge)
-![Patterns](https://img.shields.io/badge/Algorithms_Mastered-8-orange?style=for-the-badge)
-
----
-
-**📅 Session Date**: Day 9 | **🎯 Focus**: Sorting Mastery | **⏰ Duration**: Comprehensive Algorithm Analysis
-
-*"Sorting teaches us that organization is the foundation of efficiency"*
+*Sorting: The foundation of efficient data processing*
 
 </div>

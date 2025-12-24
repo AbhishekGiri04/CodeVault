@@ -1,12 +1,12 @@
 /*
 ╔══════════════════════════════════════════════════════════════════════════════╗
-║                          LEETCODE PROBLEM SOLUTION                          ║
+║                          LEETCODE PROBLEM SOLUTION                           ║
 ╠══════════════════════════════════════════════════════════════════════════════╣
 ║ Problem ID    : 3623                                                         ║
-║ Problem Name  : Count Number of Trapezoids I                                ║
+║ Problem Name  : Count Number of Trapezoids I                                 ║
 ║ Difficulty    : Medium                                                       ║
-║ Topic         : Array, Hash Map, Math, Combinatorics                        ║
-║ Company Tags  : Google, Amazon                                              ║
+║ Topic         : Array, Hash Map, Math, Combinatorics                         ║
+║ Company Tags  : Google, Amazon                                               ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 
 📋 PROBLEM STATEMENT:

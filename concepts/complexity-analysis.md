@@ -6,12 +6,6 @@
 ![Difficulty](https://img.shields.io/badge/Difficulty-Fundamental-green?style=for-the-badge)
 ![Importance](https://img.shields.io/badge/Importance-Critical-red?style=for-the-badge)
 
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd4Nk_Auw96zQ7Ubi6ggATqHhsWMk30Ulw6Q&s" alt="Algorithm Complexity Analysis" width="600" height="350"/>
-
-<img src="https://deen3evddmddt.cloudfront.net/uploads/content-images/types-of-time-complexities.webp" alt="Types of Time Complexities" width="700" height="400"/>
-
-<img src="https://miro.medium.com/v2/resize:fit:1400/1*5ZLci3SuR0zM_QlZOADv8Q.jpeg" alt="Big O Notation Complexity Chart" width="650" height="450"/>
-
 *Master the science of measuring algorithm efficiency and performance optimization*
 
 </div>
@@ -92,7 +86,7 @@ flowchart TD
 ### ✅ Hardware Independence
 
 <div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Hardware-Independence-Complexity.webp" alt="Hardware Independence in Complexity Analysis" width="600" height="350"/>
+<img src="https://miro.medium.com/v2/resize:fit:1400/0*cywBwbn_GImUyO2Z" alt="Hardware Independence in Complexity Analysis" width="600" height="350"/>
 </div>
 
 ```mermaid
@@ -126,7 +120,7 @@ Complexity analysis provides **machine-independent** performance metrics:
 ### 📊 Scalability Prediction
 
 <div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Algorithm-Scalability-Growth.webp" alt="Algorithm Scalability and Growth Rates" width="650" height="400"/>
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240524093957/Vertical-Scaling.webp" alt="Algorithm Scalability and Growth Rates" width="650" height="400"/>
 </div>
 
 ```cpp
@@ -179,7 +173,7 @@ flowchart TD
 ### 1️⃣ Big-O Notation (Upper Bound)
 
 <div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Big-O-Notation-Graph.webp" alt="Big-O Notation Graphical Representation" width="600" height="350"/>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd4Nk_Auw96zQ7Ubi6ggATqHhsWMk30Ulw6Q&s" alt="Big-O Notation Graphical Representation" width="600" height="350"/>
 </div>
 
 **Definition**: f(n) = O(g(n)) if there exist constants c > 0 and n₀ such that f(n) ≤ c·g(n) for all n ≥ n₀.
@@ -265,6 +259,10 @@ Then T(n) = Θ(g(n))
 ## 🎭 Best, Worst & Average Case
 
 Different inputs can lead to different performance characteristics.
+
+<div align="center">
+<img src="https://deen3evddmddt.cloudfront.net/uploads/content-images/types-of-time-complexities.webp" alt="Types of Time Complexities" width="700" height="400"/>
+</div>
 
 ### 📊 Case Analysis
 
@@ -378,7 +376,7 @@ Even though resizing costs O(n), it happens infrequently (every power of 2), mak
 ## 🧮 Master Theorem
 
 <div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Master-Theorem-Cases.webp" alt="Master Theorem Three Cases" width="700" height="400"/>
+<img src="https://scaler.com/topics/images/proof-of-masters-theorem.webp" alt="Master Theorem Three Cases" width="700" height="400"/>
 </div>
 
 **Purpose**: Solve recurrence relations of the form T(n) = aT(n/b) + f(n).
@@ -576,6 +574,10 @@ Use for divide-and-conquer recurrences
 ## 📊 Common Complexity Classes
 
 ### ⚡ Time Complexity Hierarchy
+
+<div align="center">
+<img src="https://miro.medium.com/v2/resize:fit:1400/1*5ZLci3SuR0zM_QlZOADv8Q.jpeg" alt="Big O Notation Complexity Chart" width="650" height="450"/>
+</div>
 
 ```
 O(1) < O(log n) < O(n) < O(n log n) < O(n²) < O(n³) < O(2^n) < O(n!)

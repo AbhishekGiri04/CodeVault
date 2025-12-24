@@ -6,11 +6,11 @@
 ![Difficulty](https://img.shields.io/badge/Difficulty-Advanced-orange?style=for-the-badge)
 ![Importance](https://img.shields.io/badge/Importance-High-red?style=for-the-badge)
 
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWJRGyiu3O3gbKWTJE1fS8Z3abiW1YJwNEvg&s" alt="Backtracking Algorithm Concept" width="600" height="350"/>
+<img src="https://scaler.com/topics/images/n-queen-problem-image-2.webp" alt="N-Queens Problem" width="600" height="350"/>
 
-<img src="https://scaler.com/topics/images/backtrack.webp" alt="Backtracking Process" width="650" height="400"/>
+<img src="https://scaler.com/topics/images/permutation-of-string-Image_1.webp" alt="Permutation Process" width="650" height="400"/>
 
-<img src="https://www.scaler.com/topics/images/recursion-backtracking_Thumbnail.webp" alt="Recursion and Backtracking" width="700" height="300"/>
+<img src="https://towardsdatascience.com/wp-content/uploads/2022/02/11wVvuJUuCTDMg-uT8g3ig.png" alt="Backtracking Tree" width="700" height="300"/>
 
 *Master systematic exploration of solution spaces with intelligent pruning*
 
@@ -34,7 +34,7 @@
 ### 🔑 Backtracking Framework
 
 <div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Backtracking-Algorithm-Flowchart.webp" alt="Backtracking Algorithm Flowchart" width="600" height="400"/>
+<img src="https://www.scaler.com/topics/images/pruning5.webp" alt="Backtracking Pruning" width="600" height="400"/>
 </div>
 
 ```mermaid
@@ -136,12 +136,14 @@ mindmap
       Candidate selection
       Pruning optimization
       Multiple solutions
+
+%%{init: {'theme':'base', 'themeVariables': {'primaryColor':'#2E86AB', 'primaryTextColor':'#ffffff', 'primaryBorderColor':'#ffffff', 'lineColor':'#4A4A4A', 'secondaryColor':'#A23B72', 'tertiaryColor':'#F18F01', 'background':'#C73E1D', 'mainBkg':'#2E86AB', 'secondBkg':'#A23B72', 'tertiaryBkg':'#F18F01'}}}%%
 ```
 
 ### 🔧 N-Queens Problem
 
 <div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/N-Queens-Problem-Visualization.webp" alt="N-Queens Problem Visualization" width="650" height="400"/>
+<img src="https://miro.medium.com/v2/resize:fit:1400/0*KAua6t1Cqy5dqOd0.png" alt="N-Queens Solution Visualization" width="650" height="400"/>
 </div>
 
 ```cpp
@@ -195,10 +197,6 @@ private:
 ```
 
 ### 🔧 Generate Permutations
-
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Permutations-Generation.webp" alt="Permutations Generation Process" width="600" height="350"/>
-</div>
 
 ```cpp
 class Permutations {
@@ -256,10 +254,6 @@ private:
 ```
 
 ### 🔧 Sudoku Solver
-
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Sudoku-Solver-Backtracking.webp" alt="Sudoku Solver using Backtracking" width="650" height="400"/>
-</div>
 
 ```cpp
 class SudokuSolver {

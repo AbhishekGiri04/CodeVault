@@ -53,7 +53,7 @@ mindmap
         Problem patterns
         Company insights
 
-%%{init: {'theme':'base', 'themeVariables': {'primaryColor':'#ff6b6b', 'primaryTextColor':'#ffffff', 'primaryBorderColor':'#ffffff', 'lineColor':'#333333', 'secondaryColor':'#4ecdc4', 'tertiaryColor':'#45b7d1', 'background':'#ffa500', 'mainBkg':'#ff6b6b', 'secondBkg':'#4ecdc4', 'tertiaryBkg':'#45b7d1'}}}%%
+%%{init: {'theme':'base', 'themeVariables': {'primaryColor':'#2E86AB', 'primaryTextColor':'#ffffff', 'primaryBorderColor':'#ffffff', 'lineColor':'#4A4A4A', 'secondaryColor':'#A23B72', 'tertiaryColor':'#F18F01', 'background':'#C73E1D', 'mainBkg':'#2E86AB', 'secondBkg':'#A23B72', 'tertiaryBkg':'#F18F01'}}}%%
 ```
 
 ---
@@ -255,7 +255,7 @@ gantt
     Mock Interviews           :interviews, 2024-04-23, 2024-05-06
     System Design            :system, 2024-05-07, 2024-05-20
 
-%%{init: {'theme':'base', 'themeVariables': {'primaryColor':'#ff6b6b', 'primaryTextColor':'#ffffff', 'primaryBorderColor':'#ffffff', 'gridColor':'#333333', 'section0':'#ff6b6b', 'section1':'#4ecdc4', 'section2':'#45b7d1', 'section3':'#ffa500'}}}%%
+%%{init: {'theme':'base', 'themeVariables': {'primaryColor':'#2E86AB', 'primaryTextColor':'#ffffff', 'primaryBorderColor':'#ffffff', 'gridColor':'#E5E5E5', 'section0':'#2E86AB', 'section1':'#A23B72', 'section2':'#F18F01', 'section3':'#C73E1D', 'activeTaskBkgColor':'#2E86AB', 'activeTaskBorderColor':'#ffffff', 'gridColor':'#cccccc', 'altBackgroundColor':'#f9f9f9'}}}%%
 ```
 
 ### 🗓️ **Suggested Timeline**
@@ -415,18 +415,71 @@ Found a great resource? Want to add more playlists or tutorials?
 
 ### 🌐 **Connect & Learn Together**
 
-**Discord Communities:**
-- Striver's Discord Server
-- CodeWithHarry Community
+<table>
+<tr>
+<td width="33%" align="center">
 
-**Reddit:**
-- r/learnprogramming
-- r/cscareerquestions
-- r/leetcode
+**💬 Discord Communities**
 
-**Telegram Groups:**
-- DSA Learning Groups
-- Interview Preparation
+[![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)]()
+
+• Striver's Discord Server  
+• CodeWithHarry Community  
+• DSA Study Groups  
+• Live Problem Solving
+
+</td>
+<td width="33%" align="center">
+
+**🔴 Reddit Communities**
+
+[![Reddit](https://img.shields.io/badge/Reddit-FF4500?style=for-the-badge&logo=reddit&logoColor=white)]()
+
+• r/learnprogramming  
+• r/cscareerquestions  
+• r/leetcode  
+• r/algorithms
+
+</td>
+<td width="33%" align="center">
+
+**📱 Telegram Groups**
+
+[![Telegram](https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)]()
+
+• DSA Learning Groups  
+• Interview Preparation  
+• Coding Practice  
+• Daily Challenges
+
+</td>
+</tr>
+</table>
+
+### 🤝 **Additional Support**
+
+<table>
+<tr>
+<td width="50%" align="center">
+
+**📚 Study Groups**
+- Local coding meetups
+- University study circles
+- Online peer learning
+- Mentorship programs
+
+</td>
+<td width="50%" align="center">
+
+**💼 Professional Networks**
+- LinkedIn DSA groups
+- GitHub communities
+- Stack Overflow
+- Developer forums
+
+</td>
+</tr>
+</table>
 
 </div>
 

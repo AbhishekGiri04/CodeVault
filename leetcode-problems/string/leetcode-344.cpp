@@ -1,12 +1,12 @@
 /*
 ╔══════════════════════════════════════════════════════════════════════════════╗
-║                          LEETCODE PROBLEM SOLUTION                          ║
+║                          LEETCODE PROBLEM SOLUTION                           ║
 ╠══════════════════════════════════════════════════════════════════════════════╣
 ║ Problem ID    : 344                                                          ║
-║ Problem Name  : Reverse String                                              ║
+║ Problem Name  : Reverse String                                               ║
 ║ Difficulty    : Easy                                                         ║
-║ Topic         : Two Pointers, String, Array                                 ║
-║ Company Tags  : Apple, Amazon, Microsoft, Google                            ║
+║ Topic         : Two Pointers, String, Array                                  ║
+║ Company Tags  : Apple, Amazon, Microsoft, Google                             ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 
 📋 PROBLEM STATEMENT:

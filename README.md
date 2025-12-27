@@ -37,7 +37,7 @@
 
 ### 🎯 Key Features
 
-- **📚 36+ Comprehensive Guides**: Complete coverage from fundamentals to advanced topics
+- **📚 37+ Comprehensive Guides**: Complete coverage from fundamentals to advanced topics
 - **💻 Multi-Language Implementation**: C++, Python, and Java solutions with detailed explanations
 - **🧠 15+ LeetCode Problems**: Real interview questions with step-by-step solutions
 - **📊 Complexity Analysis**: Time and space complexity analysis for every solution
@@ -81,6 +81,7 @@ Algorithmics-Foundations/
 │   ├── ⚡ complexity-analysis.md     # Big O, Theta, Omega analysis
 │   ├── ⚖️ amortized-analysis.md     # Amortized complexity & performance
 │   ├── 🎨 algorithm-design.md       # Design techniques & paradigms
+│   ├── 📌 topological-dp.md         # Dynamic Programming on DAG
 │   └── ... (15+ advanced topics)
 │
 ├── 💻 leetcode-problems/              # Practical Problem Solutions
@@ -207,7 +208,7 @@ find . -name "leetcode-*.cpp" -o -name "leetcode-*.py" -o -name "leetcode-*.java
 
 | 🎯 Feature | 📊 Details | 🚀 Benefit |
 |------------|------------|-------------|
-| **📚 36+ Complete Guides** | Fundamentals to advanced topics | Comprehensive DSA mastery |
+| **📚 37+ Complete Guides** | Fundamentals to advanced topics | Comprehensive DSA mastery |
 | **💻 Multi-Language Solutions** | C++, Python, Java implementations | Language flexibility & comparison |
 | **🧠 15+ LeetCode Problems** | Easy to Hard difficulty levels | Interview preparation |
 | **📊 Complexity Analysis** | Time & space analysis for every solution | Optimization skills |

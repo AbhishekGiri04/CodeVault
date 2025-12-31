@@ -10,7 +10,7 @@
 [![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)](https://github.com/AbhishekGiri04/Algorithmics-Foundations)
 [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://github.com/AbhishekGiri04/Algorithmics-Foundations)
 [![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)](https://github.com/AbhishekGiri04/Algorithmics-Foundations)
-[![LeetCode](https://img.shields.io/badge/LeetCode-FFA116?style=for-the-badge&logo=leetcode&logoColor=white)](https://github.com/AbhishekGiri04/Algorithmics-Foundations)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 </div>
 
@@ -108,7 +108,11 @@ Algorithmics-Foundations/
 │       └── leetcode-1492.cpp         # Kth Factor (Medium)
 │
 └── 📚 references/                     # Learning Resources & References
-    └── learning-resources.md          # Curated books, courses, websites
+│   └── learning-resources.md          # Curated books, courses, websites
+│
+├── 📄 LICENSE                         # MIT License
+├── 📖 README.md                       # Project documentation
+└── 🚀 .gitignore                      # Git ignore rules
 ```
 
 ---

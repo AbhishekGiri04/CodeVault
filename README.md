@@ -264,6 +264,6 @@ After completing this program, you will:
 
 <div align="center">
 
-**© 2025 Algorithmics Foundations**
+**© 2025 Algorithmics Foundations. All Rights Reserved.**
 
 </div>

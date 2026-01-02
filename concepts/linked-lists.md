@@ -2,17 +2,11 @@
 
 <div align="center">
 
-![Linked Lists](https://img.shields.io/badge/Linked_Lists-Dynamic_Structure-28a745?style=for-the-badge&logo=link&logoColor=white)
-![Difficulty](https://img.shields.io/badge/Difficulty-Intermediate-orange?style=for-the-badge)
-![Importance](https://img.shields.io/badge/Importance-High-red?style=for-the-badge)
+![Linked Lists](https://img.shields.io/badge/Linked_Lists-Dynamic_Data_Structure-FF6B6B?style=for-the-badge&logo=link&logoColor=white)
+![Difficulty](https://img.shields.io/badge/Difficulty-Beginner-green?style=for-the-badge)
+![Importance](https://img.shields.io/badge/Importance-High-darkred?style=for-the-badge)
 
-<img src="https://scaler-topics-articles-md.s3.us-west-2.amazonaws.com/what-is-linked-list.webp" alt="What is Linked List" width="700" height="400"/>
-
-<img src="https://www.scaler.com/topics/images/different-types-of-linked-lists-in-the-data-structure.webp" alt="Different Types of Linked Lists" width="600" height="350"/>
-
-<img src="https://scaler.com/topics/images/what-is-linkedlist-in-c.webp" alt="Linked List in C" width="650" height="300"/>
-
-*Master dynamic data structures with efficient insertion and deletion*
+**Master dynamic memory allocation and pointer-based data structures**
 
 </div>
 
@@ -20,97 +14,177 @@
 
 ## 📑 Table of Contents
 
-1. [Introduction](#-introduction)
-2. [Types of Linked Lists](#-types-of-linked-lists)
-3. [Basic Operations](#-basic-operations)
-4. [Advanced Techniques](#-advanced-techniques)
-5. [Common Problems](#-common-problems)
-6. [Optimization Strategies](#-optimization-strategies)
-7. [Best Practices](#-best-practices)
+1. [Introduction](#introduction)
+2. [Linked List Components](#linked-list-components)
+3. [Types of Linked Lists](#types-of-linked-lists)
+4. [Basic Operations](#basic-operations)
+5. [Advanced Operations](#advanced-operations)
+6. [Doubly Linked Lists](#doubly-linked-lists)
+7. [Circular Linked Lists](#circular-linked-lists)
+8. [Best Practices](#best-practices)
 
 ---
 
-## 🎯 Introduction
+## Introduction
 
-**Linked Lists** are linear data structures where elements are stored in nodes, and each node contains data and a reference to the next node.
+**Linked Lists** are linear data structures where elements are stored in nodes, and each node contains data and a reference (or link) to the next node. Unlike arrays, linked lists provide dynamic memory allocation and efficient insertion/deletion operations.
 
-### 🔑 Why Study Linked Lists?
+<div align="center">
+<img src="https://camo.githubusercontent.com/a29ab21b206bcb922f901374425b63e19244f170b75d4f510004b712a527cdee/68747470733a2f2f7363616c65722d746f706963732d61727469636c65732d6d642e73332e75732d776573742d322e616d617a6f6e6177732e636f6d2f776861742d69732d6c696e6b65642d6c6973742e77656270" alt="Representation of Linked List" width="650" height="400"/>
+</div>
+
+### Core Concept
 
 ```mermaid
-mindmap
-  root))🔗 Linked Lists((
-    📊 Dynamic Size
-      No fixed size limit
-      Grow/shrink at runtime
-      Memory efficient
-    ⚡ Efficient Insertion
-      O(1) at known position
-      No shifting required
-      Constant time operations
-    💾 Memory Efficiency
-      Allocate as needed
-      No wasted space
-      Flexible allocation
-    🏗️ Foundation
-      Trees implementation
-      Graphs representation
-      Hash table chaining
-      Advanced data structures
+flowchart TD
+    A["🔗 Linked List Structure"] --> B["Dynamic Size"]
+    A --> C["Node-based Storage"]
+    A --> D["Sequential Access"]
+    
+    B --> E["Grows/shrinks at runtime"]
+    B --> F["No fixed memory allocation"]
+    
+    C --> G["Data + Pointer pairs"]
+    C --> H["Non-contiguous memory"]
+    
+    D --> I["Traverse from head to tail"]
+    D --> J["No random access"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef structure fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef dynamic fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef node fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef access fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    class A structure
+    class B,E,F dynamic
+    class C,G,H node
+    class D,I,J access
 ```
-
-### 📊 Array vs Linked List
-
-| Operation | Array | Linked List |
-|:----------|:------|:------------|
-| **Access** | O(1) | O(n) |
-| **Search** | O(n) | O(n) |
-| **Insert at beginning** | O(n) | O(1) |
-| **Insert at end** | O(1) | O(n) without tail |
-| **Delete** | O(n) | O(1) with reference |
-| **Memory** | Contiguous | Non-contiguous |
 
 ---
 
-## 🔗 Types of Linked Lists
+## Linked List Components
 
-### 🎯 Singly Linked List
+<div align="center">
+<img src="https://camo.githubusercontent.com/e314a4aac6386a2e00f8de7534585822f080b5ea38bd8df82690c04a496b4855/68747470733a2f2f7363616c65722e636f6d2f746f706963732f696d616765732f776861742d69732d6c696e6b65646c6973742d696e2d632e77656270" alt="Components of Linked List" width="650" height="400"/>
+</div>
 
-<img src="https://scaler-topics-articles-md.s3.us-west-2.amazonaws.com/insertion-operation-of-linked-list.gif" alt="Insertion Operation" width="500" height="300"/>
+### Node Structure
 
-<img src="https://scaler-topics-articles-md.s3.us-west-2.amazonaws.com/deletion-operation-of-linked-list.gif" alt="Deletion Operation" width="500" height="300"/>
+```mermaid
+flowchart TD
+    A["Node Components"] --> B["Data Field"]
+    A --> C["Pointer Field"]
+    A --> D["Memory Address"]
+    
+    B --> E["Stores actual value"]
+    B --> F["Can be any data type"]
+    
+    C --> G["Points to next node"]
+    C --> H["NULL for last node"]
+    
+    D --> I["Unique memory location"]
+    D --> J["Allocated dynamically"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef components fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef data fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef pointer fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef memory fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    class A components
+    class B,E,F data
+    class C,G,H pointer
+    class D,I,J memory
+```
+
+### Basic Node Implementation
 
 ```cpp
+template<typename T>
 struct ListNode {
-    int val;
+    T data;
     ListNode* next;
     
-    ListNode() : val(0), next(nullptr) {}
-    ListNode(int x) : val(x), next(nullptr) {}
-    ListNode(int x, ListNode* next) : val(x), next(next) {}
+    ListNode() : data(T()), next(nullptr) {}
+    ListNode(T value) : data(value), next(nullptr) {}
+    ListNode(T value, ListNode* nextNode) : data(value), next(nextNode) {}
 };
+```
 
+---
+
+## Types of Linked Lists
+
+<div align="center">
+<img src="https://camo.githubusercontent.com/bd09561a7932c49439a9abb439cc18a7a04c9d5efd21714304f822ad25c97a3c/68747470733a2f2f7777772e7363616c65722e636f6d2f746f706963732f696d616765732f646966666572656e742d74797065732d6f662d6c696e6b65642d6c697374732d696e2d7468652d646174612d7374727563747572652e77656270" alt="Types of Linked Lists" width="650" height="400"/>
+</div>
+
+### Classification
+
+```mermaid
+flowchart TD
+    A["Types of Linked Lists"] --> B["Singly Linked List"]
+    A --> C["Doubly Linked List"]
+    A --> D["Circular Linked List"]
+    A --> E["Doubly Circular List"]
+    
+    B --> F["One direction traversal"]
+    B --> G["Single pointer per node"]
+    
+    C --> H["Bidirectional traversal"]
+    C --> I["Two pointers per node"]
+    
+    D --> J["Last node points to first"]
+    D --> K["No NULL termination"]
+    
+    E --> L["Circular + Doubly linked"]
+    E --> M["Most flexible structure"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef types fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef singly fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef doubly fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef circular fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef doublyCircular fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A types
+    class B,F,G singly
+    class C,H,I doubly
+    class D,J,K circular
+    class E,L,M doublyCircular
+```
+
+---
+
+## Basic Operations
+
+### Singly Linked List Implementation
+
+```cpp
+template<typename T>
 class SinglyLinkedList {
 private:
-    ListNode* head;
+    ListNode<T>* head;
     int size;
     
 public:
     SinglyLinkedList() : head(nullptr), size(0) {}
     
-    void insertAtHead(int val) {
-        ListNode* newNode = new ListNode(val);
+    // Insert at beginning
+    void insertAtHead(T value) {
+        ListNode<T>* newNode = new ListNode<T>(value);
         newNode->next = head;
         head = newNode;
         size++;
     }
     
-    void insertAtTail(int val) {
-        ListNode* newNode = new ListNode(val);
+    // Insert at end
+    void insertAtTail(T value) {
+        ListNode<T>* newNode = new ListNode<T>(value);
         
         if (!head) {
             head = newNode;
         } else {
-            ListNode* current = head;
+            ListNode<T>* current = head;
             while (current->next) {
                 current = current->next;
             }
@@ -119,24 +193,48 @@ public:
         size++;
     }
     
-    bool deleteValue(int val) {
+    // Insert at specific position
+    void insertAt(int index, T value) {
+        if (index < 0 || index > size) {
+            throw out_of_range("Index out of bounds");
+        }
+        
+        if (index == 0) {
+            insertAtHead(value);
+            return;
+        }
+        
+        ListNode<T>* newNode = new ListNode<T>(value);
+        ListNode<T>* current = head;
+        
+        for (int i = 0; i < index - 1; i++) {
+            current = current->next;
+        }
+        
+        newNode->next = current->next;
+        current->next = newNode;
+        size++;
+    }
+    
+    // Delete by value
+    bool deleteValue(T value) {
         if (!head) return false;
         
-        if (head->val == val) {
-            ListNode* temp = head;
+        if (head->data == value) {
+            ListNode<T>* temp = head;
             head = head->next;
             delete temp;
             size--;
             return true;
         }
         
-        ListNode* current = head;
-        while (current->next && current->next->val != val) {
+        ListNode<T>* current = head;
+        while (current->next && current->next->data != value) {
             current = current->next;
         }
         
         if (current->next) {
-            ListNode* temp = current->next;
+            ListNode<T>* temp = current->next;
             current->next = current->next->next;
             delete temp;
             size--;
@@ -146,41 +244,279 @@ public:
         return false;
     }
     
-    void display() {
-        ListNode* current = head;
-        while (current) {
-            cout << current->val << " -> ";
+    // Delete at position
+    bool deleteAt(int index) {
+        if (index < 0 || index >= size || !head) {
+            return false;
+        }
+        
+        if (index == 0) {
+            ListNode<T>* temp = head;
+            head = head->next;
+            delete temp;
+            size--;
+            return true;
+        }
+        
+        ListNode<T>* current = head;
+        for (int i = 0; i < index - 1; i++) {
             current = current->next;
         }
-        cout << "NULL" << endl;
+        
+        ListNode<T>* temp = current->next;
+        current->next = current->next->next;
+        delete temp;
+        size--;
+        return true;
+    }
+    
+    // Search for value
+    int search(T value) {
+        ListNode<T>* current = head;
+        int index = 0;
+        
+        while (current) {
+            if (current->data == value) {
+                return index;
+            }
+            current = current->next;
+            index++;
+        }
+        
+        return -1; // Not found
+    }
+    
+    // Get value at index
+    T get(int index) {
+        if (index < 0 || index >= size) {
+            throw out_of_range("Index out of bounds");
+        }
+        
+        ListNode<T>* current = head;
+        for (int i = 0; i < index; i++) {
+            current = current->next;
+        }
+        
+        return current->data;
+    }
+    
+    // Display list
+    void display() {
+        ListNode<T>* current = head;
+        cout << "List: ";
+        while (current) {
+            cout << current->data;
+            if (current->next) cout << " -> ";
+            current = current->next;
+        }
+        cout << " -> NULL" << endl;
+    }
+    
+    // Utility functions
+    bool isEmpty() const { return head == nullptr; }
+    int getSize() const { return size; }
+    
+    // Destructor
+    ~SinglyLinkedList() {
+        while (head) {
+            ListNode<T>* temp = head;
+            head = head->next;
+            delete temp;
+        }
     }
 };
 ```
 
-### 🎯 Doubly Linked List
+### Insertion Operation
 
-<img src="https://scaler-topics-articles-md.s3.us-west-2.amazonaws.com/doubly-linked-list-data-structures.webp" alt="Doubly Linked List Structure" width="600" height="350"/>
+<div align="center">
+<img src="https://camo.githubusercontent.com/ab799d31303b959c6db542cdd82b88f712916ea007641dc55d72e5c35e3b79fa/68747470733a2f2f7363616c65722d746f706963732d61727469636c65732d6d642e73332e75732d776573742d322e616d617a6f6e6177732e636f6d2f696e73657274696f6e2d6f7065726174696f6e2d6f662d6c696e6b65642d6c6973742e676966" alt="Addition of Node in Linked List" width="650" height="400"/>
+</div>
+
+### Deletion Operation
+
+<div align="center">
+<img src="https://camo.githubusercontent.com/0f83ca69a2299ede593b825a3ac5535642e516beddebeabe3c3b47ddd5d62768/68747470733a2f2f7363616c65722d746f706963732d61727469636c65732d6d642e73332e75732d776573742d322e616d617a6f6e6177732e636f6d2f64656c6574696f6e2d6f7065726174696f6e2d6f662d6c696e6b65642d6c6973742e676966" alt="Deletion of Node in Linked List" width="650" height="400"/>
+</div>
+
+---
+
+## Advanced Operations
+
+### Reverse Linked List
 
 ```cpp
-struct DoublyListNode {
-    int val;
-    DoublyListNode* prev;
-    DoublyListNode* next;
+class LinkedListOperations {
+public:
+    // Iterative reverse
+    static ListNode<int>* reverseIterative(ListNode<int>* head) {
+        ListNode<int>* prev = nullptr;
+        ListNode<int>* current = head;
+        ListNode<int>* next = nullptr;
+        
+        while (current) {
+            next = current->next;
+            current->next = prev;
+            prev = current;
+            current = next;
+        }
+        
+        return prev;
+    }
     
-    DoublyListNode(int x) : val(x), prev(nullptr), next(nullptr) {}
+    // Recursive reverse
+    static ListNode<int>* reverseRecursive(ListNode<int>* head) {
+        if (!head || !head->next) {
+            return head;
+        }
+        
+        ListNode<int>* newHead = reverseRecursive(head->next);
+        head->next->next = head;
+        head->next = nullptr;
+        
+        return newHead;
+    }
+    
+    // Find middle element
+    static ListNode<int>* findMiddle(ListNode<int>* head) {
+        if (!head) return nullptr;
+        
+        ListNode<int>* slow = head;
+        ListNode<int>* fast = head;
+        
+        while (fast->next && fast->next->next) {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        
+        return slow;
+    }
+    
+    // Detect cycle (Floyd's algorithm)
+    static bool hasCycle(ListNode<int>* head) {
+        if (!head || !head->next) return false;
+        
+        ListNode<int>* slow = head;
+        ListNode<int>* fast = head;
+        
+        while (fast && fast->next) {
+            slow = slow->next;
+            fast = fast->next->next;
+            
+            if (slow == fast) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    // Find cycle start
+    static ListNode<int>* findCycleStart(ListNode<int>* head) {
+        if (!hasCycle(head)) return nullptr;
+        
+        ListNode<int>* slow = head;
+        ListNode<int>* fast = head;
+        
+        // Find meeting point
+        while (fast && fast->next) {
+            slow = slow->next;
+            fast = fast->next->next;
+            if (slow == fast) break;
+        }
+        
+        // Find start of cycle
+        slow = head;
+        while (slow != fast) {
+            slow = slow->next;
+            fast = fast->next;
+        }
+        
+        return slow;
+    }
+    
+    // Merge two sorted lists
+    static ListNode<int>* mergeSorted(ListNode<int>* l1, ListNode<int>* l2) {
+        ListNode<int> dummy(0);
+        ListNode<int>* current = &dummy;
+        
+        while (l1 && l2) {
+            if (l1->data <= l2->data) {
+                current->next = l1;
+                l1 = l1->next;
+            } else {
+                current->next = l2;
+                l2 = l2->next;
+            }
+            current = current->next;
+        }
+        
+        current->next = l1 ? l1 : l2;
+        return dummy.next;
+    }
+    
+    // Remove nth node from end
+    static ListNode<int>* removeNthFromEnd(ListNode<int>* head, int n) {
+        ListNode<int> dummy(0);
+        dummy.next = head;
+        
+        ListNode<int>* first = &dummy;
+        ListNode<int>* second = &dummy;
+        
+        // Move first n+1 steps ahead
+        for (int i = 0; i <= n; i++) {
+            first = first->next;
+        }
+        
+        // Move both until first reaches end
+        while (first) {
+            first = first->next;
+            second = second->next;
+        }
+        
+        // Remove nth node
+        ListNode<int>* nodeToDelete = second->next;
+        second->next = second->next->next;
+        delete nodeToDelete;
+        
+        return dummy.next;
+    }
+};
+```
+
+---
+
+## Doubly Linked Lists
+
+<div align="center">
+<img src="https://camo.githubusercontent.com/b5b00fcbccfa303eb33fbe58fa2f8caaea51540e0decf57309a272fc61be3b21/68747470733a2f2f7363616c65722d746f706963732d61727469636c65732d6d642e73332e75732d776573742d322e616d617a6f6e6177732e636f6d2f646f75626c792d6c696e6b65642d6c6973742d646174612d737472756374757265732e77656270" alt="Doubly Linked List" width="650" height="400"/>
+</div>
+
+### Doubly Linked List Implementation
+
+```cpp
+template<typename T>
+struct DoublyListNode {
+    T data;
+    DoublyListNode* next;
+    DoublyListNode* prev;
+    
+    DoublyListNode(T value) : data(value), next(nullptr), prev(nullptr) {}
 };
 
+template<typename T>
 class DoublyLinkedList {
 private:
-    DoublyListNode* head;
-    DoublyListNode* tail;
+    DoublyListNode<T>* head;
+    DoublyListNode<T>* tail;
     int size;
     
 public:
     DoublyLinkedList() : head(nullptr), tail(nullptr), size(0) {}
     
-    void insertAtHead(int val) {
-        DoublyListNode* newNode = new DoublyListNode(val);
+    // Insert at beginning
+    void insertAtHead(T value) {
+        DoublyListNode<T>* newNode = new DoublyListNode<T>(value);
         
         if (!head) {
             head = tail = newNode;
@@ -192,8 +528,9 @@ public:
         size++;
     }
     
-    void insertAtTail(int val) {
-        DoublyListNode* newNode = new DoublyListNode(val);
+    // Insert at end
+    void insertAtTail(T value) {
+        DoublyListNode<T>* newNode = new DoublyListNode<T>(value);
         
         if (!tail) {
             head = tail = newNode;
@@ -205,10 +542,41 @@ public:
         size++;
     }
     
-    bool deleteValue(int val) {
-        DoublyListNode* current = head;
+    // Insert at position
+    void insertAt(int index, T value) {
+        if (index < 0 || index > size) {
+            throw out_of_range("Index out of bounds");
+        }
         
-        while (current && current->val != val) {
+        if (index == 0) {
+            insertAtHead(value);
+            return;
+        }
+        
+        if (index == size) {
+            insertAtTail(value);
+            return;
+        }
+        
+        DoublyListNode<T>* newNode = new DoublyListNode<T>(value);
+        DoublyListNode<T>* current = head;
+        
+        for (int i = 0; i < index; i++) {
+            current = current->next;
+        }
+        
+        newNode->next = current;
+        newNode->prev = current->prev;
+        current->prev->next = newNode;
+        current->prev = newNode;
+        size++;
+    }
+    
+    // Delete by value
+    bool deleteValue(T value) {
+        DoublyListNode<T>* current = head;
+        
+        while (current && current->data != value) {
             current = current->next;
         }
         
@@ -230,95 +598,278 @@ public:
         size--;
         return true;
     }
-};
-```
-
-### 🎯 Circular Linked List
-
-<img src="https://scaler-topics-articles-md.s3.us-west-2.amazonaws.com/circular-linked-list-data-structures.webp" alt="Circular Linked List Structure" width="600" height="350"/>
-
-```cpp
-class CircularLinkedList {
-private:
-    ListNode* tail; // Points to last node
-    int size;
     
-public:
-    CircularLinkedList() : tail(nullptr), size(0) {}
-    
-    void insert(int val) {
-        ListNode* newNode = new ListNode(val);
-        
-        if (!tail) {
-            tail = newNode;
-            tail->next = tail; // Points to itself
-        } else {
-            newNode->next = tail->next; // Point to head
-            tail->next = newNode;
-            tail = newNode; // Update tail
+    // Display forward
+    void displayForward() {
+        DoublyListNode<T>* current = head;
+        cout << "Forward: ";
+        while (current) {
+            cout << current->data;
+            if (current->next) cout << " <-> ";
+            current = current->next;
         }
-        size++;
+        cout << " -> NULL" << endl;
     }
     
-    void display() {
-        if (!tail) return;
-        
-        ListNode* current = tail->next; // Start from head
-        do {
-            cout << current->val << " -> ";
-            current = current->next;
-        } while (current != tail->next);
-        cout << "(circular)" << endl;
+    // Display backward
+    void displayBackward() {
+        DoublyListNode<T>* current = tail;
+        cout << "Backward: ";
+        while (current) {
+            cout << current->data;
+            if (current->prev) cout << " <-> ";
+            current = current->prev;
+        }
+        cout << " -> NULL" << endl;
+    }
+    
+    int getSize() const { return size; }
+    bool isEmpty() const { return head == nullptr; }
+    
+    ~DoublyLinkedList() {
+        while (head) {
+            DoublyListNode<T>* temp = head;
+            head = head->next;
+            delete temp;
+        }
     }
 };
 ```
 
 ---
 
-## ⚙️ Basic Operations
+## Circular Linked Lists
 
-### 🎯 Operation Implementations
+<div align="center">
+<img src="https://camo.githubusercontent.com/c02f877f148e0c8a02acf9a43ad244d282bc2817814bfda7acb6a37026cee62a/68747470733a2f2f7363616c65722d746f706963732d61727469636c65732d6d642e73332e75732d776573742d322e616d617a6f6e6177732e636f6d2f63697263756c61722d6c696e6b65642d6c6973742d646174612d737472756374757265732e77656270" alt="Circular Linked List" width="650" height="400"/>
+</div>
+
+### Circular Linked List Implementation
+
+```cpp
+template<typename T>
+class CircularLinkedList {
+private:
+    ListNode<T>* tail; // Points to last node
+    int size;
+    
+public:
+    CircularLinkedList() : tail(nullptr), size(0) {}
+    
+    // Insert at beginning
+    void insertAtHead(T value) {
+        ListNode<T>* newNode = new ListNode<T>(value);
+        
+        if (!tail) {
+            tail = newNode;
+            newNode->next = newNode; // Point to itself
+        } else {
+            newNode->next = tail->next;
+            tail->next = newNode;
+        }
+        size++;
+    }
+    
+    // Insert at end
+    void insertAtTail(T value) {
+        ListNode<T>* newNode = new ListNode<T>(value);
+        
+        if (!tail) {
+            tail = newNode;
+            newNode->next = newNode;
+        } else {
+            newNode->next = tail->next;
+            tail->next = newNode;
+            tail = newNode;
+        }
+        size++;
+    }
+    
+    // Delete by value
+    bool deleteValue(T value) {
+        if (!tail) return false;
+        
+        ListNode<T>* current = tail->next; // Start from head
+        ListNode<T>* prev = tail;
+        
+        do {
+            if (current->data == value) {
+                if (current == tail && size == 1) {
+                    // Only one node
+                    delete current;
+                    tail = nullptr;
+                } else {
+                    prev->next = current->next;
+                    if (current == tail) {
+                        tail = prev;
+                    }
+                    delete current;
+                }
+                size--;
+                return true;
+            }
+            prev = current;
+            current = current->next;
+        } while (current != tail->next);
+        
+        return false;
+    }
+    
+    // Display list
+    void display() {
+        if (!tail) {
+            cout << "List is empty" << endl;
+            return;
+        }
+        
+        ListNode<T>* current = tail->next; // Start from head
+        cout << "Circular List: ";
+        
+        do {
+            cout << current->data;
+            current = current->next;
+            if (current != tail->next) cout << " -> ";
+        } while (current != tail->next);
+        
+        cout << " -> (back to head)" << endl;
+    }
+    
+    // Check if value exists
+    bool search(T value) {
+        if (!tail) return false;
+        
+        ListNode<T>* current = tail->next;
+        do {
+            if (current->data == value) {
+                return true;
+            }
+            current = current->next;
+        } while (current != tail->next);
+        
+        return false;
+    }
+    
+    int getSize() const { return size; }
+    bool isEmpty() const { return tail == nullptr; }
+    
+    ~CircularLinkedList() {
+        if (!tail) return;
+        
+        ListNode<T>* current = tail->next;
+        while (current != tail) {
+            ListNode<T>* temp = current;
+            current = current->next;
+            delete temp;
+        }
+        delete tail;
+    }
+};
+```
+
+---
+
+## Best Practices
+
+### Performance Comparison
 
 ```mermaid
 flowchart TD
-    A["🔗 Linked List Operations"] --> B["📝 Insertion"]
-    A --> C["🗜️ Deletion"]
-    A --> D["🔍 Search"]
-    A --> E["🚪 Traversal"]
+    A["Data Structure Comparison"] --> B["Arrays"]
+    A --> C["Linked Lists"]
+    A --> D["Dynamic Arrays"]
     
-    B --> F["At Head: O(1)"]
-    B --> G["At Tail: O(n)"]
-    B --> H["At Position: O(n)"]
+    B --> E["O(1) Random Access"]
+    B --> F["O(n) Insertion/Deletion"]
+    B --> G["Cache Friendly"]
     
-    C --> I["By Value: O(n)"]
-    C --> J["At Position: O(n)"]
+    C --> H["O(n) Sequential Access"]
+    C --> I["O(1) Insertion/Deletion"]
+    C --> J["Dynamic Size"]
     
-    D --> K["Linear Search: O(n)"]
-    E --> L["Forward: O(n)"]
+    D --> K["O(1) Amortized Insertion"]
+    D --> L["O(1) Random Access"]
+    D --> M["Automatic Resizing"]
     
-    style A fill:#e3f2fd
-    style B fill:#c8e6c9
-    style C fill:#ffcdd2
-    style D fill:#fff3e0
-    style E fill:#f3e5f5
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef comparison fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef arrays fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef linked fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef dynamic fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    class A comparison
+    class B,E,F,G arrays
+    class C,H,I,J linked
+    class D,K,L,M dynamic
 ```
 
-### 🔧 Advanced Operations
-
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Linked-List-Advanced-Operations.webp" alt="Advanced Linked List Operations" width="650" height="400"/>
-</div>
+### Common Pitfalls and Solutions
 
 ```cpp
-class LinkedListOperations {
+class LinkedListBestPractices {
 public:
-    // Reverse linked list
-    ListNode* reverse(ListNode* head) {
-        ListNode* prev = nullptr;
-        ListNode* current = head;
+    // ❌ Memory leak - not deleting nodes
+    void badDeletion(ListNode<int>* head) {
+        head = head->next; // Lost reference to original head!
+    }
+    
+    // ✅ Proper node deletion
+    void goodDeletion(ListNode<int>*& head) {
+        if (head) {
+            ListNode<int>* temp = head;
+            head = head->next;
+            delete temp;
+        }
+    }
+    
+    // ❌ Not handling empty list
+    void badInsertion(ListNode<int>* head, int value) {
+        ListNode<int>* current = head;
+        while (current->next) { // Crash if head is nullptr!
+            current = current->next;
+        }
+        current->next = new ListNode<int>(value);
+    }
+    
+    // ✅ Handle empty list properly
+    void goodInsertion(ListNode<int>*& head, int value) {
+        if (!head) {
+            head = new ListNode<int>(value);
+            return;
+        }
+        
+        ListNode<int>* current = head;
+        while (current->next) {
+            current = current->next;
+        }
+        current->next = new ListNode<int>(value);
+    }
+    
+    // ❌ Infinite loop in circular list
+    void badCircularTraversal(ListNode<int>* head) {
+        ListNode<int>* current = head;
+        while (current) { // Will loop forever in circular list!
+            cout << current->data << " ";
+            current = current->next;
+        }
+    }
+    
+    // ✅ Proper circular list traversal
+    void goodCircularTraversal(ListNode<int>* head) {
+        if (!head) return;
+        
+        ListNode<int>* current = head;
+        do {
+            cout << current->data << " ";
+            current = current->next;
+        } while (current != head);
+    }
+    
+    // ✅ Safe list reversal
+    ListNode<int>* safeReverse(ListNode<int>* head) {
+        ListNode<int>* prev = nullptr;
+        ListNode<int>* current = head;
         
         while (current) {
-            ListNode* next = current->next;
+            ListNode<int>* next = current->next; // Store next before modifying
             current->next = prev;
             prev = current;
             current = next;
@@ -326,597 +877,80 @@ public:
         
         return prev;
     }
-    
-    // Find middle element
-    ListNode* findMiddle(ListNode* head) {
-        if (!head) return nullptr;
-        
-        ListNode* slow = head;
-        ListNode* fast = head;
-        
-        while (fast->next && fast->next->next) {
-            slow = slow->next;
-            fast = fast->next->next;
-        }
-        
-        return slow;
-    }
-    
-    // Detect cycle
-    bool hasCycle(ListNode* head) {
-        if (!head || !head->next) return false;
-        
-        ListNode* slow = head;
-        ListNode* fast = head;
-        
-        while (fast && fast->next) {
-            slow = slow->next;
-            fast = fast->next->next;
-            
-            if (slow == fast) return true;
-        }
-        
-        return false;
-    }
-    
-    // Find cycle start
-    ListNode* detectCycle(ListNode* head) {
-        if (!head || !head->next) return nullptr;
-        
-        ListNode* slow = head;
-        ListNode* fast = head;
-        
-        // Detect if cycle exists
-        while (fast && fast->next) {
-            slow = slow->next;
-            fast = fast->next->next;
-            
-            if (slow == fast) break;
-        }
-        
-        if (!fast || !fast->next) return nullptr;
-        
-        // Find cycle start
-        slow = head;
-        while (slow != fast) {
-            slow = slow->next;
-            fast = fast->next;
-        }
-        
-        return slow;
-    }
-    
-    // Merge two sorted lists
-    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
-        ListNode dummy(0);
-        ListNode* current = &dummy;
-        
-        while (l1 && l2) {
-            if (l1->val <= l2->val) {
-                current->next = l1;
-                l1 = l1->next;
-            } else {
-                current->next = l2;
-                l2 = l2->next;
-            }
-            current = current->next;
-        }
-        
-        current->next = l1 ? l1 : l2;
-        return dummy.next;
-    }
 };
 ```
 
----
+### When to Use Each Type
 
-## 🚀 Advanced Techniques
+| Operation | Array | Singly Linked | Doubly Linked | Circular |
+|-----------|-------|---------------|---------------|----------|
+| **Random Access** | O(1) | O(n) | O(n) | O(n) |
+| **Insert at Beginning** | O(n) | O(1) | O(1) | O(1) |
+| **Insert at End** | O(1)* | O(n) | O(1) | O(1) |
+| **Delete at Beginning** | O(n) | O(1) | O(1) | O(1) |
+| **Bidirectional Traversal** | ✅ | ❌ | ✅ | ✅ |
+| **Memory Overhead** | Low | Medium | High | Medium |
+| **Cache Performance** | Excellent | Poor | Poor | Poor |
 
-### 🎯 Two Pointer Technique
-
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Two-Pointer-Linked-List.webp" alt="Two Pointer Technique in Linked Lists" width="700" height="400"/>
-</div>
+### Usage Guidelines
 
 ```mermaid
 flowchart TD
-    A["🔗 Two Pointer Techniques"] --> B["🐌 Slow-Fast Pointers"]
-    A --> C["↔️ Distance Pointers"]
-    A --> D["🔄 Cycle Detection"]
+    A["Choose Linked List When"] --> B["Frequent Insertions/Deletions"]
+    A --> C["Unknown Size"]
+    A --> D["No Random Access Needed"]
+    A --> E["Memory Efficiency Important"]
     
-    B --> E["Find Middle Element"]
-    B --> F["Detect Cycles"]
+    B --> F["At beginning or middle"]
+    C --> G["Dynamic growth required"]
+    D --> H["Sequential processing"]
+    E --> I["Avoid memory waste"]
     
-    C --> G["Remove Nth from End"]
-    C --> H["Find Intersection"]
-    
-    D --> I["Floyd's Algorithm"]
-    D --> J["Cycle Start Detection"]
-    
-    style A fill:#e3f2fd
-    style B fill:#c8e6c9
-    style C fill:#fff3e0
-    style D fill:#fce4ec
-```
-
-```cpp
-class TwoPointerTechniques {
-public:
-    // Remove nth node from end
-    ListNode* removeNthFromEnd(ListNode* head, int n) {
-        ListNode dummy(0);
-        dummy.next = head;
-        
-        ListNode* first = &dummy;
-        ListNode* second = &dummy;
-        
-        // Move first pointer n+1 steps ahead
-        for (int i = 0; i <= n; i++) {
-            first = first->next;
-        }
-        
-        // Move both pointers until first reaches end
-        while (first) {
-            first = first->next;
-            second = second->next;
-        }
-        
-        // Remove the nth node
-        ListNode* nodeToDelete = second->next;
-        second->next = second->next->next;
-        delete nodeToDelete;
-        
-        return dummy.next;
-    }
-    
-    // Check if palindrome
-    bool isPalindrome(ListNode* head) {
-        if (!head || !head->next) return true;
-        
-        // Find middle
-        ListNode* slow = head;
-        ListNode* fast = head;
-        
-        while (fast->next && fast->next->next) {
-            slow = slow->next;
-            fast = fast->next->next;
-        }
-        
-        // Reverse second half
-        ListNode* secondHalf = reverseList(slow->next);
-        
-        // Compare both halves
-        ListNode* firstHalf = head;
-        while (secondHalf) {
-            if (firstHalf->val != secondHalf->val) {
-                return false;
-            }
-            firstHalf = firstHalf->next;
-            secondHalf = secondHalf->next;
-        }
-        
-        return true;
-    }
-    
-private:
-    ListNode* reverseList(ListNode* head) {
-        ListNode* prev = nullptr;
-        while (head) {
-            ListNode* next = head->next;
-            head->next = prev;
-            prev = head;
-            head = next;
-        }
-        return prev;
-    }
-};
-```
-
-### 🎯 Dummy Node Technique
-
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Dummy-Node-Technique.webp" alt="Dummy Node Technique in Linked Lists" width="600" height="350"/>
-</div>
-
-```cpp
-class DummyNodeTechniques {
-public:
-    // Remove elements with given value
-    ListNode* removeElements(ListNode* head, int val) {
-        ListNode dummy(0);
-        dummy.next = head;
-        
-        ListNode* current = &dummy;
-        
-        while (current->next) {
-            if (current->next->val == val) {
-                ListNode* nodeToDelete = current->next;
-                current->next = current->next->next;
-                delete nodeToDelete;
-            } else {
-                current = current->next;
-            }
-        }
-        
-        return dummy.next;
-    }
-    
-    // Partition list around value x
-    ListNode* partition(ListNode* head, int x) {
-        ListNode beforeDummy(0);
-        ListNode afterDummy(0);
-        
-        ListNode* before = &beforeDummy;
-        ListNode* after = &afterDummy;
-        
-        while (head) {
-            if (head->val < x) {
-                before->next = head;
-                before = before->next;
-            } else {
-                after->next = head;
-                after = after->next;
-            }
-            head = head->next;
-        }
-        
-        after->next = nullptr;
-        before->next = afterDummy.next;
-        
-        return beforeDummy.next;
-    }
-};
-```
-
-### 🔄 Cycle Detection & Common Problems
-
-```mermaid
-flowchart TD
-    A["Cycle Detection Methods"] --> B["Floyd's Tortoise & Hare"]
-    A --> C["Hash Set Method"]
-    A --> D["Marking Nodes"]
-    
-    B --> E["Two Pointers"]
-    B --> F["Different Speeds"]
-    B --> G["O(1) Space"]
-    
-    C --> H["Store Visited Nodes"]
-    C --> I["O(n) Space"]
-    
-    D --> J["Modify Node Values"]
-    D --> K["Destructive Method"]
-    
-    style A fill:#e3f2fd
-    style B fill:#c8e6c9
-    style C fill:#fff3e0
-    style D fill:#ffcdd2
-```
-
-```mermaid
-mindmap
-  root))🔗 Linked List Problems((
-    🔄 Cycle Problems
-      Detect Cycle
-      Find Cycle Start
-      Remove Cycle
-    🔀 Reversal Problems
-      Reverse List
-      Reverse in Groups
-      Reverse Between
-    🔢 Merge Problems
-      Merge Two Lists
-      Merge K Lists
-      Sort List
-    🎯 Manipulation
-      Remove Duplicates
-      Partition List
-      Rotate List
-      Copy with Random
-```
-
-```cpp
-class DummyNodeTechniques {
-public:
-    // Remove elements with given value
-    ListNode* removeElements(ListNode* head, int val) {
-        ListNode dummy(0);
-        dummy.next = head;
-        
-        ListNode* current = &dummy;
-        
-        while (current->next) {
-            if (current->next->val == val) {
-                ListNode* nodeToDelete = current->next;
-                current->next = current->next->next;
-                delete nodeToDelete;
-            } else {
-                current = current->next;
-            }
-        }
-        
-        return dummy.next;
-    }
-    
-    // Partition list around value x
-    ListNode* partition(ListNode* head, int x) {
-        ListNode beforeDummy(0);
-        ListNode afterDummy(0);
-        
-        ListNode* before = &beforeDummy;
-        ListNode* after = &afterDummy;
-        
-        while (head) {
-            if (head->val < x) {
-                before->next = head;
-                before = before->next;
-            } else {
-                after->next = head;
-                after = after->next;
-            }
-            head = head->next;
-        }
-        
-        after->next = nullptr;
-        before->next = afterDummy.next;
-        
-        return beforeDummy.next;
-    }
-};
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef choose fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef frequent fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef unknown fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef access fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef memory fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A choose
+    class B,F frequent
+    class C,G unknown
+    class D,H access
+    class E,I memory
 ```
 
 ---
 
-## 🎯 Common Problems
+## Summary
 
-### 🔧 Classic Interview Problems
+**Linked Lists** provide dynamic memory allocation and efficient insertion/deletion operations. Key insights:
 
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Linked-List-Interview-Problems.webp" alt="Common Linked List Interview Problems" width="700" height="400"/>
-</div>
+### Essential Concepts
+- **Dynamic Structure**: Size can change during runtime
+- **Node-based Storage**: Data and pointer pairs in non-contiguous memory
+- **Sequential Access**: Must traverse from head to reach specific elements
+- **Pointer Management**: Critical for maintaining list integrity
 
-```cpp
-class LinkedListProblems {
-public:
-    // Add two numbers represented as linked lists
-    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        ListNode dummy(0);
-        ListNode* current = &dummy;
-        int carry = 0;
-        
-        while (l1 || l2 || carry) {
-            int sum = carry;
-            
-            if (l1) {
-                sum += l1->val;
-                l1 = l1->next;
-            }
-            
-            if (l2) {
-                sum += l2->val;
-                l2 = l2->next;
-            }
-            
-            carry = sum / 10;
-            current->next = new ListNode(sum % 10);
-            current = current->next;
-        }
-        
-        return dummy.next;
-    }
-    
-    // Intersection of two linked lists
-    ListNode* getIntersectionNode(ListNode* headA, ListNode* headB) {
-        if (!headA || !headB) return nullptr;
-        
-        ListNode* pA = headA;
-        ListNode* pB = headB;
-        
-        while (pA != pB) {
-            pA = pA ? pA->next : headB;
-            pB = pB ? pB->next : headA;
-        }
-        
-        return pA;
-    }
-    
-    // Copy list with random pointer
-    struct RandomListNode {
-        int val;
-        RandomListNode* next;
-        RandomListNode* random;
-        
-        RandomListNode(int x) : val(x), next(nullptr), random(nullptr) {}
-    };
-    
-    RandomListNode* copyRandomList(RandomListNode* head) {
-        if (!head) return nullptr;
-        
-        unordered_map<RandomListNode*, RandomListNode*> nodeMap;
-        
-        // First pass: create all nodes
-        RandomListNode* current = head;
-        while (current) {
-            nodeMap[current] = new RandomListNode(current->val);
-            current = current->next;
-        }
-        
-        // Second pass: set next and random pointers
-        current = head;
-        while (current) {
-            if (current->next) {
-                nodeMap[current]->next = nodeMap[current->next];
-            }
-            if (current->random) {
-                nodeMap[current]->random = nodeMap[current->random];
-            }
-            current = current->next;
-        }
-        
-        return nodeMap[head];
-    }
-    
-    // Flatten multilevel doubly linked list
-    struct MultilevelNode {
-        int val;
-        MultilevelNode* prev;
-        MultilevelNode* next;
-        MultilevelNode* child;
-        
-        MultilevelNode(int x) : val(x), prev(nullptr), next(nullptr), child(nullptr) {}
-    };
-    
-    MultilevelNode* flatten(MultilevelNode* head) {
-        if (!head) return nullptr;
-        
-        stack<MultilevelNode*> stk;
-        MultilevelNode* current = head;
-        
-        while (current) {
-            if (current->child) {
-                if (current->next) {
-                    stk.push(current->next);
-                }
-                
-                current->next = current->child;
-                current->child->prev = current;
-                current->child = nullptr;
-            }
-            
-            if (!current->next && !stk.empty()) {
-                MultilevelNode* next = stk.top();
-                stk.pop();
-                
-                current->next = next;
-                next->prev = current;
-            }
-            
-            current = current->next;
-        }
-        
-        return head;
-    }
-};
-```
+### Core Variants
+- **Singly Linked**: One direction traversal, minimal memory overhead
+- **Doubly Linked**: Bidirectional traversal, easier deletion
+- **Circular Linked**: No null termination, useful for round-robin algorithms
+- **Doubly Circular**: Maximum flexibility, highest memory overhead
 
----
+### Best Practices
+- Always check for null pointers before dereferencing
+- Handle empty list cases in all operations
+- Use proper memory management to avoid leaks
+- Choose appropriate variant based on access patterns
 
-## 🏆 Best Practices
-
-### ✅ Do's
-
-```cpp
-// 1. Always check for null pointers
-bool safeTraversal(ListNode* head) {
-    ListNode* current = head;
-    
-    while (current) { // Check before accessing
-        cout << current->val << " ";
-        current = current->next;
-    }
-    
-    return true;
-}
-
-// 2. Use dummy nodes for edge cases
-ListNode* insertInSortedList(ListNode* head, int val) {
-    ListNode dummy(0);
-    dummy.next = head;
-    
-    ListNode* current = &dummy;
-    
-    while (current->next && current->next->val < val) {
-        current = current->next;
-    }
-    
-    ListNode* newNode = new ListNode(val);
-    newNode->next = current->next;
-    current->next = newNode;
-    
-    return dummy.next;
-}
-
-// 3. Handle memory management properly
-class SafeLinkedList {
-private:
-    ListNode* head;
-    
-public:
-    ~SafeLinkedList() {
-        while (head) {
-            ListNode* temp = head;
-            head = head->next;
-            delete temp;
-        }
-    }
-    
-    void clear() {
-        while (head) {
-            ListNode* temp = head;
-            head = head->next;
-            delete temp;
-        }
-    }
-};
-
-// 4. Use two pointers for cycle detection
-bool detectCycleSafe(ListNode* head) {
-    if (!head || !head->next) return false;
-    
-    ListNode* slow = head;
-    ListNode* fast = head->next; // Start fast one step ahead
-    
-    while (fast && fast->next) {
-        if (slow == fast) return true;
-        
-        slow = slow->next;
-        fast = fast->next->next;
-    }
-    
-    return false;
-}
-```
-
-### ❌ Don'ts
-
-```cpp
-// Don't: Access without null checking
-// if (node->next->val == target) // May crash
-
-// Don't: Forget to update pointers properly
-// node->next = newNode; // Missing: newNode->next = node->next
-
-// Don't: Create memory leaks
-// ListNode* temp = head;
-// head = head->next; // temp is leaked
-
-// Don't: Modify list while iterating without care
-// while (current) {
-//     if (condition) delete current; // Undefined behavior
-//     current = current->next;
-// }
-```
-
----
-
-## 🎓 Summary
-
-Linked Lists are fundamental dynamic data structures. Master these concepts:
-
-✅ **Types**: Singly, doubly, and circular linked lists  
-✅ **Operations**: Insert, delete, search with proper complexity analysis  
-✅ **Techniques**: Two pointers, dummy nodes, cycle detection  
-✅ **Problems**: Reverse, merge, intersection, palindrome checking  
-✅ **Memory Management**: Proper allocation and deallocation  
-✅ **Edge Cases**: Handle null pointers and empty lists  
-
-**Next Steps**: Practice with LeetCode problems and explore applications in stacks, queues, and hash tables.
+> **Master's Insight**: Linked lists excel when you need dynamic size and frequent insertions/deletions, but arrays are better for random access and cache performance. Choose based on your specific use case.
 
 ---
 
 <div align="center">
 
-**🔗 Link Your Way to Success**
+**🔗 Master Linked Lists • Dynamic Memory Management • Efficient Data Manipulation**
 
-*Dynamic structures for dynamic solutions*
+*From Theory to Practice • Nodes to Networks • Understanding to Mastery*
 
 </div>

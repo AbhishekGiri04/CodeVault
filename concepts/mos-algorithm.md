@@ -1,14 +1,12 @@
-# 🔄 Mo's Algorithm — Complete Professional Guide
+# 📊 Mo's Algorithm — Complete Professional Guide
 
 <div align="center">
 
-![Mo's Algorithm](https://img.shields.io/badge/Mo's_Algorithm-Query_Optimization-4ECDC4?style=for-the-badge&logo=algorithm&logoColor=white)
+![Mo's Algorithm](https://img.shields.io/badge/Mo's_Algorithm-Query_Optimization-FF6B6B?style=for-the-badge&logo=chart-line&logoColor=white)
 ![Difficulty](https://img.shields.io/badge/Difficulty-Advanced-red?style=for-the-badge)
-![Importance](https://img.shields.io/badge/Importance-High-red?style=for-the-badge)
+![Importance](https://img.shields.io/badge/Importance-High-darkred?style=for-the-badge)
 
-<img src="https://scaler.com/topics/images/mos-algorithm-example.webp" alt="Mo's Algorithm Example" width="700" height="400"/>
-
-*Master offline query processing and square root decomposition for competitive programming excellence*
+**Master efficient offline query processing with square root decomposition**
 
 </div>
 
@@ -16,358 +14,328 @@
 
 ## 📑 Table of Contents
 
-1. [Introduction](#-introduction)
-2. [Core Concepts](#-core-concepts)
-3. [Basic Mo's Algorithm](#-basic-mos-algorithm)
-4. [Implementation](#-implementation)
-5. [Mo's with Updates](#-mos-with-updates)
-6. [Mo's on Trees](#-mos-on-trees)
-7. [Complexity Analysis](#-complexity-analysis)
-8. [Applications](#-applications)
-9. [Optimization Techniques](#-optimization-techniques)
-10. [Interview Problems](#-interview-problems)
-11. [Advanced Variants](#-advanced-variants)
-12. [Best Practices](#-best-practices)
+1. [Introduction](#introduction)
+2. [Core Concept](#core-concept)
+3. [Algorithm Process](#algorithm-process)
+4. [Implementation](#implementation)
+5. [Optimization Techniques](#optimization-techniques)
+6. [Advanced Applications](#advanced-applications)
+7. [Complexity Analysis](#complexity-analysis)
+8. [Best Practices](#best-practices)
 
 ---
 
-## 🎯 Introduction
+## Introduction
 
-**Mo's Algorithm** is an offline query processing technique that uses square root decomposition to efficiently answer range queries on static arrays. It transforms O(Q×N) brute force solutions into O((N+Q)×√N) optimized solutions.
+**Mo's Algorithm** is a powerful technique for answering offline queries on arrays in O(N√N) time complexity. It's particularly useful when we can efficiently add or remove elements from our current answer, making it ideal for range queries that would otherwise require complex data structures.
 
-### 🔑 Key Innovation
+<div align="center">
+<img src="https://camo.githubusercontent.com/43fa5086462fea2ba0512437ae9d3f0275c82c9c5ab7603b69c8bd36678ed99c/68747470733a2f2f7363616c65722e636f6d2f746f706963732f696d616765732f6d6f732d616c676f726974686d2d6578616d706c652e77656270" alt="Mo's Algorithm Example" width="650" height="400"/>
+</div>
 
-```
-Brute Force: O(Q × N)
-Mo's Algorithm: O((N + Q) × √N)
-
-For Q = N = 10^5:
-Brute Force: 10^10 operations
-Mo's Algorithm: 2×10^7 operations (500x speedup!)
-```
-
-### 💡 Core Principle
-
-Instead of processing queries in given order, **reorder queries** to minimize pointer movements and reuse computations.
+### Core Principle
 
 ```mermaid
 flowchart TD
-    A["📋 Input Queries"] --> B["🔄 Sort by Block Order"]
-    B --> C["📊 Block Decomposition"]
-    C --> D["🎯 Process Queries"]
-    D --> E["⚡ Optimized Results"]
+    A["📊 Mo's Algorithm"] --> B["Query Sorting"]
+    A --> C["Block Decomposition"]
+    A --> D["Efficient Transitions"]
     
-    B --> F["Block Size = √N"]
-    C --> G["Sort by (L/√N, R)"]
-    D --> H["Two Pointers Movement"]
+    B --> E["Sort by left block"]
+    B --> F["Then by right endpoint"]
     
-    style A fill:#e1f5fe
-    style E fill:#c8e6c9
-    style F fill:#fff3e0
-    style G fill:#fff3e0
-    style H fill:#fff3e0
+    C --> G["Divide array into √N blocks"]
+    C --> H["Group queries by blocks"]
+    
+    D --> I["Add/Remove elements"]
+    D --> J["Maintain current answer"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef algorithm fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef sorting fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef decomposition fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef transitions fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    class A algorithm
+    class B,E,F sorting
+    class C,G,H decomposition
+    class D,I,J transitions
 ```
 
 ---
 
-## 🏗️ Core Concepts
+## Core Concept
 
-### 🎯 Prerequisites
-
-1. **Offline Queries**: All queries known beforehand
-2. **Static Array**: No updates during query processing
-3. **Efficient Add/Remove**: O(1) or O(log N) operations
-4. **Range Queries**: Queries of form [L, R]
-
-### 📊 Block Decomposition
+### When to Use Mo's Algorithm
 
 ```mermaid
-graph TD
-    A["Array of size N"] --> B["Block 0<br/>[0 to √N-1]"]
-    A --> C["Block 1<br/>[√N to 2√N-1]"]
-    A --> D["Block 2<br/>[2√N to 3√N-1]"]
-    A --> E["..."] 
-    A --> F["Block √N-1<br/>[...to N-1]"]
+flowchart TD
+    A["Use Mo's Algorithm When"] --> B["Offline Queries"]
+    A --> C["Range Queries"]
+    A --> D["Efficient Add/Remove"]
+    A --> E["No Updates"]
     
-    G["Query Sorting Strategy"] --> H["Primary: Block of L"]
-    H --> I["Secondary: R value"]
-    I --> J["Optimization: Alternate R direction"]
+    B --> F["All queries known beforehand"]
+    C --> G["Query ranges [L, R]"]
+    D --> H["O(1) or O(log N) transitions"]
+    E --> I["Static array"]
     
-    style A fill:#e1f5fe
-    style G fill:#fff3e0
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef usage fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef offline fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef range fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef efficient fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef static fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A usage
+    class B,F offline
+    class C,G range
+    class D,H efficient
+    class E,I static
 ```
 
-```cpp
-int blockSize = sqrt(N);
-int block(int x) {
-    return x / blockSize;
-}
-```
+### Algorithm Requirements
 
-### 🔄 Query Sorting Strategy
+- **Offline Queries**: All queries must be known in advance
+- **Range Queries**: Queries of the form "answer for subarray [L, R]"
+- **Efficient Transitions**: Can add/remove elements efficiently
+- **Static Array**: No updates to the original array
 
-```cpp
-struct Query {
-    int L, R, idx;
+---
+
+## Algorithm Process
+
+### Step-by-Step Process
+
+```mermaid
+flowchart TD
+    A["Mo's Algorithm Steps"] --> B["1. Block Size Calculation"]
+    A --> C["2. Query Sorting"]
+    A --> D["3. Process Queries"]
+    A --> E["4. Maintain Current Range"]
     
-    bool operator<(const Query& other) const {
-        int blockL = L / blockSize;
-        int blockOther = other.L / blockSize;
-        
-        if (blockL != blockOther) {
-            return blockL < blockOther;
-        }
-        
-        // Optimization: alternate direction for odd blocks
-        return (blockL & 1) ? R < other.R : R > other.R;
-    }
-};
+    B --> F["block_size = √N"]
+    C --> G["Sort by (L/block_size, R)"]
+    D --> H["Extend/Shrink current range"]
+    E --> I["Add/Remove elements as needed"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef steps fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef calculation fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef sorting fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef processing fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef maintenance fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A steps
+    class B,F calculation
+    class C,G sorting
+    class D,H processing
+    class E,I maintenance
 ```
 
 ---
 
-## 🔧 Basic Mo's Algorithm
+## Implementation
 
-### 🎯 Algorithm Steps
-
-```mermaid
-flowchart LR
-    A["🔢 Array[N]"] --> B["📊 Divide into √N blocks"]
-    B --> C["📋 Sort queries by (L/√N, R)"]
-    C --> D["🎯 Initialize pointers curL=0, curR=-1"]
-    D --> E["🔄 Process each query"]
-    E --> F["⬅️➡️ Move pointers"]
-    F --> G["➕➖ Add/Remove elements"]
-    G --> H["💾 Store answer"]
-    H --> I{"More queries?"}
-    I -->|Yes| E
-    I -->|No| J["✅ Return results"]
-    
-    style A fill:#e3f2fd
-    style J fill:#c8e6c9
-```
-
-**Detailed Steps:**
-1. **Divide** array into √N blocks
-2. **Sort** queries by (L/√N, R)
-3. **Process** queries with two pointers
-4. **Maintain** current range [curL, curR]
-5. **Update** answer incrementally
-
-### 🔧 Template Implementation
-
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Mos-Algorithm-Block-Decomposition.webp" alt="Mo's Algorithm Block Decomposition" width="650" height="400"/>
-</div>
+### Basic Mo's Algorithm Template
 
 ```cpp
 class MosAlgorithm {
 private:
-    int n, blockSize;
+    int block_size;
     vector<int> arr;
-    vector<Query> queries;
-    vector<int> answers;
-    
-    // Problem-specific variables
     vector<int> freq;
-    int currentAnswer;
+    int current_answer;
     
-    void add(int idx) {
-        int val = arr[idx];
-        freq[val]++;
-        if (freq[val] == 1) {
-            currentAnswer++;  // New distinct element
+    struct Query {
+        int left, right, index;
+        
+        bool operator<(const Query& other) const {
+            int block_left = left / block_size;
+            int block_other = other.left / block_size;
+            
+            if (block_left != block_other) {
+                return block_left < block_other;
+            }
+            
+            // Alternate sorting direction for optimization
+            return (block_left & 1) ? right < other.right : right > other.right;
         }
-    }
-    
-    void remove(int idx) {
-        int val = arr[idx];
-        freq[val]--;
-        if (freq[val] == 0) {
-            currentAnswer--;  // Element no longer present
-        }
-    }
+    };
     
 public:
-    MosAlgorithm(vector<int>& array) : arr(array) {
-        n = arr.size();
-        blockSize = sqrt(n) + 1;
-        freq.resize(100001, 0);
-        currentAnswer = 0;
+    MosAlgorithm(vector<int>& input) : arr(input) {
+        block_size = sqrt(arr.size()) + 1;
+        freq.resize(100001, 0); // Assuming values <= 100000
+        current_answer = 0;
     }
     
-    void addQuery(int L, int R, int idx) {
-        queries.push_back({L, R, idx});
-    }
-    
-    vector<int> processQueries() {
-        sort(queries.begin(), queries.end());
-        answers.resize(queries.size());
-        
-        int curL = 0, curR = -1;
-        
-        for (auto& query : queries) {
-            int L = query.L, R = query.R, idx = query.idx;
-            
-            // Expand/shrink right pointer
-            while (curR < R) {
-                curR++;
-                add(curR);
-            }
-            while (curR > R) {
-                remove(curR);
-                curR--;
-            }
-            
-            // Expand/shrink left pointer
-            while (curL < L) {
-                remove(curL);
-                curL++;
-            }
-            while (curL > L) {
-                curL--;
-                add(curL);
-            }
-            
-            answers[idx] = currentAnswer;
-        }
-        
-        return answers;
-    }
-};
-```
-
-### 🔍 Example: Distinct Elements in Range
-
-```cpp
-class DistinctElementsMo {
-private:
-    vector<int> freq;
-    int distinctCount;
-    
-    void add(int val) {
-        freq[val]++;
-        if (freq[val] == 1) {
-            distinctCount++;
+    // Add element at index to current range
+    void add(int index) {
+        freq[arr[index]]++;
+        if (freq[arr[index]] == 1) {
+            current_answer++;
         }
     }
     
-    void remove(int val) {
-        freq[val]--;
-        if (freq[val] == 0) {
-            distinctCount--;
+    // Remove element at index from current range
+    void remove(int index) {
+        freq[arr[index]]--;
+        if (freq[arr[index]] == 0) {
+            current_answer--;
         }
     }
     
-public:
-    vector<int> solve(vector<int>& arr, vector<pair<int, int>>& queries) {
-        // Implementation using Mo's template
-        MosAlgorithm mo(arr);
+    // Get current answer
+    int getAnswer() {
+        return current_answer;
+    }
+    
+    // Process all queries
+    vector<int> processQueries(vector<pair<int, int>>& queries) {
+        vector<Query> mos_queries;
         
+        // Convert to Mo's query format
         for (int i = 0; i < queries.size(); i++) {
-            mo.addQuery(queries[i].first, queries[i].second, i);
+            mos_queries.push_back({queries[i].first, queries[i].second, i});
         }
         
-        return mo.processQueries();
-    }
-};
-```
-
----
-
-### 🔄 Mo's with Updates
-
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Mos-Algorithm-With-Updates.webp" alt="Mo's Algorithm with Updates (3D Mo's)" width="700" height="400"/>
-</div>
-
-### 🎯 Problem Extension
-
-Handle queries with updates:
-- **Type 1**: Query range [L, R]
-- **Type 2**: Update arr[idx] = val
-
-### 📊 3D Mo's Algorithm
-
-```cpp
-struct QueryWithTime {
-    int L, R, time, idx;
-    
-    bool operator<(const QueryWithTime& other) const {
-        int blockL = L / blockSize;
-        int blockR = R / blockSize;
-        int otherBlockL = other.L / blockSize;
-        int otherBlockR = other.R / blockSize;
+        // Sort queries according to Mo's algorithm
+        sort(mos_queries.begin(), mos_queries.end());
         
-        if (blockL != otherBlockL) return blockL < otherBlockL;
-        if (blockR != otherBlockR) return blockR < otherBlockR;
-        return time < other.time;
-    }
-};
-```
-
-### 💻 Implementation with Updates
-
-```cpp
-class MoWithUpdates {
-private:
-    vector<int> arr, originalArr;
-    vector<pair<int, int>> updates;  // {index, new_value}
-    vector<QueryWithTime> queries;
-    int currentTime;
-    
-    void applyUpdate(int time) {
-        if (time < updates.size()) {
-            int idx = updates[time].first;
-            int newVal = updates[time].second;
-            
-            // Remove old value, add new value if in current range
-            if (idx >= curL && idx <= curR) {
-                remove(arr[idx]);
-                add(newVal);
-            }
-            
-            arr[idx] = newVal;
-        }
-    }
-    
-    void rollbackUpdate(int time) {
-        if (time < updates.size()) {
-            int idx = updates[time].first;
-            int oldVal = originalArr[idx];
-            
-            // Remove new value, add old value if in current range
-            if (idx >= curL && idx <= curR) {
-                remove(arr[idx]);
-                add(oldVal);
-            }
-            
-            arr[idx] = oldVal;
-        }
-    }
-    
-public:
-    vector<int> processQueriesWithUpdates() {
-        sort(queries.begin(), queries.end());
         vector<int> answers(queries.size());
+        int current_left = 0, current_right = -1;
         
-        int curL = 0, curR = -1, curTime = -1;
-        
-        for (auto& query : queries) {
-            // Handle time dimension
-            while (curTime < query.time) {
-                curTime++;
-                applyUpdate(curTime);
-            }
-            while (curTime > query.time) {
-                rollbackUpdate(curTime);
-                curTime--;
+        for (const Query& query : mos_queries) {
+            int left = query.left;
+            int right = query.right;
+            
+            // Extend right boundary
+            while (current_right < right) {
+                current_right++;
+                add(current_right);
             }
             
-            // Handle L, R dimensions (same as basic Mo's)
-            // ... (expand/shrink pointers)
+            // Shrink right boundary
+            while (current_right > right) {
+                remove(current_right);
+                current_right--;
+            }
             
-            answers[query.idx] = currentAnswer;
+            // Extend left boundary
+            while (current_left > left) {
+                current_left--;
+                add(current_left);
+            }
+            
+            // Shrink left boundary
+            while (current_left < left) {
+                remove(current_left);
+                current_left++;
+            }
+            
+            answers[query.index] = getAnswer();
+        }
+        
+        return answers;
+    }
+};
+```
+
+### Distinct Elements in Range
+
+```cpp
+class DistinctElements {
+private:
+    vector<int> arr;
+    vector<int> freq;
+    int distinct_count;
+    int block_size;
+    
+public:
+    DistinctElements(vector<int>& input) : arr(input), distinct_count(0) {
+        block_size = sqrt(arr.size()) + 1;
+        
+        // Coordinate compression
+        vector<int> values = arr;
+        sort(values.begin(), values.end());
+        values.erase(unique(values.begin(), values.end()), values.end());
+        
+        for (int& x : arr) {
+            x = lower_bound(values.begin(), values.end(), x) - values.begin();
+        }
+        
+        freq.resize(values.size(), 0);
+    }
+    
+    void add(int index) {
+        if (freq[arr[index]] == 0) {
+            distinct_count++;
+        }
+        freq[arr[index]]++;
+    }
+    
+    void remove(int index) {
+        freq[arr[index]]--;
+        if (freq[arr[index]] == 0) {
+            distinct_count--;
+        }
+    }
+    
+    int getAnswer() {
+        return distinct_count;
+    }
+    
+    struct Query {
+        int left, right, index;
+        int block_size;
+        
+        Query(int l, int r, int i, int bs) : left(l), right(r), index(i), block_size(bs) {}
+        
+        bool operator<(const Query& other) const {
+            int block_left = left / block_size;
+            int block_other = other.left / block_size;
+            
+            if (block_left != block_other) {
+                return block_left < block_other;
+            }
+            
+            return (block_left & 1) ? right < other.right : right > other.right;
+        }
+    };
+    
+    vector<int> solve(vector<pair<int, int>>& queries) {
+        vector<Query> mos_queries;
+        
+        for (int i = 0; i < queries.size(); i++) {
+            mos_queries.emplace_back(queries[i].first, queries[i].second, i, block_size);
+        }
+        
+        sort(mos_queries.begin(), mos_queries.end());
+        
+        vector<int> answers(queries.size());
+        int current_left = 0, current_right = -1;
+        
+        for (const Query& query : mos_queries) {
+            // Adjust current range to match query range
+            while (current_right < query.right) {
+                current_right++;
+                add(current_right);
+            }
+            
+            while (current_right > query.right) {
+                remove(current_right);
+                current_right--;
+            }
+            
+            while (current_left > query.left) {
+                current_left--;
+                add(current_left);
+            }
+            
+            while (current_left < query.left) {
+                remove(current_left);
+                current_left++;
+            }
+            
+            answers[query.index] = getAnswer();
         }
         
         return answers;
@@ -377,499 +345,360 @@ public:
 
 ---
 
-## 🌳 Mo's on Trees
+## Optimization Techniques
 
-### 🌳 Tree to Array Conversion
-
-Use **Euler Tour** to convert tree queries to array range queries.
-
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Mos-Algorithm-Trees-Euler-Tour.webp" alt="Mo's Algorithm on Trees using Euler Tour" width="650" height="350"/>
-</div>
+### Hilbert Curve Ordering
 
 ```cpp
-class TreeMo {
+class HilbertMos {
 private:
-    vector<vector<int>> adj;
-    vector<int> eulerTour, firstOccurrence, lastOccurrence;
-    vector<bool> visited;
-    int timer;
-    
-    void dfs(int u, int parent) {
-        firstOccurrence[u] = timer;
-        eulerTour[timer++] = u;
-        
-        for (int v : adj[u]) {
-            if (v != parent) {
-                dfs(v, u);
-            }
+    static long long hilbertOrder(int x, int y, int pow, int rotate) {
+        if (pow == 0) {
+            return 0;
         }
         
-        lastOccurrence[u] = timer;
-        eulerTour[timer++] = u;
-    }
-    
-    void add(int nodeIdx) {
-        int node = eulerTour[nodeIdx];
-        visited[node] = !visited[node];
+        int hpow = 1 << (pow - 1);
+        int seg = (x < hpow) ? ((y < hpow) ? 0 : 3) : ((y < hpow) ? 1 : 2);
         
-        if (visited[node]) {
-            // Add node to current set
-            freq[color[node]]++;
-            if (freq[color[node]] == 1) {
-                distinctColors++;
-            }
-        } else {
-            // Remove node from current set
-            freq[color[node]]--;
-            if (freq[color[node]] == 0) {
-                distinctColors--;
-            }
-        }
+        seg = (seg + rotate) & 3;
+        const int rotateDelta[] = {3, 0, 0, 1};
+        int nx = x & (x ^ hpow), ny = y & (y ^ hpow);
+        int nrot = (rotate + rotateDelta[seg]) & 3;
+        long long subSquareSize = 1LL << (2 * pow - 2);
+        long long ans = seg * subSquareSize;
+        long long add = hilbertOrder(nx, ny, pow - 1, nrot);
+        ans += (seg == 1 || seg == 2) ? add : (subSquareSize - add - 1);
+        
+        return ans;
     }
     
 public:
-    TreeMo(int n) : adj(n), firstOccurrence(n), lastOccurrence(n), 
-                    visited(n, false), timer(0) {
-        eulerTour.resize(2 * n);
-    }
-    
-    void addEdge(int u, int v) {
-        adj[u].push_back(v);
-        adj[v].push_back(u);
-    }
-    
-    void buildEulerTour(int root) {
-        dfs(root, -1);
-    }
-    
-    pair<int, int> getRange(int u, int v) {
-        // Convert tree path query to array range
-        int lca = findLCA(u, v);
+    struct HilbertQuery {
+        int left, right, index;
+        long long order;
         
-        if (lca == u || lca == v) {
-            // One is ancestor of other
-            return {min(firstOccurrence[u], firstOccurrence[v]),
-                    max(firstOccurrence[u], firstOccurrence[v])};
-        } else {
-            // Need to handle LCA separately
-            return {lastOccurrence[u], firstOccurrence[v]};
-        }
-    }
-};
-```
-
-### 🔍 Path Queries on Trees
-
-```cpp
-class TreePathQueries {
-private:
-    TreeMo treeMo;
-    vector<int> color;
-    vector<int> freq;
-    int distinctColors;
-    
-public:
-    vector<int> solvePathQueries(vector<pair<int, int>>& pathQueries) {
-        vector<Query> rangeQueries;
-        
-        // Convert tree path queries to range queries
-        for (int i = 0; i < pathQueries.size(); i++) {
-            int u = pathQueries[i].first;
-            int v = pathQueries[i].second;
-            
-            auto range = treeMo.getRange(u, v);
-            rangeQueries.push_back({range.first, range.second, i});
+        HilbertQuery(int l, int r, int i) : left(l), right(r), index(i) {
+            order = hilbertOrder(l, r, 21, 0);
         }
         
-        // Apply Mo's algorithm on converted queries
-        MosAlgorithm mo(treeMo.eulerTour);
-        for (auto& query : rangeQueries) {
-            mo.addQuery(query.L, query.R, query.idx);
-        }
-        
-        return mo.processQueries();
-    }
-};
-```
-
----
-
-## ⏱️ Complexity Analysis
-
-### 📊 Time Complexity
-
-| Variant | Complexity | Explanation |
-|:--------|:-----------|:------------|
-| **Basic Mo's** | O((N+Q)√N) | √N blocks, each query moves O(√N) |
-| **Mo's with Updates** | O(N^(2/3) × Q^(2/3)) | 3D optimization |
-| **Mo's on Trees** | O((N+Q)√N) | After Euler tour conversion |
-
-### 💾 Space Complexity
-
-| Component | Space | Description |
-|:----------|:------|:------------|
-| **Original Array** | O(N) | Input data |
-| **Frequency Arrays** | O(MAX_VAL) | Value frequencies |
-| **Query Storage** | O(Q) | Query information |
-| **Euler Tour** | O(N) | For tree variant |
-| **Total** | **O(N + Q + MAX_VAL)** | Linear in input size |
-
-### 🎯 Optimization Analysis
-
-```cpp
-// Block size optimization
-int optimalBlockSize(int n, int q) {
-    // For basic Mo's: sqrt(n)
-    // For Mo's with updates: n^(2/3)
-    return sqrt(n);
-}
-
-// Query ordering optimization
-bool hilbertOrder(Query a, Query b) {
-    // Hilbert curve ordering for better cache performance
-    return hilbertValue(a.L, a.R) < hilbertValue(b.L, b.R);
-}
-```
-
----
-
-## 🎯 Applications
-
-### 🌐 Common Problem Types
-
-#### 1️⃣ Distinct Elements in Range
-```cpp
-class DistinctInRange {
-    // Count unique elements in [L, R]
-    void add(int val) { if (++freq[val] == 1) ans++; }
-    void remove(int val) { if (--freq[val] == 0) ans--; }
-};
-```
-
-#### 2️⃣ Frequency Queries
-```cpp
-class FrequencyQueries {
-    // Count occurrences of X in [L, R]
-    void add(int val) { freq[val]++; }
-    void remove(int val) { freq[val]--; }
-    int query(int x) { return freq[x]; }
-};
-```
-
-#### 3️⃣ Sum of Squares
-```cpp
-class SumOfSquares {
-    // Sum of freq[i]^2 for all i in [L, R]
-    void add(int val) {
-        ans -= freq[val] * freq[val];
-        freq[val]++;
-        ans += freq[val] * freq[val];
-    }
-    
-    void remove(int val) {
-        ans -= freq[val] * freq[val];
-        freq[val]--;
-        ans += freq[val] * freq[val];
-    }
-};
-```
-
-#### 4️⃣ XOR Queries
-```cpp
-class XORQueries {
-    // XOR of all distinct elements in [L, R]
-    void add(int val) {
-        if (freq[val] == 0) ans ^= val;
-        freq[val]++;
-    }
-    
-    void remove(int val) {
-        freq[val]--;
-        if (freq[val] == 0) ans ^= val;
-    }
-};
-```
-
----
-
-## 🚀 Optimization Techniques
-
-### 🔧 Block Size Optimization
-
-```cpp
-// Theoretical optimal block size
-int getOptimalBlockSize(int n, int q) {
-    // For basic Mo's
-    return max(1, (int)sqrt(n));
-    
-    // For Mo's with updates
-    return max(1, (int)cbrt(n * n));
-}
-```
-
-### ⚡ Hilbert Curve Ordering
-
-```cpp
-long long hilbertOrder(int x, int y) {
-    int logn = 20;  // Adjust based on coordinate range
-    long long d = 0;
-    
-    for (int s = 1 << (logn - 1); s > 0; s >>= 1) {
-        bool rx = (x & s) > 0;
-        bool ry = (y & s) > 0;
-        d = (d << 2) | ((rx ? 3 : 0) ^ (ry ? 1 : 0));
-        
-        if (!ry) {
-            if (rx) {
-                x = (1 << logn) - 1 - x;
-                y = (1 << logn) - 1 - y;
-            }
-            swap(x, y);
-        }
-    }
-    return d;
-}
-```
-
-### 🎯 Bitset Optimization
-
-```cpp
-class BitsetMo {
-private:
-    bitset<100001> present;
-    
-    void add(int val) {
-        present[val] = 1;
-    }
-    
-    void remove(int val) {
-        present[val] = 0;
-    }
-    
-    int getDistinct() {
-        return present.count();
-    }
-};
-```
-
----
-
-## 🏆 Interview Problems
-
-### ✅ Classic Problems
-
-1. **DQUERY (SPOJ)** - Distinct elements in range
-2. **FREQ2 (CodeChef)** - Frequency queries
-3. **Tree and Queries (Codeforces)** - Mo's on trees
-4. **Powerful Array (Codeforces)** - Sum of squares
-5. **XOR on Segment (Codeforces)** - XOR queries
-
-### 🔥 Sample Problem: Powerful Array
-
-```cpp
-class PowerfulArray {
-private:
-    vector<long long> freq;
-    long long currentAnswer;
-    
-    void add(int val) {
-        currentAnswer -= freq[val] * freq[val] * val;
-        freq[val]++;
-        currentAnswer += freq[val] * freq[val] * val;
-    }
-    
-    void remove(int val) {
-        currentAnswer -= freq[val] * freq[val] * val;
-        freq[val]--;
-        currentAnswer += freq[val] * freq[val] * val;
-    }
-    
-public:
-    vector<long long> solve(vector<int>& arr, vector<pair<int, int>>& queries) {
-        int maxVal = *max_element(arr.begin(), arr.end());
-        freq.resize(maxVal + 1, 0);
-        currentAnswer = 0;
-        
-        // Apply Mo's algorithm template
-        MosAlgorithm mo(arr);
-        for (int i = 0; i < queries.size(); i++) {
-            mo.addQuery(queries[i].first - 1, queries[i].second - 1, i);
-        }
-        
-        return mo.processQueries();
-    }
-};
-```
-
----
-
-## 🎓 Advanced Variants
-
-### 🔄 Mo's with Rollbacks
-
-```cpp
-class MoWithRollbacks {
-private:
-    stack<pair<int, int>> history;  // {operation_type, old_value}
-    
-    void add(int val) {
-        history.push({ADD, getCurrentState()});
-        // Perform add operation
-    }
-    
-    void rollback() {
-        auto last = history.top();
-        history.pop();
-        // Restore previous state
-    }
-};
-```
-
-### 🌳 Mo's on 2D Grid
-
-```cpp
-class Mo2D {
-private:
-    int blockSize;
-    
-    struct Query2D {
-        int x1, y1, x2, y2, idx;
-        
-        bool operator<(const Query2D& other) const {
-            int blockX = x1 / blockSize;
-            int otherBlockX = other.x1 / blockSize;
-            
-            if (blockX != otherBlockX) return blockX < otherBlockX;
-            
-            int blockY = y1 / blockSize;
-            int otherBlockY = other.y1 / blockSize;
-            
-            if (blockY != otherBlockY) return blockY < otherBlockY;
-            
-            return (blockX + blockY) & 1 ? x2 < other.x2 : x2 > other.x2;
+        bool operator<(const HilbertQuery& other) const {
+            return order < other.order;
         }
     };
 };
 ```
 
----
-
-## 💎 Best Practices
-
-### ✅ Implementation Guidelines
-
-```
-✓ Always use offline processing
-✓ Optimize block size based on constraints
-✓ Ensure O(1) or O(log N) add/remove operations
-✓ Handle edge cases (empty ranges, single elements)
-✓ Use appropriate data structures (arrays vs maps)
-✓ Consider memory constraints for large arrays
-```
-
-### 🔧 Common Optimizations
+### Alternative Sorting Strategy
 
 ```cpp
-// Fast I/O for competitive programming
-ios_base::sync_with_stdio(false);
-cin.tie(NULL);
-
-// Memory optimization
-vector<int> freq(maxVal + 1);  // Instead of map
-freq.reserve(maxVal + 1);
-
-// Cache-friendly access patterns
-sort(queries.begin(), queries.end(), hilbertOrder);
-```
-
-### 🚫 Common Pitfalls
-
-```
-✗ Using Mo's for online queries
-✗ Expensive add/remove operations
-✗ Incorrect query sorting
-✗ Not handling updates properly in 3D Mo's
-✗ Forgetting to handle LCA in tree queries
+class OptimizedMos {
+private:
+    struct Query {
+        int left, right, index;
+        int block_size;
+        
+        Query(int l, int r, int i, int bs) : left(l), right(r), index(i), block_size(bs) {}
+        
+        bool operator<(const Query& other) const {
+            int block_left = left / block_size;
+            int block_other = other.left / block_size;
+            
+            if (block_left != block_other) {
+                return block_left < block_other;
+            }
+            
+            // Alternating sort direction optimization
+            if (block_left & 1) {
+                return right < other.right;
+            } else {
+                return right > other.right;
+            }
+        }
+    };
+    
+public:
+    // This reduces constant factor by ~2x
+    static vector<int> optimizedSort(vector<pair<int, int>>& queries, int n) {
+        int block_size = max(1, (int)sqrt(n));
+        vector<Query> mos_queries;
+        
+        for (int i = 0; i < queries.size(); i++) {
+            mos_queries.emplace_back(queries[i].first, queries[i].second, i, block_size);
+        }
+        
+        sort(mos_queries.begin(), mos_queries.end());
+        
+        vector<int> order;
+        for (const Query& q : mos_queries) {
+            order.push_back(q.index);
+        }
+        
+        return order;
+    }
+};
 ```
 
 ---
 
-## 📊 When to Use Mo's Algorithm
+## Advanced Applications
 
-### ✅ Perfect Scenarios
+### Range Mode Query
 
+```cpp
+class RangeMode {
+private:
+    vector<int> arr;
+    vector<int> freq;
+    vector<int> freq_count;
+    int max_freq;
+    int block_size;
+    
+public:
+    RangeMode(vector<int>& input) : arr(input), max_freq(0) {
+        block_size = sqrt(arr.size()) + 1;
+        
+        // Coordinate compression
+        vector<int> values = arr;
+        sort(values.begin(), values.end());
+        values.erase(unique(values.begin(), values.end()), values.end());
+        
+        for (int& x : arr) {
+            x = lower_bound(values.begin(), values.end(), x) - values.begin();
+        }
+        
+        freq.resize(values.size(), 0);
+        freq_count.resize(arr.size() + 1, 0);
+    }
+    
+    void add(int index) {
+        int val = arr[index];
+        freq_count[freq[val]]--;
+        freq[val]++;
+        freq_count[freq[val]]++;
+        max_freq = max(max_freq, freq[val]);
+    }
+    
+    void remove(int index) {
+        int val = arr[index];
+        freq_count[freq[val]]--;
+        if (freq_count[max_freq] == 0 && max_freq > 0) {
+            max_freq--;
+        }
+        freq[val]--;
+        freq_count[freq[val]]++;
+    }
+    
+    int getMode() {
+        return max_freq;
+    }
+};
 ```
-✓ Offline range queries on static arrays
-✓ Complex aggregation functions
-✓ When sqrt decomposition is applicable
-✓ Competitive programming contests
-✓ Large number of queries (Q ≈ N)
-```
 
-### ❌ Avoid When
+### Range GCD Query
 
-```
-✗ Online queries required
-✗ Frequent updates to array
-✗ Simple queries (prefix sums work better)
-✗ Very few queries (Q << N)
-✗ Memory constraints are tight
+```cpp
+class RangeGCD {
+private:
+    vector<int> arr;
+    map<int, int> freq;
+    int current_gcd;
+    
+    int gcd(int a, int b) {
+        return b == 0 ? a : gcd(b, a % b);
+    }
+    
+    void updateGCD() {
+        current_gcd = 0;
+        for (auto& [val, count] : freq) {
+            if (count > 0) {
+                current_gcd = gcd(current_gcd, val);
+            }
+        }
+    }
+    
+public:
+    RangeGCD(vector<int>& input) : arr(input), current_gcd(0) {}
+    
+    void add(int index) {
+        freq[arr[index]]++;
+        if (current_gcd == 0) {
+            current_gcd = arr[index];
+        } else {
+            current_gcd = gcd(current_gcd, arr[index]);
+        }
+    }
+    
+    void remove(int index) {
+        freq[arr[index]]--;
+        if (freq[arr[index]] == 0) {
+            freq.erase(arr[index]);
+            updateGCD(); // Recalculate GCD
+        }
+    }
+    
+    int getGCD() {
+        return current_gcd;
+    }
+};
 ```
 
 ---
 
-## 🎓 Key Takeaways
+## Complexity Analysis
+
+### Time Complexity Analysis
+
+```mermaid
+flowchart TD
+    A["Mo's Algorithm Complexity"] --> B["Sorting Queries"]
+    A --> C["Processing Queries"]
+    A --> D["Total Complexity"]
+    
+    B --> E["O(Q log Q)"]
+    C --> F["O(N√N + Q√N)"]
+    D --> G["O((N + Q)√N)"]
+    
+    B --> H["Standard sorting"]
+    C --> I["√N blocks, N moves per block"]
+    D --> J["Dominated by processing"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef complexity fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef sorting fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef processing fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef total fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    class A complexity
+    class B,E,H sorting
+    class C,F,I processing
+    class D,G,J total
+```
+
+### Space Complexity
+
+- **Array Storage**: O(N) for input array
+- **Frequency Arrays**: O(N) or O(max_value)
+- **Query Storage**: O(Q) for queries
+- **Total**: O(N + Q)
+
+---
+
+## Best Practices
+
+### Implementation Guidelines
+
+```mermaid
+flowchart TD
+    A["Mo's Algorithm Best Practices"] --> B["Efficient Add/Remove"]
+    A --> C["Optimal Block Size"]
+    A --> D["Query Sorting"]
+    A --> E["Memory Management"]
+    
+    B --> F["O(1) operations preferred"]
+    C --> G["√N usually optimal"]
+    D --> H["Alternating sort direction"]
+    E --> I["Coordinate compression"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef practices fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef efficient fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef optimal fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef sorting fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef memory fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A practices
+    class B,F efficient
+    class C,G optimal
+    class D,H sorting
+    class E,I memory
+```
+
+### Common Pitfalls and Solutions
+
+```cpp
+class MosBestPractices {
+public:
+    // ❌ Wrong block size
+    void badBlockSize(int n) {
+        int block_size = n / 100; // Too small or too large
+    }
+    
+    // ✅ Optimal block size
+    void goodBlockSize(int n) {
+        int block_size = sqrt(n) + 1; // √N is optimal
+    }
+    
+    // ❌ Inefficient add/remove operations
+    void badOperations() {
+        // O(N) operations in add/remove
+        // Recalculating everything each time
+    }
+    
+    // ✅ Efficient operations
+    void goodOperations() {
+        // O(1) or O(log N) operations
+        // Incremental updates only
+    }
+    
+    // ❌ Not handling coordinate compression
+    void badCompression(vector<int>& arr) {
+        vector<int> freq(1000000); // Wastes memory
+    }
+    
+    // ✅ Proper coordinate compression
+    void goodCompression(vector<int>& arr) {
+        vector<int> values = arr;
+        sort(values.begin(), values.end());
+        values.erase(unique(values.begin(), values.end()), values.end());
+        
+        for (int& x : arr) {
+            x = lower_bound(values.begin(), values.end(), x) - values.begin();
+        }
+        
+        vector<int> freq(values.size()); // Optimal memory usage
+    }
+};
+```
+
+### Performance Comparison
+
+| Problem Type | Naive | Segment Tree | Mo's Algorithm |
+|-------------|-------|--------------|----------------|
+| **Range Sum** | O(QN) | O(Q log N) | O((N+Q)√N) |
+| **Distinct Elements** | O(QN) | Complex | O((N+Q)√N) |
+| **Range Mode** | O(QN) | Very Complex | O((N+Q)√N) |
+| **Memory Usage** | O(N) | O(N log N) | O(N) |
+
+---
+
+## Summary
+
+**Mo's Algorithm** provides an elegant solution for offline range queries with efficient add/remove operations. Key insights:
+
+### Essential Concepts
+- **Square Root Decomposition**: Divide array into √N blocks
+- **Query Sorting**: Sort by block, then by right endpoint
+- **Efficient Transitions**: Add/remove elements incrementally
+- **Offline Processing**: All queries known beforehand
+
+### Core Applications
+- **Distinct Elements**: Count unique elements in range
+- **Range Mode**: Find most frequent element
+- **Range GCD/LCM**: Mathematical range queries
+- **Complex Aggregations**: When segment trees are insufficient
+
+### Best Practices
+- Use √N block size for optimal performance
+- Implement O(1) add/remove operations when possible
+- Apply coordinate compression for large value ranges
+- Consider Hilbert curve ordering for better constants
+
+> **Master's Insight**: Mo's algorithm transforms complex range queries into simple add/remove operations, achieving optimal complexity for offline query processing through clever sorting and square root decomposition.
+
+---
 
 <div align="center">
 
-### 🌟 Master These Concepts
+**📊 Master Mo's Algorithm • Optimize Range Queries • Build Efficient Solutions**
 
-</div>
-
-```
-1. 🔄 Mo's = Offline query optimization using sqrt decomposition
-2. 📊 Block size = √N for optimal performance
-3. 🎯 Query sorting = Key to efficiency
-4. ⚡ Add/Remove = Must be fast (O(1) or O(log N))
-5. 🌳 Tree variant = Euler tour + LCA handling
-6. 🔄 Updates = 3D Mo's with time dimension
-7. 💡 Applications = Distinct elements, frequencies, aggregations
-8. 🏆 Competitive programming = Essential technique
-```
-
----
-
-## 📚 Practice Resources
-
-- **SPOJ**: DQUERY, FREQ2, KQUERY
-- **Codeforces**: Mo's algorithm tag
-- **AtCoder**: Square root decomposition problems
-- **CodeChef**: Range query contests
-
----
-
-## 🎯 Interview Tips
-
-1. **Explain Offline Nature**: Emphasize preprocessing advantage
-2. **Justify Block Size**: Explain √N optimization
-3. **Demonstrate Add/Remove**: Show O(1) operations
-4. **Handle Edge Cases**: Empty ranges, single elements
-5. **Discuss Variants**: Updates, trees, 2D extensions
-6. **Analyze Complexity**: Prove O((N+Q)√N) bound
-
----
-
-<div align="center">
-
-### 🔥 One-Line Summary
-
-**Mo's Algorithm = Offline query optimization technique using sqrt decomposition and intelligent query reordering for efficient range processing**
-
----
-
-**💻 Master Mo's, master competitive programming!**
-
-*"In the world of range queries, Mo's Algorithm transforms brute force into elegant efficiency through the power of square root decomposition."*
+*From Theory to Practice • Queries to Blocks • Understanding to Mastery*
 
 </div>

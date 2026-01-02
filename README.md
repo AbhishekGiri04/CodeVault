@@ -37,9 +37,9 @@
 
 ### 🎯 Key Features
 
-- **📚 37+ Comprehensive Guides**: Complete coverage from fundamentals to advanced topics
+- **📚 36 Comprehensive Guides**: Complete coverage from fundamentals to advanced topics
 - **💻 Multi-Language Implementation**: C++, Python, and Java solutions with detailed explanations
-- **🧠 15+ LeetCode Problems**: Real interview questions with step-by-step solutions
+- **🧠 16 LeetCode Problems**: Real interview questions with step-by-step solutions
 - **📊 Complexity Analysis**: Time and space complexity analysis for every solution
 - **🔄 Structured Learning Path**: Progressive difficulty from beginner to expert level
 - **📖 Interview Ready**: Optimized for coding interviews and competitive programming
@@ -50,10 +50,10 @@
 
 ```
 Algorithmics-Foundations/
-├── 📚 concepts/                       # Data Structures & Algorithms Theory
+├── 📚 concepts/                       # Data Structures & Algorithms Theory (36 Guides)
 │   ├── 🎯 fundamentals.md            # DSA fundamentals & complexity
 │   │
-│   ├── 📊 DATA STRUCTURES
+│   ├── 📊 DATA STRUCTURES (15 Guides)
 │   ├── 🔢 arrays.md                  # Array operations & techniques
 │   ├── 🔤 strings.md                 # String algorithms & processing
 │   ├── 🔗 linked-lists.md            # Singly, doubly, circular lists
@@ -67,8 +67,10 @@ Algorithmics-Foundations/
 │   ├── 📦 heap.md                    # Min/Max heap & priority queues
 │   ├── 🌳 tries.md                   # Trie data structure & applications
 │   ├── 🔗 disjoint-set-union.md     # Union-Find with path compression
+│   ├── 🌲 fenwick-tree.md           # Binary Indexed Tree implementation
+│   └── 🔗 heavy-light.md            # Heavy-Light Decomposition
 │   │
-│   ├── ⚡ ALGORITHMS
+│   ├── ⚡ ALGORITHMS (21 Guides)
 │   ├── 🔃 sorting.md                 # All sorting algorithms
 │   ├── 🔍 searching.md               # Binary, ternary, exponential search
 │   ├── 🧠 dynamic-programming.md     # DP patterns & optimization
@@ -82,10 +84,16 @@ Algorithmics-Foundations/
 │   ├── ⚖️ amortized-analysis.md     # Amortized complexity & performance
 │   ├── 🎨 algorithm-design.md       # Design techniques & paradigms
 │   ├── 📌 topological-dp.md         # Dynamic Programming on DAG
-│   └── ... (15+ advanced topics)
+│   ├── 🔄 topological-sort.md       # Topological sorting algorithms
+│   ├── 🌿 branch-bound.md           # Branch and bound optimization
+│   ├── 🎲 randomized.md             # Randomized algorithms
+│   ├── 🔍 binary-lifting.md         # Binary lifting technique
+│   ├── 📊 mos-algorithm.md          # Mo's algorithm for queries
+│   ├── 📈 huffman.md                # Huffman coding algorithm
+│   └── 🧩 np-completeness.md        # NP-Complete problems
 │
-├── 💻 leetcode-problems/              # Practical Problem Solutions
-│   ├── 📊 array/                     # Array-based problems
+├── 💻 leetcode-problems/              # Practical Problem Solutions (16 Problems)
+│   ├── 📊 array/ (9 problems)        # Array-based problems
 │   │   ├── leetcode-1.cpp            # Two Sum (Easy)
 │   │   ├── leetcode-33.cpp           # Search in Rotated Array (Medium)
 │   │   ├── leetcode-74.cpp           # Search 2D Matrix (Medium)
@@ -96,11 +104,11 @@ Algorithmics-Foundations/
 │   │   ├── leetcode-3623.java        # Count Trapezoids (Medium)
 │   │   └── leetcode-3625.java        # Count Trapezoids II (Hard)
 │   │
-│   ├── 🔤 string/                    # String manipulation problems
+│   ├── 🔤 string/ (2 problems)       # String manipulation problems
 │   │   ├── leetcode-344.cpp          # Reverse String (Easy)
 │   │   └── leetcode-2211.py          # Count Collisions (Medium)
 │   │
-│   └── 🧮 math/                      # Mathematical & number problems
+│   └── 🧮 math/ (5 problems)         # Mathematical & number problems
 │       ├── leetcode-7.cpp            # Reverse Integer (Medium)
 │       ├── leetcode-9.cpp            # Palindrome Number (Easy)
 │       ├── leetcode-29.cpp           # Divide Two Integers (Medium)
@@ -212,9 +220,9 @@ find . -name "leetcode-*.cpp" -o -name "leetcode-*.py" -o -name "leetcode-*.java
 
 | 🎯 Feature | 📊 Details | 🚀 Benefit |
 |------------|------------|-------------|
-| **📚 37+ Complete Guides** | Fundamentals to advanced topics | Comprehensive DSA mastery |
+| **📚 36 Complete Guides** | Fundamentals to advanced topics | Comprehensive DSA mastery |
 | **💻 Multi-Language Solutions** | C++, Python, Java implementations | Language flexibility & comparison |
-| **🧠 15+ LeetCode Problems** | Easy to Hard difficulty levels | Interview preparation |
+| **🧠 16 LeetCode Problems** | Easy to Hard difficulty levels | Interview preparation |
 | **📊 Complexity Analysis** | Time & space analysis for every solution | Optimization skills |
 | **🔄 Progressive Learning** | Structured 12-week roadmap | Systematic skill development |
 | **📖 Interview Focus** | Real coding interview questions | Job readiness |

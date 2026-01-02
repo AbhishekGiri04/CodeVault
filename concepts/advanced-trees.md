@@ -193,10 +193,6 @@ flowchart LR
 <img src="https://ik.imagekit.io/upgrad1/abroad-images/imageCompo/images/__visual_selection30GN4F.png?pr-true" alt="Tree Structures Visualization" width="600" height="350"/>
 </div>
 
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Tree-Applications.webp" alt="Tree Applications" width="650" height="350"/>
-</div>
-
 ### 🌐 Real-World Applications
 
 ```mermaid

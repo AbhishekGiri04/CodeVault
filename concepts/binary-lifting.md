@@ -1,252 +1,204 @@
-# 🚀 Binary Lifting & LCA — Complete Professional Guide
+# Binary Lifting — Complete Professional Guide
 
 <div align="center">
 
-![Binary Lifting & LCA](https://img.shields.io/badge/Binary_Lifting_LCA-Tree_Optimization-4ECDC4?style=for-the-badge&logo=tree&logoColor=white)
+![Binary Lifting](https://img.shields.io/badge/Binary_Lifting-Tree_Algorithms-FF6B6B?style=for-the-badge&logo=tree&logoColor=white)
 ![Difficulty](https://img.shields.io/badge/Difficulty-Advanced-red?style=for-the-badge)
-![Importance](https://img.shields.io/badge/Importance-Critical-red?style=for-the-badge)
+![Importance](https://img.shields.io/badge/Importance-High-darkred?style=for-the-badge)
 
-*Master efficient tree traversal and ancestor queries for competitive programming and advanced tree algorithms*
+**Master efficient tree traversal and ancestor queries with logarithmic complexity**
 
 </div>
 
 ---
 
-## 📑 Table of Contents
+## Table of Contents
 
-1. [Introduction](#-introduction)
-2. [LCA Fundamentals](#-lca-fundamentals)
-3. [Binary Lifting Concept](#-binary-lifting-concept)
-4. [Implementation](#-implementation)
-5. [Query Operations](#-query-operations)
-6. [Advanced Applications](#-advanced-applications)
-7. [Optimization Techniques](#-optimization-techniques)
-8. [Comparison with Other Methods](#-comparison-with-other-methods)
-9. [Interview Problems](#-interview-problems)
-10. [Complexity Analysis](#-complexity-analysis)
-11. [Real-World Applications](#-real-world-applications)
-12. [Best Practices](#-best-practices)
+1. [Introduction](#introduction)
+2. [Binary Lifting Concept](#binary-lifting-concept)
+3. [Lowest Common Ancestor](#lowest-common-ancestor)
+4. [Implementation](#implementation)
+5. [Advanced Applications](#advanced-applications)
+6. [Best Practices](#best-practices)
 
 ---
 
-## 🎯 Introduction
-
-**Binary Lifting** is a preprocessing technique that enables efficient ancestor queries in trees by storing powers-of-2 ancestors. Combined with **LCA (Lowest Common Ancestor)** algorithms, it provides O(log n) solutions for tree traversal problems.
+## Introduction
 
 <div align="center">
-<img src="https://miro.medium.com/v2/resize:fit:1400/1*9FbVkz1HVa1kh4YBnD8sqA.png" alt="Binary Lifting Concept" width="700" height="450"/>
+<img src="https://camo.githubusercontent.com/89f56dd105dee508f346962f3b6d76943d09eabfc2f2f3a79c8cca7e2e180377/68747470733a2f2f6d69726f2e6d656469756d2e636f6d2f76322f726573697a653a6669743a313430302f312a394662566b7a31485661316b683459426e44387371412e706e67" alt="Binary Lifting Concept" width="700" height="400"/>
 </div>
 
-### 🔑 Key Innovation
+**Binary Lifting** is a powerful technique used to efficiently answer ancestor queries in trees. It preprocesses the tree to enable O(log n) queries for finding the k-th ancestor of any node or the Lowest Common Ancestor (LCA) of two nodes.
 
-```mermaid
-flowchart LR
-    A["Naive Ancestor Query"] --> B["O(n) Time"]
-    C["Binary Lifting"] --> D["O(log n) Time"]
-    
-    B --> E["Linear traversal"]
-    B --> F["Inefficient"]
-    
-    D --> G["Logarithmic jumps"]
-    D --> H["Exponential speedup"]
-    
-    I["Improvement"] --> J["From linear to logarithmic!"]
-    
-    style A fill:#ffcdd2
-    style C fill:#c8e6c9
-    style I fill:#fff3e0
-```
-
-```
-Naive Ancestor Query: O(n)
-Binary Lifting: O(log n)
-
-Speedup: From linear to logarithmic!
-```
-
-### 💡 Core Applications
-
-```mermaid
-mindmap
-  root))🚀 Binary Lifting Applications((
-    🌳 LCA Queries
-      Find common ancestors
-      Fast query processing
-      Tree path problems
-      Genealogy systems
-    🔢 K-th Ancestor
-      Jump k steps up
-      Binary representation
-      Efficient traversal
-      Path compression
-    📍 Distance Queries
-      Calculate path lengths
-      Tree distances
-      Shortest paths
-      Network analysis
-    📊 Tree DP
-      Dynamic programming
-      Optimization problems
-      State transitions
-      Recursive solutions
-
-%%{init: {'theme':'base', 'themeVariables': {'primaryColor':'#2E86AB', 'primaryTextColor':'#ffffff', 'primaryBorderColor':'#ffffff', 'lineColor':'#4A4A4A', 'secondaryColor':'#A23B72', 'tertiaryColor':'#F18F01', 'background':'#C73E1D', 'mainBkg':'#2E86AB', 'secondBkg':'#A23B72', 'tertiaryBkg':'#F18F01'}}}%%
-```
-
-- **LCA Queries**: Find common ancestors efficiently
-- **K-th Ancestor**: Jump k steps up in O(log n)
-- **Distance Queries**: Calculate path lengths
-- **Tree DP**: Optimize dynamic programming on trees
-
----
-
-## 🌳 LCA Fundamentals
-
-### 🎯 Definition
-
-**Lowest Common Ancestor (LCA)** of two nodes u and v is the deepest node that is an ancestor of both u and v.
-
-<div align="center">
-<img src="https://scaler.com/topics/images/lowest-common-ancestor.webp" alt="Lowest Common Ancestor" width="600" height="400"/>
-</div>
-
-### 📊 Visual Example
-
-```
-        1
-      /   \
-     2     3
-    / \   / \
-   4   5 6   7
-  /
- 8
-
-LCA(4, 5) = 2
-LCA(4, 6) = 1  
-LCA(8, 7) = 1
-LCA(4, 8) = 4
-```
-
-### 🔍 Properties
-
-```
-✓ LCA(u, u) = u
-✓ LCA(u, v) = LCA(v, u)
-✓ If u is ancestor of v, then LCA(u, v) = u
-✓ LCA is unique for any pair of nodes
-```
-
----
-
-## 🚀 Binary Lifting Concept
-
-### 🎯 Core Idea
+### Why Binary Lifting?
 
 ```mermaid
 flowchart TD
-    A["Binary Lifting Concept"] --> B["Store 2^i-th Ancestors"]
-    B --> C["up[v][0] = parent"]
-    B --> D["up[v][1] = grandparent"]
-    B --> E["up[v][2] = great-great-grandparent"]
-    B --> F["up[v][i] = 2^i steps above"]
+    A["Tree Query Problems"] --> B["Naive Approach"]
+    A --> C["Binary Lifting"]
     
-    G["Key Insight"] --> H["Any number k = sum of powers of 2"]
-    H --> I["k = 2^i1 + 2^i2 + ... + 2^ij"]
-    I --> J["Combine jumps efficiently"]
+    B --> D["O(n) per query"]
+    B --> E["Traverse step by step"]
+    B --> F["Inefficient for multiple queries"]
     
-    style A fill:#e3f2fd
-    style G fill:#fff3e0
-    style J fill:#c8e6c9
-```
-
-Store **2^i-th ancestor** for each node and each power i.
-
-```cpp
-up[v][i] = 2^i-th ancestor of node v
-
-up[v][0] = parent of v (2^0 = 1 step)
-up[v][1] = grandparent of v (2^1 = 2 steps)
-up[v][2] = great-great-grandparent (2^2 = 4 steps)
-...
-up[v][i] = 2^i steps above v
-```
-
-### 📊 Preprocessing Table
-
-```
-Node:  1  2  3  4  5  6  7  8
-up[i][0]: -1 1  1  2  2  3  3  4
-up[i][1]: -1 -1 -1 1  1  1  1  2
-up[i][2]: -1 -1 -1 -1 -1 -1 -1 1
-```
-
-### 💡 Key Insight
-
-```mermaid
-flowchart LR
-    A["Number k"] --> B["Binary Representation"]
-    B --> C["k = 2^i1 + 2^i2 + ... + 2^ij"]
-    C --> D["Jump k Steps"]
-    D --> E["Combine jumps of 2^i1, 2^i2, etc."]
+    C --> G["O(log n) per query"]
+    C --> H["Jump in powers of 2"]
+    C --> I["Efficient preprocessing"]
     
-    F["Example: k = 13"] --> G["13 = 8 + 4 + 1"]
-    G --> H["13 = 2^3 + 2^2 + 2^0"]
-    H --> I["Jump 8, then 4, then 1"]
+    J["Applications"] --> K["LCA Queries"]
+    J --> L["K-th Ancestor"]
+    J --> M["Path Queries"]
+    J --> N["Tree DP Optimization"]
     
-    style A fill:#e3f2fd
-    style F fill:#fff3e0
-    style I fill:#c8e6c9
-```
-
-Any number k can be represented as sum of powers of 2:
-```
-k = 2^i1 + 2^i2 + ... + 2^ij
-
-To jump k steps: combine jumps of 2^i1, 2^i2, etc.
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef naive fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    classDef efficient fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef applications fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    class B,D,E,F naive
+    class C,G,H,I efficient
+    class J,K,L,M,N applications
 ```
 
 ---
 
-## 💻 Implementation
+## Binary Lifting Concept
 
-### 🔧 Complete Binary Lifting Class
+### Core Idea
+
+```mermaid
+flowchart TD
+    A["Binary Lifting Principle"] --> B["Precompute Ancestors"]
+    A --> C["Powers of 2 Jumps"]
+    A --> D["Binary Representation"]
+    
+    B --> E["up[node][i] = 2^i-th ancestor"]
+    C --> F["Jump 1, 2, 4, 8, 16... steps"]
+    D --> G["Any number as sum of powers of 2"]
+    
+    H["Example: Find 13th ancestor"] --> I["13 = 8 + 4 + 1"]
+    I --> J["Jump 8, then 4, then 1"]
+    
+    K["Preprocessing"] --> L["O(n log n) time"]
+    K --> M["O(n log n) space"]
+    
+    N["Query"] --> O["O(log n) time"]
+    N --> P["O(1) space"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef concept fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef example fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef complexity fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    class A,B,C,D,E,F,G concept
+    class H,I,J example
+    class K,L,M,N,O,P complexity
+```
+
+### Binary Lifting Table
 
 ```cpp
-class BinaryLifting {
+class BinaryLiftingBasics {
+public:
+    void demonstrateConcept() {
+        cout << "Binary Lifting Table Construction:" << endl;
+        cout << "=================================" << endl;
+        
+        cout << "For each node i and power j:" << endl;
+        cout << "up[i][j] = 2^j-th ancestor of node i" << endl;
+        cout << endl;
+        
+        cout << "Recurrence relation:" << endl;
+        cout << "up[i][0] = parent[i]" << endl;
+        cout << "up[i][j] = up[up[i][j-1]][j-1]" << endl;
+        cout << endl;
+        
+        cout << "Example for finding 13th ancestor:" << endl;
+        cout << "13 in binary = 1101" << endl;
+        cout << "13 = 8 + 4 + 1 = 2^3 + 2^2 + 2^0" << endl;
+        cout << "Jump: 8 steps -> 4 steps -> 1 step" << endl;
+    }
+    
+    void showBinaryDecomposition(int k) {
+        cout << "Finding " << k << "th ancestor:" << endl;
+        cout << k << " in binary: ";
+        
+        vector<int> powers;
+        for (int i = 0; i < 20; i++) {
+            if (k & (1 << i)) {
+                powers.push_back(i);
+                cout << "1";
+            } else {
+                cout << "0";
+            }
+        }
+        reverse(powers.begin(), powers.end());
+        
+        cout << endl << "Powers of 2: ";
+        for (int p : powers) {
+            cout << "2^" << p << " ";
+        }
+        cout << endl;
+    }
+};
+```
+
+---
+
+## Lowest Common Ancestor
+
+<div align="center">
+<img src="https://camo.githubusercontent.com/df873da3049faab9994d5cc64ee85ff0b0b4f436e8d343e37b0ddbc0a01cb4e1/68747470733a2f2f7363616c65722e636f6d2f746f706963732f696d616765732f6c6f776573742d636f6d6d6f6e2d616e636573746f722e77656270" alt="Lowest Common Ancestor" width="650" height="400"/>
+</div>
+
+### LCA Algorithm Flow
+
+```mermaid
+flowchart TD
+    A["LCA Query (u, v)"] --> B["Check if same level"]
+    B --> C{"depth[u] == depth[v]?"}
+    C -->|No| D["Bring to same level"]
+    C -->|Yes| E["Find LCA"]
+    
+    D --> F["Lift deeper node"]
+    F --> G["Use binary lifting"]
+    G --> E
+    
+    E --> H["Binary search for LCA"]
+    H --> I["Check if up[u][i] == up[v][i]"]
+    I --> J{"Same ancestor?"}
+    J -->|Yes| K["Go to smaller jump"]
+    J -->|No| L["Make the jump"]
+    L --> M["Update u and v"]
+    M --> H
+    K --> N["Return parent of final position"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef input fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef process fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef decision fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef result fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    class A,B input
+    class D,F,G,H,L,M process
+    class C,I,J decision
+    class E,K,N result
+```
+
+### LCA Implementation
+
+```cpp
+class LCA_BinaryLifting {
 private:
     int n, LOG;
-    vector<vector<int>> adj;
     vector<vector<int>> up;
     vector<int> depth;
-    
-    void dfs(int v, int parent, int d) {
-        up[v][0] = parent;
-        depth[v] = d;
-        
-        for (int u : adj[v]) {
-            if (u != parent) {
-                dfs(u, v, d + 1);
-            }
-        }
-    }
-    
-    void preprocess() {
-        // Fill up table using DP
-        for (int i = 1; i < LOG; i++) {
-            for (int v = 0; v < n; v++) {
-                if (up[v][i-1] != -1) {
-                    up[v][i] = up[up[v][i-1]][i-1];
-                }
-            }
-        }
-    }
+    vector<vector<int>> adj;
     
 public:
-    BinaryLifting(int nodes) : n(nodes) {
+    LCA_BinaryLifting(int nodes) : n(nodes) {
         LOG = ceil(log2(n)) + 1;
-        adj.resize(n);
         up.assign(n, vector<int>(LOG, -1));
-        depth.resize(n);
+        depth.assign(n, 0);
+        adj.resize(n);
     }
     
     void addEdge(int u, int v) {
@@ -254,16 +206,51 @@ public:
         adj[v].push_back(u);
     }
     
-    void build(int root = 0) {
-        dfs(root, -1, 0);
-        preprocess();
+    void preprocess(int root = 0) {
+        // DFS to set up parent and depth
+        dfs(root, -1);
+        
+        // Fill binary lifting table
+        for (int j = 1; j < LOG; j++) {
+            for (int i = 0; i < n; i++) {
+                if (up[i][j-1] != -1) {
+                    up[i][j] = up[up[i][j-1]][j-1];
+                }
+            }
+        }
+    }
+    
+    int lca(int u, int v) {
+        // Make u the deeper node
+        if (depth[u] < depth[v]) swap(u, v);
+        
+        // Bring u to the same level as v
+        int diff = depth[u] - depth[v];
+        for (int i = 0; i < LOG; i++) {
+            if ((diff >> i) & 1) {
+                u = up[u][i];
+            }
+        }
+        
+        // If v is ancestor of u
+        if (u == v) return u;
+        
+        // Binary search for LCA
+        for (int i = LOG - 1; i >= 0; i--) {
+            if (up[u][i] != up[v][i]) {
+                u = up[u][i];
+                v = up[v][i];
+            }
+        }
+        
+        return up[u][0]; // Parent of current position
     }
     
     int kthAncestor(int node, int k) {
         if (depth[node] < k) return -1;
         
         for (int i = 0; i < LOG; i++) {
-            if (k & (1 << i)) {
+            if ((k >> i) & 1) {
                 node = up[node][i];
                 if (node == -1) return -1;
             }
@@ -271,11 +258,82 @@ public:
         return node;
     }
     
+    int distance(int u, int v) {
+        return depth[u] + depth[v] - 2 * depth[lca(u, v)];
+    }
+    
+private:
+    void dfs(int node, int parent) {
+        up[node][0] = parent;
+        
+        for (int child : adj[node]) {
+            if (child != parent) {
+                depth[child] = depth[node] + 1;
+                dfs(child, node);
+            }
+        }
+    }
+};
+```
+
+---
+
+## Implementation
+
+### Complete Binary Lifting Class
+
+```cpp
+class BinaryLifting {
+private:
+    int n, LOG;
+    vector<vector<int>> up;
+    vector<int> depth;
+    vector<vector<int>> tree;
+    
+public:
+    BinaryLifting(int nodes) : n(nodes) {
+        LOG = ceil(log2(n)) + 1;
+        up.assign(n, vector<int>(LOG, -1));
+        depth.assign(n, 0);
+        tree.resize(n);
+    }
+    
+    void addEdge(int u, int v) {
+        tree[u].push_back(v);
+        tree[v].push_back(u);
+    }
+    
+    void build(int root = 0) {
+        dfs(root, -1);
+        
+        // Build binary lifting table
+        for (int j = 1; j < LOG; j++) {
+            for (int i = 0; i < n; i++) {
+                if (up[i][j-1] != -1) {
+                    up[i][j] = up[up[i][j-1]][j-1];
+                }
+            }
+        }
+    }
+    
+    // Find k-th ancestor of node
+    int kthAncestor(int node, int k) {
+        if (depth[node] < k) return -1;
+        
+        for (int i = 0; i < LOG; i++) {
+            if ((k >> i) & 1) {
+                node = up[node][i];
+                if (node == -1) return -1;
+            }
+        }
+        return node;
+    }
+    
+    // Find LCA of two nodes
     int lca(int u, int v) {
-        // Make u deeper than v
         if (depth[u] < depth[v]) swap(u, v);
         
-        // Bring u to same level as v
+        // Bring to same level
         int diff = depth[u] - depth[v];
         u = kthAncestor(u, diff);
         
@@ -283,7 +341,7 @@ public:
         
         // Binary search for LCA
         for (int i = LOG - 1; i >= 0; i--) {
-            if (up[u][i] != -1 && up[u][i] != up[v][i]) {
+            if (up[u][i] != up[v][i]) {
                 u = up[u][i];
                 v = up[v][i];
             }
@@ -292,596 +350,421 @@ public:
         return up[u][0];
     }
     
+    // Distance between two nodes
     int distance(int u, int v) {
         return depth[u] + depth[v] - 2 * depth[lca(u, v)];
     }
     
+    // Check if u is ancestor of v
     bool isAncestor(int u, int v) {
         return lca(u, v) == u;
     }
-};
-```
-
-### 🔧 Step-by-Step Preprocessing
-
-```cpp
-void buildBinaryLifting(int root) {
-    // Step 1: DFS to compute depths and direct parents
-    function<void(int, int, int)> dfs = [&](int v, int parent, int d) {
-        up[v][0] = parent;
-        depth[v] = d;
+    
+    // Find node on path from u to v at distance k from u
+    int nodeOnPath(int u, int v, int k) {
+        int l = lca(u, v);
+        int dist_u_l = depth[u] - depth[l];
+        int dist_v_l = depth[v] - depth[l];
         
-        for (int u : adj[v]) {
-            if (u != parent) {
-                dfs(u, v, d + 1);
+        if (k <= dist_u_l) {
+            return kthAncestor(u, k);
+        } else if (k <= dist_u_l + dist_v_l) {
+            return kthAncestor(v, dist_u_l + dist_v_l - k);
+        } else {
+            return -1; // k is beyond the path
+        }
+    }
+    
+private:
+    void dfs(int node, int parent) {
+        up[node][0] = parent;
+        
+        for (int child : tree[node]) {
+            if (child != parent) {
+                depth[child] = depth[node] + 1;
+                dfs(child, node);
             }
         }
-    };
-    
-    dfs(root, -1, 0);
-    
-    // Step 2: Fill binary lifting table
-    for (int i = 1; i < LOG; i++) {
-        for (int v = 0; v < n; v++) {
-            if (up[v][i-1] != -1) {
-                up[v][i] = up[up[v][i-1]][i-1];
-            }
-        }
-    }
-}
-```
-
----
-
-## 🔍 Query Operations
-
-### 🎯 K-th Ancestor Query
-
-```cpp
-int kthAncestor(int node, int k) {
-    // Check if k-th ancestor exists
-    if (depth[node] < k) return -1;
-    
-    // Use binary representation of k
-    for (int i = 0; i < LOG; i++) {
-        if (k & (1 << i)) {
-            node = up[node][i];
-            if (node == -1) return -1;
-        }
-    }
-    return node;
-}
-```
-
-**Example**: Find 5th ancestor
-```
-k = 5 = 101₂ = 4 + 1
-Jump 4 steps: node = up[node][2]
-Jump 1 step: node = up[node][0]
-```
-
-### 🎯 LCA Query Algorithm
-
-```cpp
-int lca(int u, int v) {
-    // Step 1: Make u the deeper node
-    if (depth[u] < depth[v]) swap(u, v);
-    
-    // Step 2: Bring u to same level as v
-    int diff = depth[u] - depth[v];
-    for (int i = 0; i < LOG; i++) {
-        if (diff & (1 << i)) {
-            u = up[u][i];
-        }
-    }
-    
-    // Step 3: If same node, return it
-    if (u == v) return u;
-    
-    // Step 4: Binary search for LCA
-    for (int i = LOG - 1; i >= 0; i--) {
-        if (up[u][i] != up[v][i]) {
-            u = up[u][i];
-            v = up[v][i];
-        }
-    }
-    
-    // Parent of current position is LCA
-    return up[u][0];
-}
-```
-
-### 🎯 Distance Between Nodes
-
-```cpp
-int distance(int u, int v) {
-    int lca_node = lca(u, v);
-    return depth[u] + depth[v] - 2 * depth[lca_node];
-}
-```
-
----
-
-## 🎓 Advanced Applications
-
-### 🔥 Path Queries
-
-```cpp
-class PathQueries {
-private:
-    BinaryLifting bl;
-    vector<long long> nodeValue;
-    
-public:
-    long long pathSum(int u, int v) {
-        int lca_node = bl.lca(u, v);
-        long long sum = 0;
-        
-        // Sum from u to LCA
-        int curr = u;
-        while (curr != lca_node) {
-            sum += nodeValue[curr];
-            curr = bl.kthAncestor(curr, 1);
-        }
-        
-        // Sum from v to LCA
-        curr = v;
-        while (curr != lca_node) {
-            sum += nodeValue[curr];
-            curr = bl.kthAncestor(curr, 1);
-        }
-        
-        // Add LCA value
-        sum += nodeValue[lca_node];
-        
-        return sum;
-    }
-    
-    long long pathMax(int u, int v) {
-        // Similar implementation for maximum value on path
     }
 };
 ```
 
-### 🌳 Tree DP with Binary Lifting
+### Usage Example
 
 ```cpp
-class TreeDP {
-private:
-    BinaryLifting bl;
-    vector<vector<long long>> dp;  // dp[node][k] = answer for subtree rooted at node with parameter k
-    
+class BinaryLiftingDemo {
 public:
-    void computeDP() {
-        function<void(int, int)> dfs = [&](int v, int parent) {
-            // Base case
-            dp[v][0] = nodeValue[v];
-            
-            for (int u : adj[v]) {
-                if (u != parent) {
-                    dfs(u, v);
-                    
-                    // Combine results from children
-                    for (int k = 1; k < MAX_K; k++) {
-                        dp[v][k] = max(dp[v][k], dp[u][k-1] + nodeValue[v]);
-                    }
-                }
-            }
-        };
+    void demonstrateUsage() {
+        // Create tree: 0-1-2-3-4
+        //              |
+        //              5-6
+        BinaryLifting bl(7);
         
-        dfs(0, -1);
-    }
-    
-    long long querySubtree(int node, int k) {
-        return dp[node][k];
-    }
-};
-```
-
-### 🎯 Heavy-Light Decomposition Integration
-
-```cpp
-class HLDWithBinaryLifting {
-private:
-    BinaryLifting bl;
-    // HLD components...
-    
-public:
-    int lcaHLD(int u, int v) {
-        // Use binary lifting for LCA in HLD
-        return bl.lca(u, v);
-    }
-    
-    long long pathQuery(int u, int v) {
-        int lca_node = bl.lca(u, v);
+        bl.addEdge(0, 1);
+        bl.addEdge(1, 2);
+        bl.addEdge(2, 3);
+        bl.addEdge(3, 4);
+        bl.addEdge(0, 5);
+        bl.addEdge(5, 6);
         
-        // Query path u -> lca using HLD
-        long long result = 0;
-        result += queryPathToAncestor(u, lca_node);
-        result += queryPathToAncestor(v, lca_node);
-        result -= nodeValue[lca_node];  // Remove double counting
+        bl.build(0); // Root at node 0
         
-        return result;
+        cout << "Binary Lifting Demo:" << endl;
+        cout << "===================" << endl;
+        
+        // K-th ancestor queries
+        cout << "2nd ancestor of node 4: " << bl.kthAncestor(4, 2) << endl; // Should be 2
+        cout << "3rd ancestor of node 6: " << bl.kthAncestor(6, 3) << endl; // Should be -1
+        
+        // LCA queries
+        cout << "LCA of nodes 4 and 6: " << bl.lca(4, 6) << endl; // Should be 0
+        cout << "LCA of nodes 3 and 4: " << bl.lca(3, 4) << endl; // Should be 3
+        
+        // Distance queries
+        cout << "Distance between 4 and 6: " << bl.distance(4, 6) << endl; // Should be 6
+        cout << "Distance between 2 and 3: " << bl.distance(2, 3) << endl; // Should be 1
+        
+        // Path queries
+        cout << "Node at distance 2 from 4 towards 6: " << bl.nodeOnPath(4, 6, 2) << endl;
     }
 };
 ```
 
 ---
 
-## ⚡ Optimization Techniques
+## Advanced Applications
 
-### 🔧 Memory Optimization
-
-```cpp
-class CompactBinaryLifting {
-private:
-    // Use smaller data types when possible
-    vector<vector<uint16_t>> up;  // If n < 65536
-    vector<uint16_t> depth;
-    
-public:
-    // Reduce LOG based on actual tree height
-    void optimizeLog() {
-        int maxDepth = *max_element(depth.begin(), depth.end());
-        LOG = ceil(log2(maxDepth)) + 1;
-    }
-};
-```
-
-### ⚡ Cache Optimization
-
-```cpp
-class CacheOptimizedBL {
-private:
-    // Store frequently accessed ancestors separately
-    vector<int> parent, grandparent;
-    vector<vector<int>> up;
-    
-public:
-    int fastLCA(int u, int v) {
-        // Quick checks for common cases
-        if (parent[u] == parent[v]) return parent[u];
-        if (grandparent[u] == grandparent[v]) return grandparent[u];
-        
-        // Fall back to full binary lifting
-        return slowLCA(u, v);
-    }
-};
-```
-
----
-
-## 🆚 Comparison with Other Methods
-
-### 📊 LCA Methods Comparison
-
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Preprocessing</th>
-<th>Query Time</th>
-<th>Space</th>
-<th>Implementation</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Naive DFS</strong></td>
-<td>O(1)</td>
-<td>O(n)</td>
-<td>O(n)</td>
-<td>Very Easy</td>
-</tr>
-<tr>
-<td><strong>Binary Lifting</strong></td>
-<td>O(n log n)</td>
-<td>O(log n)</td>
-<td>O(n log n)</td>
-<td>Easy</td>
-</tr>
-<tr>
-<td><strong>Euler Tour + RMQ</strong></td>
-<td>O(n log n)</td>
-<td>O(1)</td>
-<td>O(n)</td>
-<td>Complex</td>
-</tr>
-<tr>
-<td><strong>Tarjan's Offline</strong></td>
-<td>O(n α(n))</td>
-<td>O(1)</td>
-<td>O(n)</td>
-<td>Complex</td>
-</tr>
-</tbody>
-</table>
-
-### 🎯 When to Use Binary Lifting
-
-```
-✅ Use Binary Lifting when:
-- Need k-th ancestor queries
-- Online LCA queries required
-- Implementation simplicity preferred
-- Memory is not extremely constrained
-
-❌ Avoid when:
-- Only few LCA queries (use naive)
-- Need O(1) LCA with tight memory
-- Offline queries possible (use Tarjan's)
-```
-
----
-
-## 🏆 Interview Problems
-
-### ✅ Common Problem Types
-
-1. **LCA Queries** - Basic ancestor finding
-2. **K-th Ancestor** - Jump queries in trees
-3. **Distance Queries** - Path lengths between nodes
-4. **Path Queries** - Sum/Max/Min on tree paths
-5. **Tree DP** - Dynamic programming with ancestor queries
-
-### 🔥 Sample Problem: Tree Path Queries
+### Tree Path Queries
 
 ```cpp
 class TreePathQueries {
 private:
     BinaryLifting bl;
     vector<long long> values;
+    vector<long long> prefixSum;
     
 public:
-    TreePathQueries(vector<vector<int>>& tree, vector<long long>& nodeValues) 
-        : bl(tree.size()), values(nodeValues) {
+    TreePathQueries(int n) : bl(n), values(n), prefixSum(n) {}
+    
+    void addEdge(int u, int v) {
+        bl.addEdge(u, v);
+    }
+    
+    void setValue(int node, long long val) {
+        values[node] = val;
+    }
+    
+    void build(int root = 0) {
+        bl.build(root);
+        computePrefixSums(root, -1, 0);
+    }
+    
+    // Sum of values on path from u to v
+    long long pathSum(int u, int v) {
+        int l = bl.lca(u, v);
+        return prefixSum[u] + prefixSum[v] - 2 * prefixSum[l] + values[l];
+    }
+    
+    // Maximum value on path from u to v
+    long long pathMax(int u, int v) {
+        long long maxVal = LLONG_MIN;
         
-        for (int i = 0; i < tree.size(); i++) {
-            for (int j : tree[i]) {
-                bl.addEdge(i, j);
+        // Path from u to lca
+        int curr = u;
+        int l = bl.lca(u, v);
+        
+        while (curr != l) {
+            maxVal = max(maxVal, values[curr]);
+            curr = bl.kthAncestor(curr, 1);
+        }
+        
+        // Path from v to lca
+        curr = v;
+        while (curr != l) {
+            maxVal = max(maxVal, values[curr]);
+            curr = bl.kthAncestor(curr, 1);
+        }
+        
+        maxVal = max(maxVal, values[l]);
+        return maxVal;
+    }
+    
+private:
+    void computePrefixSums(int node, int parent, long long sum) {
+        sum += values[node];
+        prefixSum[node] = sum;
+        
+        for (int child : bl.tree[node]) {
+            if (child != parent) {
+                computePrefixSums(child, node, sum);
             }
         }
-        bl.build(0);
-    }
-    
-    long long pathSum(int u, int v) {
-        int lca_node = bl.lca(u, v);
-        long long sum = values[lca_node];
-        
-        // Add path from u to lca (excluding lca)
-        int curr = u;
-        while (curr != lca_node) {
-            sum += values[curr];
-            curr = bl.kthAncestor(curr, 1);
-        }
-        
-        // Add path from v to lca (excluding lca)
-        curr = v;
-        while (curr != lca_node) {
-            sum += values[curr];
-            curr = bl.kthAncestor(curr, 1);
-        }
-        
-        return sum;
-    }
-    
-    int kthNodeOnPath(int u, int v, int k) {
-        int lca_node = bl.lca(u, v);
-        int distToLCA = bl.distance(u, lca_node);
-        
-        if (k <= distToLCA) {
-            return bl.kthAncestor(u, k);
-        } else {
-            int remaining = bl.distance(u, v) - k;
-            return bl.kthAncestor(v, remaining);
-        }
     }
 };
 ```
 
-### 🎯 Usage Example
+### Heavy-Light Decomposition Integration
 
 ```cpp
-int main() {
-    int n = 7;
-    vector<vector<int>> tree(n);
-    vector<long long> values = {1, 2, 3, 4, 5, 6, 7};
-    
-    // Build tree
-    tree[0] = {1, 2};
-    tree[1] = {0, 3, 4};
-    tree[2] = {0, 5, 6};
-    // ... add more edges
-    
-    TreePathQueries tpq(tree, values);
-    
-    // Query path sum from node 3 to node 6
-    cout << tpq.pathSum(3, 6) << endl;
-    
-    // Find 2nd node on path from 3 to 6
-    cout << tpq.kthNodeOnPath(3, 6, 2) << endl;
-    
-    return 0;
-}
-```
-
----
-
-## ⏱️ Complexity Analysis
-
-### 📊 Time Complexity
-
-| Operation | Complexity | Explanation |
-|:----------|:-----------|:------------|
-| **Preprocessing** | O(n log n) | Fill up table for all nodes |
-| **LCA Query** | O(log n) | Binary search approach |
-| **K-th Ancestor** | O(log n) | Binary representation of k |
-| **Distance Query** | O(log n) | Uses LCA internally |
-| **Path Query** | O(log n + path_length) | Depends on implementation |
-
-### 💾 Space Complexity
-
-| Component | Space | Description |
-|:----------|:------|:------------|
-| **Up Table** | O(n log n) | Main binary lifting table |
-| **Depth Array** | O(n) | Node depths |
-| **Adjacency List** | O(n) | Tree structure |
-| **Total** | **O(n log n)** | Dominated by up table |
-
----
-
-## 🌐 Real-World Applications
-
-### 🏢 Corporate Hierarchy
-
-```cpp
-class CorporateHierarchy {
+class HeavyLightWithBinaryLifting {
 private:
     BinaryLifting bl;
-    vector<string> employeeNames;
-    vector<int> salaryLevels;
+    vector<int> heavy, head, pos, subtreeSize;
+    int currentPos;
     
 public:
-    string findCommonManager(string emp1, string emp2) {
-        int id1 = getEmployeeId(emp1);
-        int id2 = getEmployeeId(emp2);
-        int managerId = bl.lca(id1, id2);
-        return employeeNames[managerId];
+    HeavyLightWithBinaryLifting(int n) : bl(n), heavy(n, -1), head(n), pos(n), subtreeSize(n), currentPos(0) {}
+    
+    void addEdge(int u, int v) {
+        bl.addEdge(u, v);
     }
     
-    int hierarchyDistance(string emp1, string emp2) {
-        int id1 = getEmployeeId(emp1);
-        int id2 = getEmployeeId(emp2);
-        return bl.distance(id1, id2);
+    void build(int root = 0) {
+        bl.build(root);
+        dfs1(root, -1);
+        dfs2(root, root);
     }
-};
-```
-
-### 🌐 Network Routing
-
-```cpp
-class NetworkRouting {
+    
+    // Query using both techniques
+    int efficientLCA(int u, int v) {
+        // Use Heavy-Light for nodes on same heavy path
+        while (head[u] != head[v]) {
+            if (bl.depth[head[u]] > bl.depth[head[v]]) {
+                u = bl.kthAncestor(head[u], 1);
+            } else {
+                v = bl.kthAncestor(head[v], 1);
+            }
+        }
+        
+        // Use binary lifting for final comparison
+        return bl.depth[u] < bl.depth[v] ? u : v;
+    }
+    
 private:
-    BinaryLifting bl;
-    vector<int> bandwidth;
+    int dfs1(int node, int parent) {
+        subtreeSize[node] = 1;
+        int maxSubtree = 0;
+        
+        for (int child : bl.tree[node]) {
+            if (child != parent) {
+                int childSize = dfs1(child, node);
+                subtreeSize[node] += childSize;
+                
+                if (childSize > maxSubtree) {
+                    maxSubtree = childSize;
+                    heavy[node] = child;
+                }
+            }
+        }
+        
+        return subtreeSize[node];
+    }
     
-public:
-    int findBottleneck(int source, int destination) {
-        int lca_node = bl.lca(source, destination);
-        int minBandwidth = INT_MAX;
+    void dfs2(int node, int h) {
+        head[node] = h;
+        pos[node] = currentPos++;
         
-        // Check path source -> lca
-        int curr = source;
-        while (curr != lca_node) {
-            minBandwidth = min(minBandwidth, bandwidth[curr]);
-            curr = bl.kthAncestor(curr, 1);
+        if (heavy[node] != -1) {
+            dfs2(heavy[node], h);
         }
         
-        // Check path destination -> lca
-        curr = destination;
-        while (curr != lca_node) {
-            minBandwidth = min(minBandwidth, bandwidth[curr]);
-            curr = bl.kthAncestor(curr, 1);
+        for (int child : bl.tree[node]) {
+            if (child != heavy[node] && child != bl.up[node][0]) {
+                dfs2(child, child);
+            }
         }
-        
-        return minBandwidth;
     }
 };
 ```
 
 ---
 
-## 💎 Best Practices
+## Best Practices
 
-### ✅ Implementation Guidelines
+### Optimization Techniques
 
+```mermaid
+flowchart TD
+    A["Binary Lifting Optimizations"] --> B["Memory Optimization"]
+    A --> C["Time Optimization"]
+    A --> D["Implementation Tips"]
+    
+    B --> E["Use only needed LOG levels"]
+    B --> F["Compress sparse tables"]
+    B --> G["Memory-efficient data structures"]
+    
+    C --> H["Precompute common queries"]
+    C --> I["Batch processing"]
+    C --> J["Cache-friendly access patterns"]
+    
+    D --> K["Handle edge cases"]
+    D --> L["Validate input ranges"]
+    D --> M["Use appropriate data types"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef memory fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef time fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef implementation fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    class A,B,E,F,G memory
+    class C,H,I,J time
+    class D,K,L,M implementation
 ```
-✓ Always validate input (tree connectivity)
-✓ Handle edge cases (root queries, same node)
-✓ Use appropriate LOG value (ceil(log2(n)) + 1)
-✓ Initialize up table with -1 for non-existent ancestors
-✓ Test with small examples first
-✓ Consider memory constraints for large trees
-```
 
-### 🔧 Optimization Tips
+### Performance Considerations
 
 ```cpp
-// Precompute LOG to avoid repeated calculations
-const int MAXN = 100005;
-const int LOG = 20;  // Sufficient for n ≤ 10^6
-
-// Use fast I/O for competitive programming
-ios_base::sync_with_stdio(false);
-cin.tie(NULL);
-
-// Memory optimization for large trees
-if (n < 1000) LOG = 10;  // Adjust based on tree size
+class OptimizedBinaryLifting {
+private:
+    int n, LOG;
+    vector<vector<int>> up;
+    vector<int> depth;
+    
+public:
+    OptimizedBinaryLifting(int nodes) : n(nodes) {
+        // Optimize LOG calculation
+        LOG = 32 - __builtin_clz(n);
+        up.assign(n, vector<int>(LOG, -1));
+        depth.assign(n, 0);
+    }
+    
+    // Memory-efficient preprocessing
+    void buildOptimized(const vector<vector<int>>& tree, int root = 0) {
+        // Use iterative DFS to avoid stack overflow
+        stack<pair<int, int>> st;
+        st.push({root, -1});
+        
+        while (!st.empty()) {
+            auto [node, parent] = st.top();
+            st.pop();
+            
+            up[node][0] = parent;
+            
+            for (int child : tree[node]) {
+                if (child != parent) {
+                    depth[child] = depth[node] + 1;
+                    st.push({child, node});
+                }
+            }
+        }
+        
+        // Build table level by level for better cache performance
+        for (int j = 1; j < LOG; j++) {
+            for (int i = 0; i < n; i++) {
+                if (up[i][j-1] != -1) {
+                    up[i][j] = up[up[i][j-1]][j-1];
+                }
+            }
+        }
+    }
+    
+    // Optimized LCA with early termination
+    int lcaOptimized(int u, int v) {
+        if (u == v) return u;
+        
+        if (depth[u] < depth[v]) swap(u, v);
+        
+        // Lift u to same level as v
+        int diff = depth[u] - depth[v];
+        for (int i = 0; i < LOG; i++) {
+            if ((diff >> i) & 1) {
+                u = up[u][i];
+            }
+        }
+        
+        if (u == v) return u;
+        
+        // Binary search with early termination
+        for (int i = LOG - 1; i >= 0; i--) {
+            if (up[u][i] != up[v][i]) {
+                u = up[u][i];
+                v = up[v][i];
+            }
+        }
+        
+        return up[u][0];
+    }
+    
+    // Batch LCA queries for better performance
+    vector<int> batchLCA(const vector<pair<int, int>>& queries) {
+        vector<int> results;
+        results.reserve(queries.size());
+        
+        for (const auto& [u, v] : queries) {
+            results.push_back(lcaOptimized(u, v));
+        }
+        
+        return results;
+    }
+};
 ```
 
-### 🚫 Common Pitfalls
+### Common Pitfalls and Solutions
 
-```
-✗ Forgetting to handle root node (parent = -1)
-✗ Using insufficient LOG value
-✗ Not checking for -1 in up table
-✗ Swapping u and v incorrectly in LCA
-✗ Off-by-one errors in k-th ancestor
+```cpp
+class BinaryLiftingPitfalls {
+public:
+    void demonstrateCommonMistakes() {
+        cout << "Common Binary Lifting Pitfalls:" << endl;
+        cout << "===============================" << endl;
+        
+        cout << "1. Incorrect LOG calculation:" << endl;
+        cout << "   ❌ LOG = log2(n)  // May be insufficient" << endl;
+        cout << "   ✅ LOG = ceil(log2(n)) + 1  // Safe margin" << endl;
+        
+        cout << "2. Not handling root node:" << endl;
+        cout << "   ❌ up[root][0] = root  // Creates cycle" << endl;
+        cout << "   ✅ up[root][0] = -1    // Proper termination" << endl;
+        
+        cout << "3. Forgetting to check bounds:" << endl;
+        cout << "   ❌ return up[node][i]  // May return -1" << endl;
+        cout << "   ✅ if (up[node][i] == -1) return -1" << endl;
+        
+        cout << "4. Inefficient depth calculation:" << endl;
+        cout << "   ❌ Recalculate depth in each query" << endl;
+        cout << "   ✅ Precompute during DFS" << endl;
+    }
+    
+    // Safe implementation with error checking
+    int safeKthAncestor(int node, int k, const vector<vector<int>>& up, 
+                       const vector<int>& depth) {
+        if (k < 0 || node < 0 || node >= up.size()) return -1;
+        if (k == 0) return node;
+        if (depth[node] < k) return -1;
+        
+        int LOG = up[0].size();
+        
+        for (int i = 0; i < LOG; i++) {
+            if ((k >> i) & 1) {
+                node = up[node][i];
+                if (node == -1) return -1;
+            }
+        }
+        
+        return node;
+    }
+};
 ```
 
 ---
 
-## 🎓 Key Takeaways
+## Summary
+
+Binary Lifting provides efficient solutions for tree queries:
+
+**Core Technique**: Precompute 2^i-th ancestors for all nodes and powers  
+**Key Applications**: LCA queries, k-th ancestor, path queries, tree navigation  
+**Complexity**: O(n log n) preprocessing, O(log n) per query  
+**Optimization**: Memory-efficient implementation and batch processing  
+**Integration**: Combines well with other tree algorithms like Heavy-Light Decomposition  
+
+**Key Insight**: "Binary lifting transforms linear tree traversal into logarithmic jumps using powers of 2"
+
+---
 
 <div align="center">
 
-### 🌟 Master These Concepts
+**Master Efficient Tree Navigation with Binary Lifting**
 
-</div>
-
-```
-1. 🚀 Binary Lifting = Preprocess 2^i ancestors for fast queries
-2. 🌳 LCA = Deepest common ancestor of two nodes
-3. ⚡ O(log n) queries vs O(n) naive approach
-4. 🎯 K-th ancestor using binary representation
-5. 📊 Applications in tree DP, HLD, path queries
-6. 💾 Trade space O(n log n) for time O(log n)
-7. 🏆 Essential for competitive programming
-8. 🔧 Foundation for advanced tree algorithms
-```
-
----
-
-## 📚 Practice Resources
-
-- **Codeforces**: LCA and Binary Lifting tags
-- **AtCoder**: Tree algorithm problems
-- **SPOJ**: Classical tree problems
-- **LeetCode**: Tree traversal and ancestor problems
-
----
-
-## 🎯 Interview Tips
-
-1. **Explain Preprocessing**: Show how up table is built
-2. **Demonstrate Queries**: Walk through LCA algorithm step-by-step
-3. **Analyze Complexity**: Prove O(log n) query time
-4. **Handle Edge Cases**: Root node, same node queries
-5. **Discuss Applications**: Tree DP, path queries, distance calculations
-6. **Compare Methods**: Binary lifting vs other LCA approaches
-
----
-
-<div align="center">
-
-### 🔥 One-Line Summary
-
-**Binary Lifting = Efficient tree traversal technique using preprocessed power-of-2 ancestors for O(log n) LCA and ancestor queries**
-
----
-
-**💻 Master Binary Lifting, master tree algorithms!**
-
-*"In the world of tree algorithms, Binary Lifting is the key to transforming linear traversals into logarithmic leaps."*
+*Where logarithmic complexity meets tree algorithm elegance*
 
 </div>

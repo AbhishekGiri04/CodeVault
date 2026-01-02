@@ -1,841 +1,630 @@
-# 🧠 NP-Completeness — Complete Professional Guide
+# 🧩 NP-Completeness — Complete Professional Guide
 
 <div align="center">
 
-<img src="https://www.scaler.com/topics/images/np-problem.webp" alt="NP Problems" width="600" height="300"/>
-
-![NP-Completeness](https://img.shields.io/badge/NP_Completeness-Computational_Complexity-6f42c1?style=for-the-badge&logo=brain&logoColor=white)
+![NP-Completeness](https://img.shields.io/badge/NP_Completeness-Computational_Complexity-FF6B6B?style=for-the-badge&logo=puzzle-piece&logoColor=white)
 ![Difficulty](https://img.shields.io/badge/Difficulty-Advanced-red?style=for-the-badge)
-![Importance](https://img.shields.io/badge/Importance-Theoretical-purple?style=for-the-badge)
+![Importance](https://img.shields.io/badge/Importance-Critical-darkred?style=for-the-badge)
 
-*Master computational complexity theory and the hardest problems in computer science*
+**Master the theoretical foundations of computational complexity**
 
 </div>
-
-## 📋 Table of Contents
-- [Introduction](#-introduction)
-- [Complexity Classes](#-complexity-classes)
-- [P vs NP Problem](#-p-vs-np-problem)
-- [Polynomial Time Reduction](#-polynomial-time-reduction)
-- [Classic NP-Complete Problems](#-classic-np-complete-problems)
-- [Proving NP-Completeness](#-proving-np-completeness)
-- [Practical Implications](#-practical-implications)
-- [Interview Problems](#-interview-problems)
-- [Best Practices](#-best-practices)
 
 ---
 
-## 🎯 Introduction
+## 📑 Table of Contents
 
-**NP-Completeness** is a fundamental concept in computational complexity theory that classifies computational problems based on their difficulty.
+1. [Introduction](#introduction)
+2. [Complexity Classes](#complexity-classes)
+3. [NP-Hard vs NP-Complete](#np-hard-vs-np-complete)
+4. [NP-Complete Problems](#np-complete-problems)
+5. [NP-Hard Problems](#np-hard-problems)
+6. [Reduction Techniques](#reduction-techniques)
+7. [Classic Problems](#classic-problems)
+8. [Practical Implications](#practical-implications)
 
-## 📊 Complexity Theory Gallery
+---
+
+## Introduction
+
+**NP-Completeness** is a fundamental concept in computational complexity theory that classifies the hardest problems in NP. Understanding these concepts is crucial for algorithm design, as it helps identify when problems are inherently difficult and guides the choice of solution approaches.
 
 <div align="center">
-
-<img src="https://image.slidesharecdn.com/daa-5-221112114920-ea7f2e39/75/Webinar-P-NP-NP-Hard-NP-Complete-problems-17-2048.jpg" alt="P NP NP-Hard NP-Complete" width="600" height="400"/>
-
+<img src="https://camo.githubusercontent.com/bf439b7b5f8b63b4e4dadec453c6539a9c67234255cbf1143712c49aa6afc175/68747470733a2f2f7777772e7363616c65722e636f6d2f746f706963732f696d616765732f6e702d70726f626c656d2e77656270" alt="NP-Completeness" width="650" height="400"/>
 </div>
 
-### 🌊 Complexity Classes Flow
+### Core Concept
 
 ```mermaid
-graph TD
-    A[Computational Problems] --> B[P Class]
-    A --> C[NP Class]
-    A --> D[NP-Hard]
-    A --> E[NP-Complete]
+flowchart TD
+    A["🧩 Computational Complexity"] --> B["Decision Problems"]
+    A --> C["Complexity Classes"]
+    A --> D["Reduction Methods"]
     
-    B --> F[Polynomial Time Solvable]
-    B --> G[Efficient Algorithms]
+    B --> E["Yes/No questions"]
+    B --> F["Polynomial verification"]
     
-    C --> H[Polynomial Time Verifiable]
-    C --> I[May be hard to solve]
+    C --> G["P, NP, NP-Complete, NP-Hard"]
+    C --> H["Hierarchy of difficulty"]
     
-    D --> J[At least as hard as NP]
-    D --> K[May not be in NP]
+    D --> I["Polynomial-time reductions"]
+    D --> J["Problem equivalence"]
     
-    E --> L[In NP AND NP-Hard]
-    E --> M[Hardest problems in NP]
-    
-    N[P vs NP Question] --> O[P = NP?]
-    O -->|Unknown| P[Million Dollar Problem]
-    
-    Q[Reductions] --> R[Problem A reduces to B]
-    R --> S[A ≤p B]
-    S --> T[Polynomial transformation]
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef complexity fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef decision fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef classes fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef reduction fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    class A complexity
+    class B,E,F decision
+    class C,G,H classes
+    class D,I,J reduction
 ```
-
-### 🔑 Key Concepts
-- **Complexity Classes**: P, NP, NP-Hard, NP-Complete
-- **Polynomial Time**: Efficient algorithms
-- **Verification vs Solution**: Easy to check vs easy to find
-- **Reduction**: Transforming one problem to another
 
 ---
 
-## 📊 Complexity Classes
+## Complexity Classes
 
-### 🟢 P (Polynomial Time)
-Problems solvable in polynomial time O(n^k) for some constant k.
+### Fundamental Complexity Classes
 
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/P-Class-Problems.webp" alt="P Class Problems Examples" width="600" height="350"/>
-</div>
-
-**Characteristics:**
-- Efficient algorithms exist
-- Practical for large inputs
-- Deterministic solutions
-
-**Examples:**
-```cpp
-// Sorting - O(n log n)
-void mergeSort(vector<int>& arr, int left, int right) {
-    if (left < right) {
-        int mid = left + (right - left) / 2;
-        mergeSort(arr, left, mid);
-        mergeSort(arr, mid + 1, right);
-        merge(arr, left, mid, right);
-    }
-}
-
-// Shortest Path - O(V^2)
-int dijkstra(vector<vector<int>>& graph, int src, int dest) {
-    // Implementation using priority queue
-    // Returns shortest distance
-}
-```
-
-### 🟡 NP (Nondeterministic Polynomial Time)
-Problems whose solutions can be **verified** in polynomial time.
-
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/NP-Class-Verification.webp" alt="NP Class Verification Process" width="650" height="400"/>
-</div>
-
-**Key Insight:** Easy to check, may be hard to find.
-
-**Examples:**
-```cpp
-// Sudoku Verification - O(1) for 9x9 grid
-bool verifySudoku(vector<vector<int>>& board) {
-    // Check rows, columns, and 3x3 boxes
-    for (int i = 0; i < 9; i++) {
-        if (!isValidRow(board, i) || !isValidCol(board, i))
-            return false;
-    }
-    return true;
-}
-
-// Hamiltonian Path Verification - O(V)
-bool verifyHamiltonianPath(vector<int>& path, vector<vector<int>>& graph) {
-    if (path.size() != graph.size()) return false;
+```mermaid
+flowchart TD
+    A["Complexity Classes"] --> B["P (Polynomial)"]
+    A --> C["NP (Nondeterministic Polynomial)"]
+    A --> D["NP-Complete"]
+    A --> E["NP-Hard"]
     
-    for (int i = 0; i < path.size() - 1; i++) {
-        if (graph[path[i]][path[i+1]] == 0) return false;
-    }
-    return true;
-}
+    B --> F["Solvable in polynomial time"]
+    B --> G["Deterministic algorithms"]
+    
+    C --> H["Verifiable in polynomial time"]
+    C --> I["May not be solvable in P"]
+    
+    D --> J["Hardest problems in NP"]
+    D --> K["NP ∩ NP-Hard"]
+    
+    E --> L["At least as hard as NP-Complete"]
+    E --> M["May not be in NP"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef classes fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef p fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef np fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef complete fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef hard fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A classes
+    class B,F,G p
+    class C,H,I np
+    class D,J,K complete
+    class E,L,M hard
 ```
 
-### 🔴 NP-Hard
-Problems at least as hard as any NP problem.
+### Class Definitions
 
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/NP-Hard-Problems.webp" alt="NP-Hard Problems Classification" width="600" height="350"/>
-</div>
+**P (Polynomial Time)**
+- Problems solvable by deterministic algorithms in polynomial time
+- Examples: Sorting, shortest path, maximum flow
 
-**Properties:**
-- May not be in NP
-- No polynomial-time verification required
-- Can be optimization problems
+**NP (Nondeterministic Polynomial)**
+- Problems where solutions can be verified in polynomial time
+- Includes all problems in P
+- Examples: SAT, Hamiltonian Path, Knapsack
 
-**Examples:**
-- Traveling Salesman Problem (optimization version)
-- Halting Problem
-- General Integer Programming
+**NP-Complete**
+- Problems that are both in NP and NP-Hard
+- If any NP-Complete problem has a polynomial solution, then P = NP
+- Examples: SAT, 3-SAT, Traveling Salesman
 
-### 🔥 NP-Complete
-Problems that are both in NP and NP-Hard.
-
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/NP-Complete-Intersection.webp" alt="NP-Complete as Intersection of NP and NP-Hard" width="650" height="400"/>
-</div>
-
-**Significance:**
-- Hardest problems in NP
-- If any NP-Complete problem ∈ P, then P = NP
-- Central to computational complexity
+**NP-Hard**
+- Problems at least as hard as the hardest problems in NP
+- May not be in NP themselves
+- Examples: Halting Problem, some optimization problems
 
 ---
 
-## ❓ P vs NP Problem
+## NP-Hard vs NP-Complete
 
-### 🧩 The Million Dollar Question
-**"Is every problem whose solution can be verified quickly also solvable quickly?"**
+<div align="center">
+<img src="https://camo.githubusercontent.com/a59d0789aeef2fd4e9edb2bf48246ca0c29c9d9f52730b9e47dac294b11e4bab/68747470733a2f2f696d6167652e736c696465736861726563646e2e636f6d2f6461612d352d3232313131323131343932302d65613766326533392f37352f576562696e61722d502d4e502d4e502d486172642d4e502d436f6d706c6574652d70726f626c656d732d31372d323034382e6a7067" alt="Difference between NP-Complete and NP-Hard" width="650" height="400"/>
+</div>
 
-### 📈 Current Understanding
+### Key Differences
+
+```mermaid
+flowchart TD
+    A["NP-Hard vs NP-Complete"] --> B["NP-Complete"]
+    A --> C["NP-Hard"]
+    
+    B --> D["Must be in NP"]
+    B --> E["Must be NP-Hard"]
+    B --> F["Decision problems"]
+    B --> G["Polynomial verification"]
+    
+    C --> H["At least as hard as NP-Complete"]
+    C --> I["May not be in NP"]
+    C --> J["Can be optimization problems"]
+    C --> K["May not have polynomial verification"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef comparison fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef complete fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef hard fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    class A comparison
+    class B,D,E,F,G complete
+    class C,H,I,J,K hard
 ```
-P ⊆ NP (Known)
-P = NP ? (Unknown - Clay Millennium Problem)
+
+### Relationship Analysis
+
+**NP-Complete Problems:**
+- Are in NP (solutions verifiable in polynomial time)
+- Are NP-Hard (every NP problem reduces to them)
+- Are decision problems (yes/no answers)
+- Form the "hardest" problems in NP
+
+**NP-Hard Problems:**
+- Are at least as hard as any NP-Complete problem
+- May or may not be in NP
+- Can be optimization problems (not just decision)
+- Include problems harder than NP-Complete
+
+### Examples Comparison
+
+| Problem Type | NP-Complete Example | NP-Hard Example |
+|-------------|-------------------|----------------|
+| **Graph Problems** | Hamiltonian Path (decision) | Traveling Salesman (optimization) |
+| **Satisfiability** | 3-SAT | MAX-SAT |
+| **Scheduling** | Partition (decision) | Bin Packing (optimization) |
+| **Set Problems** | Set Cover (decision) | Minimum Set Cover |
+
+### Venn Diagram Relationship
+
+```mermaid
+flowchart TD
+    A["All Computational Problems"] --> B["NP-Hard Problems"]
+    A --> C["NP Problems"]
+    
+    B --> D["NP-Complete"]
+    C --> D
+    
+    B --> E["Harder than NP-Complete"]
+    C --> F["P Problems"]
+    
+    D --> G["3-SAT, Hamiltonian Path"]
+    E --> H["Halting Problem, TSP-OPT"]
+    F --> I["Sorting, Shortest Path"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef all fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef hard fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef np fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef complete fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef harder fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    classDef p fill:#e0f2f1,stroke:#009688,stroke-width:2px,color:#000
+    class A all
+    class B hard
+    class C np
+    class D,G complete
+    class E,H harder
+    class F,I p
 ```
-
-### 🌍 Implications
-
-**If P = NP:**
-- Cryptography breaks down
-- Many optimization problems become easy
-- Revolutionary impact on AI and machine learning
-
-**If P ≠ NP:**
-- Current cryptographic systems remain secure
-- Some problems are inherently difficult
-- Approximate algorithms remain important
 
 ---
 
-## 🔄 Polynomial Time Reduction
+## NP-Complete Problems
 
-### 📝 Definition
-Problem A reduces to problem B (A ≤_p B) if:
-- A can be transformed to B in polynomial time
-- Solution to B solves A
+### Characteristics of NP-Complete Problems
 
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Polynomial-Time-Reduction.webp" alt="Polynomial Time Reduction Process" width="650" height="350"/>
-</div>
+```mermaid
+flowchart TD
+    A["NP-Complete Problem Properties"] --> B["In NP"]
+    A --> C["NP-Hard"]
+    A --> D["Universal Hardness"]
+    
+    B --> E["Solution verifiable in polynomial time"]
+    C --> F["Every NP problem reduces to it"]
+    D --> G["If solvable in P, then P = NP"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef properties fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef np fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef hard fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef universal fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    class A properties
+    class B,E np
+    class C,F hard
+    class D,G universal
+```
 
-### 🎯 Purpose
-- Prove NP-Hardness
-- Show relative difficulty
-- Transfer algorithms between problems
+### Proving NP-Completeness
 
-### 💻 Implementation Example
+To prove a problem is NP-Complete:
+
+1. **Show it's in NP**: Demonstrate polynomial-time verification
+2. **Show it's NP-Hard**: Reduce a known NP-Complete problem to it
+
 ```cpp
-// Reducing Vertex Cover to Set Cover
-class VertexCoverToSetCover {
+class NPCompletenessProof {
 public:
-    // Transform vertex cover instance to set cover
-    SetCoverInstance reduce(VertexCoverInstance& vc) {
-        SetCoverInstance sc;
+    // Template for NP-Completeness proof
+    struct Problem {
+        string name;
+        string description;
         
-        // Each vertex becomes a set
-        for (int v : vc.vertices) {
-            set<int> vertexSet;
-            // Add all edges incident to vertex v
-            for (auto& edge : vc.edges) {
-                if (edge.first == v || edge.second == v) {
-                    vertexSet.insert(getEdgeId(edge));
-                }
-            }
-            sc.sets.push_back(vertexSet);
+        // Step 1: Show problem is in NP
+        bool isInNP() {
+            // Demonstrate polynomial-time verification algorithm
+            return true;
         }
         
-        sc.k = vc.k; // Same bound
-        return sc;
-    }
-};
-```
-
----
-
-## 🧩 Classic NP-Complete Problems
-
-### 1️⃣ SAT (Boolean Satisfiability)
-**First proven NP-Complete problem (Cook-Levin Theorem)**
-
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/SAT-Problem-Example.webp" alt="SAT Problem Example and Solution" width="650" height="400"/>
-</div>
-
-```cpp
-class SATSolver {
-private:
-    struct Clause {
-        vector<int> literals; // Positive: variable, Negative: -variable
+        // Step 2: Show problem is NP-Hard
+        bool isNPHard() {
+            // Show reduction from known NP-Complete problem
+            return true;
+        }
+        
+        bool isNPComplete() {
+            return isInNP() && isNPHard();
+        }
     };
     
-public:
-    bool solveSAT(vector<Clause>& formula, int numVars) {
-        // Try all 2^n assignments
-        for (int assignment = 0; assignment < (1 << numVars); assignment++) {
-            if (evaluateFormula(formula, assignment, numVars)) {
-                return true;
-            }
-        }
-        return false;
-    }
-    
-private:
-    bool evaluateFormula(vector<Clause>& formula, int assignment, int numVars) {
-        for (auto& clause : formula) {
-            if (!evaluateClause(clause, assignment)) {
-                return false;
-            }
-        }
-        return true;
-    }
-    
-    bool evaluateClause(Clause& clause, int assignment) {
-        for (int literal : clause.literals) {
-            int var = abs(literal) - 1;
-            bool value = (assignment >> var) & 1;
-            if (literal > 0 && value) return true;
-            if (literal < 0 && !value) return true;
-        }
-        return false;
-    }
-};
-```
-
-### 2️⃣ 3-SAT
-**Restricted version of SAT with exactly 3 literals per clause**
-
-```cpp
-class ThreeSAT {
-public:
-    bool solve3SAT(vector<vector<int>>& clauses, int numVars) {
-        // Each clause has exactly 3 literals
-        return backtrack(clauses, vector<int>(numVars, -1), 0);
-    }
-    
-private:
-    bool backtrack(vector<vector<int>>& clauses, vector<int>& assignment, int var) {
-        if (var == assignment.size()) {
-            return evaluateAll(clauses, assignment);
-        }
-        
-        // Try both true and false
-        assignment[var] = 1;
-        if (backtrack(clauses, assignment, var + 1)) return true;
-        
-        assignment[var] = 0;
-        if (backtrack(clauses, assignment, var + 1)) return true;
-        
-        assignment[var] = -1;
-        return false;
-    }
-};
-```
-
-### 3️⃣ Traveling Salesman Problem (TSP)
-**Find shortest route visiting all cities exactly once**
-
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/TSP-Problem-Visualization.webp" alt="TSP Problem Visualization" width="700" height="400"/>
-</div>
-
-```cpp
-class TSP {
-public:
-    // Decision version: Is there a tour of length ≤ k?
-    bool hasTourOfLength(vector<vector<int>>& dist, int k) {
-        int n = dist.size();
-        vector<int> cities;
-        for (int i = 1; i < n; i++) cities.push_back(i);
-        
-        do {
-            int tourLength = dist[0][cities[0]];
-            for (int i = 0; i < cities.size() - 1; i++) {
-                tourLength += dist[cities[i]][cities[i+1]];
-            }
-            tourLength += dist[cities.back()][0];
+    // Example: 3-SAT verification (polynomial time)
+    static bool verify3SAT(const vector<vector<int>>& clauses, const vector<bool>& assignment) {
+        for (const auto& clause : clauses) {
+            bool clauseSatisfied = false;
             
-            if (tourLength <= k) return true;
-        } while (next_permutation(cities.begin(), cities.end()));
-        
-        return false;
-    }
-    
-    // Optimization version (NP-Hard)
-    int findShortestTour(vector<vector<int>>& dist) {
-        int n = dist.size();
-        int minTour = INT_MAX;
-        
-        // Dynamic Programming with bitmask - O(n^2 * 2^n)
-        vector<vector<int>> dp(1 << n, vector<int>(n, INT_MAX));
-        dp[1][0] = 0; // Start at city 0
-        
-        for (int mask = 1; mask < (1 << n); mask++) {
-            for (int u = 0; u < n; u++) {
-                if (!(mask & (1 << u)) || dp[mask][u] == INT_MAX) continue;
+            for (int literal : clause) {
+                int var = abs(literal) - 1;
+                bool value = (literal > 0) ? assignment[var] : !assignment[var];
                 
-                for (int v = 0; v < n; v++) {
-                    if (mask & (1 << v)) continue;
-                    
-                    int newMask = mask | (1 << v);
-                    dp[newMask][v] = min(dp[newMask][v], 
-                                        dp[mask][u] + dist[u][v]);
-                }
-            }
-        }
-        
-        // Return to start
-        int finalMask = (1 << n) - 1;
-        for (int i = 1; i < n; i++) {
-            if (dp[finalMask][i] != INT_MAX) {
-                minTour = min(minTour, dp[finalMask][i] + dist[i][0]);
-            }
-        }
-        
-        return minTour;
-    }
-};
-```
-
-### 4️⃣ Vertex Cover
-**Find minimum set of vertices covering all edges**
-
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Vertex-Cover-Problem.webp" alt="Vertex Cover Problem Example" width="600" height="350"/>
-</div>
-
-```cpp
-class VertexCover {
-public:
-    // Decision version: Is there a vertex cover of size ≤ k?
-    bool hasVertexCover(vector<vector<int>>& graph, int k) {
-        int n = graph.size();
-        
-        // Try all subsets of size ≤ k
-        for (int mask = 0; mask < (1 << n); mask++) {
-            if (__builtin_popcount(mask) <= k) {
-                if (isVertexCover(graph, mask)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-    
-    // Approximation algorithm (2-approximation)
-    vector<int> approximateVertexCover(vector<vector<int>>& graph) {
-        int n = graph.size();
-        vector<bool> covered(n, false);
-        vector<int> cover;
-        
-        for (int u = 0; u < n; u++) {
-            if (covered[u]) continue;
-            
-            for (int v = u + 1; v < n; v++) {
-                if (graph[u][v] && !covered[v]) {
-                    cover.push_back(u);
-                    cover.push_back(v);
-                    covered[u] = covered[v] = true;
+                if (value) {
+                    clauseSatisfied = true;
                     break;
                 }
             }
+            
+            if (!clauseSatisfied) {
+                return false;
+            }
         }
         
-        return cover;
+        return true;
     }
     
-private:
-    bool isVertexCover(vector<vector<int>>& graph, int mask) {
+    // Example: Hamiltonian Path verification
+    static bool verifyHamiltonianPath(const vector<vector<int>>& graph, const vector<int>& path) {
         int n = graph.size();
         
-        for (int u = 0; u < n; u++) {
-            for (int v = u + 1; v < n; v++) {
-                if (graph[u][v]) {
-                    // Edge (u,v) exists, check if covered
-                    if (!(mask & (1 << u)) && !(mask & (1 << v))) {
+        // Check if path visits all vertices exactly once
+        if (path.size() != n) return false;
+        
+        vector<bool> visited(n, false);
+        for (int v : path) {
+            if (visited[v]) return false;
+            visited[v] = true;
+        }
+        
+        // Check if consecutive vertices are connected
+        for (int i = 0; i < n - 1; i++) {
+            if (graph[path[i]][path[i + 1]] == 0) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+};
+```
+
+---
+
+## NP-Hard Problems
+
+### Understanding NP-Hardness
+
+```mermaid
+flowchart TD
+    A["NP-Hard Problems"] --> B["At least as hard as NP-Complete"]
+    A --> C["May not be in NP"]
+    A --> D["Examples"]
+    
+    B --> E["Every NP problem reduces to them"]
+    C --> F["Decision vs Optimization"]
+    D --> G["Halting Problem"]
+    D --> H["TSP Optimization"]
+    D --> I["General SAT variants"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef hard fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef difficulty fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef membership fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef examples fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    class A hard
+    class B,E difficulty
+    class C,F membership
+    class D,G,H,I examples
+```
+
+### Relationship Diagram
+
+```mermaid
+flowchart TD
+    A["All Problems"] --> B["NP-Hard"]
+    A --> C["NP"]
+    
+    B --> D["NP-Complete"]
+    C --> D
+    
+    C --> E["P"]
+    
+    B --> F["Harder than NP-Complete"]
+    C --> G["Polynomial Verification"]
+    E --> H["Polynomial Solution"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef all fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef hard fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef np fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef complete fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef p fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A all
+    class B,F hard
+    class C,G np
+    class D complete
+    class E,H p
+```
+
+---
+
+## Reduction Techniques
+
+### Polynomial-Time Reductions
+
+```cpp
+class PolynomialReductions {
+public:
+    // Reduction from 3-SAT to Independent Set
+    struct IndependentSetInstance {
+        vector<vector<int>> graph;
+        int k;
+    };
+    
+    static IndependentSetInstance reduce3SATToIndependentSet(
+        const vector<vector<int>>& clauses) {
+        
+        IndependentSetInstance instance;
+        int n = clauses.size();
+        int totalLiterals = 0;
+        
+        // Create vertex for each literal in each clause
+        for (const auto& clause : clauses) {
+            totalLiterals += clause.size();
+        }
+        
+        instance.graph.assign(totalLiterals, vector<int>(totalLiterals, 0));
+        instance.k = n; // Need to select one literal per clause
+        
+        int vertexIndex = 0;
+        vector<vector<int>> clauseVertices(n);
+        
+        // Create vertices for literals
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < clauses[i].size(); j++) {
+                clauseVertices[i].push_back(vertexIndex++);
+            }
+        }
+        
+        // Add edges within each clause (can't select multiple from same clause)
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < clauseVertices[i].size(); j++) {
+                for (int k = j + 1; k < clauseVertices[i].size(); k++) {
+                    int u = clauseVertices[i][j];
+                    int v = clauseVertices[i][k];
+                    instance.graph[u][v] = instance.graph[v][u] = 1;
+                }
+            }
+        }
+        
+        // Add edges between contradictory literals
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                for (int li = 0; li < clauses[i].size(); li++) {
+                    for (int lj = 0; lj < clauses[j].size(); lj++) {
+                        if (clauses[i][li] == -clauses[j][lj]) {
+                            int u = clauseVertices[i][li];
+                            int v = clauseVertices[j][lj];
+                            instance.graph[u][v] = instance.graph[v][u] = 1;
+                        }
+                    }
+                }
+            }
+        }
+        
+        return instance;
+    }
+    
+    // Reduction from Hamiltonian Path to TSP
+    struct TSPInstance {
+        vector<vector<int>> distances;
+        int budget;
+    };
+    
+    static TSPInstance reduceHamiltonianPathToTSP(const vector<vector<int>>& graph) {
+        int n = graph.size();
+        TSPInstance instance;
+        
+        instance.distances.assign(n, vector<int>(n, 2)); // Large distance
+        instance.budget = n; // Budget allows exactly n edges
+        
+        // Set distance 1 for edges in original graph
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (graph[i][j] == 1) {
+                    instance.distances[i][j] = 1;
+                }
+            }
+        }
+        
+        return instance;
+    }
+};
+```
+
+---
+
+## Classic Problems
+
+### Famous NP-Complete Problems
+
+```cpp
+class ClassicNPProblems {
+public:
+    // Boolean Satisfiability (SAT)
+    struct SATInstance {
+        vector<vector<int>> clauses; // Each clause is a disjunction of literals
+        int numVariables;
+        
+        bool isSatisfiable(const vector<bool>& assignment) {
+            for (const auto& clause : clauses) {
+                bool clauseSat = false;
+                for (int literal : clause) {
+                    int var = abs(literal) - 1;
+                    bool value = (literal > 0) ? assignment[var] : !assignment[var];
+                    if (value) {
+                        clauseSat = true;
+                        break;
+                    }
+                }
+                if (!clauseSat) return false;
+            }
+            return true;
+        }
+    };
+    
+    // Traveling Salesman Problem (Decision Version)
+    struct TSPDecision {
+        vector<vector<int>> distances;
+        int budget;
+        
+        bool hasTourWithinBudget(const vector<int>& tour) {
+            if (tour.size() != distances.size()) return false;
+            
+            int totalCost = 0;
+            for (int i = 0; i < tour.size(); i++) {
+                int next = (i + 1) % tour.size();
+                totalCost += distances[tour[i]][tour[next]];
+                if (totalCost > budget) return false;
+            }
+            
+            return true;
+        }
+    };
+    
+    // Knapsack Problem (Decision Version)
+    struct KnapsackDecision {
+        vector<int> weights;
+        vector<int> values;
+        int capacity;
+        int targetValue;
+        
+        bool canAchieveValue(const vector<bool>& selection) {
+            int totalWeight = 0, totalValue = 0;
+            
+            for (int i = 0; i < selection.size(); i++) {
+                if (selection[i]) {
+                    totalWeight += weights[i];
+                    totalValue += values[i];
+                }
+            }
+            
+            return totalWeight <= capacity && totalValue >= targetValue;
+        }
+    };
+    
+    // Graph Coloring (Decision Version)
+    struct GraphColoring {
+        vector<vector<int>> graph;
+        int numColors;
+        
+        bool isValidColoring(const vector<int>& coloring) {
+            for (int i = 0; i < graph.size(); i++) {
+                if (coloring[i] < 0 || coloring[i] >= numColors) {
+                    return false;
+                }
+                
+                for (int j : graph[i]) {
+                    if (coloring[i] == coloring[j]) {
                         return false;
                     }
                 }
             }
-        }
-        return true;
-    }
-};
-```
-
-### 5️⃣ Clique Problem
-**Find largest complete subgraph**
-
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Clique-Problem-Graph.webp" alt="Clique Problem in Graph" width="650" height="350"/>
-</div>
-
-```cpp
-class Clique {
-public:
-    // Decision version: Does graph have a clique of size ≥ k?
-    bool hasClique(vector<vector<int>>& graph, int k) {
-        int n = graph.size();
-        
-        // Try all subsets of size k
-        return findClique(graph, vector<int>(), 0, k);
-    }
-    
-    // Find maximum clique (exponential time)
-    vector<int> findMaxClique(vector<vector<int>>& graph) {
-        int n = graph.size();
-        vector<int> maxClique;
-        
-        for (int size = n; size >= 1; size--) {
-            vector<int> clique;
-            if (findCliqueOfSize(graph, clique, 0, size)) {
-                return clique;
-            }
-        }
-        
-        return maxClique;
-    }
-    
-private:
-    bool findClique(vector<vector<int>>& graph, vector<int> current, 
-                   int start, int remaining) {
-        if (remaining == 0) return true;
-        if (start >= graph.size()) return false;
-        
-        for (int i = start; i < graph.size(); i++) {
-            // Check if i is connected to all vertices in current clique
-            bool canAdd = true;
-            for (int v : current) {
-                if (!graph[i][v]) {
-                    canAdd = false;
-                    break;
-                }
-            }
             
-            if (canAdd) {
-                current.push_back(i);
-                if (findClique(graph, current, i + 1, remaining - 1)) {
-                    return true;
-                }
-                current.pop_back();
-            }
+            return true;
         }
-        
-        return false;
-    }
-    
-    bool findCliqueOfSize(vector<vector<int>>& graph, vector<int>& clique, 
-                         int start, int size) {
-        if (clique.size() == size) return true;
-        if (start >= graph.size()) return false;
-        
-        for (int i = start; i < graph.size(); i++) {
-            bool canAdd = true;
-            for (int v : clique) {
-                if (!graph[i][v]) {
-                    canAdd = false;
-                    break;
-                }
-            }
-            
-            if (canAdd) {
-                clique.push_back(i);
-                if (findCliqueOfSize(graph, clique, i + 1, size)) {
-                    return true;
-                }
-                clique.pop_back();
-            }
-        }
-        
-        return false;
-    }
-};
-```
-
-### 6️⃣ Hamiltonian Cycle
-**Find cycle visiting each vertex exactly once**
-
-```cpp
-class HamiltonianCycle {
-public:
-    bool hasHamiltonianCycle(vector<vector<int>>& graph) {
-        int n = graph.size();
-        vector<int> path;
-        vector<bool> visited(n, false);
-        
-        // Try starting from each vertex
-        for (int start = 0; start < n; start++) {
-            path.clear();
-            fill(visited.begin(), visited.end(), false);
-            
-            path.push_back(start);
-            visited[start] = true;
-            
-            if (findHamiltonianCycle(graph, path, visited, start)) {
-                return true;
-            }
-        }
-        
-        return false;
-    }
-    
-    vector<int> findHamiltonianPath(vector<vector<int>>& graph) {
-        int n = graph.size();
-        
-        // Dynamic Programming with bitmask
-        vector<vector<int>> dp(1 << n, vector<int>(n, -1));
-        vector<vector<int>> parent(1 << n, vector<int>(n, -1));
-        
-        // Base case: start from vertex 0
-        dp[1][0] = 0;
-        
-        for (int mask = 1; mask < (1 << n); mask++) {
-            for (int u = 0; u < n; u++) {
-                if (!(mask & (1 << u)) || dp[mask][u] == -1) continue;
-                
-                for (int v = 0; v < n; v++) {
-                    if ((mask & (1 << v)) || !graph[u][v]) continue;
-                    
-                    int newMask = mask | (1 << v);
-                    if (dp[newMask][v] == -1) {
-                        dp[newMask][v] = dp[mask][u] + 1;
-                        parent[newMask][v] = u;
-                    }
-                }
-            }
-        }
-        
-        // Reconstruct path
-        int finalMask = (1 << n) - 1;
-        for (int end = 0; end < n; end++) {
-            if (dp[finalMask][end] != -1) {
-                return reconstructPath(parent, finalMask, end);
-            }
-        }
-        
-        return vector<int>(); // No Hamiltonian path
-    }
-    
-private:
-    bool findHamiltonianCycle(vector<vector<int>>& graph, vector<int>& path, 
-                             vector<bool>& visited, int start) {
-        if (path.size() == graph.size()) {
-            // Check if we can return to start
-            return graph[path.back()][start] == 1;
-        }
-        
-        int current = path.back();
-        for (int next = 0; next < graph.size(); next++) {
-            if (!visited[next] && graph[current][next]) {
-                path.push_back(next);
-                visited[next] = true;
-                
-                if (findHamiltonianCycle(graph, path, visited, start)) {
-                    return true;
-                }
-                
-                path.pop_back();
-                visited[next] = false;
-            }
-        }
-        
-        return false;
-    }
-    
-    vector<int> reconstructPath(vector<vector<int>>& parent, int mask, int end) {
-        vector<int> path;
-        int current = end;
-        int currentMask = mask;
-        
-        while (current != -1) {
-            path.push_back(current);
-            int prev = parent[currentMask][current];
-            currentMask ^= (1 << current);
-            current = prev;
-        }
-        
-        reverse(path.begin(), path.end());
-        return path;
-    }
-};
-```
-
----
-
-## 🔬 Proving NP-Completeness
-
-### 📋 Standard Approach
-1. **Show problem ∈ NP**: Provide polynomial-time verification algorithm
-2. **Show problem is NP-Hard**: Reduce known NP-Complete problem to it
-
-### 💻 Example: Proving Subset Sum is NP-Complete
-
-```cpp
-class SubsetSumNPComplete {
-public:
-    // Step 1: Show Subset Sum ∈ NP
-    bool verifySubsetSum(vector<int>& nums, vector<int>& subset, int target) {
-        // Verification in O(k) where k = subset size
-        int sum = 0;
-        set<int> numSet(nums.begin(), nums.end());
-        
-        for (int x : subset) {
-            if (numSet.find(x) == numSet.end()) return false;
-            sum += x;
-        }
-        
-        return sum == target;
-    }
-    
-    // Step 2: Reduce 3-SAT to Subset Sum
-    SubsetSumInstance reduce3SATToSubsetSum(ThreeSATInstance& sat) {
-        SubsetSumInstance ss;
-        int n = sat.numVars;
-        int m = sat.clauses.size();
-        
-        // Create numbers for variables and clauses
-        for (int i = 0; i < n; i++) {
-            // For variable xi: create two numbers
-            string pos = string(n + m, '0');
-            string neg = string(n + m, '0');
-            
-            pos[i] = '1'; // Position for xi
-            neg[i] = '1'; // Position for ¬xi
-            
-            // Add clause contributions
-            for (int j = 0; j < m; j++) {
-                if (containsLiteral(sat.clauses[j], i + 1)) {
-                    pos[n + j] = '1';
-                }
-                if (containsLiteral(sat.clauses[j], -(i + 1))) {
-                    neg[n + j] = '1';
-                }
-            }
-            
-            ss.numbers.push_back(binaryToInt(pos));
-            ss.numbers.push_back(binaryToInt(neg));
-        }
-        
-        // Create slack variables for clauses
-        for (int j = 0; j < m; j++) {
-            string slack1 = string(n + m, '0');
-            string slack2 = string(n + m, '0');
-            slack1[n + j] = '1';
-            slack2[n + j] = '1';
-            
-            ss.numbers.push_back(binaryToInt(slack1));
-            ss.numbers.push_back(binaryToInt(slack2));
-        }
-        
-        // Target: each variable position has 1, each clause position has 3
-        string target = string(n, '1') + string(m, '3');
-        ss.target = binaryToInt(target);
-        
-        return ss;
-    }
-    
-private:
-    bool containsLiteral(vector<int>& clause, int literal) {
-        return find(clause.begin(), clause.end(), literal) != clause.end();
-    }
-    
-    int binaryToInt(string& binary) {
-        int result = 0;
-        for (char c : binary) {
-            result = result * 10 + (c - '0');
-        }
-        return result;
-    }
-};
-```
-
----
-
-## 🌍 Practical Implications
-
-### 🔐 Cryptography
-
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Cryptography-NP-Problems.webp" alt="Cryptography and NP Problems" width="650" height="350"/>
-</div>
-
-```cpp
-class RSACryptography {
-public:
-    // Security relies on integer factorization being hard
-    struct RSAKeys {
-        long long n, e, d; // public: (n,e), private: (n,d)
     };
     
-    RSAKeys generateKeys(int p, int q) {
-        RSAKeys keys;
-        keys.n = p * q;
-        long long phi = (p - 1) * (q - 1);
+    // Subset Sum Problem
+    struct SubsetSum {
+        vector<int> numbers;
+        int target;
         
-        keys.e = 65537; // Common choice
-        keys.d = modInverse(keys.e, phi);
-        
-        return keys;
-    }
-    
-    // If integer factorization ∈ P, RSA breaks
-    vector<int> factorize(long long n) {
-        // Currently no polynomial-time algorithm known
-        vector<int> factors;
-        for (long long i = 2; i * i <= n; i++) {
-            while (n % i == 0) {
-                factors.push_back(i);
-                n /= i;
+        bool hasSubsetSum(const vector<bool>& selection) {
+            int sum = 0;
+            for (int i = 0; i < selection.size(); i++) {
+                if (selection[i]) {
+                    sum += numbers[i];
+                }
             }
+            return sum == target;
         }
-        if (n > 1) factors.push_back(n);
-        return factors;
-    }
-    
-private:
-    long long modInverse(long long a, long long m) {
-        // Extended Euclidean Algorithm
-        long long m0 = m, x0 = 0, x1 = 1;
-        while (a > 1) {
-            long long q = a / m;
-            long long t = m;
-            m = a % m;
-            a = t;
-            t = x0;
-            x0 = x1 - q * x0;
-            x1 = t;
-        }
-        return x1 < 0 ? x1 + m0 : x1;
-    }
+    };
 };
 ```
 
-### 🎯 Approximation Algorithms
+---
 
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Approximation-Algorithms-NP.webp" alt="Approximation Algorithms for NP Problems" width="700" height="400"/>
-</div>
+## Practical Implications
+
+### Dealing with NP-Complete Problems
+
+```mermaid
+flowchart TD
+    A["Approaches for NP-Complete Problems"] --> B["Exact Algorithms"]
+    A --> C["Approximation Algorithms"]
+    A --> D["Heuristics"]
+    A --> E["Parameterized Algorithms"]
+    
+    B --> F["Exponential time, optimal solution"]
+    C --> G["Polynomial time, near-optimal"]
+    D --> H["Fast, no guarantees"]
+    E --> I["Efficient for small parameters"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef approaches fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef exact fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef approximation fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef heuristics fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef parameterized fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A approaches
+    class B,F exact
+    class C,G approximation
+    class D,H heuristics
+    class E,I parameterized
+```
+
+### Solution Strategies
 
 ```cpp
-class ApproximationAlgorithms {
+class NPSolutionStrategies {
 public:
-    // 2-approximation for Vertex Cover
-    vector<int> vertexCoverApprox(vector<vector<int>>& graph) {
-        int n = graph.size();
-        vector<bool> covered(n, false);
-        vector<int> cover;
+    // Approximation Algorithm for TSP (2-approximation)
+    static vector<int> tspApproximation(const vector<vector<int>>& distances) {
+        int n = distances.size();
         
-        for (int u = 0; u < n; u++) {
-            if (covered[u]) continue;
-            
-            for (int v = u + 1; v < n; v++) {
-                if (graph[u][v] && !covered[v]) {
-                    cover.push_back(u);
-                    cover.push_back(v);
-                    covered[u] = covered[v] = true;
-                    break;
-                }
-            }
-        }
+        // Find minimum spanning tree
+        vector<vector<int>> mst = findMST(distances);
         
-        return cover;
-    }
-    
-    // 2-approximation for TSP (metric)
-    vector<int> tspApprox(vector<vector<int>>& dist) {
-        int n = dist.size();
-        
-        // 1. Find MST
-        vector<int> mst = findMST(dist);
-        
-        // 2. DFS traversal of MST
+        // DFS traversal of MST
         vector<bool> visited(n, false);
         vector<int> tour;
         
@@ -843,80 +632,81 @@ public:
             visited[u] = true;
             tour.push_back(u);
             
-            for (int v : mst) {
-                if (!visited[v] && dist[u][v] > 0) {
+            for (int v : mst[u]) {
+                if (!visited[v]) {
                     dfs(v);
                 }
             }
         };
         
         dfs(0);
-        tour.push_back(0); // Return to start
-        
         return tour;
     }
     
-    // Greedy approximation for Set Cover
-    vector<int> setCoverApprox(vector<set<int>>& sets, set<int>& universe) {
-        vector<int> cover;
-        set<int> uncovered = universe;
+    // Branch and Bound for exact solutions
+    template<typename Problem>
+    static typename Problem::Solution branchAndBound(const Problem& problem) {
+        using Solution = typename Problem::Solution;
         
-        while (!uncovered.empty()) {
-            int bestSet = -1;
-            int maxCover = 0;
-            
-            for (int i = 0; i < sets.size(); i++) {
-                int coverCount = 0;
-                for (int elem : sets[i]) {
-                    if (uncovered.count(elem)) coverCount++;
+        Solution bestSolution;
+        int bestValue = INT_MAX;
+        
+        function<void(Solution, int)> branch = [&](Solution current, int bound) {
+            if (problem.isComplete(current)) {
+                int value = problem.evaluate(current);
+                if (value < bestValue) {
+                    bestValue = value;
+                    bestSolution = current;
                 }
-                
-                if (coverCount > maxCover) {
-                    maxCover = coverCount;
-                    bestSet = i;
+                return;
+            }
+            
+            if (bound >= bestValue) return; // Prune
+            
+            for (auto next : problem.getNextStates(current)) {
+                int newBound = problem.computeBound(next);
+                branch(next, newBound);
+            }
+        };
+        
+        branch(problem.getInitialSolution(), problem.getInitialBound());
+        return bestSolution;
+    }
+    
+private:
+    static vector<vector<int>> findMST(const vector<vector<int>>& distances) {
+        int n = distances.size();
+        vector<vector<int>> mst(n);
+        
+        // Prim's algorithm
+        vector<bool> inMST(n, false);
+        vector<int> key(n, INT_MAX);
+        vector<int> parent(n, -1);
+        
+        key[0] = 0;
+        
+        for (int count = 0; count < n - 1; count++) {
+            int u = -1;
+            for (int v = 0; v < n; v++) {
+                if (!inMST[v] && (u == -1 || key[v] < key[u])) {
+                    u = v;
                 }
             }
             
-            if (bestSet != -1) {
-                cover.push_back(bestSet);
-                for (int elem : sets[bestSet]) {
-                    uncovered.erase(elem);
+            inMST[u] = true;
+            
+            for (int v = 0; v < n; v++) {
+                if (!inMST[v] && distances[u][v] < key[v]) {
+                    key[v] = distances[u][v];
+                    parent[v] = u;
                 }
             }
         }
         
-        return cover;
-    }
-    
-private:
-    vector<int> findMST(vector<vector<int>>& dist) {
-        // Simplified MST implementation
-        int n = dist.size();
-        vector<int> mst;
-        vector<bool> inMST(n, false);
-        
-        inMST[0] = true;
-        
-        for (int count = 0; count < n - 1; count++) {
-            int minWeight = INT_MAX;
-            int u = -1, v = -1;
-            
-            for (int i = 0; i < n; i++) {
-                if (inMST[i]) {
-                    for (int j = 0; j < n; j++) {
-                        if (!inMST[j] && dist[i][j] < minWeight) {
-                            minWeight = dist[i][j];
-                            u = i;
-                            v = j;
-                        }
-                    }
-                }
-            }
-            
-            if (v != -1) {
-                inMST[v] = true;
-                mst.push_back(v);
-            }
+        // Build adjacency list for MST
+        for (int i = 1; i < n; i++) {
+            mst[parent[i]].push_back(i);
+            mst[i].push_back(parent[i]);
         }
         
         return mst;
@@ -924,259 +714,47 @@ private:
 };
 ```
 
----
+### When to Use Each Approach
 
-## 🎯 Interview Problems
-
-### Problem 1: Identify Complexity Class
-```cpp
-class ComplexityClassification {
-public:
-    // Classify these problems
-    void classifyProblems() {
-        cout << "Sorting: P" << endl;
-        cout << "Shortest Path: P" << endl;
-        cout << "MST: P" << endl;
-        cout << "SAT: NP-Complete" << endl;
-        cout << "TSP: NP-Complete (decision), NP-Hard (optimization)" << endl;
-        cout << "Vertex Cover: NP-Complete" << endl;
-        cout << "Clique: NP-Complete" << endl;
-        cout << "Halting Problem: Undecidable" << endl;
-    }
-};
-```
-
-### Problem 2: Reduction Example
-```cpp
-class ReductionExample {
-public:
-    // Show Independent Set ≤_p Clique
-    vector<int> independentSetToClique(vector<vector<int>>& graph, int k) {
-        int n = graph.size();
-        
-        // Create complement graph
-        vector<vector<int>> complement(n, vector<int>(n, 0));
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (i != j) {
-                    complement[i][j] = 1 - graph[i][j];
-                }
-            }
-        }
-        
-        // Find clique of size k in complement
-        Clique cliqueSolver;
-        if (cliqueSolver.hasClique(complement, k)) {
-            return cliqueSolver.findMaxClique(complement);
-        }
-        
-        return vector<int>();
-    }
-};
-```
-
-### Problem 3: Approximation Analysis
-```cpp
-class ApproximationAnalysis {
-public:
-    // Analyze approximation ratio
-    double analyzeVertexCoverRatio(vector<vector<int>>& graph) {
-        // Exact solution (exponential)
-        VertexCover exact;
-        int optimalSize = findOptimalVertexCover(graph);
-        
-        // Approximation solution
-        vector<int> approxCover = exact.approximateVertexCover(graph);
-        
-        // Ratio analysis
-        double ratio = (double)approxCover.size() / optimalSize;
-        cout << "Approximation ratio: " << ratio << " (≤ 2)" << endl;
-        
-        return ratio;
-    }
-    
-private:
-    int findOptimalVertexCover(vector<vector<int>>& graph) {
-        int n = graph.size();
-        int minSize = n;
-        
-        // Try all subsets (exponential)
-        for (int mask = 0; mask < (1 << n); mask++) {
-            if (isVertexCover(graph, mask)) {
-                minSize = min(minSize, __builtin_popcount(mask));
-            }
-        }
-        
-        return minSize;
-    }
-    
-    bool isVertexCover(vector<vector<int>>& graph, int mask) {
-        int n = graph.size();
-        
-        for (int u = 0; u < n; u++) {
-            for (int v = u + 1; v < n; v++) {
-                if (graph[u][v]) {
-                    if (!(mask & (1 << u)) && !(mask & (1 << v))) {
-                        return false;
-                    }
-                }
-            }
-        }
-        return true;
-    }
-};
-```
+| Problem Size | Approach | Time Complexity | Solution Quality |
+|-------------|----------|-----------------|------------------|
+| **Small (n ≤ 20)** | Exact algorithms | O(2ⁿ) or O(n!) | Optimal |
+| **Medium (n ≤ 1000)** | Approximation | O(n²) or O(n³) | Near-optimal |
+| **Large (n > 1000)** | Heuristics | O(n log n) | Good in practice |
+| **Special structure** | Parameterized | O(f(k) × nᶜ) | Optimal |
 
 ---
 
-## 💡 Best Practices
+## Summary
 
-### 🎯 Problem Recognition
-```cpp
-class ProblemRecognition {
-public:
-    string classifyProblem(string description) {
-        if (description.find("shortest") != string::npos ||
-            description.find("minimum spanning") != string::npos) {
-            return "Likely P";
-        }
-        
-        if (description.find("satisfiability") != string::npos ||
-            description.find("clique") != string::npos ||
-            description.find("vertex cover") != string::npos ||
-            description.find("hamiltonian") != string::npos) {
-            return "Likely NP-Complete";
-        }
-        
-        if (description.find("optimization") != string::npos &&
-            description.find("traveling salesman") != string::npos) {
-            return "Likely NP-Hard";
-        }
-        
-        return "Need more analysis";
-    }
-};
-```
+**NP-Completeness** provides a framework for understanding computational difficulty and guides algorithm design decisions. Key insights:
 
-### 🔧 Algorithm Selection Strategy
-```cpp
-class AlgorithmStrategy {
-public:
-    string recommendApproach(string problemType, int inputSize) {
-        if (problemType == "P") {
-            return "Use exact polynomial-time algorithm";
-        }
-        
-        if (problemType == "NP-Complete" || problemType == "NP-Hard") {
-            if (inputSize <= 20) {
-                return "Exact algorithm (exponential) feasible";
-            } else if (inputSize <= 1000) {
-                return "Use approximation algorithm";
-            } else {
-                return "Use heuristic or metaheuristic";
-            }
-        }
-        
-        return "Analyze problem complexity first";
-    }
-    
-    void printComplexityGuidelines() {
-        cout << "Input Size Guidelines:" << endl;
-        cout << "n ≤ 20: Exponential algorithms OK" << endl;
-        cout << "n ≤ 100: O(n^3) algorithms OK" << endl;
-        cout << "n ≤ 1000: O(n^2) algorithms OK" << endl;
-        cout << "n ≤ 10^6: O(n log n) algorithms OK" << endl;
-        cout << "n > 10^6: O(n) or O(log n) algorithms needed" << endl;
-    }
-};
-```
+### Essential Concepts
+- **P vs NP**: The fundamental question of computational complexity
+- **NP-Complete**: The hardest problems in NP, all equivalent under reduction
+- **NP-Hard**: Problems at least as hard as NP-Complete
+- **Reductions**: Method to prove relative hardness of problems
 
-### 🧪 Testing NP-Complete Solutions
-```cpp
-class NPCompleteTestFramework {
-public:
-    template<typename Solution>
-    void testNPCompleteSolution(Solution& solver, string problemName) {
-        cout << "Testing " << problemName << " solver:" << endl;
-        
-        // Test small instances exactly
-        testSmallInstances(solver);
-        
-        // Test approximation quality
-        testApproximationRatio(solver);
-        
-        // Test scalability
-        testScalability(solver);
-        
-        // Verify solutions
-        testSolutionVerification(solver);
-    }
-    
-private:
-    template<typename Solution>
-    void testSmallInstances(Solution& solver) {
-        // Test with known optimal solutions
-        cout << "Testing small instances with known solutions..." << endl;
-    }
-    
-    template<typename Solution>
-    void testApproximationRatio(Solution& solver) {
-        // Compare with theoretical bounds
-        cout << "Testing approximation ratio..." << endl;
-    }
-    
-    template<typename Solution>
-    void testScalability(Solution& solver) {
-        // Test runtime growth
-        cout << "Testing scalability..." << endl;
-    }
-    
-    template<typename Solution>
-    void testSolutionVerification(Solution& solver) {
-        // Verify all solutions are valid
-        cout << "Verifying solution correctness..." << endl;
-    }
-};
-```
+### Core Implications
+- **Algorithm Design**: Recognize when problems are inherently difficult
+- **Solution Strategies**: Choose appropriate approaches based on problem classification
+- **Theoretical Limits**: Understand what can and cannot be computed efficiently
+- **Practical Applications**: Apply approximation and heuristic methods
+
+### Best Practices
+- Identify problem complexity class before designing algorithms
+- Use approximation algorithms for NP-Complete problems in practice
+- Apply parameterized algorithms when problem has special structure
+- Consider heuristics for large-scale instances
+
+> **Master's Insight**: NP-Completeness theory doesn't just classify problems—it guides practical algorithm design by revealing when to seek exact solutions versus when to accept approximations or heuristics.
 
 ---
 
-## 📊 Complexity Analysis
+<div align="center">
 
-### ⏰ Time Complexity
-- **Exact NP-Complete algorithms**: O(2^n), O(n!)
-- **Approximation algorithms**: O(n^k) for some k
-- **Verification**: O(n^k) for NP problems
+**🧩 Master NP-Completeness • Understand Computational Limits • Design Practical Solutions**
 
-### 💾 Space Complexity
-- **Dynamic Programming**: O(2^n) for subset problems
-- **Backtracking**: O(n) recursion depth
-- **Approximation**: Usually O(n)
+*From Theory to Practice • Complexity to Solutions • Understanding to Mastery*
 
-### 🎯 Practical Considerations
-- **Input size limits**: n ≤ 20 for exact exponential algorithms
-- **Approximation ratios**: Balance quality vs. speed
-- **Heuristics**: For very large instances
-
----
-
-## 🌟 Key Takeaways
-
-1. **P vs NP**: Biggest open problem in computer science
-2. **NP-Complete**: Hardest problems in NP class
-3. **Reductions**: Fundamental tool for proving hardness
-4. **Approximations**: Practical approach for hard problems
-5. **Recognition**: Learn to identify problem complexity
-6. **Trade-offs**: Exact vs. approximate vs. heuristic solutions
-
-### 🎯 Interview Quick Reference
-- **P**: Polynomial time solvable
-- **NP**: Polynomial time verifiable
-- **NP-Hard**: At least as hard as NP problems
-- **NP-Complete**: In NP and NP-Hard
-- **Reduction**: Transform one problem to another
-- **SAT**: First proven NP-Complete problem
-
----
-
-*Master NP-Completeness to understand computational limits and make informed algorithmic choices! 🧠*
+</div>

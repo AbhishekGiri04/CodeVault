@@ -2,13 +2,9 @@
 
 <div align="center">
 
-![DSA Fundamentals](https://img.shields.io/badge/DSA_Fundamentals-Core_Concepts-6f42c1?style=for-the-badge&logo=foundation&logoColor=white)
+![DSA Fundamentals](https://img.shields.io/badge/DSA_Fundamentals-Core_Concepts-FF6B6B?style=for-the-badge&logo=foundation&logoColor=white)
 ![Difficulty](https://img.shields.io/badge/Difficulty-Beginner-green?style=for-the-badge)
-![Importance](https://img.shields.io/badge/Importance-Critical-red?style=for-the-badge)
-
-<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20230807133054/Data-structure-algorithm.png" alt="Data Structures and Algorithms Overview" width="700" height="400"/>
-
-<img src="https://storage.googleapis.com/algodailyrandomassets/curriculum/fundamentals/space1.png" alt="Space Complexity Analysis" width="600" height="300"/>
+![Importance](https://img.shields.io/badge/Importance-Critical-darkred?style=for-the-badge)
 
 **Build a solid foundation in Data Structures and Algorithms**
 
@@ -18,22 +14,26 @@
 
 ## 📑 Table of Contents
 
-1. [Introduction](#-introduction)
-2. [What are Data Structures?](#-what-are-data-structures)
-3. [What are Algorithms?](#-what-are-algorithms)
-4. [Algorithm Analysis](#-algorithm-analysis)
-5. [Big O Notation](#-big-o-notation)
-6. [Space vs Time Complexity](#-space-vs-time-complexity)
-7. [Problem Solving Approach](#-problem-solving-approach)
-8. [Getting Started](#-getting-started)
+1. [Introduction](#introduction)
+2. [What are Data Structures?](#what-are-data-structures)
+3. [What are Algorithms?](#what-are-algorithms)
+4. [Algorithm Analysis](#algorithm-analysis)
+5. [Big O Notation](#big-o-notation)
+6. [Space vs Time Complexity](#space-vs-time-complexity)
+7. [Problem Solving Approach](#problem-solving-approach)
+8. [Getting Started](#getting-started)
 
 ---
 
-## 🎯 Introduction
+## Introduction
 
 **Data Structures and Algorithms (DSA)** form the foundation of computer science and software engineering. They provide efficient ways to organize data and solve computational problems.
 
-### 🔑 Why Study DSA?
+<div align="center">
+<img src="https://camo.githubusercontent.com/5c0b87c32d7300a83fc11d4627f0816dc9caf5b18c9b2b95e8451f823587f2c9/68747470733a2f2f6d656469612e6765656b73666f726765656b732e6f72672f77702d636f6e74656e742f63646e2d75706c6f6164732f32303233303830373133333035342f446174612d7374727563747572652d616c676f726974686d2e706e67" alt="Data Structures and Algorithms Overview" width="650" height="400"/>
+</div>
+
+### Why Study DSA?
 
 ```mermaid
 flowchart TD
@@ -63,18 +63,25 @@ flowchart TD
     F --> T["Technical Leadership"]
     F --> U["Innovation"]
     
-    style A fill:#e3f2fd
-    style B fill:#c8e6c9
-    style C fill:#fff3e0
-    style D fill:#fce4ec
-    style E fill:#f3e5f5
-    style F fill:#e8f5e8
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef importance fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef problem fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef efficiency fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef interview fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef system fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    classDef career fill:#e0f2f1,stroke:#009688,stroke-width:2px,color:#000
+    class A importance
+    class B,G,H,I problem
+    class C,J,K,L efficiency
+    class D,M,N,O interview
+    class E,P,Q,R system
+    class F,S,T,U career
 ```
 
-### 📊 DSA in Real World
+### DSA in Real World
 
 | Application | Data Structure | Algorithm | Impact |
-|:------------|:---------------|:----------|:-------|
+|-------------|----------------|-----------|--------|
 | **Google Search** | Hash Tables, Trees | PageRank | Instant results |
 | **GPS Navigation** | Graphs | Dijkstra's | Shortest routes |
 | **Social Media** | Graphs, Hash Tables | BFS/DFS | Friend suggestions |
@@ -82,19 +89,19 @@ flowchart TD
 
 ---
 
-## 📊 What are Data Structures?
-
-<div align="center">
-<img src="https://miro.medium.com/1*uwyjXzk07mJbp_oLXWU_1g.png" alt="What are Data Structures" width="700" height="400"/>
-</div>
-
-<div align="center">
-<img src="https://scaler.com/topics/images/datat-structure-types-of-data-structure" alt="Data Structure Types" width="650" height="350"/>
-</div>
+## What are Data Structures?
 
 **Data Structures** are ways of organizing and storing data to enable efficient access and modification.
 
-### 🎯 Classification of Data Structures
+<div align="center">
+<img src="https://camo.githubusercontent.com/ae1f217e3afebbb2d108623e3f3fe07e059a7a0a2cc9a7865cad75f497250d5b/68747470733a2f2f6d69726f2e6d656469756d2e636f6d2f312a7577796a587a6b30376d4a62705f6f4c5857555f31672e706e67" alt="Types of Data Structures" width="650" height="400"/>
+</div>
+
+### Classification of Data Structures
+
+<div align="center">
+<img src="https://camo.githubusercontent.com/f1f18167b9ad512b029798a94de2d42ae67fafa26739e567aede4e9389aab19f/68747470733a2f2f7363616c65722e636f6d2f746f706963732f696d616765732f64617461742d7374727563747572652d74797065732d6f662d646174612d737472756374757265" alt="Data Structure Types Classification" width="650" height="400"/>
+</div>
 
 ```mermaid
 flowchart TD
@@ -121,12 +128,20 @@ flowchart TD
     G --> P["Graph"]
     G --> Q["Hash Table"]
     
-    style A fill:#e3f2fd
-    style B fill:#c8e6c9
-    style C fill:#fff3e0
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef main fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef linear fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef nonlinear fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef static fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef dynamic fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A main
+    class B,D,E linear
+    class C,F,G nonlinear
+    class H,I static
+    class J,K,L,M,N,O,P,Q dynamic
 ```
 
-### 💻 Data Structure Examples
+### Data Structure Examples
 
 ```cpp
 // Array - Fixed size, contiguous memory
@@ -163,88 +178,57 @@ hashMap["apple"] = 5;
 hashMap["banana"] = 3;
 ```
 
-### 🔧 Choosing the Right Data Structure
-
-```cpp
-class DataStructureSelector {
-public:
-    string selectDataStructure(const string& operation, const string& pattern) {
-        if (operation == "search" && pattern == "frequent") {
-            return "Hash Table - O(1) average lookup";
-        }
-        
-        if (operation == "insert_delete" && pattern == "beginning") {
-            return "Linked List - O(1) at head";
-        }
-        
-        if (operation == "range_query" && pattern == "sorted") {
-            return "Binary Search Tree - O(log n) operations";
-        }
-        
-        if (operation == "priority" && pattern == "max_min") {
-            return "Heap - O(log n) insert/extract";
-        }
-        
-        return "Array - General purpose, O(1) access";
-    }
-};
-```
-
 ---
 
-## ⚡ What are Algorithms?
-
-<div align="center">
-<img src="https://miro.medium.com/1*OVBlrVqg_NMw0wggMnxQtA.png" alt="What are Algorithms" width="650" height="350"/>
-</div>
+## What are Algorithms?
 
 **Algorithms** are step-by-step procedures for solving problems or performing computations.
 
-### 🎯 Algorithm Categories
+<div align="center">
+<img src="https://camo.githubusercontent.com/633adbbff347d6f53a2e37c51b554508209cad31f48321143176e5777bef8def/68747470733a2f2f6d69726f2e6d656469756d2e636f6d2f312a4f56426c725671675f4e4d77307767674d6e785174412e706e67" alt="What are Algorithms" width="650" height="400"/>
+</div>
+
+### Algorithm Categories
 
 ```mermaid
-mindmap
-  root))⚡ Algorithms((
-    🔄 Sorting
-      Comparison-based
-        Bubble Sort
-        Merge Sort
-        Quick Sort
-        Heap Sort
-      Non-comparison
-        Counting Sort
-        Radix Sort
-        Bucket Sort
-    🔍 Searching
-      Linear Search
-      Binary Search
-      Ternary Search
-      Exponential Search
-      Interpolation Search
-    🕸️ Graph Algorithms
-      Traversal
-        BFS
-        DFS
-      Shortest Path
-        Dijkstra
-        Bellman-Ford
-        Floyd-Warshall
-      MST
-        Kruskal
-        Prim
-    📊 Dynamic Programming
-      Memoization
-      Tabulation
-      Optimization
-      State machines
-    🎯 Greedy
-      Activity Selection
-      Huffman Coding
-      Fractional Knapsack
-      Job Scheduling
+flowchart TD
+    A["⚡ Algorithms"] --> B["🔄 Sorting"]
+    A --> C["🔍 Searching"]
+    A --> D["🕸️ Graph Algorithms"]
+    A --> E["📊 Dynamic Programming"]
+    A --> F["🎯 Greedy"]
+    
+    B --> G["Comparison-based"]
+    B --> H["Non-comparison"]
+    
+    C --> I["Linear Search"]
+    C --> J["Binary Search"]
+    
+    D --> K["BFS/DFS"]
+    D --> L["Shortest Path"]
+    
+    E --> M["Memoization"]
+    E --> N["Tabulation"]
+    
+    F --> O["Activity Selection"]
+    F --> P["Huffman Coding"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef main fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef sorting fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef searching fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef graphAlgo fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef dp fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    classDef greedy fill:#e0f2f1,stroke:#009688,stroke-width:2px,color:#000
+    class A main
+    class B,G,H sorting
+    class C,I,J searching
+    class D,K,L graphAlgo
+    class E,M,N dp
+    class F,O,P greedy
 ```
 
-### 💻 Algorithm Examples
+### Algorithm Examples
 
 ```cpp
 // Linear Search Algorithm
@@ -297,547 +281,219 @@ void bubbleSort(vector<int>& arr) {
 
 ---
 
-## 📈 Algorithm Analysis
-
-<div align="center">
-<img src="https://miro.medium.com/1*mhBtiIW6-XVmFzjISD42rw.jpeg" alt="Algorithm Analysis" width="650" height="350"/>
-</div>
+## Algorithm Analysis
 
 **Algorithm Analysis** helps us understand the efficiency and performance characteristics of algorithms.
 
-### 🎯 Why Analyze Algorithms?
+<div align="center">
+<img src="https://camo.githubusercontent.com/e7e563aba838ca1918b960ab700f70bd11190d6fe744456f04ebb143d4ed2817/68747470733a2f2f6d69726f2e6d656469756d2e636f6d2f312a6d684274694957362d58566d467a6a495344343272772e6a706567" alt="Algorithm Analysis" width="650" height="400"/>
+</div>
+
+### Why Analyze Algorithms?
 
 ```mermaid
-graph LR
-    A[Algorithm Analysis] --> B[Performance Prediction]
-    A --> C[Resource Planning]
-    A --> D[Algorithm Comparison]
-    A --> E[Optimization]
+flowchart TD
+    A["Algorithm Analysis"] --> B["Performance Prediction"]
+    A --> C["Resource Planning"]
+    A --> D["Algorithm Comparison"]
+    A --> E["Optimization"]
     
-    B --> F[Scalability]
-    C --> G[Memory/CPU Usage]
-    D --> H[Best Choice]
-    E --> I[Efficiency Improvements]
-```
-
-### 💻 Analysis Examples
-
-```cpp
-class AlgorithmAnalysis {
-public:
-    // O(1) - Constant Time
-    int getFirstElement(vector<int>& arr) {
-        if (arr.empty()) return -1;
-        return arr[0]; // Always takes same time
-    }
+    B --> F["Scalability"]
+    C --> G["Memory/CPU Usage"]
+    D --> H["Best Choice"]
+    E --> I["Efficiency Improvements"]
     
-    // O(n) - Linear Time
-    int findMax(vector<int>& arr) {
-        if (arr.empty()) return -1;
-        
-        int maxVal = arr[0];
-        for (int i = 1; i < arr.size(); i++) { // n-1 iterations
-            if (arr[i] > maxVal) {
-                maxVal = arr[i];
-            }
-        }
-        return maxVal;
-    }
-    
-    // O(n²) - Quadratic Time
-    void printAllPairs(vector<int>& arr) {
-        for (int i = 0; i < arr.size(); i++) {     // n iterations
-            for (int j = 0; j < arr.size(); j++) { // n iterations each
-                cout << "(" << arr[i] << ", " << arr[j] << ") ";
-            }
-        }
-    }
-    
-    // O(log n) - Logarithmic Time
-    int binarySearchRecursive(vector<int>& arr, int target, int left, int right) {
-        if (left > right) return -1;
-        
-        int mid = left + (right - left) / 2;
-        
-        if (arr[mid] == target) {
-            return mid;
-        } else if (arr[mid] > target) {
-            return binarySearchRecursive(arr, target, left, mid - 1);
-        } else {
-            return binarySearchRecursive(arr, target, mid + 1, right);
-        }
-    }
-};
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef analysis fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef prediction fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef planning fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef comparison fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef optimization fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A analysis
+    class B,F prediction
+    class C,G planning
+    class D,H comparison
+    class E,I optimization
 ```
 
 ---
 
-## 📊 Big O Notation
+## Big O Notation
 
 **Big O Notation** describes the upper bound of an algorithm's time or space complexity as input size grows.
 
-### 🎯 Common Big O Complexities
+### Common Big O Complexities
 
 ```mermaid
 flowchart TD
-    A[Big O Complexities] --> B[O1 - Constant]
-    A --> C[Olog n - Logarithmic]
-    A --> D[On - Linear]
-    A --> E[On log n - Linearithmic]
-    A --> F[On² - Quadratic]
-    A --> G[O2ⁿ - Exponential]
+    A["Big O Complexities"] --> B["O(1) - Constant"]
+    A --> C["O(log n) - Logarithmic"]
+    A --> D["O(n) - Linear"]
+    A --> E["O(n log n) - Linearithmic"]
+    A --> F["O(n²) - Quadratic"]
+    A --> G["O(2ⁿ) - Exponential"]
     
-    B --> H[Array access]
-    C --> I[Binary search]
-    D --> J[Linear search]
-    E --> K[Merge sort]
-    F --> L[Bubble sort]
-    G --> M[Fibonacci naive]
+    B --> H["Array access"]
+    C --> I["Binary search"]
+    D --> J["Linear search"]
+    E --> K["Merge sort"]
+    F --> L["Bubble sort"]
+    G --> M["Fibonacci naive"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef complexity fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef excellent fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef good fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef acceptable fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef poor fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A complexity
+    class B,H,C,I excellent
+    class D,J good
+    class E,K acceptable
+    class F,L,G,M poor
 ```
 
-### 📈 Growth Rate Comparison
+### Growth Rate Comparison
 
 | Input Size | O(1) | O(log n) | O(n) | O(n log n) | O(n²) | O(2ⁿ) |
-|:-----------|:-----|:---------|:-----|:-----------|:------|:------|
+|------------|------|----------|------|------------|-------|-------|
 | **10** | 1 | 3 | 10 | 33 | 100 | 1,024 |
 | **100** | 1 | 7 | 100 | 664 | 10,000 | 1.3×10³⁰ |
 | **1,000** | 1 | 10 | 1,000 | 9,966 | 1,000,000 | ∞ |
 
-### 💻 Big O Examples
-
-```cpp
-class BigOExamples {
-public:
-    // O(1) - Constant Time
-    bool isEmpty(vector<int>& arr) {
-        return arr.empty(); // Single operation
-    }
-    
-    // O(log n) - Logarithmic Time
-    int binarySearch(vector<int>& arr, int target) {
-        int left = 0, right = arr.size() - 1;
-        
-        while (left <= right) { // Halves search space each iteration
-            int mid = left + (right - left) / 2;
-            
-            if (arr[mid] == target) return mid;
-            else if (arr[mid] < target) left = mid + 1;
-            else right = mid - 1;
-        }
-        
-        return -1;
-    }
-    
-    // O(n) - Linear Time
-    int sum(vector<int>& arr) {
-        int total = 0;
-        for (int num : arr) { // Visits each element once
-            total += num;
-        }
-        return total;
-    }
-    
-    // O(n log n) - Linearithmic Time
-    void mergeSort(vector<int>& arr, int left, int right) {
-        if (left < right) {
-            int mid = left + (right - left) / 2;
-            
-            mergeSort(arr, left, mid);      // T(n/2)
-            mergeSort(arr, mid + 1, right); // T(n/2)
-            merge(arr, left, mid, right);   // O(n)
-        }
-    }
-    
-    // O(n²) - Quadratic Time
-    void selectionSort(vector<int>& arr) {
-        for (int i = 0; i < arr.size() - 1; i++) {     // n iterations
-            int minIdx = i;
-            for (int j = i + 1; j < arr.size(); j++) { // n-i iterations
-                if (arr[j] < arr[minIdx]) {
-                    minIdx = j;
-                }
-            }
-            swap(arr[i], arr[minIdx]);
-        }
-    }
-    
-private:
-    void merge(vector<int>& arr, int left, int mid, int right) {
-        // Merge implementation - O(n)
-        vector<int> temp(right - left + 1);
-        int i = left, j = mid + 1, k = 0;
-        
-        while (i <= mid && j <= right) {
-            if (arr[i] <= arr[j]) {
-                temp[k++] = arr[i++];
-            } else {
-                temp[k++] = arr[j++];
-            }
-        }
-        
-        while (i <= mid) temp[k++] = arr[i++];
-        while (j <= right) temp[k++] = arr[j++];
-        
-        for (int i = 0; i < k; i++) {
-            arr[left + i] = temp[i];
-        }
-    }
-};
-```
-
 ---
 
-## ⚖️ Space vs Time Complexity
+## Space vs Time Complexity
 
 Understanding the trade-off between time and space is crucial for algorithm design.
 
-### 🎯 Space-Time Trade-off
+<div align="center">
+<img src="https://camo.githubusercontent.com/5b3d93ed4f9c3defd98fbc7c26adbd87ce046e3f07071ec03c7c63c09e68a80a/68747470733a2f2f73746f726167652e676f6f676c65617069732e636f6d2f616c676f6461696c7972616e646f6d6173736574732f637572726963756c756d2f66756e64616d656e74616c732f7370616365312e706e67" alt="Space Complexity Analysis" width="650" height="400"/>
+</div>
+
+### Space-Time Trade-off
 
 ```mermaid
-graph LR
-    A[Algorithm Design] --> B[Time Optimization]
-    A --> C[Space Optimization]
+flowchart TD
+    A["Algorithm Design"] --> B["Time Optimization"]
+    A --> C["Space Optimization"]
     
-    B --> D[Faster Execution]
-    B --> E[More Memory Usage]
+    B --> D["Faster Execution"]
+    B --> E["More Memory Usage"]
     
-    C --> F[Less Memory Usage]
-    C --> G[Slower Execution]
+    C --> F["Less Memory Usage"]
+    C --> G["Slower Execution"]
     
-    D --> H[Caching, Preprocessing]
-    F --> I[In-place Algorithms]
-```
-
-### 💻 Trade-off Examples
-
-```cpp
-class SpaceTimeTradeoff {
-public:
-    // Time Optimized: O(1) time, O(n) space
-    class FastLookup {
-    private:
-        unordered_set<int> elements;
-        
-    public:
-        FastLookup(vector<int>& arr) {
-            for (int num : arr) {
-                elements.insert(num); // Preprocessing: O(n) time, O(n) space
-            }
-        }
-        
-        bool contains(int target) {
-            return elements.count(target); // O(1) time
-        }
-    };
+    D --> H["Caching, Preprocessing"]
+    F --> I["In-place Algorithms"]
     
-    // Space Optimized: O(n) time, O(1) space
-    bool containsSpaceOptimized(vector<int>& arr, int target) {
-        for (int num : arr) { // O(n) time, O(1) space
-            if (num == target) return true;
-        }
-        return false;
-    }
-    
-    // Fibonacci: Time vs Space
-    
-    // Space optimized: O(n) time, O(1) space
-    int fibonacciSpaceOptimized(int n) {
-        if (n <= 1) return n;
-        
-        int prev2 = 0, prev1 = 1;
-        for (int i = 2; i <= n; i++) {
-            int current = prev1 + prev2;
-            prev2 = prev1;
-            prev1 = current;
-        }
-        return prev1;
-    }
-    
-    // Time optimized with memoization: O(n) time, O(n) space
-    int fibonacciMemoized(int n, unordered_map<int, int>& memo) {
-        if (n <= 1) return n;
-        
-        if (memo.find(n) != memo.end()) {
-            return memo[n];
-        }
-        
-        memo[n] = fibonacciMemoized(n-1, memo) + fibonacciMemoized(n-2, memo);
-        return memo[n];
-    }
-};
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef design fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef time fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef space fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef result fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    class A design
+    class B,D,E,H time
+    class C,F,G,I space
 ```
 
 ---
 
-## 🧩 Problem Solving Approach
+## Problem Solving Approach
 
 A systematic approach to solving DSA problems efficiently.
 
-### 🎯 Problem Solving Framework
+### Problem Solving Framework
 
 ```mermaid
-graph TD
-    A[Problem] --> B[Understand]
-    B --> C[Plan]
-    C --> D[Implement]
-    D --> E[Test]
-    E --> F[Optimize]
+flowchart TD
+    A["Problem"] --> B["Understand"]
+    B --> C["Plan"]
+    C --> D["Implement"]
+    D --> E["Test"]
+    E --> F["Optimize"]
     
-    B --> G[Read carefully, identify constraints]
-    C --> H[Choose data structure & algorithm]
-    D --> I[Write clean, correct code]
-    E --> J[Test with examples & edge cases]
-    F --> K[Analyze & improve complexity]
-```
-
-### 💻 Problem Solving Template
-
-```cpp
-class ProblemSolvingTemplate {
-public:
-    /*
-     * Step 1: Understand the Problem
-     * - What is the input?
-     * - What is the expected output?
-     * - What are the constraints?
-     * - Are there any edge cases?
-     */
+    B --> G["Read carefully, identify constraints"]
+    C --> H["Choose data structure & algorithm"]
+    D --> I["Write clean, correct code"]
+    E --> J["Test with examples & edge cases"]
+    F --> K["Analyze & improve complexity"]
     
-    /*
-     * Step 2: Plan the Solution
-     * - What data structure is most appropriate?
-     * - What algorithm should I use?
-     * - What's the expected time/space complexity?
-     */
-    
-    /*
-     * Step 3: Implement
-     * - Write clean, readable code
-     * - Handle edge cases
-     * - Add comments for complex logic
-     */
-    
-    // Example: Two Sum Problem
-    vector<int> twoSum(vector<int>& nums, int target) {
-        // Step 1: Understand
-        // Input: array of integers, target sum
-        // Output: indices of two numbers that add up to target
-        // Constraints: exactly one solution exists
-        
-        // Step 2: Plan
-        // Use hash map for O(1) lookup
-        // Time: O(n), Space: O(n)
-        
-        // Step 3: Implement
-        unordered_map<int, int> numToIndex;
-        
-        for (int i = 0; i < nums.size(); i++) {
-            int complement = target - nums[i];
-            
-            if (numToIndex.find(complement) != numToIndex.end()) {
-                return {numToIndex[complement], i};
-            }
-            
-            numToIndex[nums[i]] = i;
-        }
-        
-        return {}; // Should never reach here given constraints
-    }
-    
-    /*
-     * Step 4: Test
-     * - Test with provided examples
-     * - Test edge cases (empty array, single element, etc.)
-     * - Test with large inputs
-     */
-    
-    /*
-     * Step 5: Optimize
-     * - Can we reduce time complexity?
-     * - Can we reduce space complexity?
-     * - Are there any redundant operations?
-     */
-};
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef step fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef understand fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef plan fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef implement fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef test fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    classDef optimize fill:#e0f2f1,stroke:#009688,stroke-width:2px,color:#000
+    class A,B,C,D,E,F step
+    class G understand
+    class H plan
+    class I implement
+    class J test
+    class K optimize
 ```
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
-### 🎯 Learning Path
+### Learning Path
 
 ```mermaid
-graph TD
-    A[Start Here] --> B[Arrays & Strings]
-    B --> C[Linked Lists]
-    C --> D[Stacks & Queues]
-    D --> E[Trees]
-    E --> F[Graphs]
-    F --> G[Dynamic Programming]
-    G --> H[Advanced Topics]
+flowchart TD
+    A["Start Here"] --> B["Arrays & Strings"]
+    B --> C["Linked Lists"]
+    C --> D["Stacks & Queues"]
+    D --> E["Trees"]
+    E --> F["Graphs"]
+    F --> G["Dynamic Programming"]
+    G --> H["Advanced Topics"]
     
-    B --> I[Two Pointers, Sliding Window]
-    E --> J[BFS, DFS, Binary Search]
-    F --> K[Shortest Path, MST]
-    G --> L[Memoization, Tabulation]
-```
-
-### 💻 Practice Strategy
-
-```cpp
-class LearningStrategy {
-public:
-    void dailyPractice() {
-        // Week 1-2: Fundamentals
-        practiceArrays();
-        practiceStrings();
-        
-        // Week 3-4: Linear Data Structures
-        practiceLinkedLists();
-        practiceStacksQueues();
-        
-        // Week 5-6: Non-linear Data Structures
-        practiceTrees();
-        practiceGraphs();
-        
-        // Week 7-8: Algorithms
-        practiceSorting();
-        practiceSearching();
-        
-        // Week 9-10: Advanced Topics
-        practiceDynamicProgramming();
-        practiceGreedyAlgorithms();
-    }
+    B --> I["Two Pointers, Sliding Window"]
+    E --> J["BFS, DFS, Binary Search"]
+    F --> K["Shortest Path, MST"]
+    G --> L["Memoization, Tabulation"]
     
-private:
-    void practiceArrays() {
-        // Solve 5-10 array problems daily
-        // Focus on: two pointers, sliding window, prefix sum
-    }
-    
-    // ... other practice methods
-};
-```
-
-### 🎯 Essential Resources
-
-```cpp
-class StudyResources {
-public:
-    vector<string> getBooks() {
-        return {
-            "Introduction to Algorithms (CLRS)",
-            "Algorithm Design Manual (Skiena)",
-            "Cracking the Coding Interview",
-            "Elements of Programming Interviews"
-        };
-    }
-    
-    vector<string> getOnlinePlatforms() {
-        return {
-            "LeetCode - Interview preparation",
-            "HackerRank - Skill development",
-            "Codeforces - Competitive programming",
-            "GeeksforGeeks - Tutorials and practice"
-        };
-    }
-    
-    vector<string> getYouTubeChannels() {
-        return {
-            "Abdul Bari - Algorithm explanations",
-            "Tushar Roy - Coding interviews",
-            "Back To Back SWE - Problem solving",
-            "William Fiset - Data structures"
-        };
-    }
-};
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef start fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef basic fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef intermediate fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef advanced fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef techniques fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A start
+    class B,C,D basic
+    class E,F intermediate
+    class G,H advanced
+    class I,J,K,L techniques
 ```
 
 ---
 
-## 🏆 Best Practices
-
-### ✅ Do's
-
-```cpp
-// 1. Start with brute force, then optimize
-vector<int> twoSumBruteForce(vector<int>& nums, int target) {
-    // O(n²) solution first
-    for (int i = 0; i < nums.size(); i++) {
-        for (int j = i + 1; j < nums.size(); j++) {
-            if (nums[i] + nums[j] == target) {
-                return {i, j};
-            }
-        }
-    }
-    return {};
-}
-
-// Then optimize to O(n)
-vector<int> twoSumOptimized(vector<int>& nums, int target) {
-    unordered_map<int, int> map;
-    for (int i = 0; i < nums.size(); i++) {
-        int complement = target - nums[i];
-        if (map.count(complement)) {
-            return {map[complement], i};
-        }
-        map[nums[i]] = i;
-    }
-    return {};
-}
-
-// 2. Always consider edge cases
-bool isValidInput(vector<int>& arr) {
-    return !arr.empty() && arr.size() <= 10000; // Check constraints
-}
-
-// 3. Write clean, readable code
-int findMaxElement(vector<int>& arr) {
-    if (arr.empty()) {
-        throw invalid_argument("Array cannot be empty");
-    }
-    
-    int maxElement = arr[0];
-    for (int i = 1; i < arr.size(); i++) {
-        if (arr[i] > maxElement) {
-            maxElement = arr[i];
-        }
-    }
-    
-    return maxElement;
-}
-```
-
-### ❌ Don'ts
-
-```cpp
-// Don't: Ignore time/space complexity
-// Don't: Skip edge case testing
-// Don't: Write overly complex solutions initially
-// Don't: Forget to trace through your algorithm with examples
-```
-
----
-
-## 🎓 Summary
+## Summary
 
 DSA fundamentals provide the foundation for all advanced topics. Master these concepts:
 
-✅ **Data Structures**: Understand when and how to use different structures  
-✅ **Algorithms**: Learn common algorithmic patterns and techniques  
-✅ **Complexity Analysis**: Always analyze time and space complexity  
-✅ **Problem Solving**: Follow a systematic approach to tackle problems  
-✅ **Practice**: Consistent daily practice with increasing difficulty  
-✅ **Optimization**: Start simple, then optimize for better performance  
+### Essential Concepts
+- **Data Structures**: Understand when and how to use different structures
+- **Algorithms**: Learn common algorithmic patterns and techniques
+- **Complexity Analysis**: Always analyze time and space complexity
+- **Problem Solving**: Follow a systematic approach to tackle problems
 
-**Next Steps**: Begin with arrays and strings, then progress through the learning path systematically.
+### Best Practices
+- **Practice**: Consistent daily practice with increasing difficulty
+- **Optimization**: Start simple, then optimize for better performance
+- **Testing**: Always test with edge cases and various inputs
+- **Documentation**: Write clean, readable code with proper comments
+
+> **Master's Insight**: Strong fundamentals in DSA are like a solid foundation for a building - they enable you to construct increasingly complex and sophisticated solutions with confidence.
 
 ---
 
 <div align="center">
 
-**🎯 Master the Fundamentals, Master Everything**
+**🎯 Master the Fundamentals • Build Strong Foundations • Achieve Excellence**
 
-*Strong foundations enable limitless growth in computer science*
+*From Theory to Practice • Concepts to Implementation • Understanding to Mastery*
 
 </div>

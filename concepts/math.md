@@ -1,16 +1,12 @@
-# 🧮 Math for DSA — Complete Professional Guide
+# 🧮 Mathematical Algorithms — Complete Professional Guide
 
 <div align="center">
 
-![Math for DSA](https://img.shields.io/badge/Math_for_DSA-Mathematical_Foundations-FF6B6B?style=for-the-badge&logo=calculator&logoColor=white)
-![Difficulty](https://img.shields.io/badge/Difficulty-Intermediate-yellow?style=for-the-badge)
-![Importance](https://img.shields.io/badge/Importance-Critical-red?style=for-the-badge)
+![Mathematical Algorithms](https://img.shields.io/badge/Mathematical_Algorithms-Number_Theory-FF6B6B?style=for-the-badge&logo=calculator&logoColor=white)
+![Difficulty](https://img.shields.io/badge/Difficulty-Intermediate-orange?style=for-the-badge)
+![Importance](https://img.shields.io/badge/Importance-High-darkred?style=for-the-badge)
 
-<img src="https://miro.medium.com/1*I0ehhkeCT40IRNvecnEHSQ.jpeg" alt="Mathematical Foundations for DSA" width="600" height="350"/>
-
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20241218154920107295/Maths.webp" alt="Math Concepts in Programming" width="700" height="400"/>
-
-*Master essential mathematical concepts for competitive programming and algorithm optimization*
+**Master the mathematical foundations of computer science**
 
 </div>
 
@@ -18,1013 +14,884 @@
 
 ## 📑 Table of Contents
 
-1. [Introduction](#-introduction)
-2. [Number Theory Fundamentals](#-number-theory-fundamentals)
-3. [GCD & LCM](#-gcd--lcm)
-4. [Modular Arithmetic](#-modular-arithmetic)
-5. [Prime Numbers & Sieve](#-prime-numbers--sieve)
-6. [Fast Exponentiation](#-fast-exponentiation)
-7. [Combinatorics](#-combinatorics)
-8. [Probability Theory](#-probability-theory)
-9. [Mathematical Patterns](#-mathematical-patterns)
-10. [Advanced Topics](#-advanced-topics)
-11. [Problem-Solving Strategies](#-problem-solving-strategies)
-12. [Interview Applications](#-interview-applications)
-13. [Best Practices](#-best-practices)
+1. [Introduction](#introduction)
+2. [Number Theory](#number-theory)
+3. [Prime Numbers](#prime-numbers)
+4. [Modular Arithmetic](#modular-arithmetic)
+5. [Combinatorics](#combinatorics)
+6. [Matrix Operations](#matrix-operations)
+7. [Probability & Statistics](#probability--statistics)
+8. [Applications](#applications)
 
 ---
 
-## 🎯 Introduction
+## Introduction
 
-**Mathematics for DSA** encompasses essential mathematical concepts that form the backbone of efficient algorithms, competitive programming, and system optimization. These concepts are crucial for solving complex computational problems.
+**Mathematical Algorithms** form the backbone of computer science, providing efficient solutions for numerical computations, cryptography, optimization, and data analysis. These algorithms leverage mathematical principles to solve complex computational problems.
 
-### 🔑 Core Areas
+<div align="center">
+<img src="https://camo.githubusercontent.com/85c31800d93cd7e033050774be25430624ed234066fdd0b7f85fcafe9e413187/68747470733a2f2f6d69726f2e6d656469756d2e636f6d2f312a49306568686b654354343049524e7665636e454853512e6a706567" alt="Mathematics in Computer Science" width="650" height="400"/>
+</div>
 
-```mermaid
-mindmap
-  root))🧮 Math for DSA((
-    🔢 Number Theory
-      GCD & LCM
-      Prime Numbers
-      Divisibility
-      Factorization
-    ⚙️ Modular Arithmetic
-      Basic Operations
-      Modular Inverse
-      Fermat's Theorem
-      Chinese Remainder
-    🎲 Combinatorics
-      Permutations
-      Combinations
-      Pascal's Triangle
-      Catalan Numbers
-    📊 Probability
-      Expected Value
-      Distributions
-      Game Theory
-      Random Variables
-    ⚡ Fast Algorithms
-      Binary Exponentiation
-      Matrix Exponentiation
-      Fast Fourier Transform
-      Sieve Algorithms
-```
-
-- **Number Theory**: GCD, LCM, Prime numbers
-- **Modular Arithmetic**: Operations under modulo
-- **Combinatorics**: Counting and arrangements
-- **Probability**: Expected values and distributions
-- **Fast Algorithms**: Efficient mathematical computations
-
-### 💡 Why Math Matters in DSA
+### Core Concept
 
 ```mermaid
 flowchart TD
-    A["🧮 Mathematics in DSA"] --> B["🚀 Algorithm Optimization"]
-    A --> C["🎯 Problem Solving"]
-    A --> D["🔢 Large Number Handling"]
-    A --> E["🎪 Competitive Programming"]
-    A --> F["🏗️ System Design"]
+    A["🧮 Mathematical Algorithms"] --> B["Number Theory"]
+    A --> C["Algebra"]
+    A --> D["Geometry"]
+    A --> E["Statistics"]
     
-    B --> B1["Reduce Time Complexity"]
-    B --> B2["Space Optimization"]
+    B --> F["Prime numbers, GCD, LCM"]
+    C --> G["Linear equations, matrices"]
+    D --> H["Computational geometry"]
+    E --> I["Probability, distributions"]
     
-    C --> C1["Mathematical Insights"]
-    C --> C2["Pattern Recognition"]
-    
-    D --> D1["Prevent Overflow"]
-    D --> D2["Modular Arithmetic"]
-    
-    E --> E1["Contest Problems"]
-    E --> E2["Fast Solutions"]
-    
-    F --> F1["Mathematical Modeling"]
-    F --> F2["Performance Analysis"]
-    
-    style A fill:#e1f5fe
-    style B fill:#c8e6c9
-    style C fill:#fff3e0
-    style D fill:#fce4ec
-    style E fill:#f3e5f5
-    style F fill:#e8f5e8
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef algorithms fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef number fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef algebra fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef geometry fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef statistics fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A algorithms
+    class B,F number
+    class C,G algebra
+    class D,H geometry
+    class E,I statistics
 ```
 
 ---
 
-## 🔢 Number Theory Fundamentals
+## Number Theory
 
-### 📊 Divisibility Rules
-
-| Number | Rule | Example |
-|:-------|:-----|:--------|
-| **2** | Last digit even | 1234 → 4 is even ✅ |
-| **3** | Sum of digits divisible by 3 | 123 → 1+2+3=6, 6÷3=2 ✅ |
-| **5** | Last digit 0 or 5 | 125 → ends in 5 ✅ |
-| **9** | Sum of digits divisible by 9 | 108 → 1+0+8=9 ✅ |
-| **11** | Alternating sum divisible by 11 | 121 → 1-2+1=0 ✅ |
-
-### 🎯 Properties of Numbers
-
-```cpp
-// Even/Odd Check
-bool isEven(int n) { return (n & 1) == 0; }
-bool isOdd(int n) { return (n & 1) == 1; }
-
-// Perfect Square Check
-bool isPerfectSquare(int n) {
-    int root = sqrt(n);
-    return root * root == n;
-}
-
-// Power of 2 Check
-bool isPowerOfTwo(int n) {
-    return n > 0 && (n & (n - 1)) == 0;
-}
-```
-
----
-
-## 🔗 GCD & LCM
-
-### 🎯 Greatest Common Divisor (GCD)
-
-**Definition**: Largest positive integer that divides both numbers without remainder.
+### Fundamental Operations
 
 ```mermaid
 flowchart TD
-    A["GCD(a, b)"] --> B{"b == 0?"}
-    B -->|Yes| C["Return a"]
-    B -->|No| D["GCD(b, a % b)"]
-    D --> A
+    A["Number Theory Algorithms"] --> B["GCD & LCM"]
+    A --> C["Prime Testing"]
+    A --> D["Factorization"]
+    A --> E["Modular Arithmetic"]
     
-    E["Example: GCD(48, 18)"] --> F["GCD(18, 12)"]
-    F --> G["GCD(12, 6)"]
-    G --> H["GCD(6, 0)"]
-    H --> I["Result: 6"]
+    B --> F["Euclidean Algorithm"]
+    C --> G["Miller-Rabin Test"]
+    D --> H["Pollard's Rho"]
+    E --> I["Fast Exponentiation"]
     
-    style A fill:#e3f2fd
-    style C fill:#c8e6c9
-    style I fill:#c8e6c9
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef theory fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef gcd fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef prime fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef factor fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef modular fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A theory
+    class B,F gcd
+    class C,G prime
+    class D,H factor
+    class E,I modular
 ```
 
-#### Euclidean Algorithm
+### Basic Number Theory Algorithms
 
 ```cpp
-int gcd(int a, int b) {
-    return b == 0 ? a : gcd(b, a % b);
-}
-
-// Iterative version (more efficient)
-int gcd_iterative(int a, int b) {
-    while (b != 0) {
-        int temp = b;
-        b = a % b;
-        a = temp;
-    }
-    return a;
-}
-```
-
-**Time Complexity**: O(log(min(a, b)))
-
-#### Extended Euclidean Algorithm
-
-```cpp
-int extendedGCD(int a, int b, int& x, int& y) {
-    if (b == 0) {
-        x = 1;
-        y = 0;
+class NumberTheory {
+public:
+    // Euclidean Algorithm for GCD
+    static long long gcd(long long a, long long b) {
+        while (b != 0) {
+            long long temp = b;
+            b = a % b;
+            a = temp;
+        }
         return a;
     }
     
-    int x1, y1;
-    int gcd = extendedGCD(b, a % b, x1, y1);
-    
-    x = y1;
-    y = x1 - (a / b) * y1;
-    
-    return gcd;
-}
-```
-
-**Use Case**: Finding modular inverse, solving linear Diophantine equations
-
----
-
-### 🔄 Least Common Multiple (LCM)
-
-**Definition**: Smallest positive integer divisible by both numbers.
-
-```mermaid
-flowchart LR
-    A["LCM(a, b)"] --> B["Calculate GCD(a, b)"]
-    B --> C["LCM = (a × b) / GCD"]
-    C --> D["Avoid Overflow: (a / GCD) × b"]
-    
-    E["Example: LCM(12, 18)"] --> F["GCD(12, 18) = 6"]
-    F --> G["LCM = (12 × 18) / 6 = 36"]
-    
-    style A fill:#e3f2fd
-    style D fill:#fff3e0
-    style G fill:#c8e6c9
-```
-
-```cpp
-long long lcm(long long a, long long b) {
-    return (a / gcd(a, b)) * b;  // Avoid overflow
-}
-
-// For multiple numbers
-long long lcm_array(vector<int>& arr) {
-    long long result = arr[0];
-    for (int i = 1; i < arr.size(); i++) {
-        result = lcm(result, arr[i]);
+    // Extended Euclidean Algorithm
+    static long long extendedGCD(long long a, long long b, long long& x, long long& y) {
+        if (b == 0) {
+            x = 1;
+            y = 0;
+            return a;
+        }
+        
+        long long x1, y1;
+        long long gcd = extendedGCD(b, a % b, x1, y1);
+        
+        x = y1;
+        y = x1 - (a / b) * y1;
+        
+        return gcd;
     }
-    return result;
-}
-```
-
-### 📊 GCD/LCM Properties
-
-```mermaid
-graph TD
-    A["GCD/LCM Properties"] --> B["gcd(a, 0) = a"]
-    A --> C["gcd(a, b) = gcd(b, a)"]
-    A --> D["gcd(a, b) = gcd(a - b, b)"]
-    A --> E["lcm(a, b) × gcd(a, b) = a × b"]
-    A --> F["gcd(ka, kb) = k × gcd(a, b)"]
     
-    style A fill:#e1f5fe
-    style B fill:#f3e5f5
-    style C fill:#f3e5f5
-    style D fill:#f3e5f5
-    style E fill:#fff3e0
-    style F fill:#f3e5f5
-```
-
-```
-gcd(a, 0) = a
-gcd(a, b) = gcd(b, a)
-gcd(a, b) = gcd(a - b, b)
-lcm(a, b) × gcd(a, b) = a × b
-gcd(ka, kb) = k × gcd(a, b)
-```
-
----
-
-## ⚙️ Modular Arithmetic
-
-### 🎯 Basic Operations
-
-```cpp
-const int MOD = 1e9 + 7;
-
-// Addition
-long long add(long long a, long long b) {
-    return (a % MOD + b % MOD) % MOD;
-}
-
-// Subtraction
-long long sub(long long a, long long b) {
-    return (a % MOD - b % MOD + MOD) % MOD;
-}
-
-// Multiplication
-long long mul(long long a, long long b) {
-    return (a % MOD * b % MOD) % MOD;
-}
-```
-
-### 🔥 Modular Properties
-
-```mermaid
-flowchart TD
-    A["Modular Arithmetic Properties"] --> B["(a + b) % m = (a % m + b % m) % m"]
-    A --> C["(a - b) % m = (a % m - b % m + m) % m"]
-    A --> D["(a × b) % m = (a % m × b % m) % m"]
-    A --> E["(a^n) % m = ((a % m)^n) % m"]
-    
-    F["Key Benefits"] --> G["Prevents Integer Overflow"]
-    F --> H["Maintains Mathematical Properties"]
-    F --> I["Enables Large Number Computations"]
-    
-    style A fill:#e3f2fd
-    style F fill:#fff3e0
-    style G fill:#c8e6c9
-    style H fill:#c8e6c9
-    style I fill:#c8e6c9
-```
-
-```
-(a + b) % m = (a % m + b % m) % m
-(a - b) % m = (a % m - b % m + m) % m
-(a × b) % m = (a % m × b % m) % m
-(a^n) % m = ((a % m)^n) % m
-```
-
-### 🎪 Modular Inverse
-
-#### Case 1: Prime Modulus (Fermat's Little Theorem)
-
-```cpp
-long long power(long long a, long long b, long long mod) {
-    long long result = 1;
-    while (b > 0) {
-        if (b & 1) result = (result * a) % mod;
-        a = (a * a) % mod;
-        b >>= 1;
+    // LCM using GCD
+    static long long lcm(long long a, long long b) {
+        return (a / gcd(a, b)) * b;
     }
-    return result;
-}
-
-long long modInverse(long long a, long long mod) {
-    return power(a, mod - 2, mod);  // a^(p-2) ≡ a^(-1) (mod p)
-}
-```
-
-#### Case 2: General Modulus (Extended Euclidean)
-
-```cpp
-long long modInverse(long long a, long long mod) {
-    int x, y;
-    int g = extendedGCD(a, mod, x, y);
-    if (g != 1) return -1;  // Inverse doesn't exist
-    return (x % mod + mod) % mod;
-}
-```
-
----
-
-## 🔍 Prime Numbers & Sieve
-
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Sieve-of-Eratosthenes-Algorithm.webp" alt="Sieve of Eratosthenes Algorithm" width="700" height="400"/>
-</div>
-
-### 🎯 Prime Check
-
-```cpp
-bool isPrime(int n) {
-    if (n <= 1) return false;
-    if (n <= 3) return true;
-    if (n % 2 == 0 || n % 3 == 0) return false;
     
-    for (int i = 5; i * i <= n; i += 6) {
-        if (n % i == 0 || n % (i + 2) == 0)
-            return false;
+    // Fast Exponentiation
+    static long long fastPower(long long base, long long exp, long long mod = LLONG_MAX) {
+        long long result = 1;
+        base %= mod;
+        
+        while (exp > 0) {
+            if (exp & 1) {
+                result = (result * base) % mod;
+            }
+            base = (base * base) % mod;
+            exp >>= 1;
+        }
+        
+        return result;
     }
-    return true;
-}
+    
+    // Modular Inverse
+    static long long modInverse(long long a, long long mod) {
+        long long x, y;
+        long long g = extendedGCD(a, mod, x, y);
+        
+        if (g != 1) {
+            return -1; // Inverse doesn't exist
+        }
+        
+        return (x % mod + mod) % mod;
+    }
+    
+    // Check if number is perfect square
+    static bool isPerfectSquare(long long n) {
+        if (n < 0) return false;
+        
+        long long root = sqrt(n);
+        return root * root == n;
+    }
+    
+    // Count digits in a number
+    static int countDigits(long long n) {
+        if (n == 0) return 1;
+        
+        int count = 0;
+        while (n > 0) {
+            count++;
+            n /= 10;
+        }
+        return count;
+    }
+    
+    // Sum of digits
+    static int sumOfDigits(long long n) {
+        int sum = 0;
+        while (n > 0) {
+            sum += n % 10;
+            n /= 10;
+        }
+        return sum;
+    }
+    
+    // Reverse a number
+    static long long reverseNumber(long long n) {
+        long long reversed = 0;
+        while (n > 0) {
+            reversed = reversed * 10 + n % 10;
+            n /= 10;
+        }
+        return reversed;
+    }
+};
 ```
-
-**Time Complexity**: O(√n)
 
 ---
 
-### 🔥 Sieve of Eratosthenes
+## Prime Numbers
 
-```mermaid
-flowchart TD
-    A["Initialize array[2..n] = true"] --> B["Start with p = 2"]
-    B --> C{"p² ≤ n?"}
-    C -->|Yes| D{"array[p] == true?"}
-    C -->|No| H["Return all true indices"]
-    
-    D -->|Yes| E["Mark multiples of p as false"]
-    D -->|No| F["p = next number"]
-    
-    E --> G["Start from p², increment by p"]
-    G --> F
-    F --> C
-    
-    I["Example: n = 10"] --> J["Mark 4,6,8,10 (multiples of 2)"]
-    J --> K["Mark 9 (multiple of 3)"]
-    K --> L["Primes: 2,3,5,7"]
-    
-    style A fill:#e3f2fd
-    style H fill:#c8e6c9
-    style L fill:#c8e6c9
-```
+### Prime Number Algorithms
 
 ```cpp
-vector<bool> sieve(int n) {
-    vector<bool> prime(n + 1, true);
-    prime[0] = prime[1] = false;
-    
-    for (int i = 2; i * i <= n; i++) {
-        if (prime[i]) {
-            for (int j = i * i; j <= n; j += i) {
-                prime[j] = false;
+class PrimeNumbers {
+public:
+    // Simple primality test
+    static bool isPrime(long long n) {
+        if (n <= 1) return false;
+        if (n <= 3) return true;
+        if (n % 2 == 0 || n % 3 == 0) return false;
+        
+        for (long long i = 5; i * i <= n; i += 6) {
+            if (n % i == 0 || n % (i + 2) == 0) {
+                return false;
             }
         }
-    }
-    return prime;
-}
-
-// Get all primes up to n
-vector<int> getAllPrimes(int n) {
-    vector<bool> isPrime = sieve(n);
-    vector<int> primes;
-    
-    for (int i = 2; i <= n; i++) {
-        if (isPrime[i]) {
-            primes.push_back(i);
-        }
-    }
-    return primes;
-}
-```
-
-**Time Complexity**: O(n log log n)  
-**Space Complexity**: O(n)
-
----
-
-### 🎪 Segmented Sieve
-
-For finding primes in range [L, R] where R - L ≤ 10^6:
-
-```cpp
-vector<bool> segmentedSieve(long long L, long long R) {
-    long long lim = sqrt(R);
-    vector<bool> mark(lim + 1, false);
-    vector<long long> primes;
-    
-    // Find all primes up to sqrt(R)
-    for (long long i = 2; i <= lim; ++i) {
-        if (!mark[i]) {
-            primes.emplace_back(i);
-            for (long long j = i * i; j <= lim; j += i)
-                mark[j] = true;
-        }
+        
+        return true;
     }
     
-    vector<bool> isPrime(R - L + 1, true);
-    for (long long i : primes) {
-        for (long long j = max(i * i, (L + i - 1) / i * i); j <= R; j += i) {
-            isPrime[j - L] = false;
-        }
-    }
-    
-    if (L == 1) isPrime[0] = false;
-    return isPrime;
-}
-```
-
----
-
-## ⚡ Fast Exponentiation
-
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Fast-Exponentiation-Binary.webp" alt="Fast Exponentiation Binary Method" width="650" height="350"/>
-</div>
-
-### 🎯 Binary Exponentiation
-
-```mermaid
-flowchart TD
-    A["power(a, b)"] --> B["result = 1"]
-    B --> C{"b > 0?"}
-    C -->|No| D["Return result"]
-    C -->|Yes| E{"b is odd?"}
-    
-    E -->|Yes| F["result *= a"]
-    E -->|No| G["a *= a"]
-    F --> G
-    G --> H["b >>= 1"]
-    H --> C
-    
-    I["Example: 3⁴"] --> J["3⁴ = 3² × 3²"]
-    J --> K["= 9 × 9 = 81"]
-    K --> L["Only 2 multiplications!"]
-    
-    style A fill:#e3f2fd
-    style D fill:#c8e6c9
-    style L fill:#fff3e0
-```
-
-```cpp
-long long power(long long a, long long b) {
-    long long result = 1;
-    while (b > 0) {
-        if (b & 1) result *= a;
-        a *= a;
-        b >>= 1;
-    }
-    return result;
-}
-
-// With modulo
-long long power(long long a, long long b, long long mod) {
-    long long result = 1;
-    a %= mod;
-    while (b > 0) {
-        if (b & 1) result = (result * a) % mod;
-        a = (a * a) % mod;
-        b >>= 1;
-    }
-    return result;
-}
-```
-
-**Time Complexity**: O(log b)
-
-### 🔥 Matrix Exponentiation
-
-For solving linear recurrences like Fibonacci:
-
-```cpp
-vector<vector<long long>> multiply(vector<vector<long long>>& A, 
-                                   vector<vector<long long>>& B, int mod) {
-    int n = A.size();
-    vector<vector<long long>> C(n, vector<long long>(n, 0));
-    
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            for (int k = 0; k < n; k++) {
-                C[i][j] = (C[i][j] + A[i][k] * B[k][j]) % mod;
+    // Sieve of Eratosthenes
+    static vector<bool> sieveOfEratosthenes(int n) {
+        vector<bool> isPrime(n + 1, true);
+        isPrime[0] = isPrime[1] = false;
+        
+        for (int i = 2; i * i <= n; i++) {
+            if (isPrime[i]) {
+                for (int j = i * i; j <= n; j += i) {
+                    isPrime[j] = false;
+                }
             }
         }
-    }
-    return C;
-}
-
-long long fibonacci(long long n, int mod) {
-    if (n == 0) return 0;
-    if (n == 1) return 1;
-    
-    vector<vector<long long>> base = {{1, 1}, {1, 0}};
-    vector<vector<long long>> result = {{1, 0}, {0, 1}};  // Identity matrix
-    
-    n--;
-    while (n > 0) {
-        if (n & 1) result = multiply(result, base, mod);
-        base = multiply(base, base, mod);
-        n >>= 1;
+        
+        return isPrime;
     }
     
-    return result[0][0];
-}
+    // Generate primes up to n
+    static vector<int> generatePrimes(int n) {
+        vector<bool> isPrime = sieveOfEratosthenes(n);
+        vector<int> primes;
+        
+        for (int i = 2; i <= n; i++) {
+            if (isPrime[i]) {
+                primes.push_back(i);
+            }
+        }
+        
+        return primes;
+    }
+    
+    // Miller-Rabin Primality Test
+    static bool millerRabin(long long n, int k = 5) {
+        if (n < 2) return false;
+        if (n == 2 || n == 3) return true;
+        if (n % 2 == 0) return false;
+        
+        // Write n-1 as d * 2^r
+        long long d = n - 1;
+        int r = 0;
+        while (d % 2 == 0) {
+            d /= 2;
+            r++;
+        }
+        
+        // Perform k rounds of testing
+        for (int i = 0; i < k; i++) {
+            long long a = 2 + rand() % (n - 3);
+            long long x = NumberTheory::fastPower(a, d, n);
+            
+            if (x == 1 || x == n - 1) continue;
+            
+            bool composite = true;
+            for (int j = 0; j < r - 1; j++) {
+                x = (x * x) % n;
+                if (x == n - 1) {
+                    composite = false;
+                    break;
+                }
+            }
+            
+            if (composite) return false;
+        }
+        
+        return true;
+    }
+    
+    // Prime factorization
+    static vector<pair<long long, int>> primeFactorization(long long n) {
+        vector<pair<long long, int>> factors;
+        
+        // Check for 2
+        if (n % 2 == 0) {
+            int count = 0;
+            while (n % 2 == 0) {
+                count++;
+                n /= 2;
+            }
+            factors.push_back({2, count});
+        }
+        
+        // Check for odd factors
+        for (long long i = 3; i * i <= n; i += 2) {
+            if (n % i == 0) {
+                int count = 0;
+                while (n % i == 0) {
+                    count++;
+                    n /= i;
+                }
+                factors.push_back({i, count});
+            }
+        }
+        
+        // If n is still > 1, it's a prime
+        if (n > 1) {
+            factors.push_back({n, 1});
+        }
+        
+        return factors;
+    }
+    
+    // Count divisors
+    static long long countDivisors(long long n) {
+        auto factors = primeFactorization(n);
+        long long count = 1;
+        
+        for (auto& [prime, power] : factors) {
+            count *= (power + 1);
+        }
+        
+        return count;
+    }
+    
+    // Sum of divisors
+    static long long sumOfDivisors(long long n) {
+        auto factors = primeFactorization(n);
+        long long sum = 1;
+        
+        for (auto& [prime, power] : factors) {
+            long long termSum = (NumberTheory::fastPower(prime, power + 1, LLONG_MAX) - 1) / (prime - 1);
+            sum *= termSum;
+        }
+        
+        return sum;
+    }
+};
 ```
 
 ---
 
-## 🎲 Combinatorics
+## Modular Arithmetic
 
-### 🎯 Factorial Precomputation
-
-```mermaid
-flowchart LR
-    A["Precompute Phase"] --> B["fact[0] = 1"]
-    B --> C["fact[i] = fact[i-1] * i"]
-    C --> D["inv_fact[n] = modInverse(fact[n])"]
-    D --> E["inv_fact[i] = inv_fact[i+1] * (i+1)"]
-    
-    F["Query Phase"] --> G["nCr(n,r) = fact[n] * inv_fact[r] * inv_fact[n-r]"]
-    G --> H["O(1) per query!"]
-    
-    style A fill:#e3f2fd
-    style F fill:#fff3e0
-    style H fill:#c8e6c9
-```
+### Modular Operations
 
 ```cpp
-const int MAXN = 1e6;
-const int MOD = 1e9 + 7;
-
-vector<long long> fact(MAXN + 1);
-vector<long long> inv_fact(MAXN + 1);
-
-void precompute() {
-    fact[0] = 1;
-    for (int i = 1; i <= MAXN; i++) {
-        fact[i] = (fact[i - 1] * i) % MOD;
+class ModularArithmetic {
+private:
+    static const long long MOD = 1e9 + 7;
+    
+public:
+    // Modular addition
+    static long long addMod(long long a, long long b, long long mod = MOD) {
+        return ((a % mod) + (b % mod)) % mod;
     }
     
-    inv_fact[MAXN] = modInverse(fact[MAXN], MOD);
-    for (int i = MAXN - 1; i >= 0; i--) {
-        inv_fact[i] = (inv_fact[i + 1] * (i + 1)) % MOD;
+    // Modular subtraction
+    static long long subMod(long long a, long long b, long long mod = MOD) {
+        return ((a % mod) - (b % mod) + mod) % mod;
     }
-}
+    
+    // Modular multiplication
+    static long long mulMod(long long a, long long b, long long mod = MOD) {
+        return ((a % mod) * (b % mod)) % mod;
+    }
+    
+    // Modular division
+    static long long divMod(long long a, long long b, long long mod = MOD) {
+        return mulMod(a, NumberTheory::modInverse(b, mod), mod);
+    }
+    
+    // Factorial with modular arithmetic
+    static vector<long long> factorialMod(int n, long long mod = MOD) {
+        vector<long long> fact(n + 1);
+        fact[0] = 1;
+        
+        for (int i = 1; i <= n; i++) {
+            fact[i] = mulMod(fact[i - 1], i, mod);
+        }
+        
+        return fact;
+    }
+    
+    // Combinations (nCr) with modular arithmetic
+    static long long nCrMod(int n, int r, long long mod = MOD) {
+        if (r > n || r < 0) return 0;
+        if (r == 0 || r == n) return 1;
+        
+        auto fact = factorialMod(n, mod);
+        
+        long long numerator = fact[n];
+        long long denominator = mulMod(fact[r], fact[n - r], mod);
+        
+        return divMod(numerator, denominator, mod);
+    }
+    
+    // Chinese Remainder Theorem
+    static long long chineseRemainder(vector<long long>& remainders, vector<long long>& moduli) {
+        long long result = 0;
+        long long product = 1;
+        
+        for (long long mod : moduli) {
+            product *= mod;
+        }
+        
+        for (int i = 0; i < remainders.size(); i++) {
+            long long partialProduct = product / moduli[i];
+            long long inverse = NumberTheory::modInverse(partialProduct, moduli[i]);
+            result = addMod(result, mulMod(mulMod(remainders[i], partialProduct), inverse));
+        }
+        
+        return result % product;
+    }
+};
 ```
 
-### 🔥 Combinations (nCr)
+---
+
+## Combinatorics
+
+### Combinatorial Algorithms
 
 ```cpp
-long long nCr(int n, int r) {
-    if (r > n || r < 0) return 0;
-    return (fact[n] * inv_fact[r] % MOD) * inv_fact[n - r] % MOD;
-}
-
-long long nPr(int n, int r) {
-    if (r > n || r < 0) return 0;
-    return (fact[n] * inv_fact[n - r]) % MOD;
-}
-```
-
-### 📊 Pascal's Triangle (Space Optimized)
-
-```cpp
-vector<long long> pascalRow(int n) {
-    vector<long long> row(n + 1, 1);
-    for (int i = 1; i <= n; i++) {
-        for (int j = i; j > 0; j--) {
-            row[j] = (row[j] + row[j - 1]) % MOD;
+class Combinatorics {
+public:
+    // Generate all permutations
+    static void generatePermutations(vector<int>& arr, int start, vector<vector<int>>& result) {
+        if (start == arr.size()) {
+            result.push_back(arr);
+            return;
+        }
+        
+        for (int i = start; i < arr.size(); i++) {
+            swap(arr[start], arr[i]);
+            generatePermutations(arr, start + 1, result);
+            swap(arr[start], arr[i]); // backtrack
         }
     }
-    return row;
-}
-```
-
-### 🎪 Catalan Numbers
-
-```cpp
-long long catalan(int n) {
-    return (nCr(2 * n, n) * modInverse(n + 1, MOD)) % MOD;
-}
-
-// Applications: Binary trees, parentheses combinations, paths in grid
-```
-
----
-
-## 🎯 Probability Theory
-
-### 📊 Basic Probability
-
-```cpp
-// Expected value calculation
-double expectedValue(vector<pair<double, double>>& outcomes) {
-    double expected = 0.0;
-    for (auto& outcome : outcomes) {
-        expected += outcome.first * outcome.second;  // probability × value
-    }
-    return expected;
-}
-```
-
-### 🎲 Common Probability Problems
-
-#### Birthday Paradox
-```cpp
-double birthdayProbability(int n) {
-    if (n > 365) return 1.0;
     
-    double prob = 1.0;
-    for (int i = 0; i < n; i++) {
-        prob *= (365.0 - i) / 365.0;
+    // Generate all combinations
+    static void generateCombinations(vector<int>& arr, int start, int k, 
+                                   vector<int>& current, vector<vector<int>>& result) {
+        if (current.size() == k) {
+            result.push_back(current);
+            return;
+        }
+        
+        for (int i = start; i < arr.size(); i++) {
+            current.push_back(arr[i]);
+            generateCombinations(arr, i + 1, k, current, result);
+            current.pop_back(); // backtrack
+        }
     }
-    return 1.0 - prob;  // Probability of collision
-}
-```
-
-#### Geometric Distribution
-```cpp
-double geometricExpected(double p) {
-    return 1.0 / p;  // Expected number of trials until first success
-}
+    
+    // Pascal's Triangle
+    static vector<vector<long long>> pascalTriangle(int n) {
+        vector<vector<long long>> triangle(n);
+        
+        for (int i = 0; i < n; i++) {
+            triangle[i].resize(i + 1);
+            triangle[i][0] = triangle[i][i] = 1;
+            
+            for (int j = 1; j < i; j++) {
+                triangle[i][j] = triangle[i-1][j-1] + triangle[i-1][j];
+            }
+        }
+        
+        return triangle;
+    }
+    
+    // Catalan Numbers
+    static vector<long long> catalanNumbers(int n) {
+        vector<long long> catalan(n + 1, 0);
+        catalan[0] = catalan[1] = 1;
+        
+        for (int i = 2; i <= n; i++) {
+            for (int j = 0; j < i; j++) {
+                catalan[i] += catalan[j] * catalan[i - 1 - j];
+            }
+        }
+        
+        return catalan;
+    }
+    
+    // Fibonacci sequence
+    static vector<long long> fibonacci(int n) {
+        if (n <= 0) return {};
+        if (n == 1) return {0};
+        
+        vector<long long> fib(n);
+        fib[0] = 0;
+        fib[1] = 1;
+        
+        for (int i = 2; i < n; i++) {
+            fib[i] = fib[i-1] + fib[i-2];
+        }
+        
+        return fib;
+    }
+    
+    // Fibonacci with matrix exponentiation (fast)
+    static long long fibonacciFast(int n) {
+        if (n <= 1) return n;
+        
+        vector<vector<long long>> base = {{1, 1}, {1, 0}};
+        vector<vector<long long>> result = matrixPower(base, n - 1);
+        
+        return result[0][0];
+    }
+    
+private:
+    static vector<vector<long long>> matrixMultiply(const vector<vector<long long>>& A, 
+                                                   const vector<vector<long long>>& B) {
+        int n = A.size();
+        vector<vector<long long>> C(n, vector<long long>(n, 0));
+        
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                for (int k = 0; k < n; k++) {
+                    C[i][j] += A[i][k] * B[k][j];
+                }
+            }
+        }
+        
+        return C;
+    }
+    
+    static vector<vector<long long>> matrixPower(vector<vector<long long>> base, int exp) {
+        int n = base.size();
+        vector<vector<long long>> result(n, vector<long long>(n, 0));
+        
+        // Initialize result as identity matrix
+        for (int i = 0; i < n; i++) {
+            result[i][i] = 1;
+        }
+        
+        while (exp > 0) {
+            if (exp & 1) {
+                result = matrixMultiply(result, base);
+            }
+            base = matrixMultiply(base, base);
+            exp >>= 1;
+        }
+        
+        return result;
+    }
+};
 ```
 
 ---
 
-## 🔄 Mathematical Patterns
+## Matrix Operations
 
-### 🎯 Arithmetic Progression (AP)
+### Matrix Algorithms
+
+```cpp
+class MatrixOperations {
+public:
+    // Matrix multiplication
+    static vector<vector<double>> multiply(const vector<vector<double>>& A, 
+                                         const vector<vector<double>>& B) {
+        int m = A.size(), n = A[0].size(), p = B[0].size();
+        vector<vector<double>> C(m, vector<double>(p, 0));
+        
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < p; j++) {
+                for (int k = 0; k < n; k++) {
+                    C[i][j] += A[i][k] * B[k][j];
+                }
+            }
+        }
+        
+        return C;
+    }
+    
+    // Matrix determinant
+    static double determinant(vector<vector<double>> matrix) {
+        int n = matrix.size();
+        double det = 1;
+        
+        for (int i = 0; i < n; i++) {
+            // Find pivot
+            int pivot = i;
+            for (int j = i + 1; j < n; j++) {
+                if (abs(matrix[j][i]) > abs(matrix[pivot][i])) {
+                    pivot = j;
+                }
+            }
+            
+            if (abs(matrix[pivot][i]) < 1e-9) {
+                return 0; // Singular matrix
+            }
+            
+            if (pivot != i) {
+                swap(matrix[i], matrix[pivot]);
+                det *= -1;
+            }
+            
+            det *= matrix[i][i];
+            
+            // Eliminate column
+            for (int j = i + 1; j < n; j++) {
+                double factor = matrix[j][i] / matrix[i][i];
+                for (int k = i; k < n; k++) {
+                    matrix[j][k] -= factor * matrix[i][k];
+                }
+            }
+        }
+        
+        return det;
+    }
+    
+    // Gaussian elimination
+    static vector<double> gaussianElimination(vector<vector<double>> A, vector<double> b) {
+        int n = A.size();
+        
+        // Forward elimination
+        for (int i = 0; i < n; i++) {
+            // Find pivot
+            int pivot = i;
+            for (int j = i + 1; j < n; j++) {
+                if (abs(A[j][i]) > abs(A[pivot][i])) {
+                    pivot = j;
+                }
+            }
+            
+            swap(A[i], A[pivot]);
+            swap(b[i], b[pivot]);
+            
+            // Eliminate
+            for (int j = i + 1; j < n; j++) {
+                double factor = A[j][i] / A[i][i];
+                for (int k = i; k < n; k++) {
+                    A[j][k] -= factor * A[i][k];
+                }
+                b[j] -= factor * b[i];
+            }
+        }
+        
+        // Back substitution
+        vector<double> x(n);
+        for (int i = n - 1; i >= 0; i--) {
+            x[i] = b[i];
+            for (int j = i + 1; j < n; j++) {
+                x[i] -= A[i][j] * x[j];
+            }
+            x[i] /= A[i][i];
+        }
+        
+        return x;
+    }
+};
+```
+
+---
+
+## Probability & Statistics
+
+### Statistical Algorithms
+
+```cpp
+class Statistics {
+public:
+    // Mean
+    static double mean(const vector<double>& data) {
+        double sum = 0;
+        for (double x : data) {
+            sum += x;
+        }
+        return sum / data.size();
+    }
+    
+    // Median
+    static double median(vector<double> data) {
+        sort(data.begin(), data.end());
+        int n = data.size();
+        
+        if (n % 2 == 0) {
+            return (data[n/2 - 1] + data[n/2]) / 2.0;
+        } else {
+            return data[n/2];
+        }
+    }
+    
+    // Standard deviation
+    static double standardDeviation(const vector<double>& data) {
+        double avg = mean(data);
+        double sum = 0;
+        
+        for (double x : data) {
+            sum += (x - avg) * (x - avg);
+        }
+        
+        return sqrt(sum / data.size());
+    }
+    
+    // Correlation coefficient
+    static double correlation(const vector<double>& x, const vector<double>& y) {
+        double meanX = mean(x);
+        double meanY = mean(y);
+        
+        double numerator = 0, sumX2 = 0, sumY2 = 0;
+        
+        for (int i = 0; i < x.size(); i++) {
+            double dx = x[i] - meanX;
+            double dy = y[i] - meanY;
+            
+            numerator += dx * dy;
+            sumX2 += dx * dx;
+            sumY2 += dy * dy;
+        }
+        
+        return numerator / sqrt(sumX2 * sumY2);
+    }
+    
+    // Linear regression
+    static pair<double, double> linearRegression(const vector<double>& x, const vector<double>& y) {
+        double meanX = mean(x);
+        double meanY = mean(y);
+        
+        double numerator = 0, denominator = 0;
+        
+        for (int i = 0; i < x.size(); i++) {
+            double dx = x[i] - meanX;
+            numerator += dx * (y[i] - meanY);
+            denominator += dx * dx;
+        }
+        
+        double slope = numerator / denominator;
+        double intercept = meanY - slope * meanX;
+        
+        return {slope, intercept};
+    }
+};
+```
+
+---
+
+## Applications
+
+<div align="center">
+<img src="https://camo.githubusercontent.com/0e7f38f2deaa6a7f77ea47c6f786ac5cfc27cb6a35f8cc46ec61e0d2fb9cd9a6/68747470733a2f2f6d656469612e6765656b73666f726765656b732e6f72672f77702d636f6e74656e742f75706c6f6164732f32303234313231383135343932303130373239352f4d617468732e77656270" alt="Mathematics Applications" width="650" height="400"/>
+</div>
+
+### Real-World Applications
 
 ```mermaid
 flowchart TD
-    A["AP: a, a+d, a+2d, ..., a+(n-1)d"] --> B["First Term: a"]
-    A --> C["Common Difference: d"]
-    A --> D["Number of Terms: n"]
+    A["🧮 Mathematical Applications"] --> B["Cryptography"]
+    A --> C["Computer Graphics"]
+    A --> D["Machine Learning"]
+    A --> E["Network Analysis"]
+    A --> F["Financial Modeling"]
     
-    E["Formulas"] --> F["nth Term = a + (n-1)d"]
-    E --> G["Sum = n/2 * [2a + (n-1)d]"]
-    E --> H["Sum = n/2 * (first + last)"]
+    B --> G["RSA, ECC encryption"]
+    C --> H["3D transformations"]
+    D --> I["Statistical algorithms"]
+    E --> J["Graph theory"]
+    F --> K["Risk analysis"]
     
-    I["Example: 2,5,8,11,14"] --> J["a=2, d=3, n=5"]
-    J --> K["Sum = 5/2 * [4 + 12] = 40"]
-    
-    style A fill:#e3f2fd
-    style E fill:#fff3e0
-    style K fill:#c8e6c9
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef applications fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef crypto fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef graphics fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef ml fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef network fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    classDef finance fill:#e0f2f1,stroke:#009688,stroke-width:2px,color:#000
+    class A applications
+    class B,G crypto
+    class C,H graphics
+    class D,I ml
+    class E,J network
+    class F,K finance
 ```
+
+### Practical Examples
 
 ```cpp
-// Sum of AP: a + (a+d) + (a+2d) + ... + (a+(n-1)d)
-long long apSum(long long a, long long d, int n) {
-    return n * (2 * a + (n - 1) * d) / 2;
-}
-
-// nth term of AP
-long long apNthTerm(long long a, long long d, int n) {
-    return a + (n - 1) * d;
-}
-```
-
-### 🔥 Geometric Progression (GP)
-
-```mermaid
-flowchart TD
-    A["GP: a, ar, ar², ..., ar^(n-1)"] --> B["First Term: a"]
-    A --> C["Common Ratio: r"]
-    A --> D["Number of Terms: n"]
+class MathApplications {
+public:
+    // RSA Key Generation (simplified)
+    struct RSAKeys {
+        long long n, e, d;
+    };
     
-    E["Formulas"] --> F["nth Term = a * r^(n-1)"]
-    E --> G{"r = 1?"}
-    G -->|Yes| H["Sum = a * n"]
-    G -->|No| I["Sum = a * (r^n - 1) / (r - 1)"]
-    
-    J["Infinite GP (|r| < 1)"] --> K["Sum = a / (1 - r)"]
-    
-    L["Example: 3,6,12,24"] --> M["a=3, r=2, n=4"]
-    M --> N["Sum = 3 * (16-1) / 1 = 45"]
-    
-    style A fill:#e3f2fd
-    style E fill:#fff3e0
-    style J fill:#f3e5f5
-    style N fill:#c8e6c9
-```
-
-```cpp
-// Sum of GP: a + ar + ar² + ... + ar^(n-1)
-long long gpSum(long long a, long long r, int n) {
-    if (r == 1) return a * n;
-    return a * (power(r, n) - 1) / (r - 1);
-}
-
-// Sum of infinite GP (|r| < 1)
-double infiniteGpSum(double a, double r) {
-    return a / (1 - r);
-}
-```
-
-### 📊 Sum Formulas
-
-```cpp
-// Sum of first n natural numbers
-long long sumN(int n) {
-    return (long long)n * (n + 1) / 2;
-}
-
-// Sum of squares: 1² + 2² + ... + n²
-long long sumSquares(int n) {
-    return (long long)n * (n + 1) * (2 * n + 1) / 6;
-}
-
-// Sum of cubes: 1³ + 2³ + ... + n³
-long long sumCubes(int n) {
-    long long sum = sumN(n);
-    return sum * sum;
-}
-```
-
----
-
-## 🎓 Advanced Topics
-
-### 🔢 Chinese Remainder Theorem
-
-```cpp
-long long chineseRemainder(vector<long long>& remainders, vector<long long>& moduli) {
-    long long prod = 1;
-    for (long long mod : moduli) prod *= mod;
-    
-    long long result = 0;
-    for (int i = 0; i < remainders.size(); i++) {
-        long long pp = prod / moduli[i];
-        result += remainders[i] * modInverse(pp, moduli[i]) * pp;
+    static RSAKeys generateRSAKeys() {
+        // Choose two prime numbers
+        long long p = 61, q = 53;
+        long long n = p * q;
+        long long phi = (p - 1) * (q - 1);
+        
+        // Choose e
+        long long e = 17;
+        
+        // Calculate d
+        long long d = NumberTheory::modInverse(e, phi);
+        
+        return {n, e, d};
     }
     
-    return result % prod;
-}
-```
-
-### 🎯 Euler's Totient Function
-
-```cpp
-int phi(int n) {
-    int result = n;
-    for (int i = 2; i * i <= n; i++) {
-        if (n % i == 0) {
-            while (n % i == 0) n /= i;
-            result -= result / i;
+    // RSA Encryption/Decryption
+    static long long rsaEncrypt(long long message, long long e, long long n) {
+        return NumberTheory::fastPower(message, e, n);
+    }
+    
+    static long long rsaDecrypt(long long ciphertext, long long d, long long n) {
+        return NumberTheory::fastPower(ciphertext, d, n);
+    }
+    
+    // Monte Carlo Pi estimation
+    static double estimatePi(int iterations) {
+        int insideCircle = 0;
+        
+        for (int i = 0; i < iterations; i++) {
+            double x = (double)rand() / RAND_MAX;
+            double y = (double)rand() / RAND_MAX;
+            
+            if (x * x + y * y <= 1.0) {
+                insideCircle++;
+            }
         }
+        
+        return 4.0 * insideCircle / iterations;
     }
-    if (n > 1) result -= result / n;
-    return result;
-}
-```
-
-### 🔥 Miller-Rabin Primality Test
-
-```cpp
-bool millerRabin(long long n, long long a) {
-    if (n <= 1 || n == 4) return false;
-    if (n <= 3) return true;
     
-    long long d = n - 1;
-    while (d % 2 == 0) d /= 2;
-    
-    long long x = power(a, d, n);
-    if (x == 1 || x == n - 1) return true;
-    
-    while (d != n - 1) {
-        x = (x * x) % n;
-        d *= 2;
-        if (x == 1) return false;
-        if (x == n - 1) return true;
+    // Fast Fourier Transform (simplified)
+    static vector<complex<double>> fft(vector<complex<double>> a) {
+        int n = a.size();
+        if (n <= 1) return a;
+        
+        vector<complex<double>> even(n/2), odd(n/2);
+        for (int i = 0; i < n/2; i++) {
+            even[i] = a[2*i];
+            odd[i] = a[2*i + 1];
+        }
+        
+        even = fft(even);
+        odd = fft(odd);
+        
+        for (int i = 0; i < n/2; i++) {
+            complex<double> t = polar(1.0, -2 * M_PI * i / n) * odd[i];
+            a[i] = even[i] + t;
+            a[i + n/2] = even[i] - t;
+        }
+        
+        return a;
     }
-    return false;
-}
+};
 ```
 
 ---
 
-## 🎯 Problem-Solving Strategies
+## Summary
 
-### 🔍 Pattern Recognition
+**Mathematical Algorithms** provide the computational foundation for solving complex numerical problems. Key insights:
 
-```mermaid
-mindmap
-  root))🔍 Problem Types((
-    📊 Counting
-      Combinatorics
-      Permutations
-      Arrangements
-      Selections
-    🎯 Optimization
-      Calculus
-      Inequalities
-      Min/Max functions
-      Lagrange multipliers
-    🔄 Periodicity
-      Modular arithmetic
-      Cyclic patterns
-      Repeating sequences
-      Fourier analysis
-    🎲 Probability
-      Expected value
-      Game theory
-      Random variables
-      Markov chains
-    🔢 Number Theory
-      GCD problems
-      Prime factorization
-      Divisibility
-      Congruences
-```
+### Essential Concepts
+- **Number Theory**: GCD, LCM, prime numbers, modular arithmetic
+- **Combinatorics**: Permutations, combinations, generating functions
+- **Linear Algebra**: Matrix operations, system solving
+- **Statistics**: Data analysis, probability distributions
 
-| Problem Type | Mathematical Concept | Example |
-|:-------------|:-------------------|:--------|
-| **Counting** | Combinatorics | Ways to arrange objects |
-| **Optimization** | Calculus, Inequalities | Minimize/maximize functions |
-| **Periodicity** | Modular arithmetic | Repeating patterns |
-| **Probability** | Expected value | Game theory problems |
-| **Number Theory** | GCD, Prime factorization | Divisibility problems |
+### Core Applications
+- **Cryptography**: RSA, elliptic curve cryptography
+- **Computer Graphics**: 3D transformations, rendering
+- **Machine Learning**: Statistical algorithms, optimization
+- **Scientific Computing**: Numerical methods, simulations
 
-### 🎪 Common Techniques
+### Best Practices
+- Use appropriate data types to avoid overflow
+- Implement modular arithmetic for large numbers
+- Optimize algorithms for specific use cases
+- Handle edge cases and numerical stability
 
-#### Inclusion-Exclusion Principle
-```cpp
-// Count numbers divisible by A or B in range [1, N]
-long long inclusionExclusion(long long N, long long A, long long B) {
-    return N/A + N/B - N/lcm(A, B);
-}
-```
-
-#### Pigeonhole Principle
-```cpp
-// If n+1 objects are placed in n boxes, at least one box contains >1 object
-bool pigeonhole(vector<int>& arr, int boxes) {
-    return arr.size() > boxes;
-}
-```
-
----
-
-## 🏆 Interview Applications
-
-### 🎯 Common Interview Problems
-
-1. **Power of Numbers**: Fast exponentiation
-2. **Prime Checking**: Efficient primality tests
-3. **Factorial Problems**: Large number handling
-4. **Combination Problems**: nCr calculations
-5. **GCD/LCM Problems**: Number theory applications
-
-### 💡 Optimization Tips
-
-```cpp
-// Avoid overflow in multiplication
-long long safeMul(long long a, long long b, long long mod) {
-    return ((a % mod) * (b % mod)) % mod;
-}
-
-// Fast GCD for multiple numbers
-long long gcdArray(vector<long long>& arr) {
-    long long result = arr[0];
-    for (int i = 1; i < arr.size(); i++) {
-        result = gcd(result, arr[i]);
-        if (result == 1) break;  // Early termination
-    }
-    return result;
-}
-```
-
----
-
-## 💎 Best Practices
-
-### ✅ Do's
-
-```
-✓ Precompute factorials for combinatorics problems
-✓ Use modular arithmetic to prevent overflow
-✓ Apply fast exponentiation for large powers
-✓ Use sieve for multiple prime queries
-✓ Handle edge cases (n=0, n=1)
-✓ Choose appropriate data types (long long)
-```
-
-### ❌ Don'ts
-
-```
-✗ Don't compute factorials repeatedly
-✗ Avoid naive prime checking for large numbers
-✗ Don't ignore modular arithmetic rules
-✗ Avoid integer overflow in calculations
-✗ Don't use floating point for exact calculations
-```
-
----
-
-## 📊 Complexity Summary
-
-<div align="center">
-
-| Operation | Time Complexity | Space Complexity |
-|:----------|:----------------|:-----------------|
-| **GCD (Euclidean)** | O(log(min(a,b))) | O(1) |
-| **Sieve of Eratosthenes** | O(n log log n) | O(n) |
-| **Fast Exponentiation** | O(log n) | O(1) |
-| **Prime Check** | O(√n) | O(1) |
-| **Factorial Precompute** | O(n) | O(n) |
-| **nCr Calculation** | O(1) | O(n) |
-
-</div>
-
----
-
-## 🎓 Key Takeaways
-
-<div align="center">
-
-### 🌟 Master These Concepts
-
-</div>
-
-```
-1. 🔢 GCD/LCM using Euclidean algorithm
-2. ⚡ Fast exponentiation for large powers
-3. 🔍 Sieve of Eratosthenes for prime generation
-4. 🎯 Modular arithmetic for overflow prevention
-5. 🎲 Combinatorics for counting problems
-6. 📊 Probability for expected value calculations
-7. 🧮 Mathematical patterns and formulas
-8. 🎪 Number theory applications in DSA
-```
-
----
-
-## 📚 Practice Resources
-
-- **Project Euler**: Mathematical programming challenges
-- **Codeforces**: Number theory and math problems
-- **AtCoder**: Mathematical contest problems
-- **SPOJ**: Classical mathematical algorithms
-
----
-
-## 🎯 Interview Tips
-
-1. **Start Simple**: Begin with basic mathematical properties
-2. **Optimize Gradually**: Apply advanced techniques when needed
-3. **Handle Edge Cases**: Consider n=0, n=1, negative numbers
-4. **Prevent Overflow**: Use appropriate data types and modular arithmetic
-5. **Explain Reasoning**: Justify mathematical approaches clearly
+> **Master's Insight**: Mathematical algorithms bridge the gap between theoretical mathematics and practical computing, enabling solutions to problems that would be impossible with brute force approaches.
 
 ---
 
 <div align="center">
 
-### 🔥 One-Line Summary
+**🧮 Master Mathematical Algorithms • Solve Numerical Problems • Build Computational Solutions**
 
-**Math for DSA = Essential mathematical toolkit for efficient algorithms, competitive programming, and computational problem solving**
-
----
-
-**💻 Master math, master algorithms!**
-
-*"Mathematics is the language of algorithms—master it to unlock the full potential of computational problem solving."*
+*From Theory to Practice • Numbers to Algorithms • Understanding to Mastery*
 
 </div>

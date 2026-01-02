@@ -2,119 +2,215 @@
 
 <div align="center">
 
-![Heap](https://img.shields.io/badge/Heap-Priority_Queue-ff6b6b?style=for-the-badge&logo=heap&logoColor=white)
+![Heap](https://img.shields.io/badge/Heap-Priority_Queue-FF6B6B?style=for-the-badge&logo=layers&logoColor=white)
 ![Difficulty](https://img.shields.io/badge/Difficulty-Intermediate-orange?style=for-the-badge)
-![Importance](https://img.shields.io/badge/Importance-High-red?style=for-the-badge)
+![Importance](https://img.shields.io/badge/Importance-High-darkred?style=for-the-badge)
 
-*Master priority-based data structure for efficient operations*
+**Master the art of efficient priority-based data management**
 
 </div>
 
 ---
 
-## 🎯 Introduction
+## 📑 Table of Contents
+
+1. [Introduction](#introduction)
+2. [Heap Properties](#heap-properties)
+3. [Heap Operations](#heap-operations)
+4. [Heap Implementation](#heap-implementation)
+5. [Heap Sort](#heap-sort)
+6. [Priority Queue](#priority-queue)
+7. [Advanced Applications](#advanced-applications)
+8. [Best Practices](#best-practices)
+
+---
+
+## Introduction
+
+**Heap** is a specialized tree-based data structure that satisfies the heap property. It's commonly implemented as a binary heap using arrays, providing efficient access to the maximum or minimum element, making it perfect for priority queues and sorting algorithms.
 
 <div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20221220165711/MinHeapAndMaxHeap1.png" alt="Introduction" width="700" height="400"/>
+<img src="https://camo.githubusercontent.com/b7c37c8975cdddac5e6746255d4f856a4fe0263adfd44724e89478db43da9463/68747470733a2f2f6d656469612e6765656b73666f726765656b732e6f72672f77702d636f6e74656e742f63646e2d75706c6f6164732f32303232313232303136353731312f4d696e48656170416e644d617848656170312e706e67" alt="Heap Data Structures" width="650" height="400"/>
 </div>
 
-**Heap** is a complete binary tree that satisfies the heap property: parent nodes are either greater (max-heap) or smaller (min-heap) than their children.
-
-### 🔑 Heap Properties
-
-```mermaid
-graph TD
-    A[Heap Properties] --> B[Complete Binary Tree]
-    A --> C[Heap Property]
-    A --> D[Array Representation]
-    
-    B --> E[All levels filled except last]
-    C --> F[Max-heap: parent ≥ children]
-    C --> G[Min-heap: parent ≤ children]
-    D --> H[Parent at i/2, children at 2i, 2i+1]
-```
-
-### 🔄 Heap Operations Flow
+### Core Concept
 
 ```mermaid
 flowchart TD
-    A["📦 Heap Operations"] --> B["⬆️ Insert"]
-    A --> C["⬇️ Extract"]
-    A --> D["👁️ Peek"]
-    A --> E["🏗️ Build"]
+    A["📦 Heap Structure"] --> B["Complete Binary Tree"]
+    A --> C["Heap Property"]
+    A --> D["Array Representation"]
     
-    B --> F["Add to end"]
-    F --> G["Heapify Up"]
-    G --> H["O(log n)"]
+    B --> E["All levels filled except last"]
+    B --> F["Last level filled left to right"]
     
-    C --> I["Remove root"]
-    I --> J["Move last to root"]
-    J --> K["Heapify Down"]
-    K --> L["O(log n)"]
+    C --> G["Max Heap: Parent ≥ Children"]
+    C --> H["Min Heap: Parent ≤ Children"]
     
-    D --> M["Return root"]
-    M --> N["O(1)"]
+    D --> I["Parent at index i"]
+    D --> J["Left child at 2i + 1"]
+    D --> K["Right child at 2i + 2"]
     
-    E --> O["Bottom-up approach"]
-    O --> P["O(n)"]
-    
-    style A fill:#e3f2fd
-    style H fill:#c8e6c9
-    style L fill:#c8e6c9
-    style N fill:#c8e6c9
-    style P fill:#c8e6c9
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef structure fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef tree fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef property fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef array fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    class A structure
+    class B,E,F tree
+    class C,G,H property
+    class D,I,J,K array
 ```
 
-### 💻 Complete Heap Implementation
+---
+
+## Heap Properties
+
+### Types of Heaps
+
+```mermaid
+flowchart TD
+    A["Heap Types"] --> B["Max Heap"]
+    A --> C["Min Heap"]
+    A --> D["Binary Heap"]
+    A --> E["d-ary Heap"]
+    
+    B --> F["Root = Maximum element"]
+    B --> G["Parent ≥ Children"]
+    
+    C --> H["Root = Minimum element"]
+    C --> I["Parent ≤ Children"]
+    
+    D --> J["Each node has ≤ 2 children"]
+    E --> K["Each node has ≤ d children"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef types fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef max fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef min fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef binary fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef dary fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A types
+    class B,F,G max
+    class C,H,I min
+    class D,J binary
+    class E,K dary
+```
+
+### Heap vs Other Data Structures
+
+| Operation | Heap | BST | Array (Sorted) | Array (Unsorted) |
+|-----------|------|-----|----------------|------------------|
+| **Find Min/Max** | O(1) | O(log n) | O(1) | O(n) |
+| **Insert** | O(log n) | O(log n) | O(n) | O(1) |
+| **Delete Min/Max** | O(log n) | O(log n) | O(n) | O(n) |
+| **Build Heap** | O(n) | O(n log n) | O(n log n) | O(1) |
+
+---
+
+## Heap Operations
+
+### Fundamental Operations
+
+```mermaid
+flowchart TD
+    A["Heap Operations"] --> B["Insert (Heapify Up)"]
+    A --> C["Extract (Heapify Down)"]
+    A --> D["Peek"]
+    A --> E["Build Heap"]
+    
+    B --> F["Add at end"]
+    B --> G["Bubble up to maintain property"]
+    
+    C --> H["Remove root"]
+    C --> I["Move last to root"]
+    C --> J["Bubble down to maintain property"]
+    
+    D --> K["Return root element"]
+    
+    E --> L["Build from array in O(n)"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef operations fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef insert fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef extract fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef peek fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef build fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A operations
+    class B,F,G insert
+    class C,H,I,J extract
+    class D,K peek
+    class E,L build
+```
+
+---
+
+## Heap Implementation
+
+### Binary Heap Class
 
 ```cpp
-class MaxHeap {
+template<typename T>
+class BinaryHeap {
 private:
-    vector<int> heap;
+    vector<T> heap;
+    bool isMaxHeap;
+    
+    int parent(int i) { return (i - 1) / 2; }
+    int leftChild(int i) { return 2 * i + 1; }
+    int rightChild(int i) { return 2 * i + 2; }
+    
+    bool compare(const T& a, const T& b) {
+        return isMaxHeap ? a > b : a < b;
+    }
     
     void heapifyUp(int index) {
-        while (index > 0) {
-            int parent = (index - 1) / 2;
-            if (heap[index] <= heap[parent]) break;
-            
-            swap(heap[index], heap[parent]);
-            index = parent;
+        while (index > 0 && compare(heap[index], heap[parent(index)])) {
+            swap(heap[index], heap[parent(index)]);
+            index = parent(index);
         }
     }
     
     void heapifyDown(int index) {
         int size = heap.size();
         
-        while (true) {
-            int largest = index;
-            int left = 2 * index + 1;
-            int right = 2 * index + 2;
+        while (leftChild(index) < size) {
+            int targetChild = leftChild(index);
             
-            if (left < size && heap[left] > heap[largest]) {
-                largest = left;
+            // Find the appropriate child to compare with
+            if (rightChild(index) < size && 
+                compare(heap[rightChild(index)], heap[leftChild(index)])) {
+                targetChild = rightChild(index);
             }
             
-            if (right < size && heap[right] > heap[largest]) {
-                largest = right;
+            if (compare(heap[targetChild], heap[index])) {
+                swap(heap[index], heap[targetChild]);
+                index = targetChild;
+            } else {
+                break;
             }
-            
-            if (largest == index) break;
-            
-            swap(heap[index], heap[largest]);
-            index = largest;
         }
     }
     
 public:
-    void insert(int val) {
-        heap.push_back(val);
+    BinaryHeap(bool maxHeap = true) : isMaxHeap(maxHeap) {}
+    
+    // Build heap from array in O(n)
+    BinaryHeap(vector<T>& arr, bool maxHeap = true) : heap(arr), isMaxHeap(maxHeap) {
+        buildHeap();
+    }
+    
+    void insert(const T& value) {
+        heap.push_back(value);
         heapifyUp(heap.size() - 1);
     }
     
-    int extractMax() {
-        if (heap.empty()) throw runtime_error("Heap is empty");
+    T extractTop() {
+        if (heap.empty()) {
+            throw runtime_error("Heap is empty");
+        }
         
-        int maxVal = heap[0];
+        T top = heap[0];
         heap[0] = heap.back();
         heap.pop_back();
         
@@ -122,70 +218,405 @@ public:
             heapifyDown(0);
         }
         
-        return maxVal;
+        return top;
     }
     
-    int peek() {
+    T peek() const {
+        if (heap.empty()) {
+            throw runtime_error("Heap is empty");
+        }
+        return heap[0];
+    }
+    
+    void buildHeap() {
+        // Start from last non-leaf node and heapify down
+        for (int i = heap.size() / 2 - 1; i >= 0; i--) {
+            heapifyDown(i);
+        }
+    }
+    
+    bool empty() const { return heap.empty(); }
+    int size() const { return heap.size(); }
+    
+    // For debugging
+    void printHeap() const {
+        for (const T& val : heap) {
+            cout << val << " ";
+        }
+        cout << endl;
+    }
+    
+    // Get heap as array (for heap sort)
+    vector<T> getArray() const { return heap; }
+};
+```
+
+### Min-Max Heap Implementation
+
+```cpp
+template<typename T>
+class MinMaxHeap {
+private:
+    vector<T> heap;
+    
+    bool isMinLevel(int index) {
+        int level = floor(log2(index + 1));
+        return level % 2 == 0;
+    }
+    
+    void heapifyUp(int index) {
+        if (index == 0) return;
+        
+        int parentIdx = (index - 1) / 2;
+        
+        if (isMinLevel(index)) {
+            if (heap[index] > heap[parentIdx]) {
+                swap(heap[index], heap[parentIdx]);
+                heapifyUpMax(parentIdx);
+            } else {
+                heapifyUpMin(index);
+            }
+        } else {
+            if (heap[index] < heap[parentIdx]) {
+                swap(heap[index], heap[parentIdx]);
+                heapifyUpMin(parentIdx);
+            } else {
+                heapifyUpMax(index);
+            }
+        }
+    }
+    
+    void heapifyUpMin(int index) {
+        int grandparent = (index - 3) / 4;
+        if (index > 2 && heap[index] < heap[grandparent]) {
+            swap(heap[index], heap[grandparent]);
+            heapifyUpMin(grandparent);
+        }
+    }
+    
+    void heapifyUpMax(int index) {
+        int grandparent = (index - 3) / 4;
+        if (index > 2 && heap[index] > heap[grandparent]) {
+            swap(heap[index], heap[grandparent]);
+            heapifyUpMax(grandparent);
+        }
+    }
+    
+public:
+    void insert(const T& value) {
+        heap.push_back(value);
+        heapifyUp(heap.size() - 1);
+    }
+    
+    T getMin() const {
         if (heap.empty()) throw runtime_error("Heap is empty");
         return heap[0];
     }
     
-    bool empty() {
-        return heap.empty();
+    T getMax() const {
+        if (heap.empty()) throw runtime_error("Heap is empty");
+        if (heap.size() == 1) return heap[0];
+        if (heap.size() == 2) return heap[1];
+        return max(heap[1], heap[2]);
     }
     
-    int size() {
-        return heap.size();
+    bool empty() const { return heap.empty(); }
+    int size() const { return heap.size(); }
+};
+```
+
+---
+
+## Heap Sort
+
+<div align="center">
+<img src="https://he-s3.s3.amazonaws.com/media/uploads/c9fa843.png" alt="Heap Sort Applications" width="650" height="400"/>
+</div>
+
+### Heap Sort Algorithm
+
+```mermaid
+flowchart TD
+    A["Heap Sort Process"] --> B["Build Max Heap"]
+    B --> C["Extract Maximum"]
+    C --> D["Place at End"]
+    D --> E["Reduce Heap Size"]
+    E --> F["Heapify Root"]
+    F --> G{More Elements?}
+    G -->|Yes| C
+    G -->|No| H["Sorted Array"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef process fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef build fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef extract fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef sort fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    class A,B process
+    class C,D,E build
+    class F,G extract
+    class H sort
+```
+
+### Implementation
+
+```cpp
+class HeapSort {
+public:
+    static void heapSort(vector<int>& arr) {
+        int n = arr.size();
+        
+        // Build max heap
+        buildMaxHeap(arr);
+        
+        // Extract elements one by one
+        for (int i = n - 1; i > 0; i--) {
+            swap(arr[0], arr[i]);
+            maxHeapify(arr, 0, i);
+        }
+    }
+    
+private:
+    static void buildMaxHeap(vector<int>& arr) {
+        int n = arr.size();
+        // Start from last non-leaf node
+        for (int i = n / 2 - 1; i >= 0; i--) {
+            maxHeapify(arr, i, n);
+        }
+    }
+    
+    static void maxHeapify(vector<int>& arr, int i, int heapSize) {
+        int largest = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+        
+        if (left < heapSize && arr[left] > arr[largest]) {
+            largest = left;
+        }
+        
+        if (right < heapSize && arr[right] > arr[largest]) {
+            largest = right;
+        }
+        
+        if (largest != i) {
+            swap(arr[i], arr[largest]);
+            maxHeapify(arr, largest, heapSize);
+        }
+    }
+    
+public:
+    // In-place heap sort with custom comparator
+    template<typename Compare>
+    static void heapSort(vector<int>& arr, Compare comp) {
+        int n = arr.size();
+        
+        // Build heap
+        for (int i = n / 2 - 1; i >= 0; i--) {
+            heapify(arr, i, n, comp);
+        }
+        
+        // Extract elements
+        for (int i = n - 1; i > 0; i--) {
+            swap(arr[0], arr[i]);
+            heapify(arr, 0, i, comp);
+        }
+    }
+    
+private:
+    template<typename Compare>
+    static void heapify(vector<int>& arr, int i, int heapSize, Compare comp) {
+        int target = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+        
+        if (left < heapSize && comp(arr[target], arr[left])) {
+            target = left;
+        }
+        
+        if (right < heapSize && comp(arr[target], arr[right])) {
+            target = right;
+        }
+        
+        if (target != i) {
+            swap(arr[i], arr[target]);
+            heapify(arr, target, heapSize, comp);
+        }
     }
 };
 ```
 
 ---
 
-## 🎯 Applications
+## Priority Queue
 
-<div align="center">
-<img src="https://fastercapital.com/i/Heap-sort--Unveiling-the-Sortinoratio-in-the-Binary-Heap-Sorting-Algorithm--Understanding-Binary-Heap-Data-Structure.webp" alt="Applications" width="650" height="350"/>
-</div>
-
-### 🔧 Priority Queue Problems
-
-```mermaid
-flowchart TD
-    A["📦 Heap Applications"] --> B["🎯 Priority Queues"]
-    A --> C["🔢 Top-K Problems"]
-    A --> D["🔀 Merge Operations"]
-    A --> E["📊 Graph Algorithms"]
-    
-    B --> F["Task scheduling"]
-    B --> G["Event simulation"]
-    B --> H["Dijkstra's algorithm"]
-    B --> I["A* pathfinding"]
-    
-    C --> J["K largest elements"]
-    C --> K["K smallest elements"]
-    C --> L["K frequent elements"]
-    C --> M["Sliding window maximum"]
-    
-    D --> N["Merge K sorted arrays"]
-    D --> O["Merge K sorted lists"]
-    D --> P["External sorting"]
-    D --> Q["Stream processing"]
-    
-    E --> R["Minimum spanning tree"]
-    E --> S["Shortest path algorithms"]
-    E --> T["Network flow"]
-    E --> U["Huffman coding"]
-    
-    classDef default fill:#333,stroke:#fff,stroke-width:2px,color:#fff
-```
+### STL Priority Queue Usage
 
 ```cpp
-class HeapProblems {
+class PriorityQueueExamples {
 public:
-    // K largest elements
-    vector<int> findKLargest(vector<int>& nums, int k) {
+    void basicUsage() {
+        // Max heap (default)
+        priority_queue<int> maxHeap;
+        maxHeap.push(10);
+        maxHeap.push(30);
+        maxHeap.push(20);
+        
+        cout << "Max: " << maxHeap.top() << endl; // 30
+        maxHeap.pop();
+        
+        // Min heap
         priority_queue<int, vector<int>, greater<int>> minHeap;
+        minHeap.push(10);
+        minHeap.push(30);
+        minHeap.push(20);
+        
+        cout << "Min: " << minHeap.top() << endl; // 10
+    }
+    
+    // Custom comparator for objects
+    struct Task {
+        string name;
+        int priority;
+        
+        Task(string n, int p) : name(n), priority(p) {}
+    };
+    
+    struct TaskComparator {
+        bool operator()(const Task& a, const Task& b) {
+            return a.priority < b.priority; // Higher priority first
+        }
+    };
+    
+    void customComparator() {
+        priority_queue<Task, vector<Task>, TaskComparator> taskQueue;
+        
+        taskQueue.push(Task("Low Priority", 1));
+        taskQueue.push(Task("High Priority", 10));
+        taskQueue.push(Task("Medium Priority", 5));
+        
+        while (!taskQueue.empty()) {
+            cout << taskQueue.top().name << " (Priority: " 
+                 << taskQueue.top().priority << ")" << endl;
+            taskQueue.pop();
+        }
+    }
+    
+    // Lambda comparator
+    void lambdaComparator() {
+        auto cmp = [](const pair<int, string>& a, const pair<int, string>& b) {
+            return a.first > b.first; // Min heap based on first element
+        };
+        
+        priority_queue<pair<int, string>, vector<pair<int, string>>, decltype(cmp)> pq(cmp);
+        
+        pq.push({3, "Three"});
+        pq.push({1, "One"});
+        pq.push({2, "Two"});
+        
+        while (!pq.empty()) {
+            cout << pq.top().second << endl;
+            pq.pop();
+        }
+    }
+};
+```
+
+---
+
+## Advanced Applications
+
+### Dijkstra's Algorithm with Heap
+
+```cpp
+class DijkstraWithHeap {
+public:
+    vector<int> dijkstra(vector<vector<pair<int, int>>>& graph, int source) {
+        int n = graph.size();
+        vector<int> distance(n, INT_MAX);
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+        
+        distance[source] = 0;
+        pq.push({0, source});
+        
+        while (!pq.empty()) {
+            int u = pq.top().second;
+            int dist = pq.top().first;
+            pq.pop();
+            
+            if (dist > distance[u]) continue;
+            
+            for (auto& edge : graph[u]) {
+                int v = edge.first;
+                int weight = edge.second;
+                
+                if (distance[u] + weight < distance[v]) {
+                    distance[v] = distance[u] + weight;
+                    pq.push({distance[v], v});
+                }
+            }
+        }
+        
+        return distance;
+    }
+};
+```
+
+### K-Way Merge
+
+```cpp
+class KWayMerge {
+public:
+    vector<int> mergeKSortedArrays(vector<vector<int>>& arrays) {
+        struct Element {
+            int value;
+            int arrayIndex;
+            int elementIndex;
+            
+            Element(int v, int ai, int ei) : value(v), arrayIndex(ai), elementIndex(ei) {}
+        };
+        
+        auto cmp = [](const Element& a, const Element& b) {
+            return a.value > b.value; // Min heap
+        };
+        
+        priority_queue<Element, vector<Element>, decltype(cmp)> pq(cmp);
+        vector<int> result;
+        
+        // Initialize heap with first element from each array
+        for (int i = 0; i < arrays.size(); i++) {
+            if (!arrays[i].empty()) {
+                pq.push(Element(arrays[i][0], i, 0));
+            }
+        }
+        
+        while (!pq.empty()) {
+            Element current = pq.top();
+            pq.pop();
+            
+            result.push_back(current.value);
+            
+            // Add next element from the same array
+            if (current.elementIndex + 1 < arrays[current.arrayIndex].size()) {
+                pq.push(Element(
+                    arrays[current.arrayIndex][current.elementIndex + 1],
+                    current.arrayIndex,
+                    current.elementIndex + 1
+                ));
+            }
+        }
+        
+        return result;
+    }
+};
+```
+
+### Top K Elements
+
+```cpp
+class TopKElements {
+public:
+    // Find K largest elements
+    vector<int> findKLargest(vector<int>& nums, int k) {
+        priority_queue<int, vector<int>, greater<int>> minHeap; // Min heap of size k
         
         for (int num : nums) {
             minHeap.push(num);
@@ -203,232 +634,214 @@ public:
         return result;
     }
     
-    // Merge K sorted lists
-    ListNode* mergeKLists(vector<ListNode*>& lists) {
-        auto compare = [](ListNode* a, ListNode* b) {
-            return a->val > b->val;
-        };
+    // Find K smallest elements
+    vector<int> findKSmallest(vector<int>& nums, int k) {
+        priority_queue<int> maxHeap; // Max heap of size k
         
-        priority_queue<ListNode*, vector<ListNode*>, decltype(compare)> minHeap(compare);
-        
-        for (ListNode* list : lists) {
-            if (list) minHeap.push(list);
-        }
-        
-        ListNode dummy(0);
-        ListNode* current = &dummy;
-        
-        while (!minHeap.empty()) {
-            ListNode* node = minHeap.top();
-            minHeap.pop();
-            
-            current->next = node;
-            current = current->next;
-            
-            if (node->next) {
-                minHeap.push(node->next);
+        for (int num : nums) {
+            maxHeap.push(num);
+            if (maxHeap.size() > k) {
+                maxHeap.pop();
             }
         }
         
-        return dummy.next;
-    }
-    
-    // Top K frequent elements
-    vector<int> topKFrequent(vector<int>& nums, int k) {
-        unordered_map<int, int> freq;
-        for (int num : nums) {
-            freq[num]++;
+        vector<int> result;
+        while (!maxHeap.empty()) {
+            result.push_back(maxHeap.top());
+            maxHeap.pop();
         }
         
-        auto compare = [](const pair<int, int>& a, const pair<int, int>& b) {
-            return a.second > b.second;
-        };
+        return result;
+    }
+    
+    // Kth largest element (QuickSelect alternative)
+    int findKthLargest(vector<int>& nums, int k) {
+        priority_queue<int, vector<int>, greater<int>> minHeap;
         
-        priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(compare)> minHeap(compare);
-        
-        for (const auto& p : freq) {
-            minHeap.push(p);
+        for (int num : nums) {
+            minHeap.push(num);
             if (minHeap.size() > k) {
                 minHeap.pop();
             }
         }
         
-        vector<int> result;
-        while (!minHeap.empty()) {
-            result.push_back(minHeap.top().first);
-            minHeap.pop();
+        return minHeap.top();
+    }
+};
+```
+
+### Median from Data Stream
+
+```cpp
+class MedianFinder {
+private:
+    priority_queue<int> maxHeap; // Left half (smaller elements)
+    priority_queue<int, vector<int>, greater<int>> minHeap; // Right half (larger elements)
+    
+public:
+    void addNum(int num) {
+        if (maxHeap.empty() || num <= maxHeap.top()) {
+            maxHeap.push(num);
+        } else {
+            minHeap.push(num);
         }
         
-        return result;
+        // Balance heaps
+        if (maxHeap.size() > minHeap.size() + 1) {
+            minHeap.push(maxHeap.top());
+            maxHeap.pop();
+        } else if (minHeap.size() > maxHeap.size() + 1) {
+            maxHeap.push(minHeap.top());
+            minHeap.pop();
+        }
+    }
+    
+    double findMedian() {
+        if (maxHeap.size() == minHeap.size()) {
+            return (maxHeap.top() + minHeap.top()) / 2.0;
+        } else if (maxHeap.size() > minHeap.size()) {
+            return maxHeap.top();
+        } else {
+            return minHeap.top();
+        }
     }
 };
-```
-
-### 🔧 Heap Sort Algorithm
-
-```mermaid
-flowchart TD
-    A["Unsorted Array"] --> B["Build Max Heap"]
-    B --> C["Extract Maximum"]
-    C --> D["Place at End"]
-    D --> E["Heapify Remaining"]
-    E --> F{"More Elements?"}
-    F -->|Yes| C
-    F -->|No| G["Sorted Array"]
-    
-    H["Time Complexity"] --> I["Build Heap: O(n)"]
-    H --> J["n Extractions: O(n log n)"]
-    H --> K["Total: O(n log n)"]
-    
-    L["Space Complexity"] --> M["In-place: O(1)"]
-    
-    style A fill:#e3f2fd
-    style G fill:#c8e6c9
-    style K fill:#fff3e0
-    style M fill:#fff3e0
-```
-
-```cpp
-void heapSort(vector<int>& arr) {
-    int n = arr.size();
-    
-    // Build max heap
-    for (int i = n / 2 - 1; i >= 0; i--) {
-        heapify(arr, n, i);
-    }
-    
-    // Extract elements one by one
-    for (int i = n - 1; i > 0; i--) {
-        swap(arr[0], arr[i]);
-        heapify(arr, i, 0);
-    }
-}
-
-void heapify(vector<int>& arr, int n, int i) {
-    int largest = i;
-    int left = 2 * i + 1;
-    int right = 2 * i + 2;
-    
-    if (left < n && arr[left] > arr[largest]) {
-        largest = left;
-    }
-    
-    if (right < n && arr[right] > arr[largest]) {
-        largest = right;
-    }
-    
-    if (largest != i) {
-        swap(arr[i], arr[largest]);
-        heapify(arr, n, largest);
-    }
-}
 ```
 
 ---
 
-## 🏆 Best Practices
+## Best Practices
 
-### ✅ Do's
+### Performance Optimization
 
 ```mermaid
 flowchart TD
-    A["✅ Heap Best Practices"] --> B["Use STL priority_queue"]
-    A --> C["Custom Comparators"]
-    A --> D["Memory Management"]
-    A --> E["Edge Cases"]
+    A["Heap Optimization"] --> B["Choose Right Type"]
+    A --> C["Memory Layout"]
+    A --> D["Operation Frequency"]
+    A --> E["Custom Comparators"]
     
-    B --> F["Built-in optimization"]
-    B --> G["Well-tested implementation"]
+    B --> F["Binary vs d-ary heap"]
+    C --> G["Array-based implementation"]
+    D --> H["Insert vs Extract frequency"]
+    E --> I["Avoid expensive comparisons"]
     
-    C --> H["Complex object sorting"]
-    C --> I["Multiple criteria"]
-    
-    D --> J["Avoid memory leaks"]
-    D --> K["Efficient allocation"]
-    
-    E --> L["Empty heap checks"]
-    E --> M["Single element handling"]
-    
-    style A fill:#e3f2fd
-    style B fill:#c8e6c9
-    style C fill:#c8e6c9
-    style D fill:#c8e6c9
-    style E fill:#c8e6c9
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef optimization fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef type fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef memory fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef frequency fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef comparator fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A optimization
+    class B,F type
+    class C,G memory
+    class D,H frequency
+    class E,I comparator
 ```
+
+### Common Pitfalls and Solutions
 
 ```cpp
-// 1. Use STL priority_queue for most cases
-void useSTLHeap() {
-    priority_queue<int> maxHeap;                    // Max heap
-    priority_queue<int, vector<int>, greater<int>> minHeap; // Min heap
+class HeapBestPractices {
+public:
+    // ❌ Incorrect heap property maintenance
+    void badInsert(vector<int>& heap, int value) {
+        heap.push_back(value);
+        // Missing heapify up!
+    }
     
-    maxHeap.push(10);
-    int max = maxHeap.top();
-    maxHeap.pop();
-}
-
-// 2. Custom comparator for complex objects
-struct Task {
-    int priority;
-    string name;
-};
-
-struct TaskComparator {
-    bool operator()(const Task& a, const Task& b) {
-        return a.priority < b.priority; // Higher priority first
+    // ✅ Proper insertion with heapify up
+    void goodInsert(vector<int>& heap, int value) {
+        heap.push_back(value);
+        heapifyUp(heap, heap.size() - 1);
+    }
+    
+    // ❌ Inefficient heap construction
+    vector<int> badBuildHeap(vector<int>& arr) {
+        vector<int> heap;
+        for (int val : arr) {
+            goodInsert(heap, val); // O(n log n)
+        }
+        return heap;
+    }
+    
+    // ✅ Efficient heap construction
+    vector<int> goodBuildHeap(vector<int>& arr) {
+        vector<int> heap = arr;
+        // Build heap in O(n)
+        for (int i = heap.size() / 2 - 1; i >= 0; i--) {
+            heapifyDown(heap, i);
+        }
+        return heap;
+    }
+    
+    // ✅ Proper heapify implementations
+    void heapifyUp(vector<int>& heap, int index) {
+        while (index > 0) {
+            int parent = (index - 1) / 2;
+            if (heap[index] <= heap[parent]) break;
+            swap(heap[index], heap[parent]);
+            index = parent;
+        }
+    }
+    
+    void heapifyDown(vector<int>& heap, int index) {
+        int size = heap.size();
+        while (2 * index + 1 < size) {
+            int child = 2 * index + 1;
+            if (child + 1 < size && heap[child + 1] > heap[child]) {
+                child++;
+            }
+            if (heap[index] >= heap[child]) break;
+            swap(heap[index], heap[child]);
+            index = child;
+        }
     }
 };
-
-void useCustomComparator() {
-    priority_queue<Task, vector<Task>, TaskComparator> taskQueue;
-}
 ```
+
+### Application Guidelines
+
+| Use Case | Heap Type | Why |
+|----------|-----------|-----|
+| **Task Scheduling** | Min Heap | Earliest deadline first |
+| **Dijkstra's Algorithm** | Min Heap | Shortest distance first |
+| **Top K Problems** | Fixed-size heap | Memory efficient |
+| **Median Finding** | Two heaps | Balanced partitioning |
+| **Merge K Lists** | Min Heap | Efficient comparison |
 
 ---
 
-## 🎓 Summary
+## Summary
 
-```mermaid
-flowchart TD
-    A["📦 Heap Mastery"] --> B["🌳 Structure"]
-    A --> C["⚡ Operations"]
-    A --> D["🎯 Applications"]
-    A --> E["📊 Performance"]
-    
-    B --> F["Complete Binary Tree"]
-    B --> G["Array Representation"]
-    B --> H["Heap Property"]
-    
-    C --> I["Insert: O(log n)"]
-    C --> J["Extract: O(log n)"]
-    C --> K["Peek: O(1)"]
-    C --> L["Build: O(n)"]
-    
-    D --> M["Priority Queues"]
-    D --> N["Heap Sort"]
-    D --> O["Graph Algorithms"]
-    D --> P["Top-K Problems"]
-    
-    E --> Q["Time Efficient"]
-    E --> R["Space Efficient"]
-    E --> S["Cache Friendly"]
-    
-    classDef default fill:#333,stroke:#fff,stroke-width:2px,color:#fff
-```
+**Heaps** provide efficient priority-based operations essential for many algorithms and applications. Key insights:
 
-Heaps provide efficient priority-based operations:
+### Essential Concepts
+- **Complete Binary Tree**: Efficient array representation
+- **Heap Property**: Parent-child relationship maintains order
+- **O(log n) Operations**: Insert and extract with logarithmic complexity
+- **O(n) Build**: Efficient heap construction from array
 
-✅ **Complete Binary Tree**: Efficient array representation  
-✅ **O(log n)**: Insert and extract operations  
-✅ **O(1)**: Peek at min/max element  
-✅ **Applications**: Priority queues, heap sort, graph algorithms  
+### Core Applications
+- **Priority Queues**: Task scheduling, event simulation
+- **Sorting**: Heap sort with O(n log n) guaranteed performance
+- **Graph Algorithms**: Dijkstra's shortest path, Prim's MST
+- **Selection Problems**: Finding top K elements, median
+
+### Best Practices
+- Use array-based implementation for memory efficiency
+- Build heap in O(n) rather than inserting elements one by one
+- Choose appropriate heap type based on operation frequency
+- Consider d-ary heaps for specific performance requirements
+
+> **Master's Insight**: Heaps excel at maintaining partial order efficiently. They're the go-to choice when you need quick access to extremal elements without full sorting overhead.
 
 ---
 
 <div align="center">
 
-**📦 Heap Up the Performance**
+**📦 Master Heap Data Structure • Prioritize Efficiently • Build Optimal Solutions**
 
-*Priority-driven data organization*
+*From Theory to Practice • Priority to Performance • Understanding to Mastery*
 
 </div>

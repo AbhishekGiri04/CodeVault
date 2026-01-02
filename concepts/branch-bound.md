@@ -1,718 +1,591 @@
-# 🌳 Branch & Bound — Complete Professional Guide
+# Branch and Bound — Complete Professional Guide
 
 <div align="center">
 
-![Branch & Bound](https://img.shields.io/badge/Branch_&_Bound-Optimization_Technique-4ECDC4?style=for-the-badge&logo=tree&logoColor=white)
+![Branch and Bound](https://img.shields.io/badge/Branch_and_Bound-Optimization_Algorithm-FF6B6B?style=for-the-badge&logo=tree&logoColor=white)
 ![Difficulty](https://img.shields.io/badge/Difficulty-Advanced-red?style=for-the-badge)
-![Importance](https://img.shields.io/badge/Importance-High-red?style=for-the-badge)
+![Importance](https://img.shields.io/badge/Importance-High-darkred?style=for-the-badge)
 
-*Master systematic optimization through intelligent search space exploration*
+**Master systematic optimization through intelligent search space exploration**
 
 </div>
 
-## 📋 Table of Contents
-- [Introduction](#introduction)
-- [Core Concepts](#core-concepts)
-- [State Space Tree](#state-space-tree)
-- [Types of Branch & Bound](#types-of-branch--bound)
-- [Job Assignment Problem](#job-assignment-problem)
-- [0/1 Knapsack Problem](#01-knapsack-problem)
-- [Traveling Salesman Problem](#traveling-salesman-problem)
-- [Branch & Bound vs Other Techniques](#branch--bound-vs-other-techniques)
-- [Implementation Strategies](#implementation-strategies)
-- [Interview Problems](#interview-problems)
-- [Best Practices](#best-practices)
+---
+
+## Table of Contents
+
+1. [Introduction](#introduction)
+2. [Core Concepts](#core-concepts)
+3. [Branching Strategy](#branching-strategy)
+4. [Bounding Techniques](#bounding-techniques)
+5. [Pruning Methods](#pruning-methods)
+6. [Classic Problems](#classic-problems)
+7. [Implementation Strategies](#implementation-strategies)
+8. [Best Practices](#best-practices)
 
 ---
 
-## 🎯 Introduction
+## Introduction
 
-**Branch & Bound** is a systematic optimization technique that intelligently explores the solution space by dividing problems into subproblems (branching) and using bounds to eliminate non-promising solutions (pruning).
+**Branch and Bound** is a systematic optimization algorithm that explores the solution space by dividing it into smaller subproblems (branching) and using bounds to eliminate unpromising regions (pruning). It's particularly effective for solving combinatorial optimization problems.
 
-### 🔑 Key Principles
+### Algorithm Overview
 
 ```mermaid
 flowchart TD
-    A["🌳 Branch & Bound"] --> B["🌱 Branching"]
-    A --> C["📊 Bounding"]
-    A --> D["✂️ Pruning"]
-    A --> E["🎯 Optimization"]
+    A["Branch and Bound Process"] --> B["Initialize Problem"]
+    B --> C["Create Root Node"]
+    C --> D["Calculate Bound"]
+    D --> E{"Bound Better than Best?"}
+    E -->|No| F["Prune Branch"]
+    E -->|Yes| G{"Complete Solution?"}
+    G -->|Yes| H["Update Best Solution"]
+    G -->|No| I["Branch into Subproblems"]
+    I --> J["Add to Queue"]
+    J --> K{"Queue Empty?"}
+    K -->|No| L["Select Next Node"]
+    L --> D
+    K -->|Yes| M["Return Best Solution"]
+    H --> K
+    F --> K
     
-    B --> F["Divide into subproblems"]
-    B --> G["Systematic exploration"]
-    B --> H["Decision tree structure"]
-    
-    C --> I["Calculate upper/lower bounds"]
-    C --> J["Estimate best possible"]
-    C --> K["Guide search direction"]
-    
-    D --> L["Eliminate non-promising"]
-    D --> M["Reduce search space"]
-    D --> N["Improve efficiency"]
-    
-    E --> O["Find optimal solution"]
-    E --> P["Minimize/maximize objective"]
-    E --> Q["Guarantee optimality"]
-    
-    style A fill:#e3f2fd
-    style B fill:#c8e6c9
-    style C fill:#fff3e0
-    style D fill:#ffcdd2
-    style E fill:#f3e5f5
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef start fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef process fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef decision fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef result fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef prune fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A,B,C start
+    class D,I,J,L process
+    class E,G,K decision
+    class H,M result
+    class F prune
 ```
-
-- **Systematic Exploration**: Divide problem into manageable subproblems
-- **Intelligent Pruning**: Eliminate branches that cannot lead to optimal solutions
-- **Bound Calculation**: Use upper/lower bounds to guide search
-- **Optimization Focus**: Find the best solution, not just any solution
-
-### 🌟 Applications
-
-```mermaid
-mindmap
-  root))🌳 Branch & Bound Applications((
-    💼 Job Assignment
-      Minimize total cost
-      Worker-task allocation
-      Resource optimization
-      Hungarian algorithm
-    🎒 Knapsack Problems
-      0/1 Knapsack
-      Maximize profit
-      Weight constraints
-      Integer programming
-    🗺️ Traveling Salesman
-      Shortest tour
-      Visit all cities
-      Minimize distance
-      Route optimization
-    🔢 Integer Programming
-      Discrete optimization
-      Linear constraints
-      Binary variables
-      Combinatorial problems
-    🎯 Scheduling
-      Task scheduling
-      Resource allocation
-      Deadline constraints
-      Optimization problems
-
-%%{init: {'theme':'base', 'themeVariables': {'primaryColor':'#2E86AB', 'primaryTextColor':'#ffffff', 'primaryBorderColor':'#ffffff', 'lineColor':'#4A4A4A', 'secondaryColor':'#A23B72', 'tertiaryColor':'#F18F01', 'background':'#C73E1D', 'mainBkg':'#2E86AB', 'secondBkg':'#A23B72', 'tertiaryBkg':'#F18F01'}}}%%
-```
-
-- **Job Assignment**: Minimize total assignment cost
-- **Knapsack Problems**: Maximize profit with weight constraints
-- **Traveling Salesman**: Find shortest tour
-- **Integer Programming**: Solve discrete optimization problems
 
 ---
 
-## 🧩 Core Concepts
+## Core Concepts
 
-### 🌳 Branching
-Divide the problem into smaller subproblems by making decisions.
+### Key Components
+
+```mermaid
+flowchart TD
+    A["Branch and Bound Components"] --> B["Branching"]
+    A --> C["Bounding"]
+    A --> D["Pruning"]
+    A --> E["Selection Strategy"]
+    
+    B --> F["Divide problem space"]
+    B --> G["Create subproblems"]
+    B --> H["Systematic exploration"]
+    
+    C --> I["Upper/Lower bounds"]
+    C --> J["Feasibility check"]
+    C --> K["Optimality estimation"]
+    
+    D --> L["Eliminate branches"]
+    D --> M["Reduce search space"]
+    D --> N["Improve efficiency"]
+    
+    E --> O["Best-first search"]
+    E --> P["Depth-first search"]
+    E --> Q["Breadth-first search"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef component fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef branching fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef bounding fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef pruning fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef strategy fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A component
+    class B,F,G,H branching
+    class C,I,J,K bounding
+    class D,L,M,N pruning
+    class E,O,P,Q strategy
+```
+
+### Algorithm Characteristics
+
+**Time Complexity**: O(b^d) worst case, where b is branching factor and d is depth  
+**Space Complexity**: O(b^d) for storing the search tree  
+**Optimality**: Guarantees optimal solution if bounds are admissible  
+**Completeness**: Always finds solution if one exists  
+
+---
+
+## Branching Strategy
 
 <div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20221017115728/22.png" alt="Branch and Bound Branching Strategy" width="600" height="350"/>
+<img src="https://camo.githubusercontent.com/42ba85cf97d00ba21a4a8cf141d0d3a4f1320aee83e70a037a01f9d04cd8e628/68747470733a2f2f6d656469612e6765656b73666f726765656b732e6f72672f77702d636f6e74656e742f75706c6f6164732f32303232313031373131353732382f32322e706e67" alt="Branching Strategy" width="650" height="400"/>
 </div>
+
+### Branching Techniques
+
+```mermaid
+flowchart TD
+    A["Branching Strategies"] --> B["Variable Selection"]
+    A --> C["Value Ordering"]
+    A --> D["Constraint Propagation"]
+    
+    B --> E["Most Constrained Variable"]
+    B --> F["Most Constraining Variable"]
+    B --> G["Random Selection"]
+    
+    C --> H["Least Constraining Value"]
+    C --> I["Most Promising Value"]
+    C --> J["Natural Ordering"]
+    
+    D --> K["Forward Checking"]
+    D --> L["Arc Consistency"]
+    D --> M["Constraint Propagation"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef strategy fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef variable fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef value fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef constraint fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    class A strategy
+    class B,E,F,G variable
+    class C,H,I,J value
+    class D,K,L,M constraint
+```
+
+### Implementation Example
 
 ```cpp
 class BranchingStrategy {
 public:
-    // Generic branching for binary decisions
-    struct Node {
-        vector<int> solution;
-        int level;
-        double bound;
-        double cost;
-        bool isComplete;
-    };
-    
-    vector<Node> branch(Node& parent, int decision_point) {
+    // Generic branching for optimization problems
+    vector<Node> branch(const Node& current) {
         vector<Node> children;
         
-        // Create child nodes based on decision
-        for (int choice = 0; choice < getChoiceCount(decision_point); choice++) {
-            Node child = parent;
-            child.solution[decision_point] = choice;
-            child.level = parent.level + 1;
-            child.isComplete = (child.level == getTotalDecisions());
+        // Select variable to branch on
+        int variable = selectVariable(current);
+        
+        // Create branches for each possible value
+        for (int value : getDomain(variable)) {
+            Node child = current;
+            child.assign(variable, value);
             
-            children.push_back(child);
+            if (isValid(child)) {
+                children.push_back(child);
+            }
         }
         
         return children;
     }
     
 private:
-    virtual int getChoiceCount(int decision_point) = 0;
-    virtual int getTotalDecisions() = 0;
+    int selectVariable(const Node& node) {
+        // Most constrained variable heuristic
+        int bestVar = -1;
+        int minDomainSize = INT_MAX;
+        
+        for (int var = 0; var < numVariables; var++) {
+            if (!node.isAssigned(var)) {
+                int domainSize = getDomainSize(var, node);
+                if (domainSize < minDomainSize) {
+                    minDomainSize = domainSize;
+                    bestVar = var;
+                }
+            }
+        }
+        
+        return bestVar;
+    }
+    
+    vector<int> getDomain(int variable) {
+        // Return possible values for variable
+        return possibleValues[variable];
+    }
+    
+    bool isValid(const Node& node) {
+        // Check if partial assignment is valid
+        return checkConstraints(node);
+    }
+    
+private:
+    int numVariables;
+    vector<vector<int>> possibleValues;
 };
 ```
 
-### 🎯 Bounding
+---
+
+## Bounding Techniques
 
 <div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/TSP.png" alt="Branch and Bound Bounding Function" width="650" height="400"/>
+<img src="https://camo.githubusercontent.com/b25e325ca0c9b757c2754d01905af48faa7003753d4e1ae50d2a8449de86c5eb/68747470733a2f2f6d656469612e6765656b73666f726765656b732e6f72672f77702d636f6e74656e742f63646e2d75706c6f6164732f5453502e706e67" alt="Bounding in TSP" width="650" height="400"/>
 </div>
+
+### Bound Calculation Methods
 
 ```mermaid
-flowchart LR
-    A["Current Node"] --> B["Calculate Bound"]
-    B --> C{"Bound Better than Best?"}
-    C -->|Yes| D["Continue Exploration"]
-    C -->|No| E["Prune Branch"]
+flowchart TD
+    A["Bounding Methods"] --> B["Linear Programming Relaxation"]
+    A --> C["Lagrangian Relaxation"]
+    A --> D["Greedy Bounds"]
+    A --> E["Problem-Specific Bounds"]
     
-    D --> F["Expand Node"]
-    E --> G["Eliminate Subtree"]
+    B --> F["Remove integer constraints"]
+    B --> G["Solve continuous problem"]
+    B --> H["Provides tight bounds"]
     
-    style A fill:#e3f2fd
-    style D fill:#c8e6c9
-    style E fill:#ffcdd2
+    C --> I["Dualize constraints"]
+    C --> J["Decompose problem"]
+    C --> K["Often tighter than LP"]
+    
+    D --> L["Quick approximation"]
+    D --> M["Fast computation"]
+    D --> N["May be loose"]
+    
+    E --> O["Domain knowledge"]
+    E --> P["Problem structure"]
+    E --> Q["Custom heuristics"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef method fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef lp fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef lagrangian fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef greedy fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef specific fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A method
+    class B,F,G,H lp
+    class C,I,J,K lagrangian
+    class D,L,M,N greedy
+    class E,O,P,Q specific
 ```
 
-Calculate upper/lower bounds to estimate the best possible solution from a node.
+### Bound Implementation
 
 ```cpp
-class BoundingFunction {
+class BoundCalculator {
 public:
-    // Generic bounding interface
-    virtual double calculateBound(const Node& node) = 0;
-    virtual bool shouldPrune(const Node& node, double bestSolution) = 0;
+    // Calculate lower bound for minimization problem
+    double calculateLowerBound(const Node& node) {
+        switch (boundingMethod) {
+            case LP_RELAXATION:
+                return lpRelaxationBound(node);
+            case GREEDY_BOUND:
+                return greedyBound(node);
+            case PROBLEM_SPECIFIC:
+                return problemSpecificBound(node);
+            default:
+                return 0.0;
+        }
+    }
     
-protected:
-    // Common bounding utilities
-    double linearRelaxation(vector<double>& coefficients, vector<double>& constraints) {
-        // Solve linear relaxation for upper bound
-        double bound = 0.0;
-        // Implementation depends on specific problem
+private:
+    double lpRelaxationBound(const Node& node) {
+        // Solve linear programming relaxation
+        LinearProgram lp = createRelaxation(node);
+        return lp.solve();
+    }
+    
+    double greedyBound(const Node& node) {
+        // Quick greedy approximation
+        double bound = node.currentCost;
+        
+        // Add optimistic estimate for remaining decisions
+        for (int var : node.unassignedVariables) {
+            bound += getBestPossibleContribution(var, node);
+        }
+        
         return bound;
     }
     
-    double greedyHeuristic(const Node& node) {
-        // Quick greedy solution for lower bound
-        double heuristic = 0.0;
-        // Problem-specific greedy approach
-        return heuristic;
+    double problemSpecificBound(const Node& node) {
+        // Custom bound based on problem structure
+        // Example: For TSP, use minimum spanning tree
+        return customBoundCalculation(node);
     }
+    
+private:
+    enum BoundingMethod { LP_RELAXATION, GREEDY_BOUND, PROBLEM_SPECIFIC };
+    BoundingMethod boundingMethod;
 };
 ```
 
-### ✂️ Pruning
-Eliminate branches that cannot lead to better solutions.
+---
+
+## Pruning Methods
 
 <div align="center">
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8UXDvofQXzR6cRZ_UlUovoGALQlv-PKFABg&s" alt="Branch and Bound Pruning Strategy" width="600" height="350"/>
+<img src="https://www.scaler.com/topics/images/pruning-in-dl.webp" alt="Pruning Strategies" width="650" height="400"/>
+</div>
+
+### Pruning Strategies
+
+```mermaid
+flowchart TD
+    A["Pruning Techniques"] --> B["Bound-based Pruning"]
+    A --> C["Feasibility Pruning"]
+    A --> D["Dominance Pruning"]
+    A --> E["Symmetry Breaking"]
+    
+    B --> F["Lower bound ≥ Upper bound"]
+    B --> G["Cannot improve best solution"]
+    B --> H["Most common pruning"]
+    
+    C --> I["Constraint violation"]
+    C --> J["Infeasible partial solution"]
+    C --> K["Early detection"]
+    
+    D --> L["Solution A dominates B"]
+    D --> M["A is better in all aspects"]
+    D --> N["Eliminate dominated solutions"]
+    
+    E --> O["Identical subproblems"]
+    E --> P["Reduce redundant search"]
+    E --> Q["Problem-specific rules"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef technique fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef bound fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef feasibility fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef dominance fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef symmetry fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A technique
+    class B,F,G,H bound
+    class C,I,J,K feasibility
+    class D,L,M,N dominance
+    class E,O,P,Q symmetry
+```
+
+### Pruning Implementation
+
+```cpp
+class PruningManager {
+public:
+    bool shouldPrune(const Node& node, double bestSolution) {
+        // Bound-based pruning
+        if (boundBasedPruning(node, bestSolution)) {
+            return true;
+        }
+        
+        // Feasibility pruning
+        if (feasibilityPruning(node)) {
+            return true;
+        }
+        
+        // Dominance pruning
+        if (dominancePruning(node)) {
+            return true;
+        }
+        
+        // Symmetry breaking
+        if (symmetryPruning(node)) {
+            return true;
+        }
+        
+        return false;
+    }
+    
+private:
+    bool boundBasedPruning(const Node& node, double bestSolution) {
+        double lowerBound = calculateLowerBound(node);
+        return lowerBound >= bestSolution;
+    }
+    
+    bool feasibilityPruning(const Node& node) {
+        return !isPartialSolutionFeasible(node);
+    }
+    
+    bool dominancePruning(const Node& node) {
+        // Check if any existing node dominates this one
+        for (const Node& existing : exploredNodes) {
+            if (dominates(existing, node)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    bool symmetryPruning(const Node& node) {
+        // Problem-specific symmetry breaking rules
+        return hasSymmetricEquivalent(node);
+    }
+    
+private:
+    vector<Node> exploredNodes;
+};
+```
+
+---
+
+## Classic Problems
+
+### Job Assignment Problem
+
+<div align="center">
+<img src="https://camo.githubusercontent.com/66b8dd3819183d85942bdc4fa06f76174d66adb2fd0a8e32c9100e64e44c258d/68747470733a2f2f6d656469612e6765656b73666f726765656b732e6f72672f77702d636f6e74656e742f63646e2d75706c6f6164732f6a6f6261737369676e6d656e74362e706e67" alt="Job Assignment Problem" width="650" height="400"/>
 </div>
 
 ```cpp
-class PruningStrategy {
-public:
-    bool shouldPrune(const Node& node, double bestKnown, bool isMinimization) {
-        if (isMinimization) {
-            return node.bound >= bestKnown; // Prune if bound ≥ best
-        } else {
-            return node.bound <= bestKnown; // Prune if bound ≤ best
-        }
-    }
-    
-    void updateBest(double& bestSolution, double candidate, bool isMinimization) {
-        if (isMinimization) {
-            bestSolution = min(bestSolution, candidate);
-        } else {
-            bestSolution = max(bestSolution, candidate);
-        }
-    }
-};
-```
-
----
-
-## 🌲 State Space Tree
-
-### 📊 Structure
-```cpp
-class StateSpaceTree {
-public:
-    struct TreeNode {
-        int id;
-        int level;              // Depth in tree
-        vector<int> solution;   // Partial solution
-        double cost;            // Current cost
-        double bound;           // Estimated bound
-        vector<TreeNode*> children;
-        TreeNode* parent;
-        
-        TreeNode(int lvl, vector<int> sol) 
-            : level(lvl), solution(sol), cost(0), bound(0), parent(nullptr) {}
-    };
-    
-    TreeNode* root;
-    int maxLevel;
-    
-    StateSpaceTree(int problemSize) : maxLevel(problemSize) {
-        root = new TreeNode(0, vector<int>(problemSize, -1));
-    }
-    
-    void buildTree() {
-        queue<TreeNode*> q;
-        q.push(root);
-        
-        while (!q.empty()) {
-            TreeNode* current = q.front();
-            q.pop();
-            
-            if (current->level < maxLevel) {
-                vector<TreeNode*> children = generateChildren(current);
-                current->children = children;
-                
-                for (TreeNode* child : children) {
-                    child->parent = current;
-                    q.push(child);
-                }
-            }
-        }
-    }
-    
+class JobAssignmentBB {
 private:
-    vector<TreeNode*> generateChildren(TreeNode* parent) {
-        vector<TreeNode*> children;
-        int nextLevel = parent->level + 1;
-        
-        // Generate all possible choices at this level
-        for (int choice = 0; choice < getChoicesAtLevel(nextLevel); choice++) {
-            vector<int> newSolution = parent->solution;
-            newSolution[parent->level] = choice;
-            
-            TreeNode* child = new TreeNode(nextLevel, newSolution);
-            children.push_back(child);
-        }
-        
-        return children;
-    }
-    
-    virtual int getChoicesAtLevel(int level) = 0;
-};
-```
-
----
-
-## 🔄 Types of Branch & Bound
-
-### 🟢 LC Branch & Bound (Least Cost)
-**Best-First Search using priority queue**
-
-```cpp
-class LCBranchAndBound {
-private:
-    struct Node {
-        vector<int> solution;
-        int level;
-        double cost;
-        double bound;
-        
-        bool operator>(const Node& other) const {
-            return bound > other.bound; // Min-heap for minimization
-        }
-    };
-    
-    priority_queue<Node, vector<Node>, greater<Node>> pq;
-    
-public:
-    pair<vector<int>, double> solve(Problem& problem) {
-        Node root;
-        root.solution = vector<int>(problem.size(), -1);
-        root.level = 0;
-        root.cost = 0;
-        root.bound = calculateBound(root, problem);
-        
-        pq.push(root);
-        
-        vector<int> bestSolution;
-        double bestCost = DBL_MAX;
-        
-        while (!pq.empty()) {
-            Node current = pq.top();
-            pq.pop();
-            
-            // Prune if bound is worse than best known
-            if (current.bound >= bestCost) continue;
-            
-            if (current.level == problem.size()) {
-                // Complete solution found
-                if (current.cost < bestCost) {
-                    bestCost = current.cost;
-                    bestSolution = current.solution;
-                }
-                continue;
-            }
-            
-            // Branch: generate children
-            vector<Node> children = generateChildren(current, problem);
-            for (Node& child : children) {
-                if (child.bound < bestCost) {
-                    pq.push(child);
-                }
-            }
-        }
-        
-        return {bestSolution, bestCost};
-    }
-    
-private:
-    virtual double calculateBound(const Node& node, const Problem& problem) = 0;
-    virtual vector<Node> generateChildren(const Node& parent, const Problem& problem) = 0;
-};
-```
-
-### 🔵 FIFO Branch & Bound
-**Breadth-First Search using queue**
-
-```cpp
-class FIFOBranchAndBound {
-private:
-    struct Node {
-        vector<int> solution;
-        int level;
-        double cost;
-        double bound;
-    };
-    
-    queue<Node> q;
-    
-public:
-    pair<vector<int>, double> solve(Problem& problem) {
-        Node root;
-        root.solution = vector<int>(problem.size(), -1);
-        root.level = 0;
-        root.cost = 0;
-        root.bound = calculateBound(root, problem);
-        
-        q.push(root);
-        
-        vector<int> bestSolution;
-        double bestCost = DBL_MAX;
-        
-        while (!q.empty()) {
-            Node current = q.front();
-            q.pop();
-            
-            // Prune if bound is worse than best known
-            if (current.bound >= bestCost) continue;
-            
-            if (current.level == problem.size()) {
-                // Complete solution found
-                if (current.cost < bestCost) {
-                    bestCost = current.cost;
-                    bestSolution = current.solution;
-                }
-                continue;
-            }
-            
-            // Branch: generate children level by level
-            vector<Node> children = generateChildren(current, problem);
-            for (Node& child : children) {
-                if (child.bound < bestCost) {
-                    q.push(child);
-                }
-            }
-        }
-        
-        return {bestSolution, bestCost};
-    }
-    
-private:
-    virtual double calculateBound(const Node& node, const Problem& problem) = 0;
-    virtual vector<Node> generateChildren(const Node& parent, const Problem& problem) = 0;
-};
-```
-
-### 📊 Comparison: LC vs FIFO
-
-```cpp
-class BranchBoundComparison {
-public:
-    void compareStrategies() {
-        cout << "LC Branch & Bound vs FIFO Branch & Bound:" << endl;
-        cout << "===========================================" << endl;
-        
-        cout << "Node Selection:" << endl;
-        cout << "  LC: Least cost (most promising) first" << endl;
-        cout << "  FIFO: First-in-first-out order" << endl;
-        
-        cout << "Data Structure:" << endl;
-        cout << "  LC: Priority Queue (Min-Heap)" << endl;
-        cout << "  FIFO: Simple Queue" << endl;
-        
-        cout << "Search Strategy:" << endl;
-        cout << "  LC: Best-First Search" << endl;
-        cout << "  FIFO: Breadth-First Search" << endl;
-        
-        cout << "Efficiency:" << endl;
-        cout << "  LC: Higher (explores fewer nodes)" << endl;
-        cout << "  FIFO: Lower (explores more nodes)" << endl;
-        
-        cout << "Memory Usage:" << endl;
-        cout << "  LC: Higher (priority queue overhead)" << endl;
-        cout << "  FIFO: Lower (simple queue)" << endl;
-    }
-};
-```
-
----
-
-## 💼 Job Assignment Problem
-
-### 📝 Problem Statement
-Assign n jobs to n workers to minimize total cost, with each job assigned to exactly one worker.
-
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/jobassignment6.png" alt="Job Assignment Problem Visualization" width="650" height="400"/>
-</div>
-
-```cpp
-class JobAssignmentBB : public LCBranchAndBound {
-private:
-    struct JobNode {
-        vector<int> assignment; // assignment[i] = worker assigned to job i
-        vector<bool> workerUsed;
-        int level;
-        double cost;
-        double bound;
-        
-        bool operator>(const JobNode& other) const {
-            return bound > other.bound;
-        }
-    };
-    
-    vector<vector<int>> costMatrix;
+    vector<vector<int>> cost;
     int n;
+    int bestCost;
+    vector<int> bestAssignment;
     
 public:
-    JobAssignmentBB(vector<vector<int>>& costs) : costMatrix(costs), n(costs.size()) {}
+    JobAssignmentBB(vector<vector<int>>& costMatrix) : cost(costMatrix) {
+        n = cost.size();
+        bestCost = INT_MAX;
+        bestAssignment.resize(n);
+    }
     
-    pair<vector<int>, int> solveJobAssignment() {
-        priority_queue<JobNode, vector<JobNode>, greater<JobNode>> pq;
+    vector<int> solve() {
+        vector<int> assignment(n, -1);
+        vector<bool> jobTaken(n, false);
         
-        // Initialize root node
-        JobNode root;
-        root.assignment = vector<int>(n, -1);
-        root.workerUsed = vector<bool>(n, false);
-        root.level = 0;
-        root.cost = 0;
-        root.bound = calculateJobBound(root);
-        
-        pq.push(root);
-        
-        vector<int> bestAssignment;
-        int bestCost = INT_MAX;
-        
-        while (!pq.empty()) {
-            JobNode current = pq.top();
-            pq.pop();
-            
-            // Prune if bound is worse than best known
-            if (current.bound >= bestCost) continue;
-            
-            if (current.level == n) {
-                // Complete assignment found
-                if (current.cost < bestCost) {
-                    bestCost = current.cost;
-                    bestAssignment = current.assignment;
-                }
-                continue;
-            }
-            
-            // Branch: try assigning current job to each available worker
-            for (int worker = 0; worker < n; worker++) {
-                if (!current.workerUsed[worker]) {
-                    JobNode child = current;
-                    child.assignment[current.level] = worker;
-                    child.workerUsed[worker] = true;
-                    child.level = current.level + 1;
-                    child.cost = current.cost + costMatrix[current.level][worker];
-                    child.bound = calculateJobBound(child);
-                    
-                    if (child.bound < bestCost) {
-                        pq.push(child);
-                    }
-                }
-            }
-        }
-        
-        return {bestAssignment, bestCost};
+        branchAndBound(assignment, jobTaken, 0, 0);
+        return bestAssignment;
     }
     
 private:
-    double calculateJobBound(const JobNode& node) {
-        double bound = node.cost;
+    void branchAndBound(vector<int>& assignment, vector<bool>& jobTaken, 
+                       int worker, int currentCost) {
+        // Base case: all workers assigned
+        if (worker == n) {
+            if (currentCost < bestCost) {
+                bestCost = currentCost;
+                bestAssignment = assignment;
+            }
+            return;
+        }
         
-        // Add minimum cost for remaining jobs
-        for (int job = node.level; job < n; job++) {
-            int minCost = INT_MAX;
-            for (int worker = 0; worker < n; worker++) {
-                if (!node.workerUsed[worker]) {
-                    minCost = min(minCost, costMatrix[job][worker]);
+        // Try assigning each available job to current worker
+        for (int job = 0; job < n; job++) {
+            if (!jobTaken[job]) {
+                // Calculate bound
+                int newCost = currentCost + cost[worker][job];
+                int bound = newCost + calculateLowerBound(assignment, jobTaken, worker + 1);
+                
+                // Prune if bound is not better than best solution
+                if (bound < bestCost) {
+                    assignment[worker] = job;
+                    jobTaken[job] = true;
+                    
+                    branchAndBound(assignment, jobTaken, worker + 1, newCost);
+                    
+                    // Backtrack
+                    assignment[worker] = -1;
+                    jobTaken[job] = false;
                 }
             }
-            bound += minCost;
+        }
+    }
+    
+    int calculateLowerBound(vector<int>& assignment, vector<bool>& jobTaken, int worker) {
+        int bound = 0;
+        
+        // For each remaining worker, add minimum cost among available jobs
+        for (int w = worker; w < n; w++) {
+            int minCost = INT_MAX;
+            for (int j = 0; j < n; j++) {
+                if (!jobTaken[j]) {
+                    minCost = min(minCost, cost[w][j]);
+                }
+            }
+            if (minCost != INT_MAX) {
+                bound += minCost;
+            }
         }
         
         return bound;
     }
 };
-
-// Usage Example
-void solveJobAssignmentExample() {
-    vector<vector<int>> costs = {
-        {9, 2, 7, 8},
-        {6, 4, 3, 7},
-        {5, 8, 1, 8},
-        {7, 6, 9, 4}
-    };
-    
-    JobAssignmentBB solver(costs);
-    auto [assignment, totalCost] = solver.solveJobAssignment();
-    
-    cout << "Optimal Assignment:" << endl;
-    for (int job = 0; job < assignment.size(); job++) {
-        cout << "Job " << job << " -> Worker " << assignment[job] 
-             << " (Cost: " << costs[job][assignment[job]] << ")" << endl;
-    }
-    cout << "Total Cost: " << totalCost << endl;
-}
 ```
 
----
-
-## 🎒 0/1 Knapsack Problem
-
-### 📝 Problem Statement
-Select items to maximize profit while staying within weight capacity, each item can be taken at most once.
+### 0/1 Knapsack Problem
 
 <div align="center">
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbfpmV-PS-pLyyBbzLXCnrjfTlOpYUeGTCrg&s" alt="0/1 Knapsack using Branch and Bound" width="700" height="400"/>
+<img src="https://scaler.com/topics/images/input-for-example-0-1-knapsack.webp" alt="0/1 Knapsack Problem" width="650" height="400"/>
 </div>
 
 ```cpp
-class KnapsackBB : public LCBranchAndBound {
+class KnapsackBB {
 private:
-    struct KnapsackNode {
-        vector<int> solution; // 1 if item included, 0 otherwise
-        int level;
-        int weight;
-        int profit;
-        double bound;
-        
-        bool operator<(const KnapsackNode& other) const {
-            return bound < other.bound; // Max-heap for maximization
-        }
-    };
-    
     struct Item {
-        int weight, profit;
+        int weight, value;
         double ratio;
         int index;
-        
-        bool operator>(const Item& other) const {
-            return ratio > other.ratio;
-        }
     };
     
     vector<Item> items;
     int capacity;
-    int n;
+    int bestValue;
+    vector<bool> bestSolution;
     
 public:
-    KnapsackBB(vector<int>& weights, vector<int>& profits, int cap) 
-        : capacity(cap), n(weights.size()) {
-        
+    KnapsackBB(vector<int>& weights, vector<int>& values, int cap) : capacity(cap) {
+        int n = weights.size();
         items.resize(n);
+        bestValue = 0;
+        bestSolution.resize(n, false);
+        
+        // Create items with value-to-weight ratio
         for (int i = 0; i < n; i++) {
-            items[i] = {weights[i], profits[i], (double)profits[i]/weights[i], i};
+            items[i] = {weights[i], values[i], (double)values[i]/weights[i], i};
         }
         
-        // Sort by profit-to-weight ratio (greedy order)
-        sort(items.begin(), items.end(), greater<Item>());
+        // Sort by ratio in descending order
+        sort(items.begin(), items.end(), 
+             [](const Item& a, const Item& b) { return a.ratio > b.ratio; });
     }
     
-    pair<vector<int>, int> solveKnapsack() {
-        priority_queue<KnapsackNode> pq;
-        
-        // Initialize root node
-        KnapsackNode root;
-        root.solution = vector<int>(n, -1);
-        root.level = 0;
-        root.weight = 0;
-        root.profit = 0;
-        root.bound = calculateKnapsackBound(root);
-        
-        pq.push(root);
-        
-        vector<int> bestSolution(n, 0);
-        int bestProfit = 0;
-        
-        while (!pq.empty()) {
-            KnapsackNode current = pq.top();
-            pq.pop();
-            
-            // Prune if bound is worse than best known
-            if (current.bound <= bestProfit) continue;
-            
-            if (current.level == n) {
-                // Complete solution found
-                if (current.profit > bestProfit) {
-                    bestProfit = current.profit;
-                    for (int i = 0; i < n; i++) {
-                        bestSolution[items[i].index] = current.solution[i];
-                    }
-                }
-                continue;
-            }
-            
-            // Branch 1: Include current item
-            if (current.weight + items[current.level].weight <= capacity) {
-                KnapsackNode include = current;
-                include.solution[current.level] = 1;
-                include.level = current.level + 1;
-                include.weight = current.weight + items[current.level].weight;
-                include.profit = current.profit + items[current.level].profit;
-                include.bound = calculateKnapsackBound(include);
-                
-                if (include.bound > bestProfit) {
-                    pq.push(include);
-                }
-            }
-            
-            // Branch 2: Exclude current item
-            KnapsackNode exclude = current;
-            exclude.solution[current.level] = 0;
-            exclude.level = current.level + 1;
-            exclude.bound = calculateKnapsackBound(exclude);
-            
-            if (exclude.bound > bestProfit) {
-                pq.push(exclude);
-            }
-        }
-        
-        return {bestSolution, bestProfit};
+    vector<bool> solve() {
+        vector<bool> currentSolution(items.size(), false);
+        branchAndBound(0, 0, 0, currentSolution);
+        return bestSolution;
     }
     
 private:
-    double calculateKnapsackBound(const KnapsackNode& node) {
-        if (node.weight > capacity) return 0;
+    void branchAndBound(int index, int currentWeight, int currentValue, 
+                       vector<bool>& currentSolution) {
+        // Base case: processed all items
+        if (index == items.size()) {
+            if (currentValue > bestValue) {
+                bestValue = currentValue;
+                bestSolution = currentSolution;
+            }
+            return;
+        }
         
-        double bound = node.profit;
-        int remainingCapacity = capacity - node.weight;
+        // Calculate upper bound using fractional knapsack
+        double upperBound = currentValue + fractionalBound(index, currentWeight);
         
-        // Add fractional items greedily
-        for (int i = node.level; i < n && remainingCapacity > 0; i++) {
+        // Prune if bound is not better than best solution
+        if (upperBound <= bestValue) {
+            return;
+        }
+        
+        // Branch 1: Include current item (if feasible)
+        if (currentWeight + items[index].weight <= capacity) {
+            currentSolution[index] = true;
+            branchAndBound(index + 1, currentWeight + items[index].weight, 
+                          currentValue + items[index].value, currentSolution);
+            currentSolution[index] = false;
+        }
+        
+        // Branch 2: Exclude current item
+        branchAndBound(index + 1, currentWeight, currentValue, currentSolution);
+    }
+    
+    double fractionalBound(int index, int currentWeight) {
+        double bound = 0;
+        int remainingCapacity = capacity - currentWeight;
+        
+        // Add items greedily until capacity is full
+        for (int i = index; i < items.size() && remainingCapacity > 0; i++) {
             if (items[i].weight <= remainingCapacity) {
-                bound += items[i].profit;
+                bound += items[i].value;
                 remainingCapacity -= items[i].weight;
             } else {
-                // Take fraction of item
-                bound += (double)items[i].profit * remainingCapacity / items[i].weight;
+                // Add fractional part
+                bound += items[i].ratio * remainingCapacity;
                 break;
             }
         }
@@ -720,278 +593,51 @@ private:
         return bound;
     }
 };
-
-// Usage Example
-void solveKnapsackExample() {
-    vector<int> weights = {10, 20, 30};
-    vector<int> profits = {60, 100, 120};
-    int capacity = 50;
-    
-    KnapsackBB solver(weights, profits, capacity);
-    auto [solution, maxProfit] = solver.solveKnapsack();
-    
-    cout << "Optimal Knapsack Solution:" << endl;
-    int totalWeight = 0;
-    for (int i = 0; i < solution.size(); i++) {
-        if (solution[i]) {
-            cout << "Item " << i << " (Weight: " << weights[i] 
-                 << ", Profit: " << profits[i] << ")" << endl;
-            totalWeight += weights[i];
-        }
-    }
-    cout << "Total Weight: " << totalWeight << endl;
-    cout << "Total Profit: " << maxProfit << endl;
-}
 ```
 
 ---
 
-## 🚗 Traveling Salesman Problem
+## Implementation Strategies
 
-### 📝 TSP using Branch & Bound
-
-```cpp
-class TSPBB {
-private:
-    struct TSPNode {
-        vector<int> path;
-        vector<bool> visited;
-        int level;
-        int cost;
-        double bound;
-        
-        bool operator>(const TSPNode& other) const {
-            return bound > other.bound;
-        }
-    };
-    
-    vector<vector<int>> distMatrix;
-    int n;
-    
-public:
-    TSPBB(vector<vector<int>>& distances) : distMatrix(distances), n(distances.size()) {}
-    
-    pair<vector<int>, int> solveTSP() {
-        priority_queue<TSPNode, vector<TSPNode>, greater<TSPNode>> pq;
-        
-        // Initialize root node (start from city 0)
-        TSPNode root;
-        root.path = {0};
-        root.visited = vector<bool>(n, false);
-        root.visited[0] = true;
-        root.level = 1;
-        root.cost = 0;
-        root.bound = calculateTSPBound(root);
-        
-        pq.push(root);
-        
-        vector<int> bestTour;
-        int bestCost = INT_MAX;
-        
-        while (!pq.empty()) {
-            TSPNode current = pq.top();
-            pq.pop();
-            
-            // Prune if bound is worse than best known
-            if (current.bound >= bestCost) continue;
-            
-            if (current.level == n) {
-                // Complete tour found, add return to start
-                int totalCost = current.cost + distMatrix[current.path.back()][0];
-                if (totalCost < bestCost) {
-                    bestCost = totalCost;
-                    bestTour = current.path;
-                    bestTour.push_back(0); // Return to start
-                }
-                continue;
-            }
-            
-            // Branch: visit each unvisited city
-            for (int city = 0; city < n; city++) {
-                if (!current.visited[city]) {
-                    TSPNode child = current;
-                    child.path.push_back(city);
-                    child.visited[city] = true;
-                    child.level = current.level + 1;
-                    child.cost = current.cost + distMatrix[current.path.back()][city];
-                    child.bound = calculateTSPBound(child);
-                    
-                    if (child.bound < bestCost) {
-                        pq.push(child);
-                    }
-                }
-            }
-        }
-        
-        return {bestTour, bestCost};
-    }
-    
-private:
-    double calculateTSPBound(const TSPNode& node) {
-        double bound = node.cost;
-        
-        // Add minimum outgoing edge from current city
-        if (node.level < n) {
-            int currentCity = node.path.back();
-            int minEdge = INT_MAX;
-            
-            for (int city = 0; city < n; city++) {
-                if (!node.visited[city]) {
-                    minEdge = min(minEdge, distMatrix[currentCity][city]);
-                }
-            }
-            
-            if (minEdge != INT_MAX) {
-                bound += minEdge;
-            }
-        }
-        
-        // Add minimum spanning tree of unvisited cities
-        vector<int> unvisited;
-        for (int i = 0; i < n; i++) {
-            if (!node.visited[i]) {
-                unvisited.push_back(i);
-            }
-        }
-        
-        if (unvisited.size() > 1) {
-            bound += calculateMSTCost(unvisited);
-        }
-        
-        // Add minimum edge back to start
-        if (node.level == n - 1) {
-            bound += distMatrix[node.path.back()][0];
-        }
-        
-        return bound;
-    }
-    
-    int calculateMSTCost(const vector<int>& cities) {
-        if (cities.size() <= 1) return 0;
-        
-        vector<bool> inMST(cities.size(), false);
-        vector<int> key(cities.size(), INT_MAX);
-        
-        key[0] = 0;
-        int mstCost = 0;
-        
-        for (int count = 0; count < cities.size(); count++) {
-            int u = -1;
-            for (int v = 0; v < cities.size(); v++) {
-                if (!inMST[v] && (u == -1 || key[v] < key[u])) {
-                    u = v;
-                }
-            }
-            
-            inMST[u] = true;
-            mstCost += key[u];
-            
-            for (int v = 0; v < cities.size(); v++) {
-                if (!inMST[v]) {
-                    key[v] = min(key[v], distMatrix[cities[u]][cities[v]]);
-                }
-            }
-        }
-        
-        return mstCost;
-    }
-};
-```
-
----
-
-## ⚖️ Branch & Bound vs Other Techniques
-
-### 🔄 Comparison Table
+### Generic Branch and Bound Framework
 
 ```cpp
-class TechniqueComparison {
+template<typename Node, typename Solution>
+class BranchAndBound {
 public:
-    void compareOptimizationTechniques() {
-        cout << "Optimization Technique Comparison:" << endl;
-        cout << "=================================" << endl;
-        
-        cout << "Branch & Bound vs Backtracking:" << endl;
-        cout << "  Goal: Optimization vs Feasibility" << endl;
-        cout << "  Pruning: Bound-based vs Constraint-based" << endl;
-        cout << "  Efficiency: Higher vs Lower" << endl;
-        cout << "  Use Case: Best solution vs Any solution" << endl;
-        
-        cout << "Branch & Bound vs Dynamic Programming:" << endl;
-        cout << "  Approach: Tree search vs Table filling" << endl;
-        cout << "  Memory: Variable vs O(state space)" << endl;
-        cout << "  Pruning: Explicit vs Implicit" << endl;
-        cout << "  Optimal: Always vs Always (if applicable)" << endl;
-        
-        cout << "Branch & Bound vs Greedy:" << endl;
-        cout << "  Optimality: Guaranteed vs Not guaranteed" << endl;
-        cout << "  Complexity: Exponential vs Polynomial" << endl;
-        cout << "  Exploration: Complete vs Local" << endl;
-        cout << "  Use Case: Exact solution vs Approximation" << endl;
-    }
-};
-```
-
-### 📊 When to Use Each Technique
-
-```cpp
-class TechniqueSelector {
-public:
-    string selectTechnique(string problemType, int problemSize, bool needOptimal) {
-        if (problemType == "optimization" && needOptimal) {
-            if (problemSize <= 20) {
-                return "Branch & Bound (exact solution feasible)";
-            } else if (problemSize <= 1000) {
-                return "Dynamic Programming (if applicable) or Approximation";
-            } else {
-                return "Heuristic or Metaheuristic algorithms";
-            }
-        } else if (problemType == "feasibility") {
-            return "Backtracking with constraint propagation";
-        } else if (!needOptimal) {
-            return "Greedy algorithm or local search";
-        }
-        
-        return "Analyze problem structure for best approach";
-    }
-};
-```
-
----
-
-## 🎯 Interview Problems
-
-### Problem 1: Implement Basic Branch & Bound Framework
-```cpp
-class BasicBranchBound {
-public:
-    template<typename Problem, typename Solution>
-    Solution solve(Problem& problem) {
-        priority_queue<Node> pq;
-        Node root = createRoot(problem);
-        pq.push(root);
+    Solution solve(const Node& root) {
+        priority_queue<Node> queue;
+        queue.push(root);
         
         Solution bestSolution;
-        double bestValue = getWorstValue();
+        double bestValue = getWorstPossibleValue();
         
-        while (!pq.empty()) {
-            Node current = pq.top();
-            pq.pop();
+        while (!queue.empty()) {
+            Node current = queue.top();
+            queue.pop();
             
-            if (shouldPrune(current, bestValue)) continue;
+            // Calculate bound
+            double bound = calculateBound(current);
             
-            if (isComplete(current)) {
-                if (isBetter(current.value, bestValue)) {
-                    bestValue = current.value;
-                    bestSolution = extractSolution(current);
-                }
+            // Prune if bound is not promising
+            if (!isPromising(bound, bestValue)) {
                 continue;
             }
             
-            vector<Node> children = generateChildren(current, problem);
-            for (Node& child : children) {
-                if (!shouldPrune(child, bestValue)) {
-                    pq.push(child);
+            // Check if complete solution
+            if (isComplete(current)) {
+                double value = evaluateSolution(current);
+                if (isBetter(value, bestValue)) {
+                    bestValue = value;
+                    bestSolution = extractSolution(current);
+                }
+            } else {
+                // Branch into subproblems
+                vector<Node> children = branch(current);
+                for (const Node& child : children) {
+                    if (isFeasible(child)) {
+                        queue.push(child);
+                    }
                 }
             }
         }
@@ -999,111 +645,134 @@ public:
         return bestSolution;
     }
     
-private:
-    struct Node {
-        vector<int> solution;
-        int level;
-        double value;
-        double bound;
-        
-        bool operator<(const Node& other) const {
-            return bound < other.bound; // Adjust for min/max
-        }
-    };
-    
-    virtual Node createRoot(const Problem& problem) = 0;
-    virtual bool shouldPrune(const Node& node, double bestValue) = 0;
+protected:
+    virtual double calculateBound(const Node& node) = 0;
+    virtual vector<Node> branch(const Node& node) = 0;
     virtual bool isComplete(const Node& node) = 0;
-    virtual vector<Node> generateChildren(const Node& parent, const Problem& problem) = 0;
+    virtual bool isFeasible(const Node& node) = 0;
+    virtual double evaluateSolution(const Node& node) = 0;
+    virtual Solution extractSolution(const Node& node) = 0;
+    virtual bool isPromising(double bound, double bestValue) = 0;
+    virtual bool isBetter(double value, double bestValue) = 0;
+    virtual double getWorstPossibleValue() = 0;
 };
 ```
 
 ---
 
-## 💡 Best Practices
+## Best Practices
 
-### 🎯 Effective Bounding Strategies
+### Optimization Guidelines
+
+```mermaid
+flowchart TD
+    A["Best Practices"] --> B["Bound Quality"]
+    A --> C["Branching Strategy"]
+    A --> D["Node Selection"]
+    A --> E["Memory Management"]
+    
+    B --> F["Tight bounds reduce search"]
+    B --> G["Balance computation vs tightness"]
+    B --> H["Problem-specific bounds"]
+    
+    C --> I["Good variable ordering"]
+    C --> J["Constraint propagation"]
+    C --> K["Symmetry breaking"]
+    
+    D --> L["Best-first for optimal"]
+    D --> M["Depth-first for memory"]
+    D --> N["Hybrid approaches"]
+    
+    E --> O["Limit queue size"]
+    E --> P["Garbage collection"]
+    E --> Q["Memory-efficient structures"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef category fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef bound fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef branching fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef selection fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef memory fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A category
+    class B,F,G,H bound
+    class C,I,J,K branching
+    class D,L,M,N selection
+    class E,O,P,Q memory
+```
+
+### Performance Tips
+
 ```cpp
-class BoundingBestPractices {
+class OptimizedBranchAndBound {
 public:
-    // Tight bounds are crucial for efficiency
-    double calculateTightBound(const Node& node, const Problem& problem) {
-        // 1. Use problem-specific relaxations
-        double relaxationBound = solveLinearRelaxation(node, problem);
+    // Use efficient data structures
+    void optimizeDataStructures() {
+        // Use priority queue for best-first search
+        priority_queue<Node, vector<Node>, NodeComparator> queue;
         
-        // 2. Use greedy heuristics
-        double greedyBound = greedyHeuristic(node, problem);
+        // Use hash set for visited states
+        unordered_set<string> visited;
         
-        // 3. Use dual bounds from other algorithms
-        double dualBound = getDualBound(node, problem);
-        
-        // Return the tightest bound
-        return min({relaxationBound, greedyBound, dualBound});
+        // Use memory pool for node allocation
+        MemoryPool<Node> nodePool;
     }
     
-    // Preprocessing can improve bounds
-    void preprocessProblem(Problem& problem) {
-        // Sort items by efficiency ratios
-        // Eliminate dominated options
-        // Calculate initial bounds
+    // Implement effective pruning
+    bool shouldPrune(const Node& node) {
+        // Multiple pruning criteria
+        return boundPruning(node) || 
+               feasibilityPruning(node) || 
+               dominancePruning(node) ||
+               symmetryPruning(node);
+    }
+    
+    // Use problem-specific optimizations
+    void applyProblemSpecificOptimizations() {
+        // Precompute bounds
+        precomputeBounds();
+        
+        // Use problem structure
+        exploitProblemStructure();
+        
+        // Apply domain-specific heuristics
+        applyHeuristics();
     }
     
 private:
-    double solveLinearRelaxation(const Node& node, const Problem& problem) {
-        // Solve continuous relaxation of the problem
-        return 0.0;
+    void precomputeBounds() {
+        // Cache frequently used bound calculations
     }
     
-    double greedyHeuristic(const Node& node, const Problem& problem) {
-        // Quick greedy solution for bound
-        return 0.0;
+    void exploitProblemStructure() {
+        // Use problem-specific properties
     }
     
-    double getDualBound(const Node& node, const Problem& problem) {
-        // Use dual problem or Lagrangian relaxation
-        return 0.0;
+    void applyHeuristics() {
+        // Domain knowledge for better branching
     }
 };
 ```
 
 ---
 
-## 📊 Complexity Analysis
+## Summary
 
-### ⏰ Time Complexity
-- **Worst Case**: O(b^d) where b = branching factor, d = depth
-- **Best Case**: O(d) with perfect pruning
-- **Average Case**: Depends on bound quality and problem structure
+Branch and Bound provides systematic optimization through intelligent search:
 
-### 💾 Space Complexity
-- **LC Branch & Bound**: O(b^d) for priority queue
-- **FIFO Branch & Bound**: O(b^h) where h = current level
-- **Optimized**: O(d) with careful memory management
+**Core Strategy**: Divide problem space (branch) and eliminate unpromising regions (bound)  
+**Key Components**: Branching strategy, bounding function, pruning criteria, node selection  
+**Classic Applications**: Job assignment, knapsack, traveling salesman, scheduling problems  
+**Optimization**: Tight bounds, effective pruning, good branching heuristics  
+**Performance**: Exponential worst-case but often much better with good bounds and pruning  
 
-### 🎯 Practical Performance
-- **Small Problems** (n ≤ 20): Often optimal
-- **Medium Problems** (20 < n ≤ 100): Good with tight bounds
-- **Large Problems** (n > 100): May need approximation
+**Key Insight**: "Branch and Bound transforms exhaustive search into intelligent exploration through systematic pruning"
 
 ---
 
-## 🌟 Key Takeaways
+<div align="center">
 
-1. **Systematic Optimization**: Branch & Bound provides systematic approach to optimization
-2. **Intelligent Pruning**: Bounds eliminate non-promising branches early
-3. **Strategy Matters**: LC typically outperforms FIFO for optimization
-4. **Bound Quality**: Tight bounds are crucial for efficiency
-5. **Problem-Specific**: Adapt bounding functions to problem structure
-6. **Scalability**: Consider approximation for very large instances
+**Master Systematic Optimization with Intelligent Search**
 
-### 🎯 Interview Quick Reference
-- **Branching**: Divide problem into subproblems
-- **Bounding**: Calculate optimistic estimates
-- **Pruning**: Eliminate non-promising branches
-- **LC vs FIFO**: Best-first vs breadth-first exploration
-- **Applications**: Job assignment, knapsack, TSP
-- **Complexity**: Exponential worst-case, often much better in practice
+*Where exhaustive exploration meets smart elimination*
 
----
-
-*Master Branch & Bound to solve optimization problems systematically and efficiently! 🌳*
+</div>

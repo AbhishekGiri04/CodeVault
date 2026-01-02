@@ -2,219 +2,212 @@
 
 <div align="center">
 
-<img src="https://miro.medium.com/v2/resize:fit:1276/1*rKt-gIoYmnPaBd39XK3B1g.jpeg" alt="Randomized Algorithms" width="600" height="300"/>
+![Randomized Algorithms](https://img.shields.io/badge/Randomized_Algorithms-Probabilistic_Computing-FF6B6B?style=for-the-badge&logo=dice&logoColor=white)
+![Difficulty](https://img.shields.io/badge/Difficulty-Advanced-red?style=for-the-badge)
+![Importance](https://img.shields.io/badge/Importance-High-darkred?style=for-the-badge)
 
-![Randomized](https://img.shields.io/badge/Randomized-Probabilistic_Computing-6f42c1?style=for-the-badge&logo=dice&logoColor=white)
-![Difficulty](https://img.shields.io/badge/Difficulty-Advanced-orange?style=for-the-badge)
-![Importance](https://img.shields.io/badge/Importance-High-red?style=for-the-badge)
-
-*Master probabilistic algorithms that use randomness for elegant and efficient solutions*
+**Master probabilistic algorithms for efficient and robust solutions**
 
 </div>
-
-## 📋 Table of Contents
-- [Introduction](#introduction)
-- [Types of Randomized Algorithms](#types-of-randomized-algorithms)
-- [Monte Carlo Algorithms](#monte-carlo-algorithms)
-- [Las Vegas Algorithms](#las-vegas-algorithms)
-- [Randomized Sorting](#randomized-sorting)
-- [Randomized Selection](#randomized-selection)
-- [Probabilistic Data Structures](#probabilistic-data-structures)
-- [Applications in Practice](#applications-in-practice)
-- [Analysis Techniques](#analysis-techniques)
-- [Interview Problems](#interview-problems)
-- [Best Practices](#best-practices)
 
 ---
 
-## 🎯 Introduction
+## 📑 Table of Contents
 
-**Randomized Algorithms** use random numbers to make decisions during execution, providing elegant solutions to complex problems while avoiding worst-case scenarios through probabilistic guarantees.
+1. [Introduction](#introduction)
+2. [Types of Randomized Algorithms](#types-of-randomized-algorithms)
+3. [Deterministic vs Randomized](#deterministic-vs-randomized)
+4. [Monte Carlo Algorithms](#monte-carlo-algorithms)
+5. [Las Vegas Algorithms](#las-vegas-algorithms)
+6. [Randomized Data Structures](#randomized-data-structures)
+7. [Applications](#applications)
+8. [Best Practices](#best-practices)
 
-## 📊 Randomized Algorithms Gallery
+---
+
+## Introduction
+
+**Randomized Algorithms** use random choices during their execution to make decisions. They often provide simpler implementations, better average-case performance, or solutions to problems that are difficult to solve deterministically.
 
 <div align="center">
-
-<img src="https://miro.medium.com/1*rmBh3iUeVc7LywTJFHR2Fg.png" alt="Monte Carlo vs Las Vegas" width="500" height="300"/>
-<img src="https://cyberenlightener.com/wp-content/uploads/2024/03/Randomized.png" alt="Randomized Algorithm Types" width="500" height="300"/>
-
+<img src="https://camo.githubusercontent.com/b0d646b1802d7617678085a55383b95ba80e2de2994709c7c36baed2ac511ed8/68747470733a2f2f6d69726f2e6d656469756d2e636f6d2f312a726d4268336955655663374c7977544a4648523246672e706e67" alt="How Randomized Algorithms Work" width="650" height="400"/>
 </div>
 
-### 🌊 Randomized Algorithm Flow
+### Core Concept
 
 ```mermaid
-graph TD
-    A[Randomized Algorithms] --> B[Monte Carlo]
-    A --> C[Las Vegas]
-    A --> D[Atlantic City]
+flowchart TD
+    A["🎲 Randomized Algorithms"] --> B["Random Choices"]
+    A --> C["Probabilistic Analysis"]
+    A --> D["Expected Performance"]
     
-    B --> E[Fixed Time]
-    B --> F[Probabilistic Correctness]
-    B --> G[May give wrong answer]
+    B --> E["Use random numbers"]
+    B --> F["Non-deterministic decisions"]
     
-    C --> H[Always Correct]
-    C --> I[Random Time]
-    C --> J[Expected performance]
+    C --> G["Probability theory"]
+    C --> H["Statistical guarantees"]
     
-    D --> K[Bounded Time]
-    D --> L[Bounded Error]
-    D --> M[Hybrid approach]
+    D --> I["Average-case complexity"]
+    D --> J["High probability bounds"]
     
-    N[Applications] --> O[Primality Testing]
-    N --> P[Sorting Algorithms]
-    N --> Q[Data Structures]
-    N --> R[Optimization]
-```
-
-### 🔑 Key Principles
-- **Random Choices**: Use randomness to guide algorithm decisions
-- **Probabilistic Analysis**: Expected performance rather than worst-case
-- **Worst-Case Avoidance**: Eliminate adversarial input scenarios
-- **Simplicity**: Often simpler than deterministic counterparts
-
-### 🌟 Why Randomization?
-- **Performance**: Better average-case complexity
-- **Robustness**: Resistant to malicious inputs
-- **Simplicity**: Elegant solutions to hard problems
-- **Practical**: Excellent real-world performance
-
----
-
-## 🎭 Types of Randomized Algorithms
-
-### 🎰 Monte Carlo Algorithms
-**Fixed time, probabilistic correctness**
-
-```cpp
-class MonteCarloAlgorithm {
-public:
-    // Template for Monte Carlo algorithms
-    template<typename Input, typename Output>
-    Output monteCarloSolve(Input& input, double errorProbability) {
-        // Fixed number of iterations
-        int iterations = calculateIterations(errorProbability);
-        
-        for (int i = 0; i < iterations; i++) {
-            Output candidate = randomizedSolution(input);
-            if (isGoodEnough(candidate, input)) {
-                return candidate;
-            }
-        }
-        
-        // Return best effort (may be incorrect)
-        return getBestEffort(input);
-    }
-    
-    // Reduce error probability by repetition
-    template<typename Input, typename Output>
-    Output amplifyCorrectness(Input& input, double targetError) {
-        int repetitions = ceil(log(targetError) / log(0.5)); // For 1/2 error
-        
-        map<Output, int> votes;
-        for (int i = 0; i < repetitions; i++) {
-            Output result = monteCarloSolve(input, 0.5);
-            votes[result]++;
-        }
-        
-        // Return majority vote
-        return getMajorityVote(votes);
-    }
-    
-private:
-    virtual int calculateIterations(double errorProb) = 0;
-    virtual bool isGoodEnough(const Output& candidate, const Input& input) = 0;
-};
-```
-
-### 🎯 Las Vegas Algorithms
-**Always correct, random time**
-
-```cpp
-class LasVegasAlgorithm {
-public:
-    // Template for Las Vegas algorithms
-    template<typename Input, typename Output>
-    Output lasVegasSolve(Input& input) {
-        while (true) {
-            Output candidate = randomizedAttempt(input);
-            if (isCorrect(candidate, input)) {
-                return candidate; // Always correct when returned
-            }
-            // Retry with different randomization
-        }
-    }
-    
-    // Expected time analysis
-    double expectedTime(double successProbability) {
-        return 1.0 / successProbability; // Geometric distribution
-    }
-    
-private:
-    virtual Output randomizedAttempt(const Input& input) = 0;
-    virtual bool isCorrect(const Output& candidate, const Input& input) = 0;
-};
-```
-
-### 📊 Comparison Framework
-
-```cpp
-class AlgorithmComparison {
-public:
-    void compareRandomizedTypes() {
-        cout << "Monte Carlo vs Las Vegas Algorithms:" << endl;
-        cout << "====================================" << endl;
-        
-        cout << "Correctness:" << endl;
-        cout << "  Monte Carlo: Probabilistic (may be wrong)" << endl;
-        cout << "  Las Vegas: Always correct" << endl;
-        
-        cout << "Running Time:" << endl;
-        cout << "  Monte Carlo: Fixed/Bounded" << endl;
-        cout << "  Las Vegas: Random (expected bound)" << endl;
-        
-        cout << "Error Handling:" << endl;
-        cout << "  Monte Carlo: Accept small error probability" << endl;
-        cout << "  Las Vegas: No errors, but time varies" << endl;
-        
-        cout << "Use Cases:" << endl;
-        cout << "  Monte Carlo: Approximation, when speed matters" << endl;
-        cout << "  Las Vegas: When correctness is mandatory" << endl;
-    }
-};
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef algorithms fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef random fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef probabilistic fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef performance fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    class A algorithms
+    class B,E,F random
+    class C,G,H probabilistic
+    class D,I,J performance
 ```
 
 ---
 
-## 🎰 Monte Carlo Algorithms
-
-### 🔧 Miller-Rabin Primality Test
-**Probabilistic primality testing**
+## Types of Randomized Algorithms
 
 <div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Miller-Rabin-Primality-Test.webp" alt="Miller-Rabin Primality Test Process" width="650" height="400"/>
+<img src="https://camo.githubusercontent.com/6b7f59a547d178c1f2ae36ae0afdc00c54be514e8d78ddd75441fc5c179053aa/68747470733a2f2f6d69726f2e6d656469756d2e636f6d2f76322f726573697a653a6669743a313237362f312a724b742d67496f596d6e506142643339584b334231672e6a706567" alt="Randomized Algorithm Types" width="650" height="400"/>
 </div>
 
+### Algorithm Classification
+
+```mermaid
+flowchart TD
+    A["Randomized Algorithm Types"] --> B["Monte Carlo"]
+    A --> C["Las Vegas"]
+    A --> D["Atlantic City"]
+    
+    B --> E["Fast execution"]
+    B --> F["Small error probability"]
+    B --> G["May give wrong answer"]
+    
+    C --> H["Always correct"]
+    C --> I["Random running time"]
+    C --> J["Expected polynomial time"]
+    
+    D --> K["Bounded error & time"]
+    D --> L["Combination of both"]
+    D --> M["Practical compromise"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef types fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef monte fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef vegas fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef atlantic fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    class A types
+    class B,E,F,G monte
+    class C,H,I,J vegas
+    class D,K,L,M atlantic
+```
+
+---
+
+## Deterministic vs Randomized
+
+<div align="center">
+<img src="https://camo.githubusercontent.com/27ef0ddc8c9077ee0a5f09b5fb88366d647d0f3905410c40f82cf8c5404f8675/68747470733a2f2f6379626572656e6c69676874656e65722e636f6d2f77702d636f6e74656e742f75706c6f6164732f323032342f30332f52616e646f6d697a65642e706e67" alt="Deterministic vs Randomized" width="650" height="400"/>
+</div>
+
+### Comparison Analysis
+
+```mermaid
+flowchart TD
+    A["Algorithm Comparison"] --> B["Deterministic"]
+    A --> C["Randomized"]
+    
+    B --> D["Same input → Same output"]
+    B --> E["Predictable behavior"]
+    B --> F["Worst-case analysis"]
+    B --> G["May be complex"]
+    
+    C --> H["Same input → Different outputs"]
+    C --> I["Probabilistic behavior"]
+    C --> J["Expected-case analysis"]
+    C --> K["Often simpler"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef comparison fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef deterministic fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef randomized fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    class A comparison
+    class B,D,E,F,G deterministic
+    class C,H,I,J,K randomized
+```
+
+### Advantages and Disadvantages
+
+| Aspect | Deterministic | Randomized |
+|--------|---------------|------------|
+| **Predictability** | ✅ Always same result | ❌ Results may vary |
+| **Simplicity** | ❌ Often complex | ✅ Usually simpler |
+| **Performance** | ❌ Worst-case bound | ✅ Expected-case bound |
+| **Debugging** | ✅ Reproducible | ❌ Hard to reproduce |
+| **Analysis** | ✅ Straightforward | ❌ Requires probability |
+
+---
+
+## Monte Carlo Algorithms
+
+### Characteristics
+
+```mermaid
+flowchart TD
+    A["Monte Carlo Algorithms"] --> B["Fast Execution"]
+    A --> C["Probabilistic Correctness"]
+    A --> D["Error Bounds"]
+    
+    B --> E["Fixed running time"]
+    C --> F["May produce wrong answer"]
+    D --> G["Error probability ≤ ε"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef monte fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef fast fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef probabilistic fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef error fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    class A monte
+    class B,E fast
+    class C,F probabilistic
+    class D,G error
+```
+
+### Monte Carlo Examples
+
 ```cpp
-class MillerRabinTest {
-private:
-    // Fast modular exponentiation
-    long long modPow(long long base, long long exp, long long mod) {
-        long long result = 1;
-        base %= mod;
+class MonteCarloAlgorithms {
+public:
+    // Monte Carlo Pi Estimation
+    static double estimatePi(int iterations) {
+        int insideCircle = 0;
         
-        while (exp > 0) {
-            if (exp & 1) result = (result * base) % mod;
-            base = (base * base) % mod;
-            exp >>= 1;
+        for (int i = 0; i < iterations; i++) {
+            double x = (double)rand() / RAND_MAX;
+            double y = (double)rand() / RAND_MAX;
+            
+            if (x * x + y * y <= 1.0) {
+                insideCircle++;
+            }
         }
         
-        return result;
+        return 4.0 * insideCircle / iterations;
     }
     
-    // Single Miller-Rabin test
-    bool millerRabinSingle(long long n, long long a) {
-        if (n <= 1) return false;
-        if (n == 2) return true;
+    // Monte Carlo Integration
+    static double integrate(function<double(double)> f, double a, double b, int samples) {
+        double sum = 0.0;
+        
+        for (int i = 0; i < samples; i++) {
+            double x = a + (b - a) * ((double)rand() / RAND_MAX);
+            sum += f(x);
+        }
+        
+        return (b - a) * sum / samples;
+    }
+    
+    // Randomized Primality Test (Miller-Rabin)
+    static bool isPrimeMonteCarlo(long long n, int k = 5) {
+        if (n < 2) return false;
+        if (n == 2 || n == 3) return true;
         if (n % 2 == 0) return false;
         
         // Write n-1 as d * 2^r
@@ -225,265 +218,254 @@ private:
             r++;
         }
         
-        // Compute a^d mod n
-        long long x = modPow(a, d, n);
-        if (x == 1 || x == n - 1) return true;
-        
-        // Square x repeatedly
-        for (int i = 0; i < r - 1; i++) {
-            x = (x * x) % n;
-            if (x == n - 1) return true;
-        }
-        
-        return false;
-    }
-    
-public:
-    // Monte Carlo primality test
-    bool isProbablyPrime(long long n, int k = 10) {
-        if (n <= 1) return false;
-        if (n <= 3) return true;
-        if (n % 2 == 0) return false;
-        
-        random_device rd;
-        mt19937 gen(rd());
-        uniform_int_distribution<long long> dis(2, n - 2);
-        
         // Perform k rounds of testing
         for (int i = 0; i < k; i++) {
-            long long a = dis(gen);
-            if (!millerRabinSingle(n, a)) {
-                return false; // Definitely composite
-            }
-        }
-        
-        return true; // Probably prime (error ≤ 4^(-k))
-    }
-    
-    // Calculate error probability
-    double errorProbability(int rounds) {
-        return pow(0.25, rounds); // 4^(-k)
-    }
-    
-    // Determine rounds needed for target error
-    int roundsForError(double targetError) {
-        return ceil(log(targetError) / log(0.25));
-    }
-};
-
-// Usage Example
-void testPrimality() {
-    MillerRabinTest tester;
-    
-    vector<long long> candidates = {97, 100, 1009, 1013, 982451653};
-    
-    for (long long n : candidates) {
-        bool isPrime = tester.isProbablyPrime(n, 20);
-        double error = tester.errorProbability(20);
-        
-        cout << n << " is " << (isPrime ? "probably prime" : "composite")
-             << " (error probability: " << error << ")" << endl;
-    }
-}
-```
-
-### 🎯 Monte Carlo Integration
-**Numerical integration using random sampling**
-
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Monte-Carlo-Integration.webp" alt="Monte Carlo Integration Visualization" width="600" height="350"/>
-</div>
-
-```cpp
-class MonteCarloIntegration {
-public:
-    // Estimate integral using random sampling
-    double integrate(function<double(double)> f, double a, double b, int samples) {
-        random_device rd;
-        mt19937 gen(rd());
-        uniform_real_distribution<double> dis(a, b);
-        
-        double sum = 0.0;
-        for (int i = 0; i < samples; i++) {
-            double x = dis(gen);
-            sum += f(x);
-        }
-        
-        return (b - a) * sum / samples;
-    }
-    
-    // Estimate π using unit circle
-    double estimatePi(int samples) {
-        random_device rd;
-        mt19937 gen(rd());
-        uniform_real_distribution<double> dis(-1.0, 1.0);
-        
-        int insideCircle = 0;
-        for (int i = 0; i < samples; i++) {
-            double x = dis(gen);
-            double y = dis(gen);
+            long long a = 2 + rand() % (n - 3);
+            long long x = fastPower(a, d, n);
             
-            if (x * x + y * y <= 1.0) {
-                insideCircle++;
+            if (x == 1 || x == n - 1) continue;
+            
+            bool composite = true;
+            for (int j = 0; j < r - 1; j++) {
+                x = (x * x) % n;
+                if (x == n - 1) {
+                    composite = false;
+                    break;
+                }
             }
+            
+            if (composite) return false;
         }
         
-        return 4.0 * insideCircle / samples;
+        return true;
     }
     
-    // Multi-dimensional integration
-    double integrateND(function<double(vector<double>&)> f, 
-                      vector<pair<double, double>>& bounds, int samples) {
-        int dimensions = bounds.size();
-        random_device rd;
-        mt19937 gen(rd());
+    // Monte Carlo Matrix Multiplication Verification
+    static bool verifyMatrixMultiplication(const vector<vector<int>>& A,
+                                         const vector<vector<int>>& B,
+                                         const vector<vector<int>>& C) {
+        int n = A.size();
         
-        vector<uniform_real_distribution<double>> distributions;
-        double volume = 1.0;
-        
-        for (auto& bound : bounds) {
-            distributions.emplace_back(bound.first, bound.second);
-            volume *= (bound.second - bound.first);
+        // Generate random vector r
+        vector<int> r(n);
+        for (int i = 0; i < n; i++) {
+            r[i] = rand() % 2;
         }
         
-        double sum = 0.0;
-        vector<double> point(dimensions);
+        // Compute A(Br) and Cr
+        vector<int> Br(n, 0);
+        vector<int> Cr(n, 0);
         
-        for (int i = 0; i < samples; i++) {
-            for (int d = 0; d < dimensions; d++) {
-                point[d] = distributions[d](gen);
+        // Br = B * r
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                Br[i] += B[i][j] * r[j];
             }
-            sum += f(point);
         }
         
-        return volume * sum / samples;
+        // Cr = C * r
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                Cr[i] += C[i][j] * r[j];
+            }
+        }
+        
+        // ABr = A * Br
+        vector<int> ABr(n, 0);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                ABr[i] += A[i][j] * Br[j];
+            }
+        }
+        
+        // Check if ABr == Cr
+        return ABr == Cr;
+    }
+    
+private:
+    static long long fastPower(long long base, long long exp, long long mod) {
+        long long result = 1;
+        base %= mod;
+        
+        while (exp > 0) {
+            if (exp & 1) {
+                result = (result * base) % mod;
+            }
+            base = (base * base) % mod;
+            exp >>= 1;
+        }
+        
+        return result;
     }
 };
 ```
 
-### 🎲 Randomized SAT Solver
-**Monte Carlo approach to Boolean satisfiability**
+---
+
+## Las Vegas Algorithms
+
+### Characteristics
+
+```mermaid
+flowchart TD
+    A["Las Vegas Algorithms"] --> B["Always Correct"]
+    A --> C["Random Running Time"]
+    A --> D["Expected Performance"]
+    
+    B --> E["Never wrong answer"]
+    C --> F["May take long time"]
+    D --> G["Expected polynomial time"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef vegas fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef correct fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef time fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef performance fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    class A vegas
+    class B,E correct
+    class C,F time
+    class D,G performance
+```
+
+### Las Vegas Examples
 
 ```cpp
-class RandomizedSAT {
-private:
-    struct Clause {
-        vector<int> literals; // Positive: variable, Negative: -variable
+class LasVegasAlgorithms {
+public:
+    // Randomized QuickSort
+    static void randomizedQuickSort(vector<int>& arr, int low, int high) {
+        if (low < high) {
+            // Randomly choose pivot
+            int randomIndex = low + rand() % (high - low + 1);
+            swap(arr[randomIndex], arr[high]);
+            
+            int pi = partition(arr, low, high);
+            randomizedQuickSort(arr, low, pi - 1);
+            randomizedQuickSort(arr, pi + 1, high);
+        }
+    }
+    
+    // Randomized Selection (QuickSelect)
+    static int randomizedSelect(vector<int>& arr, int low, int high, int k) {
+        if (low == high) {
+            return arr[low];
+        }
+        
+        // Randomly choose pivot
+        int randomIndex = low + rand() % (high - low + 1);
+        swap(arr[randomIndex], arr[high]);
+        
+        int pi = partition(arr, low, high);
+        int rank = pi - low + 1;
+        
+        if (k == rank) {
+            return arr[pi];
+        } else if (k < rank) {
+            return randomizedSelect(arr, low, pi - 1, k);
+        } else {
+            return randomizedSelect(arr, pi + 1, high, k - rank);
+        }
+    }
+    
+    // Random Sampling
+    static vector<int> randomSample(const vector<int>& population, int sampleSize) {
+        vector<int> sample;
+        vector<int> indices(population.size());
+        iota(indices.begin(), indices.end(), 0);
+        
+        for (int i = 0; i < sampleSize && i < population.size(); i++) {
+            int randomIndex = i + rand() % (population.size() - i);
+            swap(indices[i], indices[randomIndex]);
+            sample.push_back(population[indices[i]]);
+        }
+        
+        return sample;
+    }
+    
+    // Randomized Binary Search Tree
+    class RandomizedBST {
+    private:
+        struct Node {
+            int key;
+            int size;
+            Node* left;
+            Node* right;
+            
+            Node(int k) : key(k), size(1), left(nullptr), right(nullptr) {}
+        };
+        
+        Node* root;
+        
+        int getSize(Node* node) {
+            return node ? node->size : 0;
+        }
+        
+        void updateSize(Node* node) {
+            if (node) {
+                node->size = 1 + getSize(node->left) + getSize(node->right);
+            }
+        }
+        
+        Node* insertAtRoot(Node* node, int key) {
+            if (!node) return new Node(key);
+            
+            if (key < node->key) {
+                node->left = insertAtRoot(node->left, key);
+                node = rotateRight(node);
+            } else {
+                node->right = insertAtRoot(node->right, key);
+                node = rotateLeft(node);
+            }
+            
+            return node;
+        }
+        
+        Node* rotateRight(Node* node) {
+            Node* newRoot = node->left;
+            node->left = newRoot->right;
+            newRoot->right = node;
+            updateSize(node);
+            updateSize(newRoot);
+            return newRoot;
+        }
+        
+        Node* rotateLeft(Node* node) {
+            Node* newRoot = node->right;
+            node->right = newRoot->left;
+            newRoot->left = node;
+            updateSize(node);
+            updateSize(newRoot);
+            return newRoot;
+        }
+        
+        Node* insert(Node* node, int key) {
+            if (!node) return new Node(key);
+            
+            // Random decision: insert at root with probability 1/(size+1)
+            if (rand() % (getSize(node) + 1) == 0) {
+                return insertAtRoot(node, key);
+            }
+            
+            if (key < node->key) {
+                node->left = insert(node->left, key);
+            } else {
+                node->right = insert(node->right, key);
+            }
+            
+            updateSize(node);
+            return node;
+        }
+        
+    public:
+        RandomizedBST() : root(nullptr) {}
+        
+        void insert(int key) {
+            root = insert(root, key);
+        }
     };
     
-public:
-    // Monte Carlo SAT solver
-    vector<bool> solveSAT(vector<Clause>& formula, int numVars, 
-                         int maxTries = 1000, int maxFlips = 10000) {
-        random_device rd;
-        mt19937 gen(rd());
-        uniform_int_distribution<int> varDis(0, numVars - 1);
-        uniform_real_distribution<double> probDis(0.0, 1.0);
-        
-        for (int try_count = 0; try_count < maxTries; try_count++) {
-            // Random initial assignment
-            vector<bool> assignment(numVars);
-            for (int i = 0; i < numVars; i++) {
-                assignment[i] = probDis(gen) < 0.5;
-            }
-            
-            // Local search with random flips
-            for (int flip = 0; flip < maxFlips; flip++) {
-                vector<int> unsatisfied = getUnsatisfiedClauses(formula, assignment);
-                
-                if (unsatisfied.empty()) {
-                    return assignment; // Solution found
-                }
-                
-                // Pick random unsatisfied clause
-                int clauseIdx = unsatisfied[gen() % unsatisfied.size()];
-                Clause& clause = formula[clauseIdx];
-                
-                // Pick random literal from clause and flip it
-                int literalIdx = gen() % clause.literals.size();
-                int literal = clause.literals[literalIdx];
-                int var = abs(literal) - 1;
-                
-                assignment[var] = !assignment[var];
-            }
-        }
-        
-        return vector<bool>(); // No solution found
-    }
-    
 private:
-    vector<int> getUnsatisfiedClauses(vector<Clause>& formula, vector<bool>& assignment) {
-        vector<int> unsatisfied;
-        
-        for (int i = 0; i < formula.size(); i++) {
-            if (!evaluateClause(formula[i], assignment)) {
-                unsatisfied.push_back(i);
-            }
-        }
-        
-        return unsatisfied;
-    }
-    
-    bool evaluateClause(Clause& clause, vector<bool>& assignment) {
-        for (int literal : clause.literals) {
-            int var = abs(literal) - 1;
-            bool value = assignment[var];
-            
-            if ((literal > 0 && value) || (literal < 0 && !value)) {
-                return true;
-            }
-        }
-        return false;
-    }
-};
-```
-
----
-
-## 🎯 Las Vegas Algorithms
-
-### 🔄 Randomized QuickSort
-**Always correct, expected O(n log n)**
-
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Randomized-QuickSort.webp" alt="Randomized QuickSort Process" width="650" height="400"/>
-</div>
-
-```cpp
-class RandomizedQuickSort {
-private:
-    random_device rd;
-    mt19937 gen;
-    
-public:
-    RandomizedQuickSort() : gen(rd()) {}
-    
-    void quickSort(vector<int>& arr, int low, int high) {
-        if (low < high) {
-            int pivotIndex = randomizedPartition(arr, low, high);
-            quickSort(arr, low, pivotIndex - 1);
-            quickSort(arr, pivotIndex + 1, high);
-        }
-    }
-    
-    void sort(vector<int>& arr) {
-        quickSort(arr, 0, arr.size() - 1);
-    }
-    
-private:
-    int randomizedPartition(vector<int>& arr, int low, int high) {
-        // Choose random pivot
-        uniform_int_distribution<int> dis(low, high);
-        int randomIndex = dis(gen);
-        
-        // Swap random element with last element
-        swap(arr[randomIndex], arr[high]);
-        
-        // Standard partition with last element as pivot
-        return partition(arr, low, high);
-    }
-    
-    int partition(vector<int>& arr, int low, int high) {
+    static int partition(vector<int>& arr, int low, int high) {
         int pivot = arr[high];
         int i = low - 1;
         
@@ -498,198 +480,13 @@ private:
         return i + 1;
     }
 };
-
-// Performance analysis
-class QuickSortAnalysis {
-public:
-    // Expected number of comparisons
-    double expectedComparisons(int n) {
-        if (n <= 1) return 0;
-        return 2 * (n + 1) * harmonicNumber(n + 1) - 4 * n;
-    }
-    
-    // Probability of worst-case
-    double worstCaseProbability(int n) {
-        return 1.0 / factorial(n); // Very small for large n
-    }
-    
-private:
-    double harmonicNumber(int n) {
-        double sum = 0.0;
-        for (int i = 1; i <= n; i++) {
-            sum += 1.0 / i;
-        }
-        return sum;
-    }
-    
-    double factorial(int n) {
-        double result = 1.0;
-        for (int i = 2; i <= n; i++) {
-            result *= i;
-        }
-        return result;
-    }
-};
-```
-
-### 🎯 Randomized Selection (QuickSelect)
-**Find k-th smallest element in expected O(n)**
-
-```cpp
-class RandomizedSelection {
-private:
-    random_device rd;
-    mt19937 gen;
-    
-public:
-    RandomizedSelection() : gen(rd()) {}
-    
-    int quickSelect(vector<int>& arr, int k) {
-        return quickSelectHelper(arr, 0, arr.size() - 1, k - 1);
-    }
-    
-    // Find k-th smallest (0-indexed)
-    int quickSelectHelper(vector<int>& arr, int low, int high, int k) {
-        if (low == high) return arr[low];
-        
-        int pivotIndex = randomizedPartition(arr, low, high);
-        
-        if (k == pivotIndex) {
-            return arr[k];
-        } else if (k < pivotIndex) {
-            return quickSelectHelper(arr, low, pivotIndex - 1, k);
-        } else {
-            return quickSelectHelper(arr, pivotIndex + 1, high, k);
-        }
-    }
-    
-    // Find median
-    int findMedian(vector<int>& arr) {
-        int n = arr.size();
-        return quickSelect(arr, (n + 1) / 2);
-    }
-    
-    // Find multiple order statistics
-    vector<int> findOrderStatistics(vector<int>& arr, vector<int>& ranks) {
-        vector<int> result;
-        vector<int> temp = arr; // Work on copy
-        
-        for (int rank : ranks) {
-            result.push_back(quickSelect(temp, rank));
-        }
-        
-        return result;
-    }
-    
-private:
-    int randomizedPartition(vector<int>& arr, int low, int high) {
-        uniform_int_distribution<int> dis(low, high);
-        int randomIndex = dis(gen);
-        
-        swap(arr[randomIndex], arr[high]);
-        return partition(arr, low, high);
-    }
-    
-    int partition(vector<int>& arr, int low, int high) {
-        int pivot = arr[high];
-        int i = low - 1;
-        
-        for (int j = low; j < high; j++) {
-            if (arr[j] <= pivot) {
-                i++;
-                swap(arr[i], arr[j]);
-            }
-        }
-        
-        swap(arr[i + 1], arr[high]);
-        return i + 1;
-    }
-};
-
-// Usage Example
-void testRandomizedSelection() {
-    RandomizedSelection selector;
-    vector<int> arr = {3, 6, 8, 10, 1, 2, 1};
-    
-    cout << "Array: ";
-    for (int x : arr) cout << x << " ";
-    cout << endl;
-    
-    cout << "3rd smallest: " << selector.quickSelect(arr, 3) << endl;
-    cout << "Median: " << selector.findMedian(arr) << endl;
-    
-    vector<int> ranks = {1, 3, 5};
-    vector<int> orderStats = selector.findOrderStatistics(arr, ranks);
-    
-    cout << "Order statistics: ";
-    for (int x : orderStats) cout << x << " ";
-    cout << endl;
-}
 ```
 
 ---
 
-## 📊 Probabilistic Data Structures
+## Randomized Data Structures
 
-### 🎲 Bloom Filter
-**Space-efficient probabilistic membership testing**
-
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Bloom-Filter-Structure.webp" alt="Bloom Filter Data Structure" width="700" height="400"/>
-</div>
-
-```cpp
-class BloomFilter {
-private:
-    vector<bool> bitArray;
-    int size;
-    int numHashes;
-    vector<hash<string>> hashFunctions;
-    
-public:
-    BloomFilter(int expectedElements, double falsePositiveRate) {
-        // Calculate optimal size and number of hash functions
-        size = ceil(-expectedElements * log(falsePositiveRate) / (log(2) * log(2)));
-        numHashes = ceil(size * log(2) / expectedElements);
-        
-        bitArray.resize(size, false);
-        hashFunctions.resize(numHashes);
-    }
-    
-    void insert(const string& item) {
-        for (int i = 0; i < numHashes; i++) {
-            int hashValue = hashFunctions[i](item + to_string(i)) % size;
-            bitArray[hashValue] = true;
-        }
-    }
-    
-    bool mightContain(const string& item) {
-        for (int i = 0; i < numHashes; i++) {
-            int hashValue = hashFunctions[i](item + to_string(i)) % size;
-            if (!bitArray[hashValue]) {
-                return false; // Definitely not present
-            }
-        }
-        return true; // Might be present
-    }
-    
-    double actualFalsePositiveRate(int insertedElements) {
-        double p = 1.0 - exp(-numHashes * insertedElements / (double)size);
-        return pow(p, numHashes);
-    }
-    
-    void getStatistics() {
-        int setBits = count(bitArray.begin(), bitArray.end(), true);
-        cout << "Bloom Filter Statistics:" << endl;
-        cout << "Size: " << size << " bits" << endl;
-        cout << "Hash functions: " << numHashes << endl;
-        cout << "Set bits: " << setBits << " (" << (100.0 * setBits / size) << "%)" << endl;
-    }
-};
-```
-
-### 🎯 Skip List
-**Probabilistic balanced search structure**
+### Skip Lists
 
 ```cpp
 class SkipList {
@@ -705,22 +502,19 @@ private:
     int maxLevel;
     int currentLevel;
     double probability;
-    random_device rd;
-    mt19937 gen;
-    uniform_real_distribution<double> dis;
-    
-public:
-    SkipList(int maxLvl = 16, double p = 0.5) 
-        : maxLevel(maxLvl), currentLevel(0), probability(p), gen(rd()), dis(0.0, 1.0) {
-        header = new Node(-1, maxLevel);
-    }
     
     int randomLevel() {
         int level = 0;
-        while (dis(gen) < probability && level < maxLevel) {
+        while ((double)rand() / RAND_MAX < probability && level < maxLevel) {
             level++;
         }
         return level;
+    }
+    
+public:
+    SkipList(int maxLvl = 16, double p = 0.5) 
+        : maxLevel(maxLvl), currentLevel(0), probability(p) {
+        header = new Node(-1, maxLevel);
     }
     
     void insert(int value) {
@@ -768,61 +562,112 @@ public:
         current = current->forward[0];
         return current && current->value == value;
     }
+};
+```
+
+### Bloom Filters
+
+```cpp
+class BloomFilter {
+private:
+    vector<bool> bitArray;
+    int size;
+    int numHashes;
     
-    void remove(int value) {
-        vector<Node*> update(maxLevel + 1);
-        Node* current = header;
+    vector<int> getHashes(const string& item) {
+        vector<int> hashes;
+        hash<string> hasher;
         
-        for (int i = currentLevel; i >= 0; i--) {
-            while (current->forward[i] && current->forward[i]->value < value) {
-                current = current->forward[i];
-            }
-            update[i] = current;
+        for (int i = 0; i < numHashes; i++) {
+            int hashValue = hasher(item + to_string(i)) % size;
+            hashes.push_back(hashValue);
         }
         
-        current = current->forward[0];
-        
-        if (current && current->value == value) {
-            for (int i = 0; i <= currentLevel; i++) {
-                if (update[i]->forward[i] != current) break;
-                update[i]->forward[i] = current->forward[i];
-            }
-            
-            delete current;
-            
-            while (currentLevel > 0 && !header->forward[currentLevel]) {
-                currentLevel--;
-            }
+        return hashes;
+    }
+    
+public:
+    BloomFilter(int s, int k) : size(s), numHashes(k) {
+        bitArray.assign(size, false);
+    }
+    
+    void add(const string& item) {
+        vector<int> hashes = getHashes(item);
+        for (int hash : hashes) {
+            bitArray[hash] = true;
         }
     }
     
-    void display() {
-        for (int i = currentLevel; i >= 0; i--) {
-            cout << "Level " << i << ": ";
-            Node* current = header->forward[i];
-            while (current) {
-                cout << current->value << " ";
-                current = current->forward[i];
+    bool mightContain(const string& item) {
+        vector<int> hashes = getHashes(item);
+        for (int hash : hashes) {
+            if (!bitArray[hash]) {
+                return false;
             }
-            cout << endl;
         }
+        return true;
+    }
+    
+    double falsePositiveRate() {
+        int setBits = count(bitArray.begin(), bitArray.end(), true);
+        double ratio = (double)setBits / size;
+        return pow(ratio, numHashes);
     }
 };
 ```
 
 ---
 
-## 🎯 Interview Problems
+## Applications
 
-### Problem 1: Reservoir Sampling
+### Real-World Applications
+
+```mermaid
+flowchart TD
+    A["🎲 Randomized Applications"] --> B["Cryptography"]
+    A --> C["Load Balancing"]
+    A --> D["Sampling"]
+    A --> E["Game Theory"]
+    A --> F["Machine Learning"]
+    
+    B --> G["Key generation, encryption"]
+    C --> H["Consistent hashing"]
+    D --> I["Statistical analysis"]
+    E --> J["Mixed strategies"]
+    F --> K["Stochastic algorithms"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef applications fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef crypto fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef load fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef sampling fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef game fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    classDef ml fill:#e0f2f1,stroke:#009688,stroke-width:2px,color:#000
+    class A applications
+    class B,G crypto
+    class C,H load
+    class D,I sampling
+    class E,J game
+    class F,K ml
+```
+
+### Practical Examples
+
 ```cpp
-class ReservoirSampling {
+class RandomizedApplications {
 public:
-    // Sample k elements from stream of unknown size
-    vector<int> reservoirSample(vector<int>& stream, int k) {
+    // Load Balancing with Random Choice
+    static int randomLoadBalancer(const vector<int>& serverLoads) {
+        // Choose two random servers and pick the less loaded one
+        int server1 = rand() % serverLoads.size();
+        int server2 = rand() % serverLoads.size();
+        
+        return (serverLoads[server1] <= serverLoads[server2]) ? server1 : server2;
+    }
+    
+    // Reservoir Sampling
+    static vector<int> reservoirSampling(const vector<int>& stream, int k) {
         vector<int> reservoir(k);
-        random_device rd;
-        mt19937 gen(rd());
         
         // Fill reservoir with first k elements
         for (int i = 0; i < k && i < stream.size(); i++) {
@@ -831,9 +676,7 @@ public:
         
         // Process remaining elements
         for (int i = k; i < stream.size(); i++) {
-            uniform_int_distribution<int> dis(0, i);
-            int j = dis(gen);
-            
+            int j = rand() % (i + 1);
             if (j < k) {
                 reservoir[j] = stream[i];
             }
@@ -842,382 +685,172 @@ public:
         return reservoir;
     }
     
-    // Online version for streaming data
-    class OnlineReservoir {
+    // Randomized Caching (Random Replacement)
+    class RandomCache {
     private:
-        vector<int> reservoir;
-        int k, n;
-        mt19937 gen;
+        unordered_map<int, int> cache;
+        vector<int> keys;
+        int capacity;
         
     public:
-        OnlineReservoir(int size) : k(size), n(0), gen(random_device{}()) {
-            reservoir.resize(k);
-        }
+        RandomCache(int cap) : capacity(cap) {}
         
-        void addElement(int element) {
-            if (n < k) {
-                reservoir[n] = element;
-            } else {
-                uniform_int_distribution<int> dis(0, n);
-                int j = dis(gen);
-                if (j < k) {
-                    reservoir[j] = element;
-                }
+        int get(int key) {
+            if (cache.find(key) != cache.end()) {
+                return cache[key];
             }
-            n++;
+            return -1;
         }
         
-        vector<int> getSample() {
-            return vector<int>(reservoir.begin(), reservoir.begin() + min(k, n));
+        void put(int key, int value) {
+            if (cache.find(key) != cache.end()) {
+                cache[key] = value;
+                return;
+            }
+            
+            if (cache.size() >= capacity) {
+                // Random eviction
+                int randomIndex = rand() % keys.size();
+                int evictKey = keys[randomIndex];
+                cache.erase(evictKey);
+                keys.erase(keys.begin() + randomIndex);
+            }
+            
+            cache[key] = value;
+            keys.push_back(key);
         }
     };
 };
 ```
 
-### Problem 2: Randomized Load Balancing
-```cpp
-class RandomizedLoadBalancer {
-private:
-    vector<int> serverLoads;
-    int numServers;
-    mt19937 gen;
+---
+
+## Best Practices
+
+### Implementation Guidelines
+
+```mermaid
+flowchart TD
+    A["Randomized Algorithm Best Practices"] --> B["Random Number Generation"]
+    A --> C["Error Analysis"]
+    A --> D["Performance Tuning"]
+    A --> E["Testing Strategy"]
     
-public:
-    RandomizedLoadBalancer(int servers) : numServers(servers), gen(random_device{}()) {
-        serverLoads.resize(servers, 0);
-    }
+    B --> F["Use good PRNGs"]
+    B --> G["Seed appropriately"]
     
-    // Simple random assignment
-    int assignRandom() {
-        uniform_int_distribution<int> dis(0, numServers - 1);
-        int server = dis(gen);
-        serverLoads[server]++;
-        return server;
-    }
+    C --> H["Bound error probability"]
+    C --> I["Amplify success probability"]
     
-    // Power of two choices
-    int assignPowerOfTwo() {
-        uniform_int_distribution<int> dis(0, numServers - 1);
-        
-        int server1 = dis(gen);
-        int server2 = dis(gen);
-        
-        // Choose server with lower load
-        int chosen = (serverLoads[server1] <= serverLoads[server2]) ? server1 : server2;
-        serverLoads[chosen]++;
-        return chosen;
-    }
+    D --> J["Choose right parameters"]
+    D --> K["Balance time vs accuracy"]
     
-    // Weighted random selection
-    int assignWeighted(vector<double>& weights) {
-        discrete_distribution<int> dis(weights.begin(), weights.end());
-        int server = dis(gen);
-        serverLoads[server]++;
-        return server;
-    }
+    E --> L["Statistical testing"]
+    E --> M["Multiple runs"]
     
-    void printLoadDistribution() {
-        cout << "Server loads: ";
-        for (int load : serverLoads) {
-            cout << load << " ";
-        }
-        cout << endl;
-        
-        double variance = calculateVariance();
-        cout << "Load variance: " << variance << endl;
-    }
-    
-private:
-    double calculateVariance() {
-        double mean = accumulate(serverLoads.begin(), serverLoads.end(), 0.0) / numServers;
-        double variance = 0.0;
-        
-        for (int load : serverLoads) {
-            variance += (load - mean) * (load - mean);
-        }
-        
-        return variance / numServers;
-    }
-};
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef practices fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef random fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef error fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef performance fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef testing fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A practices
+    class B,F,G random
+    class C,H,I error
+    class D,J,K performance
+    class E,L,M testing
 ```
 
-### Problem 3: Randomized Graph Algorithms
+### Common Pitfalls and Solutions
+
 ```cpp
-class RandomizedGraphAlgorithms {
+class RandomizedBestPractices {
 public:
-    // Randomized minimum cut (Karger's algorithm)
-    int kargerMinCut(vector<vector<int>>& graph) {
-        int n = graph.size();
-        vector<vector<int>> adj = graph;
+    // ❌ Poor random number generation
+    void badRandomness() {
+        srand(1); // Fixed seed
+        int random = rand() % 10; // Poor distribution
+    }
+    
+    // ✅ Better random number generation
+    void goodRandomness() {
         random_device rd;
         mt19937 gen(rd());
-        
-        // Contract edges until 2 vertices remain
-        while (n > 2) {
-            // Choose random edge
-            vector<pair<int, int>> edges;
-            for (int i = 0; i < adj.size(); i++) {
-                for (int j = i + 1; j < adj.size(); j++) {
-                    for (int k = 0; k < adj[i][j]; k++) {
-                        edges.push_back({i, j});
-                    }
-                }
-            }
-            
-            if (edges.empty()) break;
-            
-            uniform_int_distribution<int> dis(0, edges.size() - 1);
-            auto [u, v] = edges[dis(gen)];
-            
-            // Contract edge (u, v)
-            contractEdge(adj, u, v);
-            n--;
-        }
-        
-        // Count remaining edges
-        int minCut = 0;
-        for (int i = 0; i < adj.size(); i++) {
-            for (int j = i + 1; j < adj.size(); j++) {
-                minCut += adj[i][j];
-            }
-        }
-        
-        return minCut;
+        uniform_int_distribution<> dis(0, 9);
+        int random = dis(gen);
     }
     
-    // Randomized graph coloring
-    vector<int> randomizedColoring(vector<vector<int>>& graph, int colors) {
-        int n = graph.size();
-        vector<int> coloring(n, -1);
-        random_device rd;
-        mt19937 gen(rd());
-        
-        vector<int> vertices(n);
-        iota(vertices.begin(), vertices.end(), 0);
-        shuffle(vertices.begin(), vertices.end(), gen);
-        
-        for (int v : vertices) {
-            vector<bool> usedColors(colors, false);
-            
-            // Mark colors used by neighbors
-            for (int u = 0; u < n; u++) {
-                if (graph[v][u] && coloring[u] != -1) {
-                    usedColors[coloring[u]] = true;
-                }
-            }
-            
-            // Find available colors
-            vector<int> availableColors;
-            for (int c = 0; c < colors; c++) {
-                if (!usedColors[c]) {
-                    availableColors.push_back(c);
-                }
-            }
-            
-            if (!availableColors.empty()) {
-                uniform_int_distribution<int> dis(0, availableColors.size() - 1);
-                coloring[v] = availableColors[dis(gen)];
+    // ❌ Not handling error probability
+    bool badMonteCarloTest(int n) {
+        return isPrimeMonteCarlo(n, 1); // Too few iterations
+    }
+    
+    // ✅ Proper error probability management
+    bool goodMonteCarloTest(int n, double errorBound = 1e-6) {
+        int iterations = ceil(log(errorBound) / log(0.25)); // Calculate needed iterations
+        return isPrimeMonteCarlo(n, iterations);
+    }
+    
+    // ✅ Amplification technique
+    bool amplifiedMonteCarloTest(int n, int rounds = 10) {
+        int successes = 0;
+        for (int i = 0; i < rounds; i++) {
+            if (isPrimeMonteCarlo(n, 5)) {
+                successes++;
             }
         }
-        
-        return coloring;
+        return successes > rounds / 2; // Majority vote
     }
     
 private:
-    void contractEdge(vector<vector<int>>& adj, int u, int v) {
-        // Merge vertex v into vertex u
-        for (int i = 0; i < adj.size(); i++) {
-            if (i != u && i != v) {
-                adj[u][i] += adj[v][i];
-                adj[i][u] += adj[i][v];
-            }
-        }
-        
-        // Remove self-loops
-        adj[u][u] = 0;
-        
-        // Remove vertex v
-        adj.erase(adj.begin() + v);
-        for (auto& row : adj) {
-            row.erase(row.begin() + v);
-        }
+    bool isPrimeMonteCarlo(int n, int k) {
+        // Implementation from earlier
+        return true; // Placeholder
     }
 };
 ```
 
----
+### Performance Comparison
 
-## 💡 Best Practices
-
-### 🎯 Random Number Generation
-```cpp
-class RandomNumberBestPractices {
-public:
-    // Proper random number generator setup
-    class ProperRNG {
-    private:
-        random_device rd;
-        mt19937 gen;
-        
-    public:
-        ProperRNG() : gen(rd()) {
-            // Seed with high-quality randomness
-            array<int, mt19937::state_size> seed_data;
-            generate(seed_data.begin(), seed_data.end(), ref(rd));
-            seed_seq seq(seed_data.begin(), seed_data.end());
-            gen.seed(seq);
-        }
-        
-        mt19937& getGenerator() { return gen; }
-    };
-    
-    // Thread-safe random number generation
-    class ThreadSafeRNG {
-    private:
-        static thread_local mt19937 gen;
-        static thread_local bool initialized;
-        
-    public:
-        static mt19937& getGenerator() {
-            if (!initialized) {
-                random_device rd;
-                gen.seed(rd());
-                initialized = true;
-            }
-            return gen;
-        }
-    };
-    
-    // Avoid common pitfalls
-    void demonstratePitfalls() {
-        cout << "Common Random Number Generation Pitfalls:" << endl;
-        
-        // BAD: Creating new generator each time
-        // for (int i = 0; i < 1000; i++) {
-        //     mt19937 gen(time(nullptr)); // Same seed!
-        //     uniform_int_distribution<int> dis(1, 6);
-        //     cout << dis(gen) << " ";
-        // }
-        
-        // GOOD: Reuse generator
-        mt19937 gen(random_device{}());
-        uniform_int_distribution<int> dis(1, 6);
-        for (int i = 0; i < 10; i++) {
-            cout << dis(gen) << " ";
-        }
-        cout << endl;
-    }
-};
-
-thread_local mt19937 RandomNumberBestPractices::ThreadSafeRNG::gen;
-thread_local bool RandomNumberBestPractices::ThreadSafeRNG::initialized = false;
-```
-
-### 🧪 Testing Randomized Algorithms
-```cpp
-class RandomizedAlgorithmTesting {
-public:
-    // Statistical testing framework
-    template<typename Algorithm>
-    void testRandomizedAlgorithm(Algorithm& algo, int trials = 1000) {
-        vector<double> results;
-        
-        for (int i = 0; i < trials; i++) {
-            double result = algo.run();
-            results.push_back(result);
-        }
-        
-        // Statistical analysis
-        double mean = calculateMean(results);
-        double variance = calculateVariance(results, mean);
-        double stddev = sqrt(variance);
-        
-        cout << "Statistical Analysis (" << trials << " trials):" << endl;
-        cout << "Mean: " << mean << endl;
-        cout << "Standard Deviation: " << stddev << endl;
-        cout << "95% Confidence Interval: [" 
-             << mean - 1.96 * stddev / sqrt(trials) << ", "
-             << mean + 1.96 * stddev / sqrt(trials) << "]" << endl;
-    }
-    
-    // Test correctness with known distributions
-    bool testDistribution(function<int()> generator, vector<double>& expectedProbs, 
-                         int trials = 10000, double significance = 0.05) {
-        vector<int> observed(expectedProbs.size(), 0);
-        
-        for (int i = 0; i < trials; i++) {
-            int outcome = generator();
-            if (outcome >= 0 && outcome < observed.size()) {
-                observed[outcome]++;
-            }
-        }
-        
-        // Chi-square goodness of fit test
-        double chiSquare = 0.0;
-        for (int i = 0; i < expectedProbs.size(); i++) {
-            double expected = trials * expectedProbs[i];
-            chiSquare += (observed[i] - expected) * (observed[i] - expected) / expected;
-        }
-        
-        // Compare with critical value (simplified)
-        double criticalValue = 9.488; // For df=4, α=0.05
-        return chiSquare < criticalValue;
-    }
-    
-private:
-    double calculateMean(const vector<double>& data) {
-        return accumulate(data.begin(), data.end(), 0.0) / data.size();
-    }
-    
-    double calculateVariance(const vector<double>& data, double mean) {
-        double variance = 0.0;
-        for (double x : data) {
-            variance += (x - mean) * (x - mean);
-        }
-        return variance / (data.size() - 1);
-    }
-};
-```
+| Algorithm Type | Time Complexity | Correctness | Use Case |
+|----------------|-----------------|-------------|----------|
+| **Deterministic** | Worst-case bound | Always correct | Critical systems |
+| **Monte Carlo** | Fixed time | Probabilistic | Approximation problems |
+| **Las Vegas** | Expected time | Always correct | When correctness is crucial |
+| **Atlantic City** | Bounded expected | High probability | Practical applications |
 
 ---
 
-## 📊 Complexity Analysis
+## Summary
 
-### ⏰ Expected Time Complexity
-- **Randomized QuickSort**: O(n log n) expected, O(n²) worst-case
-- **Randomized Selection**: O(n) expected, O(n²) worst-case
-- **Miller-Rabin**: O(k log³ n) for k rounds
-- **Monte Carlo Integration**: O(n) for n samples
+**Randomized Algorithms** leverage probability to achieve simplicity, efficiency, and robustness. Key insights:
 
-### 💾 Space Complexity
-- **Las Vegas**: Same as deterministic version
-- **Monte Carlo**: Often O(1) additional space
-- **Probabilistic Data Structures**: Space-efficient with trade-offs
+### Essential Concepts
+- **Random Choices**: Use randomness to make algorithmic decisions
+- **Probabilistic Analysis**: Analyze expected performance and error bounds
+- **Algorithm Types**: Monte Carlo (fast, small error) vs Las Vegas (correct, random time)
+- **Trade-offs**: Balance between time, correctness, and simplicity
 
-### 🎯 Error Analysis
-- **Monte Carlo Error**: Decreases with more iterations
-- **False Positive Rate**: Controllable in probabilistic structures
-- **Confidence Intervals**: Statistical guarantees on performance
+### Core Applications
+- **Sorting and Selection**: Randomized QuickSort and QuickSelect
+- **Primality Testing**: Miller-Rabin probabilistic test
+- **Data Structures**: Skip lists, Bloom filters, randomized BSTs
+- **Sampling**: Reservoir sampling, random sampling techniques
 
----
+### Best Practices
+- Use high-quality random number generators
+- Analyze and bound error probabilities
+- Apply amplification techniques when needed
+- Test algorithms statistically across multiple runs
 
-## 🌟 Key Takeaways
-
-1. **Randomization Benefits**: Avoids worst-case, simplifies algorithms
-2. **Algorithm Types**: Monte Carlo (fast, may err) vs Las Vegas (correct, variable time)
-3. **Practical Performance**: Often superior to deterministic alternatives
-4. **Error Control**: Amplification techniques reduce error probability
-5. **Testing**: Statistical methods essential for validation
-6. **Applications**: Widespread in modern computing systems
-
-### 🎯 Interview Quick Reference
-- **Randomized Algorithm**: Uses random choices during execution
-- **Monte Carlo**: Fixed time, probabilistic correctness
-- **Las Vegas**: Always correct, random time
-- **Why Randomization**: Avoid worst-case inputs, better average performance
-- **Examples**: QuickSort, Miller-Rabin, Bloom filters
-- **Analysis**: Expected complexity, error probability
+> **Master's Insight**: Randomized algorithms often provide elegant solutions to complex problems by trading deterministic guarantees for simplicity and expected good performance. They're particularly powerful when exact solutions are difficult or unnecessary.
 
 ---
 
-*Master randomized algorithms to build robust, efficient solutions that perform excellently in practice! 🎲*
+<div align="center">
+
+**🎲 Master Randomized Algorithms • Embrace Probability • Build Robust Solutions**
+
+*From Theory to Practice • Randomness to Efficiency • Understanding to Mastery*
+
+</div>

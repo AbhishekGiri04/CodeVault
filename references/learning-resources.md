@@ -53,7 +53,7 @@ mindmap
         Problem patterns
         Company insights
 
-%%{init: {'theme':'base', 'themeVariables': {'primaryColor':'#2E86AB', 'primaryTextColor':'#ffffff', 'primaryBorderColor':'#ffffff', 'lineColor':'#4A4A4A', 'secondaryColor':'#A23B72', 'tertiaryColor':'#F18F01', 'background':'#C73E1D', 'mainBkg':'#2E86AB', 'secondBkg':'#A23B72', 'tertiaryBkg':'#F18F01'}}}%%
+%%{init: {'theme':'base', 'themeVariables': {'primaryColor':'#e3f2fd', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2196f3', 'lineColor':'#666666', 'secondaryColor':'#f3e5f5', 'tertiaryColor':'#fff3e0', 'background':'#ffffff', 'mainBkg':'#e8f5e8', 'secondBkg':'#fce4ec', 'tertiaryBkg':'#fff8e1'}}}%%
 ```
 
 ---
@@ -234,30 +234,30 @@ flowchart TD
 
 ```mermaid
 gantt
-    title DSA Learning Timeline (12 Weeks)
+    title DSA Learning Timeline
     dateFormat  YYYY-MM-DD
     axisFormat %m/%d
     
-    section Phase 1: Fundamentals
-    Basics & Syntax           :done, basics, 2024-01-01, 2024-01-14
-    Arrays & Strings          :done, arrays, 2024-01-15, 2024-01-28
+    section Phase 1
+    Basics           :done, basics, 2024-01-01, 2024-01-14
+    Arrays           :done, arrays, 2024-01-15, 2024-01-28
     
-    section Phase 2: Core DSA
-    Linked Lists & Stacks     :active, lists, 2024-01-29, 2024-02-11
-    Trees & Graphs            :trees, 2024-02-12, 2024-03-04
-    Sorting & Searching       :sorting, 2024-03-05, 2024-03-18
+    section Phase 2
+    Lists & Stacks   :active, lists, 2024-01-29, 2024-02-11
+    Trees & Graphs   :trees, 2024-02-12, 2024-03-04
+    Sort & Search    :sorting, 2024-03-05, 2024-03-18
     
-    section Phase 3: Advanced
-    Dynamic Programming       :dp, 2024-03-19, 2024-04-08
-    Advanced Data Structures  :advanced, 2024-04-09, 2024-04-22
+    section Phase 3
+    Dynamic Prog     :dp, 2024-03-19, 2024-04-08
+    Advanced DS      :advanced, 2024-04-09, 2024-04-22
     
-    section Phase 4: Interview Prep
-    Mock Interviews           :interviews, 2024-04-23, 2024-05-06
-    System Design            :system, 2024-05-07, 2024-05-20
+    section Phase 4
+    Mock Interviews  :interviews, 2024-04-23, 2024-05-06
+    System Design    :system, 2024-05-07, 2024-05-20
 
-%%{init: {'theme':'base', 'themeVariables': {'primaryColor':'#2E86AB', 'primaryTextColor':'#ffffff', 'primaryBorderColor':'#ffffff', 'gridColor':'#E5E5E5', 'section0':'#2E86AB', 'section1':'#A23B72', 'section2':'#F18F01', 'section3':'#C73E1D', 'activeTaskBkgColor':'#2E86AB', 'activeTaskBorderColor':'#ffffff', 'gridColor':'#cccccc', 'altBackgroundColor':'#f9f9f9'}}}%%
+%%{init: {'gantt': {'fontSize': 12, 'fontFamily': 'Arial', 'sectionFontSize': 14, 'numberSectionStyles': 4}, 'theme':'base', 'themeVariables': {'primaryColor':'#e3f2fd', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2196f3', 'gridColor':'#E5E5E5', 'section0':'#ffebee', 'section1':'#e8f5e8', 'section2':'#fff3e0', 'section3':'#f3e5f5', 'activeTaskBkgColor':'#4caf50', 'activeTaskBorderColor':'#2e7d32', 'gridColor':'#cccccc', 'altBackgroundColor':'#f9f9f9', 'taskBkgColor':'#e3f2fd', 'taskTextColor':'#000000', 'activeTaskTextColor':'#000000'}}}%%
 ```
-
+  
 ### 🗓️ **Suggested Timeline**
 
 <div align="center">

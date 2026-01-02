@@ -2,11 +2,11 @@
 
 <div align="center">
 
-![Greedy](https://img.shields.io/badge/Greedy-Optimal_Choice-28a745?style=for-the-badge&logo=target&logoColor=white)
+![Greedy Algorithms](https://img.shields.io/badge/Greedy_Algorithms-Optimal_Choices-FF6B6B?style=for-the-badge&logo=target&logoColor=white)
 ![Difficulty](https://img.shields.io/badge/Difficulty-Intermediate-orange?style=for-the-badge)
-![Importance](https://img.shields.io/badge/Importance-High-red?style=for-the-badge)
+![Importance](https://img.shields.io/badge/Importance-High-darkred?style=for-the-badge)
 
-**Master locally optimal choices that lead to globally optimal solutions**
+**Master the art of making locally optimal choices for global solutions**
 
 </div>
 
@@ -14,372 +14,650 @@
 
 ## 📑 Table of Contents
 
-1. [Introduction](#-introduction)
-2. [Classic Problems](#-classic-problems)
-3. [Advanced Greedy Problems](#-advanced-greedy-problems)
-4. [When Greedy Works](#-when-greedy-works)
-5. [Best Practices](#-best-practices)
+1. [Introduction](#introduction)
+2. [Greedy Strategy](#greedy-strategy)
+3. [Activity Selection Problem](#activity-selection-problem)
+4. [Fractional Knapsack](#fractional-knapsack)
+5. [Huffman Coding](#huffman-coding)
+6. [Minimum Spanning Tree](#minimum-spanning-tree)
+7. [Advanced Applications](#advanced-applications)
+8. [Best Practices](#best-practices)
 
 ---
 
-## 🎯 Introduction
+## Introduction
 
-**Greedy Algorithms** make locally optimal choices at each step, hoping to find a global optimum. They work when local optimal choices lead to global optimal solutions.
+**Greedy Algorithms** solve optimization problems by making the locally optimal choice at each step, hoping to find a global optimum. This approach works for problems with optimal substructure and greedy choice properties.
 
-### 🔑 Greedy Strategy
+<div align="center">
+<img src="https://cdn.prod.website-files.com/5ef788f07804fb7d78a4127a/624d35acd124f5f4172388e4_Engati-Greedy-algorithm.jpg" alt="Greedy Algorithm Applications" width="650" height="400"/>
+</div>
+
+### Core Principle
 
 ```mermaid
 flowchart TD
-    A["🎯 Greedy Algorithm"] --> B["Make Local Optimal Choice"]
-    B --> C["Reduce Problem Size"]
-    C --> D["Repeat Until Done"]
-    D --> E["Global Optimal Solution"]
+    A["🎯 Greedy Algorithm Process"] --> B["Make Local Choice"]
+    B --> C["Check Feasibility"]
+    C --> D{Valid Choice?}
+    D -->|Yes| E["Add to Solution"]
+    D -->|No| F["Try Next Option"]
+    E --> G{Problem Solved?}
+    F --> G
+    G -->|No| B
+    G -->|Yes| H["Optimal Solution"]
     
-    B --> F["No Backtracking"]
-    B --> G["Irrevocable Decisions"]
-    
-    H["Key Properties"] --> I["Greedy Choice Property"]
-    H --> J["Optimal Substructure"]
-    
-    I --> K["Local optimum leads to global"]
-    J --> L["Optimal solution contains optimal subproblems"]
-    
-    style A fill:#e3f2fd
-    style E fill:#c8e6c9
-    style H fill:#fff3e0
-```
-
-### 💻 Greedy Template
-
-```cpp
-class GreedyTemplate {
-public:
-    int greedySolution(vector<int>& input) {
-        // Sort input based on greedy criteria
-        sort(input.begin(), input.end(), greedyComparator);
-        
-        int result = 0;
-        
-        for (int item : input) {
-            if (isValidChoice(item)) {
-                result += makeChoice(item);
-            }
-        }
-        
-        return result;
-    }
-    
-private:
-    static bool greedyComparator(int a, int b) {
-        // Define sorting criteria for greedy choice
-        return a < b;
-    }
-    
-    bool isValidChoice(int item) {
-        // Check if choice is valid
-        return true;
-    }
-    
-    int makeChoice(int item) {
-        // Make the greedy choice
-        return item;
-    }
-};
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef process fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef choice fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef validation fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef solution fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    class A,B process
+    class C,D,F choice
+    class E,G validation
+    class H solution
 ```
 
 ---
 
-## 🎯 Classic Problems
+## Greedy Strategy
 
-### 📊 Greedy Problem Categories
+### Key Properties
 
 ```mermaid
 flowchart TD
-    A["🎯 Greedy Problems"] --> B["📅 Scheduling"]
-    A --> C["📦 Optimization"]
-    A --> D["🗜️ Compression"]
-    A --> E["🔢 Graph Problems"]
+    A["Greedy Algorithm Properties"] --> B["Greedy Choice Property"]
+    A --> C["Optimal Substructure"]
+    A --> D["No Backtracking"]
     
-    B --> F["Activity Selection"]
-    B --> G["Job Scheduling"]
-    B --> H["Task Assignment"]
-    B --> I["Meeting Rooms"]
+    B --> E["Local optimum leads to global optimum"]
+    B --> F["Make choice without considering future"]
     
-    C --> J["Fractional Knapsack"]
-    C --> K["Coin Change"]
-    C --> L["Minimum Spanning Tree"]
-    C --> M["Shortest Path"]
+    C --> G["Optimal solution contains optimal subsolutions"]
+    C --> H["Problem can be broken down"]
     
-    D --> N["Huffman Coding"]
-    D --> O["Data Encoding"]
-    D --> P["File Compression"]
-    D --> Q["Optimal Codes"]
+    D --> I["Once choice is made, never reconsider"]
+    D --> J["Efficient single-pass solution"]
     
-    E --> R["Minimum Cut"]
-    E --> S["Maximum Flow"]
-    E --> T["Network Design"]
-    E --> U["Resource Allocation"]
-    
-    classDef default fill:#333,stroke:#fff,stroke-width:2px,color:#fff
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef properties fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef greedy fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef optimal fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef backtrack fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    class A properties
+    class B,E,F greedy
+    class C,G,H optimal
+    class D,I,J backtrack
 ```
 
-### 🔧 Activity Selection Algorithm
+### When to Use Greedy Algorithms
 
 ```mermaid
 flowchart TD
-    A["Activities with start/end times"] --> B["Sort by end time"]
-    B --> C["Select first activity"]
-    C --> D["For each remaining activity"]
-    D --> E{"Start ≥ last end time?"}
-    E -->|Yes| F["Select activity"]
-    E -->|No| G["Skip activity"]
-    F --> H["Update last end time"]
-    G --> I["Next activity"]
+    A["Use Greedy When"] --> B["Optimization Problem"]
+    A --> C["Greedy Choice Property"]
+    A --> D["Optimal Substructure"]
+    A --> E["Efficient Solution Needed"]
+    
+    B --> F["Maximize or minimize objective"]
+    C --> G["Local choice leads to global optimum"]
+    D --> H["Subproblems are independent"]
+    E --> I["Linear or near-linear time complexity"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef criteria fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef optimization fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef choice fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef structure fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef efficiency fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A criteria
+    class B,F optimization
+    class C,G choice
+    class D,H structure
+    class E,I efficiency
+```
+
+---
+
+## Activity Selection Problem
+
+### Problem Statement
+
+Select maximum number of non-overlapping activities from a given set of activities with start and finish times.
+
+### Algorithm Strategy
+
+```mermaid
+flowchart TD
+    A["Activity Selection Strategy"] --> B["Sort by Finish Time"]
+    B --> C["Select First Activity"]
+    C --> D["For Each Remaining Activity"]
+    D --> E{Start ≥ Last Finish?}
+    E -->|Yes| F["Select Activity"]
+    E -->|No| G["Skip Activity"]
+    F --> H["Update Last Finish Time"]
+    G --> I{More Activities?}
     H --> I
-    I --> J{"More activities?"}
-    J -->|Yes| D
-    J -->|No| K["Return selected activities"]
+    I -->|Yes| D
+    I -->|No| J["Return Selected Activities"]
     
-    style A fill:#e3f2fd
-    style K fill:#c8e6c9
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef strategy fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef sort fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef select fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef decision fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    class A,B strategy
+    class C,F,H sort
+    class D,E,G select
+    class I,J decision
 ```
+
+### Implementation
 
 ```cpp
 class ActivitySelection {
 public:
     struct Activity {
-        int start, end;
+        int start, finish, id;
         
-        Activity(int s, int e) : start(s), end(e) {}
+        Activity(int s, int f, int i) : start(s), finish(f), id(i) {}
     };
     
-    int maxActivities(vector<Activity>& activities) {
-        // Sort by end time (greedy choice)
+    // Activity Selection - Greedy Algorithm
+    vector<int> selectActivities(vector<Activity>& activities) {
+        // Sort activities by finish time
         sort(activities.begin(), activities.end(), 
              [](const Activity& a, const Activity& b) {
-                 return a.end < b.end;
+                 return a.finish < b.finish;
              });
         
-        int count = 0;
-        int lastEndTime = 0;
+        vector<int> selected;
+        if (activities.empty()) return selected;
         
-        for (const Activity& activity : activities) {
-            if (activity.start >= lastEndTime) {
+        // Select first activity
+        selected.push_back(activities[0].id);
+        int lastFinish = activities[0].finish;
+        
+        // Select remaining activities
+        for (int i = 1; i < activities.size(); i++) {
+            if (activities[i].start >= lastFinish) {
+                selected.push_back(activities[i].id);
+                lastFinish = activities[i].finish;
+            }
+        }
+        
+        return selected;
+    }
+    
+    // Maximum number of activities
+    int maxActivities(vector<pair<int, int>>& intervals) {
+        if (intervals.empty()) return 0;
+        
+        // Sort by finish time
+        sort(intervals.begin(), intervals.end(), 
+             [](const pair<int, int>& a, const pair<int, int>& b) {
+                 return a.second < b.second;
+             });
+        
+        int count = 1;
+        int lastFinish = intervals[0].second;
+        
+        for (int i = 1; i < intervals.size(); i++) {
+            if (intervals[i].first >= lastFinish) {
                 count++;
-                lastEndTime = activity.end;
+                lastFinish = intervals[i].second;
             }
         }
         
         return count;
     }
     
-    // Return actual activities selected
-    vector<Activity> getSelectedActivities(vector<Activity>& activities) {
-        sort(activities.begin(), activities.end(), 
-             [](const Activity& a, const Activity& b) {
-                 return a.end < b.end;
-             });
-        
-        vector<Activity> selected;
-        int lastEndTime = 0;
-        
-        for (const Activity& activity : activities) {
-            if (activity.start >= lastEndTime) {
-                selected.push_back(activity);
-                lastEndTime = activity.end;
+    // Print selected activities with details
+    void printSelection(vector<Activity>& activities, vector<int>& selected) {
+        cout << "Selected Activities:\n";
+        for (int id : selected) {
+            for (const Activity& act : activities) {
+                if (act.id == id) {
+                    cout << "Activity " << id << ": [" << act.start 
+                         << ", " << act.finish << "]\n";
+                    break;
+                }
             }
         }
-        
-        return selected;
-    }
-};
-```
-
-### 🔧 Fractional Knapsack
-
-<div align="center">
-<img src="https://scaler.com/topics/images/Optimal-Substructure" alt="Optimal Substructure in Greedy Algorithms" width="600" height="350"/>
-</div>
-
-### 🔧 Fractional Knapsack Strategy
-
-<div align="center">
-<img src="https://www.hello-algo.com/en/chapter_greedy/fractional_knapsack_problem.assets/fractional_knapsack_example.png" alt="Fractional Knapsack Strategy" width="650" height="350"/>
-</div>
-
-```mermaid
-flowchart TD
-    A["Items with weight & value"] --> B["Calculate value/weight ratio"]
-    B --> C["Sort by ratio (descending)"]
-    C --> D["Initialize capacity & total value"]
-    D --> E["For each item"]
-    E --> F{"Item fits completely?"}
-    F -->|Yes| G["Take entire item"]
-    F -->|No| H["Take fraction"]
-    G --> I["Update capacity & value"]
-    H --> J["Fill remaining capacity"]
-    I --> K["Next item"]
-    J --> L["Stop (knapsack full)"]
-    K --> M{"More items & capacity?"}
-    M -->|Yes| E
-    M -->|No| N["Return total value"]
-    L --> N
-    
-    style A fill:#e3f2fd
-    style N fill:#c8e6c9
-```
-
-```cpp
-class FractionalKnapsack {
-public:
-    struct Item {
-        int weight, value;
-        double ratio;
-        
-        Item(int w, int v) : weight(w), value(v), ratio((double)v / w) {}
-    };
-    
-    double maxValue(vector<Item>& items, int capacity) {
-        // Sort by value-to-weight ratio (greedy choice)
-        sort(items.begin(), items.end(), 
-             [](const Item& a, const Item& b) {
-                 return a.ratio > b.ratio;
-             });
-        
-        double totalValue = 0.0;
-        int remainingCapacity = capacity;
-        
-        for (const Item& item : items) {
-            if (remainingCapacity >= item.weight) {
-                // Take entire item
-                totalValue += item.value;
-                remainingCapacity -= item.weight;
-            } else {
-                // Take fraction of item
-                totalValue += item.ratio * remainingCapacity;
-                break;
-            }
-        }
-        
-        return totalValue;
-    }
-};
-```
-
-### 🔧 Huffman Coding
-
-<div align="center">
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_EJbWc5SdVpqsI6qxIWTwgY5AeYijRNyipA&s" alt="Greedy Algorithm Strategy" width="650" height="400"/>
-</div>
-
-<div align="center">
-<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfqVrC5IucGqiuBjT0_YOc8fwUOV_MeOSGHdN_eEhU9d2-y8qwJnTe5B08IONJ5bAg-hfIfy1Sctsa6j9UfiCFc7rIPt7jS7LVCRyfFadV6OLvG-Z-D9gZQpYTzUChdFPr7A5G-UA?key=6jD_E1UZr1WL4d_WTaNiXPaC" alt="Huffman Coding" width="700" height="400"/>
-</div>
-
-```cpp
-class HuffmanCoding {
-public:
-    struct Node {
-        char ch;
-        int freq;
-        Node* left;
-        Node* right;
-        
-        Node(char c, int f) : ch(c), freq(f), left(nullptr), right(nullptr) {}
-        Node(int f) : ch(0), freq(f), left(nullptr), right(nullptr) {}
-    };
-    
-    struct Compare {
-        bool operator()(Node* a, Node* b) {
-            return a->freq > b->freq; // Min heap
-        }
-    };
-    
-    Node* buildHuffmanTree(vector<pair<char, int>>& frequencies) {
-        priority_queue<Node*, vector<Node*>, Compare> minHeap;
-        
-        // Create leaf nodes
-        for (const auto& pair : frequencies) {
-            minHeap.push(new Node(pair.first, pair.second));
-        }
-        
-        // Build tree bottom-up
-        while (minHeap.size() > 1) {
-            Node* right = minHeap.top(); minHeap.pop();
-            Node* left = minHeap.top(); minHeap.pop();
-            
-            Node* merged = new Node(left->freq + right->freq);
-            merged->left = left;
-            merged->right = right;
-            
-            minHeap.push(merged);
-        }
-        
-        return minHeap.top();
-    }
-    
-    void generateCodes(Node* root, string code, unordered_map<char, string>& codes) {
-        if (!root) return;
-        
-        if (root->ch != 0) { // Leaf node
-            codes[root->ch] = code.empty() ? "0" : code;
-            return;
-        }
-        
-        generateCodes(root->left, code + "0", codes);
-        generateCodes(root->right, code + "1", codes);
-    }
-};
-```
-
-### 🔧 Coin Change (Greedy)
-
-```cpp
-class CoinChangeGreedy {
-public:
-    // Works only for canonical coin systems (like US coins)
-    int minCoins(vector<int>& coins, int amount) {
-        sort(coins.rbegin(), coins.rend()); // Sort in descending order
-        
-        int count = 0;
-        
-        for (int coin : coins) {
-            while (amount >= coin) {
-                amount -= coin;
-                count++;
-            }
-        }
-        
-        return amount == 0 ? count : -1;
-    }
-    
-    // Return actual coins used
-    vector<int> getCoinsUsed(vector<int>& coins, int amount) {
-        sort(coins.rbegin(), coins.rend());
-        
-        vector<int> result;
-        
-        for (int coin : coins) {
-            while (amount >= coin) {
-                amount -= coin;
-                result.push_back(coin);
-            }
-        }
-        
-        return amount == 0 ? result : vector<int>();
     }
 };
 ```
 
 ---
 
-## 🎯 Advanced Greedy Problems
+## Fractional Knapsack
 
 <div align="center">
-<img src="https://techvidvan.com/tutorials/wp-content/uploads/2021/06/Greedy-ALgorithms.jpg" alt="Greedy Algorithms Overview" width="700" height="450"/>
+<img src="https://camo.githubusercontent.com/09fab05635052ccc7928c585f4c2f979d84c7f7dd4abef22d7ec4b7347e20490/68747470733a2f2f7363616c65722e636f6d2f746f706963732f696d616765732f4f7074696d616c2d537562737472756374757265" alt="Fractional Knapsack" width="650" height="400"/>
 </div>
 
-### 🔧 Job Scheduling
+### Problem Strategy
+
+<div align="center">
+<img src="https://camo.githubusercontent.com/75c72cbfd9255aadf6059f6b3e21fb8919c8048cb6c5de361b83f0691745a352/68747470733a2f2f7777772e68656c6c6f2d616c676f2e636f6d2f656e2f636861707465725f6772656564792f6672616374696f6e616c5f6b6e61707361636b5f70726f626c656d2e6173736574732f6672616374696f6e616c5f6b6e61707361636b5f6578616d706c652e706e67" alt="Fractional Knapsack Strategy" width="650" height="400"/>
+</div>
+
+### Algorithm Process
+
+```mermaid
+flowchart TD
+    A["Fractional Knapsack Process"] --> B["Calculate Value/Weight Ratio"]
+    B --> C["Sort by Ratio (Descending)"]
+    C --> D["Initialize Capacity"]
+    D --> E["For Each Item"]
+    E --> F{Capacity ≥ Item Weight?}
+    F -->|Yes| G["Take Entire Item"]
+    F -->|No| H["Take Fraction"]
+    G --> I["Update Capacity"]
+    H --> J["Fill Remaining Capacity"]
+    I --> K{More Items & Capacity?}
+    J --> L["Knapsack Full"]
+    K -->|Yes| E
+    K -->|No| L
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef process fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef calculation fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef selection fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef decision fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    class A,B,C process
+    class D,I calculation
+    class E,F,G,H selection
+    class K,L decision
+```
+
+### Implementation
+
+```cpp
+class FractionalKnapsack {
+public:
+    struct Item {
+        int value, weight;
+        double ratio;
+        int id;
+        
+        Item(int v, int w, int i) : value(v), weight(w), id(i) {
+            ratio = (double)value / weight;
+        }
+    };
+    
+    // Fractional Knapsack - Greedy Solution
+    double fractionalKnapsack(int capacity, vector<Item>& items) {
+        // Sort items by value-to-weight ratio in descending order
+        sort(items.begin(), items.end(), 
+             [](const Item& a, const Item& b) {
+                 return a.ratio > b.ratio;
+             });
+        
+        double totalValue = 0.0;
+        int currentCapacity = capacity;
+        
+        for (const Item& item : items) {
+            if (currentCapacity >= item.weight) {
+                // Take the entire item
+                totalValue += item.value;
+                currentCapacity -= item.weight;
+            } else if (currentCapacity > 0) {
+                // Take fraction of the item
+                double fraction = (double)currentCapacity / item.weight;
+                totalValue += item.value * fraction;
+                currentCapacity = 0;
+                break;
+            }
+        }
+        
+        return totalValue;
+    }
+    
+    // Get detailed solution with fractions
+    pair<double, vector<pair<int, double>>> getDetailedSolution(int capacity, vector<Item>& items) {
+        sort(items.begin(), items.end(), 
+             [](const Item& a, const Item& b) {
+                 return a.ratio > b.ratio;
+             });
+        
+        double totalValue = 0.0;
+        int currentCapacity = capacity;
+        vector<pair<int, double>> solution; // {item_id, fraction_taken}
+        
+        for (const Item& item : items) {
+            if (currentCapacity >= item.weight) {
+                // Take entire item
+                totalValue += item.value;
+                currentCapacity -= item.weight;
+                solution.push_back({item.id, 1.0});
+            } else if (currentCapacity > 0) {
+                // Take fraction
+                double fraction = (double)currentCapacity / item.weight;
+                totalValue += item.value * fraction;
+                solution.push_back({item.id, fraction});
+                currentCapacity = 0;
+                break;
+            }
+        }
+        
+        return {totalValue, solution};
+    }
+    
+    // Compare with 0/1 Knapsack (for educational purposes)
+    int zeroOneKnapsack(int capacity, vector<Item>& items) {
+        int n = items.size();
+        vector<vector<int>> dp(n + 1, vector<int>(capacity + 1, 0));
+        
+        for (int i = 1; i <= n; i++) {
+            for (int w = 1; w <= capacity; w++) {
+                if (items[i-1].weight <= w) {
+                    dp[i][w] = max(dp[i-1][w], 
+                                  dp[i-1][w - items[i-1].weight] + items[i-1].value);
+                } else {
+                    dp[i][w] = dp[i-1][w];
+                }
+            }
+        }
+        
+        return dp[n][capacity];
+    }
+    
+    // Print solution details
+    void printSolution(vector<Item>& items, vector<pair<int, double>>& solution, double totalValue) {
+        cout << "Fractional Knapsack Solution:\n";
+        cout << "Items taken:\n";
+        
+        for (auto& [itemId, fraction] : solution) {
+            for (const Item& item : items) {
+                if (item.id == itemId) {
+                    cout << "Item " << itemId << ": ";
+                    if (fraction == 1.0) {
+                        cout << "Complete item";
+                    } else {
+                        cout << fraction * 100 << "% of item";
+                    }
+                    cout << " (Value: " << item.value * fraction 
+                         << ", Weight: " << item.weight * fraction << ")\n";
+                    break;
+                }
+            }
+        }
+        
+        cout << "Total Value: " << totalValue << endl;
+    }
+};
+```
+
+---
+
+## Huffman Coding
+
+<div align="center">
+<img src="https://camo.githubusercontent.com/ea3ab8768c1ca4fa4542c43799eafdb32cbcfc97edb50e0f75a72ed00912bdc5/68747470733a2f2f6c68372d72742e676f6f676c6575736572636f6e74656e742e636f6d2f646f63737a2f41445f346e5866715672433549756347716975426a54305f594f63386677554f565f4d654f534748644e5f654568553964322d793871774a6e546535423038494f4e4a356241672d6866496679315363747361366a395566694346633772495074376a53374c564352796646616456364f4c76472d5a2d4439675a517059547a55436864465072374135472d55413f6b65793d366a445f4531555a7231574c34645f5754614e6958506143" alt="Huffman Coding" width="650" height="400"/>
+</div>
+
+### Algorithm Process
+
+```mermaid
+flowchart TD
+    A["Huffman Coding Process"] --> B["Count Character Frequencies"]
+    B --> C["Create Leaf Nodes"]
+    C --> D["Build Min Heap"]
+    D --> E["While Heap Size > 1"]
+    E --> F["Extract Two Minimum Nodes"]
+    F --> G["Create Internal Node"]
+    G --> H["Set Frequency = Sum"]
+    H --> I["Set Children"]
+    I --> J["Insert Back to Heap"]
+    J --> E
+    E --> K["Root = Last Node"]
+    K --> L["Generate Codes"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef process fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef frequency fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef heap fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef tree fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    class A,B,C process
+    class D,E,F frequency
+    class G,H,I,J heap
+    class K,L tree
+```
+
+### Implementation
+
+```cpp
+class HuffmanCoding {
+private:
+    struct Node {
+        char character;
+        int frequency;
+        Node* left;
+        Node* right;
+        
+        Node(char ch, int freq) : character(ch), frequency(freq), left(nullptr), right(nullptr) {}
+        Node(int freq) : character('\0'), frequency(freq), left(nullptr), right(nullptr) {}
+    };
+    
+    struct Compare {
+        bool operator()(Node* a, Node* b) {
+            if (a->frequency == b->frequency) {
+                return a->character > b->character; // For consistent ordering
+            }
+            return a->frequency > b->frequency;
+        }
+    };
+    
+public:
+    // Build Huffman Tree
+    Node* buildHuffmanTree(unordered_map<char, int>& frequencies) {
+        priority_queue<Node*, vector<Node*>, Compare> minHeap;
+        
+        // Create leaf nodes and add to heap
+        for (auto& [ch, freq] : frequencies) {
+            minHeap.push(new Node(ch, freq));
+        }
+        
+        // Build tree
+        while (minHeap.size() > 1) {
+            Node* left = minHeap.top(); minHeap.pop();
+            Node* right = minHeap.top(); minHeap.pop();
+            
+            Node* internal = new Node(left->frequency + right->frequency);
+            internal->left = left;
+            internal->right = right;
+            
+            minHeap.push(internal);
+        }
+        
+        return minHeap.top();
+    }
+    
+    // Generate Huffman codes
+    void generateCodes(Node* root, string code, unordered_map<char, string>& codes) {
+        if (!root) return;
+        
+        // Leaf node
+        if (!root->left && !root->right) {
+            codes[root->character] = code.empty() ? "0" : code; // Handle single character
+            return;
+        }
+        
+        generateCodes(root->left, code + "0", codes);
+        generateCodes(root->right, code + "1", codes);
+    }
+    
+    // Encode text using Huffman codes
+    string encode(const string& text, unordered_map<char, string>& codes) {
+        string encoded = "";
+        for (char ch : text) {
+            encoded += codes[ch];
+        }
+        return encoded;
+    }
+    
+    // Decode text using Huffman tree
+    string decode(const string& encoded, Node* root) {
+        string decoded = "";
+        Node* current = root;
+        
+        for (char bit : encoded) {
+            if (bit == '0') {
+                current = current->left;
+            } else {
+                current = current->right;
+            }
+            
+            // Leaf node reached
+            if (!current->left && !current->right) {
+                decoded += current->character;
+                current = root;
+            }
+        }
+        
+        return decoded;
+    }
+    
+    // Complete Huffman coding process
+    pair<string, unordered_map<char, string>> huffmanCompress(const string& text) {
+        // Count frequencies
+        unordered_map<char, int> frequencies;
+        for (char ch : text) {
+            frequencies[ch]++;
+        }
+        
+        // Build tree
+        Node* root = buildHuffmanTree(frequencies);
+        
+        // Generate codes
+        unordered_map<char, string> codes;
+        generateCodes(root, "", codes);
+        
+        // Encode text
+        string encoded = encode(text, codes);
+        
+        return {encoded, codes};
+    }
+    
+    // Calculate compression ratio
+    double getCompressionRatio(const string& original, const string& compressed) {
+        int originalBits = original.length() * 8; // ASCII uses 8 bits per character
+        int compressedBits = compressed.length();
+        
+        return (double)compressedBits / originalBits;
+    }
+    
+    // Print Huffman codes
+    void printCodes(unordered_map<char, string>& codes) {
+        cout << "Huffman Codes:\n";
+        for (auto& [ch, code] : codes) {
+            cout << "'" << ch << "': " << code << endl;
+        }
+    }
+    
+    // Print tree structure
+    void printTree(Node* root, string prefix = "", bool isLast = true) {
+        if (!root) return;
+        
+        cout << prefix;
+        cout << (isLast ? "└── " : "├── ");
+        
+        if (!root->left && !root->right) {
+            cout << "'" << root->character << "' (" << root->frequency << ")\n";
+        } else {
+            cout << "Internal (" << root->frequency << ")\n";
+        }
+        
+        if (root->left || root->right) {
+            if (root->right) {
+                printTree(root->right, prefix + (isLast ? "    " : "│   "), !root->left);
+            }
+            if (root->left) {
+                printTree(root->left, prefix + (isLast ? "    " : "│   "), true);
+            }
+        }
+    }
+};
+```
+
+---
+
+## Minimum Spanning Tree
+
+### Greedy MST Algorithms
+
+```mermaid
+flowchart TD
+    A["MST Greedy Algorithms"] --> B["Kruskal's Algorithm"]
+    A --> C["Prim's Algorithm"]
+    
+    B --> D["Edge-based Greedy"]
+    B --> E["Sort edges by weight"]
+    B --> F["Use Union-Find"]
+    B --> G["Add edge if no cycle"]
+    
+    C --> H["Vertex-based Greedy"]
+    C --> I["Start from any vertex"]
+    C --> J["Add minimum weight edge"]
+    C --> K["Expand MST incrementally"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef mst fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef kruskal fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef prim fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    class A mst
+    class B,D,E,F,G kruskal
+    class C,H,I,J,K prim
+```
+
+### Implementation (Simplified)
+
+```cpp
+class GreedyMST {
+public:
+    struct Edge {
+        int u, v, weight;
+        bool operator<(const Edge& other) const {
+            return weight < other.weight;
+        }
+    };
+    
+    // Kruskal's Algorithm - Greedy MST
+    pair<int, vector<Edge>> kruskalMST(int vertices, vector<Edge>& edges) {
+        sort(edges.begin(), edges.end());
+        
+        vector<int> parent(vertices);
+        iota(parent.begin(), parent.end(), 0);
+        
+        function<int(int)> find = [&](int x) {
+            return parent[x] == x ? x : parent[x] = find(parent[x]);
+        };
+        
+        vector<Edge> mst;
+        int totalWeight = 0;
+        
+        for (const Edge& edge : edges) {
+            int pu = find(edge.u), pv = find(edge.v);
+            if (pu != pv) {
+                parent[pu] = pv;
+                mst.push_back(edge);
+                totalWeight += edge.weight;
+                
+                if (mst.size() == vertices - 1) break;
+            }
+        }
+        
+        return {totalWeight, mst};
+    }
+};
+```
+
+---
+
+## Advanced Applications
+
+### Job Scheduling
 
 ```cpp
 class JobScheduling {
@@ -390,8 +668,9 @@ public:
         Job(int i, int d, int p) : id(i), deadline(d), profit(p) {}
     };
     
-    pair<int, int> maxProfitJobs(vector<Job>& jobs) {
-        // Sort by profit in descending order
+    // Job scheduling with deadlines - Greedy approach
+    pair<int, vector<int>> scheduleJobs(vector<Job>& jobs) {
+        // Sort jobs by profit in descending order
         sort(jobs.begin(), jobs.end(), 
              [](const Job& a, const Job& b) {
                  return a.profit > b.profit;
@@ -402,190 +681,195 @@ public:
             maxDeadline = max(maxDeadline, job.deadline);
         }
         
-        vector<bool> slot(maxDeadline + 1, false);
-        int jobCount = 0, totalProfit = 0;
+        vector<int> schedule(maxDeadline + 1, -1);
+        vector<int> selectedJobs;
+        int totalProfit = 0;
         
         for (const Job& job : jobs) {
-            // Find free slot for this job (from deadline backwards)
-            for (int j = job.deadline; j > 0; j--) {
-                if (!slot[j]) {
-                    slot[j] = true;
-                    jobCount++;
+            // Find latest available slot before deadline
+            for (int slot = job.deadline; slot >= 1; slot--) {
+                if (schedule[slot] == -1) {
+                    schedule[slot] = job.id;
+                    selectedJobs.push_back(job.id);
                     totalProfit += job.profit;
                     break;
                 }
             }
         }
         
-        return {jobCount, totalProfit};
+        return {totalProfit, selectedJobs};
     }
 };
 ```
 
-### 🔧 Minimum Platforms
+### Coin Change (Greedy - works for canonical systems)
 
 ```cpp
-class MinimumPlatforms {
+class CoinChange {
 public:
-    int findMinPlatforms(vector<int>& arrivals, vector<int>& departures) {
-        sort(arrivals.begin(), arrivals.end());
-        sort(departures.begin(), departures.end());
+    // Greedy coin change (works for canonical coin systems)
+    vector<int> greedyCoinChange(vector<int>& coins, int amount) {
+        sort(coins.rbegin(), coins.rend()); // Sort in descending order
         
-        int platforms = 0, maxPlatforms = 0;
-        int i = 0, j = 0;
+        vector<int> result;
         
-        while (i < arrivals.size() && j < departures.size()) {
-            if (arrivals[i] <= departures[j]) {
-                platforms++;
-                maxPlatforms = max(maxPlatforms, platforms);
-                i++;
-            } else {
-                platforms--;
-                j++;
+        for (int coin : coins) {
+            while (amount >= coin) {
+                result.push_back(coin);
+                amount -= coin;
             }
         }
         
-        return maxPlatforms;
+        return amount == 0 ? result : vector<int>(); // Empty if not possible
     }
-};
-```
-
-### 🔧 Gas Station
-
-```cpp
-class GasStation {
-public:
-    int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
-        int totalGas = 0, totalCost = 0;
-        int currentGas = 0, start = 0;
+    
+    // Check if coin system is canonical (greedy works optimally)
+    bool isCanonical(vector<int>& coins) {
+        // This is a simplified check - full verification is complex
+        sort(coins.begin(), coins.end());
         
-        for (int i = 0; i < gas.size(); i++) {
-            totalGas += gas[i];
-            totalCost += cost[i];
-            currentGas += gas[i] - cost[i];
-            
-            if (currentGas < 0) {
-                start = i + 1;
-                currentGas = 0;
-            }
+        // For most practical coin systems, if largest coin < 2 * second largest,
+        // the system is likely canonical
+        if (coins.size() >= 2) {
+            return coins.back() < 2 * coins[coins.size() - 2];
         }
         
-        return totalGas >= totalCost ? start : -1;
-    }
-};
-```
-
----
-
-## 🎯 When Greedy Works
-
-### 🔧 Greedy Choice Property
-
-```cpp
-class GreedyValidation {
-public:
-    // Example: Proving greedy works for activity selection
-    bool proveActivitySelection() {
-        /*
-         * Greedy Choice Property:
-         * - Choose activity with earliest end time
-         * - This choice is always part of some optimal solution
-         * 
-         * Optimal Substructure:
-         * - After choosing first activity, remaining problem
-         *   is independent subproblem
-         */
         return true;
     }
-    
-    // Counter-example: 0/1 Knapsack
-    void counterExample() {
-        /*
-         * Greedy doesn't work for 0/1 Knapsack:
-         * Items: {value: 10, weight: 5}, {value: 20, weight: 20}, {value: 15, weight: 15}
-         * Capacity: 20
-         * 
-         * Greedy by ratio: Take first item (ratio=2), then can't fit others
-         * Result: value = 10
-         * 
-         * Optimal: Take second and third items
-         * Result: value = 35
-         */
-    }
 };
 ```
 
 ---
 
-## 🏆 Best Practices
+## Best Practices
 
-### ✅ Do's
+### Algorithm Selection Guidelines
+
+```mermaid
+flowchart TD
+    A["Choose Greedy Algorithm"] --> B["Problem Analysis"]
+    A --> C["Greedy Properties"]
+    A --> D["Proof Strategy"]
+    
+    B --> E["Optimization problem?"]
+    B --> F["Local choices possible?"]
+    B --> G["Efficient solution needed?"]
+    
+    C --> H["Greedy choice property"]
+    C --> I["Optimal substructure"]
+    C --> J["No backtracking needed"]
+    
+    D --> K["Exchange argument"]
+    D --> L["Inductive proof"]
+    D --> M["Contradiction method"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef selection fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef analysis fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef properties fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef proof fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    class A selection
+    class B,E,F,G analysis
+    class C,H,I,J properties
+    class D,K,L,M proof
+```
+
+### Common Pitfalls and Solutions
 
 ```cpp
-// 1. Verify greedy choice property
-bool verifyGreedyChoice(const string& problem) {
-    // Check if local optimal choice leads to global optimum
-    // Prove using exchange argument or cut-and-paste
-    return true;
-}
-
-// 2. Sort input appropriately
-void sortForGreedy(vector<int>& input, const string& criteria) {
-    if (criteria == "value") {
-        sort(input.rbegin(), input.rend()); // Descending
-    } else if (criteria == "ratio") {
-        sort(input.begin(), input.end(), customComparator);
-    }
-}
-
-// 3. Handle edge cases
-int safeGreedy(vector<int>& input) {
-    if (input.empty()) return 0;
-    
-    sort(input.begin(), input.end());
-    
-    int result = 0;
-    for (int item : input) {
-        if (isValidChoice(item)) {
-            result += item;
+class GreedyBestPractices {
+public:
+    // ❌ Common Mistake: Assuming greedy always works
+    // Example: 0/1 Knapsack (greedy doesn't work optimally)
+    int incorrectKnapsack(vector<pair<int, int>>& items, int capacity) {
+        // This greedy approach doesn't work for 0/1 knapsack
+        sort(items.begin(), items.end(), 
+             [](const pair<int, int>& a, const pair<int, int>& b) {
+                 return (double)a.first/a.second > (double)b.first/b.second;
+             });
+        
+        int totalValue = 0;
+        for (auto& [value, weight] : items) {
+            if (capacity >= weight) {
+                totalValue += value;
+                capacity -= weight;
+            }
         }
+        return totalValue; // This may not be optimal!
     }
     
-    return result;
-}
-
-private:
-    static bool customComparator(int a, int b) { return a < b; }
-    bool isValidChoice(int item) { return item > 0; }
+    // ✅ Better: Verify greedy choice property first
+    bool verifyGreedyChoice(/* problem parameters */) {
+        // Implement verification logic
+        // Check if local optimal choice leads to global optimum
+        return true; // Placeholder
+    }
+    
+    // ✅ Best Practice: Prove correctness
+    void proveCorrectness() {
+        // 1. Prove greedy choice property
+        // 2. Prove optimal substructure
+        // 3. Use exchange argument or induction
+    }
+    
+    // ✅ Handle edge cases
+    vector<int> robustGreedyAlgorithm(vector<int>& input) {
+        if (input.empty()) return {};
+        if (input.size() == 1) return input;
+        
+        // Sort with stable sort for consistent results
+        stable_sort(input.begin(), input.end());
+        
+        // Implement greedy logic with bounds checking
+        vector<int> result;
+        // ... implementation
+        
+        return result;
+    }
+};
 ```
 
-### ❌ Don'ts
+### Performance Optimization
 
-```cpp
-// Don't: Use greedy without proving correctness
-// Don't: Assume greedy works for all optimization problems
-// Don't: Forget to sort input when needed
-// Don't: Ignore edge cases (empty input, single element)
-```
+| Technique | Description | When to Use |
+|-----------|-------------|-------------|
+| **Sorting Optimization** | Use appropriate sorting algorithm | Large datasets |
+| **Priority Queue** | Use heap for dynamic selection | Prim's algorithm, Huffman coding |
+| **Union-Find** | Optimize with path compression | Kruskal's algorithm |
+| **Early Termination** | Stop when solution is complete | MST algorithms |
 
 ---
 
-## 🎓 Summary
+## Summary
 
-Greedy algorithms make locally optimal choices:
+**Greedy Algorithms** provide efficient solutions to optimization problems by making locally optimal choices. Key insights:
 
-✅ **Strategy**: Local optimal → Global optimal  
-✅ **Properties**: Greedy choice property, optimal substructure  
-✅ **Applications**: Activity selection, Huffman coding, MST  
-✅ **Limitations**: Doesn't work for all problems (0/1 Knapsack)  
-✅ **Proof**: Exchange argument, cut-and-paste technique  
+### Essential Concepts
+- **Greedy Choice Property**: Local optimum leads to global optimum
+- **Optimal Substructure**: Problem can be broken into subproblems
+- **No Backtracking**: Once choice is made, never reconsider
+- **Efficiency**: Usually linear or near-linear time complexity
+
+### Classic Applications
+- **Activity Selection**: Maximum non-overlapping activities
+- **Fractional Knapsack**: Maximize value with weight constraint
+- **Huffman Coding**: Optimal prefix-free encoding
+- **MST Algorithms**: Minimum spanning tree construction
+
+### Best Practices
+- Verify greedy choice property before implementation
+- Prove correctness using exchange argument or induction
+- Handle edge cases and empty inputs
+- Consider sorting strategy for optimal performance
+
+> **Master's Insight**: Greedy algorithms are powerful when they work, but dangerous when they don't. Always verify the greedy choice property and prove correctness before trusting the locally optimal approach.
 
 ---
 
 <div align="center">
 
-**🎯 Choose Wisely, Optimize Globally**
+**🎯 Master Greedy Algorithms • Make Optimal Choices • Build Efficient Solutions**
 
-*Local decisions with global impact*
+*From Theory to Practice • Local to Global • Understanding to Mastery*
 
 </div>

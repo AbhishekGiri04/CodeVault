@@ -1,4 +1,4 @@
-<div align="center"># 📚 Stacks — Complete Professional <div align="center">Guide</div></div>
+# 📚 Stacks — Complete Professional <div align="center">Guide</div>
 
 <div align="center">
 

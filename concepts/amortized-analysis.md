@@ -1,4 +1,4 @@
-<div align="center"># Amortized Analysis — Complete Professional <div align="center">Guide</div></div>
+# Amortized Analysis — Complete Professional <div align="center">Guide</div>
 
 <div align="center">
 

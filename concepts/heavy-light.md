@@ -1,4 +1,4 @@
-<div align="center"># 🔗 Heavy-Light Decomposition — Complete Professional <div align="center">Guide</div></div>
+# 🔗 Heavy-Light Decomposition — Complete Professional <div align="center">Guide</div>
 
 <div align="center">
 

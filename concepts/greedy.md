@@ -1,4 +1,4 @@
-<div align="center"># 🎯 Greedy Algorithms — Complete Professional <div align="center">Guide</div></div>
+# 🎯 Greedy Algorithms — Complete Professional <div align="center">Guide</div>
 
 <div align="center">
 

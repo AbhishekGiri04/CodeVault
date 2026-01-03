@@ -1,4 +1,4 @@
-<div align="center"># 🔗 Disjoint Set Union — Complete Professional <div align="center">Guide</div></div>
+# 🔗 Disjoint Set Union — Complete Professional <div align="center">Guide</div>
 
 <div align="center">
 

@@ -1,4 +1,4 @@
-<div align="center"># 📈 Huffman Coding — Complete Professional <div align="center">Guide</div></div>
+# 📈 Huffman Coding — Complete Professional <div align="center">Guide</div>
 
 <div align="center">
 

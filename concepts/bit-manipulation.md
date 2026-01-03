@@ -1,4 +1,4 @@
-<div align="center"># Bit Manipulation — Complete Professional <div align="center">Guide</div></div>
+# Bit Manipulation — Complete Professional <div align="center">Guide</div>
 
 <div align="center">
 

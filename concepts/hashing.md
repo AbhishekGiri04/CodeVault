@@ -1,4 +1,4 @@
-<div align="center"># 🔐 Hashing — Complete Professional <div align="center">Guide</div></div>
+# 🔐 Hashing — Complete Professional <div align="center">Guide</div>
 
 <div align="center">
 

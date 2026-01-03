@@ -1,4 +1,4 @@
-<div align="center"># 🎯 DSA Fundamentals — Complete Professional <div align="center">Guide</div></div>
+# 🎯 DSA Fundamentals — Complete Professional <div align="center">Guide</div>
 
 <div align="center">
 

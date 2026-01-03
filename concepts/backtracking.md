@@ -1,4 +1,4 @@
-<div align="center"># Backtracking — Complete Professional <div align="center">Guide</div></div>
+# Backtracking — Complete Professional <div align="center">Guide</div>
 
 <div align="center">
 

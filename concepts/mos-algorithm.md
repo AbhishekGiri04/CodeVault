@@ -1,4 +1,4 @@
-<div align="center"># 📊 Mo's Algorithm — Complete Professional <div align="center">Guide</div></div>
+# 📊 Mo's Algorithm — Complete Professional <div align="center">Guide</div>
 
 <div align="center">
 

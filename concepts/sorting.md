@@ -1,4 +1,4 @@
-<div align="center"># 🔃 Sorting Algorithms — Complete Professional <div align="center">Guide</div></div>
+# 🔃 Sorting Algorithms — Complete Professional <div align="center">Guide</div>
 
 <div align="center">
 

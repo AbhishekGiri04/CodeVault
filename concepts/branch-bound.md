@@ -1,4 +1,4 @@
-# Branch and Bound — Complete Professional <div align="center">Guide</div>
+<div align="center"># Branch and Bound — Complete Professional <div align="center">Guide</div></div>
 
 <div align="center">
 

@@ -1,4 +1,4 @@
-# 🔪 Divide and Conquer — Complete Professional <div align="center">Guide</div>
+<div align="center"># 🔪 Divide and Conquer — Complete Professional <div align="center">Guide</div></div>
 
 <div align="center">
 

@@ -1,14 +1,12 @@
-# 🌳 Tries (Prefix Tree) — Complete Professional Guide
+# 🌲 Tries (Prefix Tree) — Complete Professional Guide
 
 <div align="center">
 
-<img src="https://bs-uploads.toptal.io/blackfish-uploads/components/blog_post_page/4086866/cover_image/retina_1708x683/1125_The_Trie_Data_Structure_Lina_Newsletter___blog-39245318d5f6413aab2ef675a26dac37.png" alt="Trie Data Structure" width="600" height="300"/>
+![Tries](https://img.shields.io/badge/Tries-Prefix_Tree-FF6B6B?style=for-the-badge&logo=databricks&logoColor=white)
+![Difficulty](https://img.shields.io/badge/Difficulty-Intermediate-orange?style=for-the-badge)
+![Importance](https://img.shields.io/badge/Importance-High-darkred?style=for-the-badge)
 
-![Tries](https://img.shields.io/badge/Tries-Prefix_Tree-4ECDC4?style=for-the-badge&logo=tree&logoColor=white)
-![Difficulty](https://img.shields.io/badge/Difficulty-Intermediate-yellow?style=for-the-badge)
-![Importance](https://img.shields.io/badge/Importance-High-red?style=for-the-badge)
-
-*Master the art of efficient string storage and retrieval with prefix-based operations*
+**Master prefix trees for efficient string operations and autocomplete systems**
 
 </div>
 
@@ -16,143 +14,175 @@
 
 ## 📑 Table of Contents
 
-1. [Introduction](#-introduction)
-2. [Why Use Tries?](#-why-use-tries)
-3. [Trie Structure & Components](#-trie-structure--components)
-4. [Implementation](#-implementation)
-5. [Core Operations](#-core-operations)
-6. [Advanced Concepts](#-advanced-concepts)
-7. [Comparison Analysis](#-comparison-analysis)
-8. [Applications & Use Cases](#-applications--use-cases)
-9. [Binary Trie](#-binary-trie)
-10. [Interview Problems](#-interview-problems)
-11. [Optimization Techniques](#-optimization-techniques)
-12. [Complexity Analysis](#-complexity-analysis)
-13. [Best Practices](#-best-practices)
+1. [Introduction](#introduction)
+2. [Core Concepts](#core-concepts)
+3. [Basic Operations](#basic-operations)
+4. [Advanced Operations](#advanced-operations)
+5. [Applications](#applications)
+6. [Interview Problems](#interview-problems)
+7. [Best Practices](#best-practices)
 
 ---
 
-## 🎯 Introduction
+## Introduction
 
-**Trie** (pronounced "try") is a specialized tree-based data structure designed for efficient storage and retrieval of strings, particularly excelling in prefix-based operations.
+**Tries** (pronounced "try") are tree-like data structures that store strings in a way that allows for fast retrieval. Each node represents a character, and paths from root to leaves represent complete strings. They are particularly efficient for prefix-based operations.
 
-### 🔑 Key Characteristics
+<div align="center">
+<img src="https://camo.githubusercontent.com/b703a83089ca6f52a18b16741aeaf4787d796326110665d1b8f598a2c005698b/68747470733a2f2f62732d75706c6f6164732e746f7074616c2e696f2f626c61636b666973682d75706c6f6164732f636f6d706f6e656e74732f626c6f675f706f73745f706167652f343038363836362f636f7665725f696d6167652f726574696e615f31373038783638332f313132355f5468655f547269655f446174615f5374727563747572655f4c696e615f4e6577736c65747465725f5f5f626c6f672d33393234353331386435663634313361616232656636373561323664616333372e706e67" alt="Trie Data Structure" width="650" height="400"/>
+</div>
 
-- **Tree Structure**: Each node represents a character
-- **Prefix Sharing**: Common prefixes share the same path
-- **End Markers**: Special flags mark complete words
-- **Efficient Retrieval**: O(L) operations where L = word length
-
-### 💡 Etymology
-
-The name "Trie" comes from "re**trie**val" - emphasizing its primary purpose of efficient data retrieval.
-
----
-
-## 🚀 Why Use Tries?
-
-### ✅ Advantages
-
-```
-🔥 Prefix Operations     → Extremely efficient prefix matching
-⚡ Predictable Performance → O(L) time complexity
-🎯 No Collisions        → Unlike hash tables
-📊 Lexicographical Order → Natural alphabetical sorting
-🔍 Pattern Matching     → Excellent for string algorithms
-```
-
-### 🎆 Trie Operations Flow
+### Core Concept
 
 ```mermaid
-graph TD
-    A[Trie Operations] --> B[Insert]
-    A --> C[Search]
-    A --> D[Delete]
-    A --> E[Prefix Search]
+flowchart TD
+    A["🌲 Trie (Prefix Tree)"] --> B["String Storage"]
+    A --> C["Prefix Operations"]
+    A --> D["Character Nodes"]
+    A --> E["Applications"]
     
-    B --> F[Traverse Path]
-    B --> G[Create Missing Nodes]
-    B --> H[Mark End of Word]
+    B --> F["Each path = string"]
+    B --> G["Shared prefixes"]
+    B --> H["End-of-word markers"]
     
-    C --> I[Follow Path]
-    C --> J[Check End Flag]
+    C --> I["Fast prefix search"]
+    C --> J["Autocomplete"]
+    C --> K["Word validation"]
     
-    D --> K[Find Node]
-    D --> L[Remove if No Children]
+    D --> L["Character per node"]
+    D --> M["Children array/map"]
+    D --> N["Boolean flag"]
     
-    E --> M[Find Prefix Node]
-    E --> N[Collect All Words]
+    E --> O["Search engines"]
+    E --> P["Spell checkers"]
+    E --> Q["IP routing"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef trie fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef storage fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef operations fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef nodes fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef applications fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A trie
+    class B,F,G,H storage
+    class C,I,J,K operations
+    class D,L,M,N nodes
+    class E,O,P,Q applications
 ```
-
-### 📊 Performance Comparison
-
-| Operation | Trie | Hash Table | Binary Search Tree |
-|:----------|:-----|:-----------|:-------------------|
-| **Insert** | O(L) | O(1)* | O(log n) |
-| **Search** | O(L) | O(1)* | O(log n) |
-| **Prefix Search** | O(L) | O(n) | O(n) |
-| **Ordered Traversal** | ✅ Yes | ❌ No | ✅ Yes |
-| **Memory Usage** | High | Low | Medium |
-
-*Hash table O(1) is average case; worst case can be O(n)
-
-### 🎯 Perfect Use Cases
-
-- **Search Engines**: Query autocompletion
-- **Text Editors**: Word suggestions, spell check
-- **Phone Books**: Contact search by prefix
-- **IP Routing**: Longest prefix matching
-- **Bioinformatics**: DNA sequence analysis
 
 ---
 
-## 🏗️ Trie Structure & Components
+## Core Concepts
 
-### 📐 Basic Structure
+### Trie Structure
 
+```mermaid
+flowchart TD
+    A["Trie Properties"] --> B["Node Structure"]
+    A --> C["Path Representation"]
+    A --> D["Memory Efficiency"]
+    
+    B --> E["Character storage"]
+    B --> F["Children pointers"]
+    B --> G["End marker"]
+    
+    C --> H["Root to leaf = word"]
+    C --> I["Shared prefixes"]
+    C --> J["Unique suffixes"]
+    
+    D --> K["Space optimization"]
+    D --> L["Compressed tries"]
+    D --> M["Radix trees"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef properties fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef structure fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef representation fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef efficiency fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    class A properties
+    class B,E,F,G structure
+    class C,H,I,J representation
+    class D,K,L,M efficiency
 ```
-        root
-        /|\
-       c a t
-       | | |
-       a r e
-       | | |
-       t* e* a*
-       
-Words stored: "cat", "care", "tea"
-* = End of word marker
-```
 
-### 🧩 Node Components
-
-Each Trie node contains:
-
-1. **Children Array/Map**: Pointers to child nodes
-2. **End Flag**: Marks complete words
-3. **Optional Data**: Additional information (frequency, etc.)
-
----
-
-## 💻 Implementation
-
-### 🔧 Basic Trie Node (C++)
+### Trie Node Implementation
 
 ```cpp
+// Basic Trie Node
 class TrieNode {
 public:
-    TrieNode* children[26];  // For lowercase a-z
+    unordered_map<char, TrieNode*> children;
     bool isEndOfWord;
     
-    TrieNode() {
-        isEndOfWord = false;
+    TrieNode() : isEndOfWord(false) {}
+};
+
+// Array-based Trie Node (for lowercase letters)
+class TrieNodeArray {
+public:
+    TrieNodeArray* children[26];
+    bool isEndOfWord;
+    
+    TrieNodeArray() : isEndOfWord(false) {
         for (int i = 0; i < 26; i++) {
             children[i] = nullptr;
         }
     }
 };
+
+// Enhanced Trie Node with count
+class TrieNodeWithCount {
+public:
+    unordered_map<char, TrieNodeWithCount*> children;
+    bool isEndOfWord;
+    int count;  // Number of words ending at this node
+    int prefixCount;  // Number of words with this prefix
+    
+    TrieNodeWithCount() : isEndOfWord(false), count(0), prefixCount(0) {}
+};
 ```
 
-### 🏛️ Complete Trie Class
+### Key Properties
+
+| Property | Description | Benefit |
+|----------|-------------|---------|
+| **Prefix Sharing** | Common prefixes stored once | Space efficient |
+| **Fast Lookup** | O(m) where m is string length | Time efficient |
+| **Ordered Traversal** | Lexicographic order | Sorted results |
+| **Prefix Operations** | Quick prefix matching | Autocomplete |
+
+---
+
+## Basic Operations
+
+### Core Trie Operations
+
+```mermaid
+flowchart TD
+    A["Trie Operations"] --> B["Insert"]
+    A --> C["Search"]
+    A --> D["Delete"]
+    A --> E["StartsWith"]
+    
+    B --> F["Add word character by character"]
+    C --> G["Find word in trie"]
+    D --> H["Remove word from trie"]
+    E --> I["Check prefix existence"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef operations fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef insert fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef search fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef delete fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef prefix fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A operations
+    class B,F insert
+    class C,G search
+    class D,H delete
+    class E,I prefix
+```
+
+### Basic Trie Implementation
 
 ```cpp
 class Trie {
@@ -164,713 +194,735 @@ public:
         root = new TrieNode();
     }
     
-    // Insert, Search, StartsWith methods below...
-};
-```
-
-### 🌟 Enhanced Node (with frequency)
-
-```cpp
-class TrieNode {
-public:
-    TrieNode* children[26];
-    bool isEndOfWord;
-    int frequency;           // Count of words ending here
-    int prefixCount;         // Count of words with this prefix
-    
-    TrieNode() {
-        isEndOfWord = false;
-        frequency = 0;
-        prefixCount = 0;
-        for (int i = 0; i < 26; i++) {
-            children[i] = nullptr;
-        }
-    }
-};
-```
-
----
-
-## ⚙️ Core Operations
-
-### 1️⃣ Insert Operation
-
-```cpp
-void insert(string word) {
-    TrieNode* current = root;
-    
-    for (char c : word) {
-        int index = c - 'a';
+    // Insert a word into the trie
+    void insert(string word) {
+        TrieNode* current = root;
         
-        // Create new node if doesn't exist
-        if (current->children[index] == nullptr) {
-            current->children[index] = new TrieNode();
+        for (char c : word) {
+            if (current->children.find(c) == current->children.end()) {
+                current->children[c] = new TrieNode();
+            }
+            current = current->children[c];
         }
         
-        current = current->children[index];
-        current->prefixCount++;  // Optional: track prefix frequency
+        current->isEndOfWord = true;
     }
     
-    current->isEndOfWord = true;
-    current->frequency++;        // Optional: track word frequency
-}
-```
-
-**Time**: O(L) | **Space**: O(L) for new nodes
-
----
-
-### 2️⃣ Search Operation
-
-```cpp
-bool search(string word) {
-    TrieNode* current = root;
-    
-    for (char c : word) {
-        int index = c - 'a';
+    // Search for a word in the trie
+    bool search(string word) {
+        TrieNode* current = root;
         
-        if (current->children[index] == nullptr) {
-            return false;  // Character not found
+        for (char c : word) {
+            if (current->children.find(c) == current->children.end()) {
+                return false;
+            }
+            current = current->children[c];
         }
         
-        current = current->children[index];
+        return current->isEndOfWord;
     }
     
-    return current->isEndOfWord;  // Must be end of a word
-}
-```
-
-**Time**: O(L) | **Space**: O(1)
-
----
-
-### 3️⃣ Prefix Search (StartsWith)
-
-```cpp
-bool startsWith(string prefix) {
-    TrieNode* current = root;
-    
-    for (char c : prefix) {
-        int index = c - 'a';
+    // Check if any word starts with the given prefix
+    bool startsWith(string prefix) {
+        TrieNode* current = root;
         
-        if (current->children[index] == nullptr) {
+        for (char c : prefix) {
+            if (current->children.find(c) == current->children.end()) {
+                return false;
+            }
+            current = current->children[c];
+        }
+        
+        return true;
+    }
+    
+    // Delete a word from the trie
+    void remove(string word) {
+        removeHelper(root, word, 0);
+    }
+    
+private:
+    bool removeHelper(TrieNode* node, string& word, int index) {
+        if (index == word.length()) {
+            if (!node->isEndOfWord) return false;
+            
+            node->isEndOfWord = false;
+            return node->children.empty();
+        }
+        
+        char c = word[index];
+        if (node->children.find(c) == node->children.end()) {
             return false;
         }
         
-        current = current->children[index];
-    }
-    
-    return true;  // Prefix exists
-}
-```
-
-**Time**: O(L) | **Space**: O(1)
-
----
-
-### 4️⃣ Delete Operation
-
-```cpp
-bool deleteHelper(TrieNode* node, string word, int index) {
-    if (index == word.length()) {
-        // End of word reached
-        if (!node->isEndOfWord) return false;
+        bool shouldDeleteChild = removeHelper(node->children[c], word, index + 1);
         
-        node->isEndOfWord = false;
-        
-        // Delete node if it has no children
-        return !hasChildren(node);
-    }
-    
-    int charIndex = word[index] - 'a';
-    TrieNode* child = node->children[charIndex];
-    
-    if (child == nullptr) return false;
-    
-    bool shouldDeleteChild = deleteHelper(child, word, index + 1);
-    
-    if (shouldDeleteChild) {
-        delete child;
-        node->children[charIndex] = nullptr;
-        
-        // Delete current node if no children and not end of word
-        return !node->isEndOfWord && !hasChildren(node);
-    }
-    
-    return false;
-}
-
-bool hasChildren(TrieNode* node) {
-    for (int i = 0; i < 26; i++) {
-        if (node->children[i] != nullptr) return true;
-    }
-    return false;
-}
-```
-
----
-
-### 5️⃣ Get All Words with Prefix
-
-```cpp
-vector<string> getWordsWithPrefix(string prefix) {
-    vector<string> result;
-    TrieNode* prefixNode = findPrefixNode(prefix);
-    
-    if (prefixNode != nullptr) {
-        string currentWord = prefix;
-        dfsCollectWords(prefixNode, currentWord, result);
-    }
-    
-    return result;
-}
-
-void dfsCollectWords(TrieNode* node, string currentWord, vector<string>& result) {
-    if (node->isEndOfWord) {
-        result.push_back(currentWord);
-    }
-    
-    for (int i = 0; i < 26; i++) {
-        if (node->children[i] != nullptr) {
-            char nextChar = 'a' + i;
-            dfsCollectWords(node->children[i], currentWord + nextChar, result);
+        if (shouldDeleteChild) {
+            delete node->children[c];
+            node->children.erase(c);
+            return !node->isEndOfWord && node->children.empty();
         }
+        
+        return false;
     }
-}
+};
 ```
 
 ---
 
-## 🎓 Advanced Concepts
+## Advanced Operations
 
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Advanced-Trie-Concepts.webp" alt="Advanced Trie Concepts" width="700" height="400"/>
-</div>
-
-### 🔢 Frequency Tracking
+### Advanced Trie Features
 
 ```cpp
-class FrequencyTrie {
+class AdvancedTrie {
 private:
-    struct Node {
-        Node* children[26];
-        bool isEnd;
-        int wordCount;
-        int prefixCount;
-        
-        Node() : isEnd(false), wordCount(0), prefixCount(0) {
-            fill(children, children + 26, nullptr);
-        }
-    };
-    
-    Node* root;
+    TrieNodeWithCount* root;
     
 public:
+    AdvancedTrie() {
+        root = new TrieNodeWithCount();
+    }
+    
+    // Insert with count tracking
     void insert(string word) {
-        Node* curr = root;
+        TrieNodeWithCount* current = root;
+        
         for (char c : word) {
-            int idx = c - 'a';
-            if (!curr->children[idx]) {
-                curr->children[idx] = new Node();
+            if (current->children.find(c) == current->children.end()) {
+                current->children[c] = new TrieNodeWithCount();
             }
-            curr = curr->children[idx];
-            curr->prefixCount++;
-        }
-        curr->isEnd = true;
-        curr->wordCount++;
-    }
-    
-    int countWordsStartingWith(string prefix) {
-        Node* node = findPrefix(prefix);
-        return node ? node->prefixCount : 0;
-    }
-};
-```
-
----
-
-### 🗑️ Compressed Trie (Radix Tree)
-
-```cpp
-class CompressedTrieNode {
-public:
-    map<string, CompressedTrieNode*> children;
-    bool isEndOfWord;
-    
-    CompressedTrieNode() : isEndOfWord(false) {}
-};
-
-// Stores "hello" and "help" more efficiently
-// Root -> "hel" -> {"lo": end, "p": end}
-```
-
----
-
-### 🔀 Ternary Search Tree
-
-```cpp
-class TSTNode {
-public:
-    char data;
-    bool isEnd;
-    TSTNode* left;   // Less than
-    TSTNode* equal;  // Equal to
-    TSTNode* right;  // Greater than
-    
-    TSTNode(char c) : data(c), isEnd(false), left(nullptr), equal(nullptr), right(nullptr) {}
-};
-
-// More memory efficient than standard trie for sparse data
-```
-
----
-
-## 📊 Comparison Analysis
-
-### 🆚 Trie vs Hash Table vs BST
-
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th>🌳 Trie</th>
-<th>🗂️ Hash Table</th>
-<th>🌲 BST</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Search Time</strong></td>
-<td>O(L) ✅</td>
-<td>O(1) avg, O(n) worst</td>
-<td>O(log n) ✅</td>
-</tr>
-<tr>
-<td><strong>Prefix Search</strong></td>
-<td>O(L) 🔥</td>
-<td>O(n) ❌</td>
-<td>O(n) ❌</td>
-</tr>
-<tr>
-<td><strong>Ordered Traversal</strong></td>
-<td>✅ Natural</td>
-<td>❌ No</td>
-<td>✅ Yes</td>
-</tr>
-<tr>
-<td><strong>Memory Usage</strong></td>
-<td>High ⚠️</td>
-<td>Low ✅</td>
-<td>Medium</td>
-</tr>
-<tr>
-<td><strong>Cache Performance</strong></td>
-<td>Poor</td>
-<td>Good ✅</td>
-<td>Medium</td>
-</tr>
-<tr>
-<td><strong>Collision Handling</strong></td>
-<td>None needed ✅</td>
-<td>Required</td>
-<td>None needed ✅</td>
-</tr>
-</tbody>
-</table>
-
----
-
-## 🎯 Applications & Use Cases
-
-### 1️⃣ Autocomplete System
-
-```cpp
-class AutoComplete {
-private:
-    Trie trie;
-    
-public:
-    void addWord(string word) {
-        trie.insert(word);
-    }
-    
-    vector<string> getSuggestions(string prefix) {
-        return trie.getWordsWithPrefix(prefix);
-    }
-};
-
-// Usage: Google search suggestions, IDE autocomplete
-```
-
----
-
-### 2️⃣ Spell Checker
-
-```cpp
-class SpellChecker {
-private:
-    Trie dictionary;
-    
-public:
-    bool isValidWord(string word) {
-        return dictionary.search(word);
-    }
-    
-    vector<string> getSuggestions(string word) {
-        // Generate words with 1 edit distance
-        vector<string> suggestions;
-        // Implementation for edit distance suggestions
-        return suggestions;
-    }
-};
-```
-
----
-
-### 3️⃣ IP Router (Longest Prefix Match)
-
-```cpp
-class IPRouter {
-private:
-    struct RouteNode {
-        RouteNode* children[2];  // 0 and 1 for binary
-        string nextHop;
-        bool isRoute;
-        
-        RouteNode() : isRoute(false) {
-            children[0] = children[1] = nullptr;
-        }
-    };
-    
-    RouteNode* root;
-    
-public:
-    void addRoute(string ipPrefix, string nextHop) {
-        // Convert IP to binary and insert into trie
-    }
-    
-    string findRoute(string ip) {
-        // Find longest matching prefix
-    }
-};
-```
-
----
-
-### 4️⃣ Word Break Problem
-
-```cpp
-bool wordBreak(string s, vector<string>& wordDict) {
-    Trie trie;
-    for (string word : wordDict) {
-        trie.insert(word);
-    }
-    
-    vector<bool> dp(s.length() + 1, false);
-    dp[0] = true;
-    
-    for (int i = 1; i <= s.length(); i++) {
-        for (int j = 0; j < i; j++) {
-            if (dp[j] && trie.search(s.substr(j, i - j))) {
-                dp[i] = true;
-                break;
-            }
-        }
-    }
-    
-    return dp[s.length()];
-}
-```
-
----
-
-## 🔢 Binary Trie
-
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Binary-Trie-XOR-Problems.webp" alt="Binary Trie for XOR Problems" width="650" height="350"/>
-</div>
-
-### 🎯 For XOR Problems
-
-```cpp
-class BinaryTrie {
-private:
-    struct Node {
-        Node* children[2];  // 0 and 1
-        
-        Node() {
-            children[0] = children[1] = nullptr;
-        }
-    };
-    
-    Node* root;
-    
-public:
-    BinaryTrie() {
-        root = new Node();
-    }
-    
-    void insert(int num) {
-        Node* curr = root;
-        for (int i = 31; i >= 0; i--) {
-            int bit = (num >> i) & 1;
-            if (!curr->children[bit]) {
-                curr->children[bit] = new Node();
-            }
-            curr = curr->children[bit];
-        }
-    }
-    
-    int findMaxXOR(int num) {
-        Node* curr = root;
-        int maxXOR = 0;
-        
-        for (int i = 31; i >= 0; i--) {
-            int bit = (num >> i) & 1;
-            int oppositeBit = 1 - bit;
-            
-            if (curr->children[oppositeBit]) {
-                maxXOR |= (1 << i);
-                curr = curr->children[oppositeBit];
-            } else {
-                curr = curr->children[bit];
-            }
+            current = current->children[c];
+            current->prefixCount++;
         }
         
-        return maxXOR;
+        current->isEndOfWord = true;
+        current->count++;
+    }
+    
+    // Count words with given prefix
+    int countWordsWithPrefix(string prefix) {
+        TrieNodeWithCount* current = root;
+        
+        for (char c : prefix) {
+            if (current->children.find(c) == current->children.end()) {
+                return 0;
+            }
+            current = current->children[c];
+        }
+        
+        return current->prefixCount;
+    }
+    
+    // Get all words with given prefix
+    vector<string> getWordsWithPrefix(string prefix) {
+        vector<string> result;
+        TrieNodeWithCount* current = root;
+        
+        // Navigate to prefix end
+        for (char c : prefix) {
+            if (current->children.find(c) == current->children.end()) {
+                return result;
+            }
+            current = current->children[c];
+        }
+        
+        // DFS to find all words
+        string currentWord = prefix;
+        dfs(current, currentWord, result);
+        
+        return result;
+    }
+    
+    // Find longest common prefix
+    string longestCommonPrefix(vector<string>& words) {
+        if (words.empty()) return "";
+        
+        // Build trie with all words
+        for (string& word : words) {
+            insert(word);
+        }
+        
+        string lcp = "";
+        TrieNodeWithCount* current = root;
+        
+        while (current->children.size() == 1 && !current->isEndOfWord) {
+            auto it = current->children.begin();
+            lcp += it->first;
+            current = it->second;
+        }
+        
+        return lcp;
+    }
+    
+private:
+    void dfs(TrieNodeWithCount* node, string& currentWord, vector<string>& result) {
+        if (node->isEndOfWord) {
+            result.push_back(currentWord);
+        }
+        
+        for (auto& pair : node->children) {
+            currentWord.push_back(pair.first);
+            dfs(pair.second, currentWord, result);
+            currentWord.pop_back();
+        }
     }
 };
 ```
 
-### 🔥 Maximum XOR Problem
+### Compressed Trie (Radix Tree)
 
 ```cpp
-int findMaximumXOR(vector<int>& nums) {
-    BinaryTrie trie;
-    int maxXOR = 0;
-    
-    for (int num : nums) {
-        trie.insert(num);
-        maxXOR = max(maxXOR, trie.findMaxXOR(num));
-    }
-    
-    return maxXOR;
-}
-```
-
----
-
-## 🏆 Interview Problems
-
-### ✅ Easy Level
-
-1. **Implement Trie (Prefix Tree)** - LeetCode 208
-2. **Longest Common Prefix** - LeetCode 14
-3. **Design Add and Search Words Data Structure** - LeetCode 211
-
-### ✅ Medium Level
-
-4. **Word Search II** - LeetCode 212
-5. **Replace Words** - LeetCode 648
-6. **Maximum XOR of Two Numbers** - LeetCode 421
-7. **Search Suggestions System** - LeetCode 1268
-8. **Word Break** - LeetCode 139
-
-### ✅ Hard Level
-
-9. **Word Break II** - LeetCode 140
-10. **Palindrome Pairs** - LeetCode 336
-11. **Stream of Characters** - LeetCode 1032
-
----
-
-## 🎨 Optimization Techniques
-
-### 1️⃣ Memory Optimization
-
-```cpp
-// Use map instead of array for sparse data
-class OptimizedTrieNode {
+class RadixTreeNode {
 public:
-    unordered_map<char, OptimizedTrieNode*> children;
-    bool isEndOfWord;
-    
-    OptimizedTrieNode() : isEndOfWord(false) {}
-};
-
-// Saves memory when alphabet is large or sparse
-```
-
----
-
-### 2️⃣ Compressed Trie (Radix Tree)
-
-```cpp
-class RadixNode {
-public:
+    unordered_map<char, RadixTreeNode*> children;
     string edgeLabel;
-    map<char, RadixNode*> children;
     bool isEndOfWord;
     
-    RadixNode(string label = "") : edgeLabel(label), isEndOfWord(false) {}
+    RadixTreeNode() : isEndOfWord(false) {}
 };
 
-// Compresses single-child paths
-// "hello" -> Root->"hello"->End instead of Root->h->e->l->l->o->End
+class RadixTree {
+private:
+    RadixTreeNode* root;
+    
+public:
+    RadixTree() {
+        root = new RadixTreeNode();
+    }
+    
+    void insert(string word) {
+        RadixTreeNode* current = root;
+        int i = 0;
+        
+        while (i < word.length()) {
+            char c = word[i];
+            
+            if (current->children.find(c) == current->children.end()) {
+                // Create new node with remaining string
+                RadixTreeNode* newNode = new RadixTreeNode();
+                newNode->edgeLabel = word.substr(i);
+                newNode->isEndOfWord = true;
+                current->children[c] = newNode;
+                return;
+            }
+            
+            RadixTreeNode* child = current->children[c];
+            string& edgeLabel = child->edgeLabel;
+            
+            // Find common prefix
+            int j = 0;
+            while (j < edgeLabel.length() && i + j < word.length() && 
+                   edgeLabel[j] == word[i + j]) {
+                j++;
+            }
+            
+            if (j == edgeLabel.length()) {
+                // Full edge match, continue
+                current = child;
+                i += j;
+            } else {
+                // Partial match, split edge
+                RadixTreeNode* splitNode = new RadixTreeNode();
+                splitNode->edgeLabel = edgeLabel.substr(j);
+                splitNode->isEndOfWord = child->isEndOfWord;
+                splitNode->children = child->children;
+                
+                child->edgeLabel = edgeLabel.substr(0, j);
+                child->isEndOfWord = (i + j == word.length());
+                child->children.clear();
+                child->children[edgeLabel[j]] = splitNode;
+                
+                if (i + j < word.length()) {
+                    RadixTreeNode* newNode = new RadixTreeNode();
+                    newNode->edgeLabel = word.substr(i + j);
+                    newNode->isEndOfWord = true;
+                    child->children[word[i + j]] = newNode;
+                }
+                
+                return;
+            }
+        }
+        
+        current->isEndOfWord = true;
+    }
+};
 ```
 
 ---
 
-### 3️⃣ Lazy Deletion
+## Applications
+
+### Real-World Use Cases
 
 ```cpp
-class LazyTrie {
-private:
-    struct Node {
-        Node* children[26];
-        bool isEnd;
-        bool isDeleted;  // Lazy deletion flag
+class TrieApplications {
+public:
+    // Autocomplete System
+    class AutocompleteSystem {
+    private:
+        AdvancedTrie trie;
         
-        Node() : isEnd(false), isDeleted(false) {
-            fill(children, children + 26, nullptr);
+    public:
+        AutocompleteSystem(vector<string>& sentences, vector<int>& times) {
+            for (int i = 0; i < sentences.size(); i++) {
+                for (int j = 0; j < times[i]; j++) {
+                    trie.insert(sentences[i]);
+                }
+            }
+        }
+        
+        vector<string> input(char c) {
+            static string currentInput = "";
+            
+            if (c == '#') {
+                trie.insert(currentInput);
+                currentInput = "";
+                return {};
+            }
+            
+            currentInput += c;
+            vector<string> suggestions = trie.getWordsWithPrefix(currentInput);
+            
+            // Sort by frequency and lexicographically
+            sort(suggestions.begin(), suggestions.end());
+            
+            if (suggestions.size() > 3) {
+                suggestions.resize(3);
+            }
+            
+            return suggestions;
         }
     };
     
-public:
-    bool search(string word) {
-        Node* node = findNode(word);
-        return node && node->isEnd && !node->isDeleted;
+    // Word Search II (using Trie)
+    vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
+        // Build trie with all words
+        Trie trie;
+        for (string& word : words) {
+            trie.insert(word);
+        }
+        
+        vector<string> result;
+        int m = board.size(), n = board[0].size();
+        
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                dfsWordSearch(board, i, j, trie.root, "", result);
+            }
+        }
+        
+        return result;
     }
     
-    void remove(string word) {
-        Node* node = findNode(word);
-        if (node && node->isEnd) {
-            node->isDeleted = true;  // Mark as deleted
+    // IP Address Routing (Longest Prefix Match)
+    class IPRouter {
+    private:
+        TrieNode* root;
+        
+    public:
+        IPRouter() {
+            root = new TrieNode();
         }
+        
+        void addRoute(string ipPrefix, int nextHop) {
+            TrieNode* current = root;
+            
+            for (char bit : ipPrefix) {
+                if (current->children.find(bit) == current->children.end()) {
+                    current->children[bit] = new TrieNode();
+                }
+                current = current->children[bit];
+            }
+            
+            current->isEndOfWord = true;
+            // Store next hop information
+        }
+        
+        int findRoute(string ipAddress) {
+            TrieNode* current = root;
+            int lastValidRoute = -1;
+            
+            for (char bit : ipAddress) {
+                if (current->isEndOfWord) {
+                    lastValidRoute = /* get stored next hop */;
+                }
+                
+                if (current->children.find(bit) == current->children.end()) {
+                    break;
+                }
+                current = current->children[bit];
+            }
+            
+            if (current->isEndOfWord) {
+                lastValidRoute = /* get stored next hop */;
+            }
+            
+            return lastValidRoute;
+        }
+    };
+    
+private:
+    void dfsWordSearch(vector<vector<char>>& board, int i, int j, 
+                      TrieNode* node, string word, vector<string>& result) {
+        if (i < 0 || i >= board.size() || j < 0 || j >= board[0].size() || 
+            board[i][j] == '#') {
+            return;
+        }
+        
+        char c = board[i][j];
+        if (node->children.find(c) == node->children.end()) {
+            return;
+        }
+        
+        node = node->children[c];
+        word += c;
+        
+        if (node->isEndOfWord) {
+            result.push_back(word);
+            node->isEndOfWord = false; // Avoid duplicates
+        }
+        
+        board[i][j] = '#'; // Mark as visited
+        
+        // Explore all 4 directions
+        dfsWordSearch(board, i+1, j, node, word, result);
+        dfsWordSearch(board, i-1, j, node, word, result);
+        dfsWordSearch(board, i, j+1, node, word, result);
+        dfsWordSearch(board, i, j-1, node, word, result);
+        
+        board[i][j] = c; // Restore
+    }
+};
+```
+
+### Application Areas
+
+```mermaid
+flowchart TD
+    A["Trie Applications"] --> B["Text Processing"]
+    A --> C["Network Systems"]
+    A --> D["Search Systems"]
+    A --> E["Data Compression"]
+    
+    B --> F["Autocomplete"]
+    B --> G["Spell checking"]
+    B --> H["Word games"]
+    
+    C --> I["IP routing"]
+    C --> J["URL matching"]
+    C --> K["DNS resolution"]
+    
+    D --> L["Search suggestions"]
+    D --> M["Prefix matching"]
+    D --> N["Full-text search"]
+    
+    E --> O["Huffman coding"]
+    E --> P["Dictionary compression"]
+    E --> Q["Pattern matching"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef applications fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef text fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef network fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef search fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef compression fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A applications
+    class B,F,G,H text
+    class C,I,J,K network
+    class D,L,M,N search
+    class E,O,P,Q compression
+```
+
+---
+
+## Interview Problems
+
+### Common Trie Problems
+
+```cpp
+class TrieInterviewProblems {
+public:
+    // Replace Words (LeetCode 648)
+    string replaceWords(vector<string>& dictionary, string sentence) {
+        Trie trie;
+        for (string& root : dictionary) {
+            trie.insert(root);
+        }
+        
+        stringstream ss(sentence);
+        string word, result;
+        
+        while (ss >> word) {
+            if (!result.empty()) result += " ";
+            result += findRoot(trie, word);
+        }
+        
+        return result;
+    }
+    
+    // Map Sum Pairs (LeetCode 677)
+    class MapSum {
+    private:
+        TrieNodeWithCount* root;
+        unordered_map<string, int> keyValues;
+        
+    public:
+        MapSum() {
+            root = new TrieNodeWithCount();
+        }
+        
+        void insert(string key, int val) {
+            int delta = val - keyValues[key];
+            keyValues[key] = val;
+            
+            TrieNodeWithCount* current = root;
+            for (char c : key) {
+                if (current->children.find(c) == current->children.end()) {
+                    current->children[c] = new TrieNodeWithCount();
+                }
+                current = current->children[c];
+                current->prefixCount += delta;
+            }
+        }
+        
+        int sum(string prefix) {
+            TrieNodeWithCount* current = root;
+            for (char c : prefix) {
+                if (current->children.find(c) == current->children.end()) {
+                    return 0;
+                }
+                current = current->children[c];
+            }
+            return current->prefixCount;
+        }
+    };
+    
+    // Word Search II (LeetCode 212)
+    vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
+        Trie trie;
+        for (string& word : words) {
+            trie.insert(word);
+        }
+        
+        vector<string> result;
+        int m = board.size(), n = board[0].size();
+        
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                dfs(board, i, j, trie.getRoot(), "", result);
+            }
+        }
+        
+        return result;
+    }
+    
+private:
+    string findRoot(Trie& trie, string& word) {
+        TrieNode* current = trie.getRoot();
+        string prefix = "";
+        
+        for (char c : word) {
+            if (current->children.find(c) == current->children.end()) {
+                return word;
+            }
+            
+            prefix += c;
+            current = current->children[c];
+            
+            if (current->isEndOfWord) {
+                return prefix;
+            }
+        }
+        
+        return word;
+    }
+    
+    void dfs(vector<vector<char>>& board, int i, int j, 
+             TrieNode* node, string word, vector<string>& result) {
+        if (i < 0 || i >= board.size() || j < 0 || j >= board[0].size() || 
+            board[i][j] == '#') {
+            return;
+        }
+        
+        char c = board[i][j];
+        if (node->children.find(c) == node->children.end()) {
+            return;
+        }
+        
+        node = node->children[c];
+        word += c;
+        
+        if (node->isEndOfWord) {
+            result.push_back(word);
+            node->isEndOfWord = false;
+        }
+        
+        board[i][j] = '#';
+        
+        dfs(board, i+1, j, node, word, result);
+        dfs(board, i-1, j, node, word, result);
+        dfs(board, i, j+1, node, word, result);
+        dfs(board, i, j-1, node, word, result);
+        
+        board[i][j] = c;
     }
 };
 ```
 
 ---
 
-## ⏱️ Complexity Analysis
+## Best Practices
 
-### Time Complexity
+### Algorithm Selection Guidelines
 
-| Operation | Best Case | Average Case | Worst Case |
-|:----------|:----------|:-------------|:-----------|
-| **Insert** | O(L) | O(L) | O(L) |
-| **Search** | O(L) | O(L) | O(L) |
-| **Delete** | O(L) | O(L) | O(L) |
-| **Prefix Search** | O(L) | O(L) | O(L) |
-| **Get All Words** | O(N×M) | O(N×M) | O(N×M) |
+```mermaid
+flowchart TD
+    A["Choose Trie Implementation"] --> B{"Character Set Size?"}
+    B -->|"Small (26 letters)"| C["Array-based Trie"]
+    B -->|"Large/Unicode"| D["Map-based Trie"]
+    
+    A --> E{"Memory Constraints?"}
+    E -->|"Tight"| F["Compressed Trie"]
+    E -->|"Normal"| G["Standard Trie"]
+    
+    A --> H{"Need Counts?"}
+    H -->|"Yes"| I["Enhanced Trie"]
+    H -->|"No"| J["Basic Trie"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef selection fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef charset fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef memory fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef features fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    class A selection
+    class B,C,D charset
+    class E,F,G memory
+    class H,I,J features
+```
 
-*L = length of word, N = number of words, M = average word length*
+### Common Pitfalls and Solutions
 
-### Space Complexity
+```cpp
+class TrieBestPractices {
+public:
+    // ✅ Proper memory management
+    class SafeTrie {
+    private:
+        TrieNode* root;
+        
+    public:
+        SafeTrie() {
+            root = new TrieNode();
+        }
+        
+        ~SafeTrie() {
+            deleteTrie(root);
+        }
+        
+    private:
+        void deleteTrie(TrieNode* node) {
+            if (!node) return;
+            
+            for (auto& pair : node->children) {
+                deleteTrie(pair.second);
+            }
+            delete node;
+        }
+    };
+    
+    // ✅ Handle edge cases
+    bool safeSearch(string word) {
+        if (word.empty()) return false;
+        
+        TrieNode* current = root;
+        for (char c : word) {
+            if (current->children.find(c) == current->children.end()) {
+                return false;
+            }
+            current = current->children[c];
+        }
+        
+        return current && current->isEndOfWord;
+    }
+    
+    // ✅ Optimize for specific character sets
+    class OptimizedTrie {
+    private:
+        struct TrieNode {
+            TrieNode* children[26];
+            bool isEndOfWord;
+            
+            TrieNode() : isEndOfWord(false) {
+                memset(children, 0, sizeof(children));
+            }
+        };
+        
+        TrieNode* root;
+        
+    public:
+        void insert(string word) {
+            TrieNode* current = root;
+            
+            for (char c : word) {
+                int index = c - 'a';
+                if (!current->children[index]) {
+                    current->children[index] = new TrieNode();
+                }
+                current = current->children[index];
+            }
+            
+            current->isEndOfWord = true;
+        }
+    };
+    
+private:
+    TrieNode* root;
+};
+```
 
-| Scenario | Space Complexity |
-|:---------|:-----------------|
-| **Worst Case** | O(ALPHABET_SIZE × N × M) |
-| **Average Case** | O(N × M) |
-| **Best Case (Compressed)** | O(N × M) |
+### Performance Optimization Tips
+
+| Technique | Description | When to Use |
+|-----------|-------------|-------------|
+| **Array vs Map** | Use arrays for small character sets | Lowercase letters only |
+| **Lazy Deletion** | Mark as deleted instead of removing | Frequent insertions/deletions |
+| **Path Compression** | Compress single-child paths | Memory optimization |
+| **Bulk Operations** | Batch multiple operations | Large datasets |
 
 ---
 
-## 💎 Best Practices
+## Summary
 
-### ✅ Do's
+**Tries** are specialized tree structures optimized for string operations and prefix matching. Key insights:
 
-```
-✓ Use Tries for prefix-heavy operations
-✓ Consider memory usage for large datasets
-✓ Implement lazy deletion for frequent removals
-✓ Use compressed tries for sparse data
-✓ Add frequency tracking when needed
-✓ Handle case sensitivity appropriately
-```
+### Essential Concepts
+- **Prefix Tree Structure**: Each path from root represents a string prefix
+- **Character-based Nodes**: Each node represents a character in the alphabet
+- **Shared Prefixes**: Common prefixes stored once for space efficiency
+- **End-of-Word Markers**: Boolean flags to mark complete words
 
-### ❌ Don'ts
+### Core Applications
+- **Autocomplete Systems**: Fast prefix matching for search suggestions
+- **Spell Checkers**: Dictionary lookups and word validation
+- **IP Routing**: Longest prefix matching for network routing
+- **Text Processing**: Word games, pattern matching, and text analysis
 
-```
-✗ Don't use for small datasets (overhead too high)
-✗ Avoid for non-string data without good reason
-✗ Don't ignore memory constraints
-✗ Avoid deep recursion in deletion
-✗ Don't forget to handle edge cases (empty strings)
-```
+### Best Practices
+- Choose appropriate node implementation based on character set size
+- Implement proper memory management to prevent leaks
+- Use compressed tries for memory-constrained environments
+- Consider lazy deletion for frequently modified tries
+- Optimize for specific use cases (arrays vs maps)
 
----
-
-## 🎯 When to Use Tries
-
-### ✅ Perfect For:
-- **Autocomplete systems**
-- **Spell checkers**
-- **IP routing tables**
-- **Phone directories**
-- **Dictionary implementations**
-- **String matching with prefixes**
-
-### ❌ Avoid When:
-- **Small datasets** (hash table better)
-- **Memory is critical constraint**
-- **No prefix operations needed**
-- **Frequent random access** (array/hash better)
+> **Master's Insight**: Tries excel at prefix-based operations by trading space for time. They transform string matching from O(n×m) comparisons to O(m) character traversals, making them invaluable for text processing applications.
 
 ---
-
-## 🎓 Key Takeaways
 
 <div align="center">
 
-### 🌟 Master These Concepts
+**🌲 Master Trie Structures • Build Prefix Solutions • Process Strings Efficiently**
 
-</div>
-
-```
-1. 🌳 Trie = Tree + String storage + Prefix operations
-2. 🔥 O(L) operations where L = word length
-3. ⚡ No collisions unlike hash tables
-4. 🎯 Perfect for autocomplete and spell check
-5. 💡 Binary trie for XOR problems
-6. 🗜️ Compress for memory optimization
-7. 📊 Track frequency for advanced features
-8. 🔍 Essential for string algorithm interviews
-```
-
----
-
-## 📚 Practice Resources
-
-- **LeetCode**: Trie tag problems
-- **GeeksforGeeks**: Trie implementation tutorials
-- **InterviewBit**: String and Trie problems
-- **HackerRank**: Advanced string challenges
-
----
-
-## 🎯 Interview Tips
-
-1. **Start Simple**: Implement basic insert/search first
-2. **Discuss Trade-offs**: Memory vs time complexity
-3. **Handle Edge Cases**: Empty strings, null inputs
-4. **Optimize**: Mention compression techniques
-5. **Real Applications**: Connect to autocomplete, spell check
-6. **Code Clean**: Use clear variable names and comments
-
----
-
-<div align="center">
-
-### 🔥 One-Line Summary
-
-**Trie = Ultimate string storage structure for lightning-fast prefix operations and elegant string algorithms**
-
----
-
-**💻 Master Tries, master strings!**
-
-*"In the world of strings, Trie is the king of prefix operations."*
+*From Theory to Practice • Characters to Words • Understanding to Mastery*
 
 </div>

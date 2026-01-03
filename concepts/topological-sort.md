@@ -1,228 +1,225 @@
-# 🔄 Topological Sort — Complete Professional Guide
+# Topological Sort — Complete Professional Guide
 
 <div align="center">
 
-<img src="https://scaler.com/topics/images/practice-problem-based-on-topological-sort-addition-seven.webp" alt="Topological Sort" width="600" height="300"/>
+![Topological Sort](https://img.shields.io/badge/Topological_Sort-Graph_Ordering-FF6B6B?style=for-the-badge&logo=databricks&logoColor=white)
+![Difficulty](https://img.shields.io/badge/Difficulty-Intermediate-4ECDC4?style=for-the-badge)
+![Importance](https://img.shields.io/badge/Importance-High-darkred?style=for-the-badge)
 
-![Topological Sort](https://img.shields.io/badge/Topological_Sort-Graph_Ordering-4ECDC4?style=for-the-badge&logo=sort&logoColor=white)
-![Difficulty](https://img.shields.io/badge/Difficulty-Intermediate-yellow?style=for-the-badge)
-![Importance](https://img.shields.io/badge/Importance-High-red?style=for-the-badge)
-
-*Master dependency resolution and task scheduling through linear ordering of directed acyclic graphs*
+**Master dependency resolution and task scheduling through linear ordering of directed acyclic graphs**
 
 </div>
 
 ---
 
-## 📑 Table of Contents
+## Table of Contents
 
-1. [Introduction](#-introduction)
-2. [Prerequisites & Properties](#-prerequisites--properties)
-3. [Kahn's Algorithm (BFS)](#-kahns-algorithm-bfs)
-4. [DFS-Based Approach](#-dfs-based-approach)
-5. [Cycle Detection](#-cycle-detection)
-6. [Algorithm Comparison](#-algorithm-comparison)
-7. [Applications](#-applications)
-8. [Advanced Topics](#-advanced-topics)
-9. [Interview Problems](#-interview-problems)
-10. [Complexity Analysis](#-complexity-analysis)
-11. [Implementation Variations](#-implementation-variations)
-12. [Best Practices](#-best-practices)
+1. [Introduction](#introduction)
+2. [Core Concepts](#core-concepts)
+3. [Kahn's Algorithm](#kahns-algorithm)
+4. [DFS-Based Approach](#dfs-based-approach)
+5. [Applications](#applications)
+6. [Interview Problems](#interview-problems)
+7. [Best Practices](#best-practices)
 
 ---
 
-## 🎯 Introduction
+## Introduction
 
-**Topological Sort** is a linear ordering of vertices in a Directed Acyclic Graph (DAG) such that for every directed edge u → v, vertex u appears before vertex v in the ordering.
+**Topological Sort** is a linear ordering of vertices in a Directed Acyclic Graph (DAG) such that for every directed edge u → v, vertex u appears before vertex v in the ordering. This fundamental algorithm is essential for dependency resolution and task scheduling.
 
-### 🎆 Topological Sort Flow
+<div align="center">
+<img src="https://camo.githubusercontent.com/0ca87d9de119ecef215d9bb25ae7c80dae4aca9180a1e248c6e0b5899de2a709/68747470733a2f2f7363616c65722e636f6d2f746f706963732f696d616765732f70726163746963652d70726f626c656d2d62617365642d6f6e2d746f706f6c6f676963616c2d736f72742d6164646974696f6e2d736576656e2e77656270" alt="Topological Sort Applications" width="650" height="400"/>
+</div>
+
+### Core Concept
 
 ```mermaid
-graph TD
-    A[Topological Sort] --> B[Check DAG]
-    B -->|Yes| C[Choose Algorithm]
-    B -->|No| D[Error: Cycle Exists]
+flowchart TD
+    A["🔄 Topological Sort"] --> B["DAG Requirement"]
+    A --> C["Linear Ordering"]
+    A --> D["Dependency Resolution"]
+    A --> E["Algorithm Types"]
     
-    C --> E[Kahn's Algorithm]
-    C --> F[DFS Algorithm]
+    B --> F["Directed graph"]
+    B --> G["No cycles"]
+    B --> H["Finite vertices"]
     
-    E --> G[Calculate In-degrees]
-    G --> H[Queue Zero In-degree]
-    H --> I[Process & Update]
+    C --> I["u → v implies u before v"]
+    C --> J["Multiple valid orderings"]
+    C --> K["Respects dependencies"]
     
-    F --> J[DFS Traversal]
-    J --> K[Post-order Stack]
-    K --> L[Reverse Order]
+    D --> L["Course prerequisites"]
+    D --> M["Build systems"]
+    D --> N["Task scheduling"]
     
-    I --> M[Linear Ordering]
-    L --> M
-```
-
-### 🔑 Key Concept
-
-```
-For edge u → v:
-u must come before v in topological order
-
-Example:
-If A depends on B, then B appears before A in the sorted order
-```
-
-### 💡 Real-World Analogy
-
-Think of it as **dependency resolution**:
-- **Course Prerequisites**: Take Math before Physics
-- **Build Systems**: Compile dependencies before main program
-- **Task Scheduling**: Complete prerequisite tasks first
-
----
-
-## 📋 Prerequisites & Properties
-
-### ✅ Requirements
-
-1. **Directed Graph**: Edges have direction
-2. **Acyclic**: No cycles allowed (DAG)
-3. **Finite**: Graph must be finite
-
-### 🎯 Properties
-
-```
-✓ Only exists for DAGs
-✓ Multiple valid orderings possible
-✓ Linear time complexity O(V + E)
-✓ Essential for dependency problems
-✗ Impossible if cycles exist
-```
-
-### 🚫 When Topological Sort is NOT Possible
-
-```
-Cycle Example:
-A → B → C → A
-
-No valid ordering exists because:
-- A must come before B
-- B must come before C  
-- C must come before A
-- Contradiction!
+    E --> O["Kahn's Algorithm (BFS)"]
+    E --> P["DFS-based approach"]
+    E --> Q["Both O(V + E)"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef topo fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef dag fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef ordering fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef resolution fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef algorithms fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A topo
+    class B,F,G,H dag
+    class C,I,J,K ordering
+    class D,L,M,N resolution
+    class E,O,P,Q algorithms
 ```
 
 ---
 
-## 🔄 Kahn's Algorithm (BFS)
+## Core Concepts
 
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/Kahns-Algorithm-BFS.webp" alt="Kahn's Algorithm BFS" width="700" height="400"/>
-</div>
+### Essential Requirements
 
-### 🎯 Core Idea
+```mermaid
+flowchart TD
+    A["Topological Sort Requirements"] --> B["DAG Properties"]
+    A --> C["Ordering Rules"]
+    A --> D["Algorithm Choice"]
+    
+    B --> E["Directed edges"]
+    B --> F["No cycles"]
+    B --> G["Finite vertices"]
+    
+    C --> H["Dependency respect"]
+    C --> I["Linear sequence"]
+    C --> J["Multiple valid orders"]
+    
+    D --> K["Kahn's (BFS-based)"]
+    D --> L["DFS-based"]
+    D --> M["Both O(V + E)"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef requirements fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef properties fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef rules fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef choice fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    class A requirements
+    class B,E,F,G properties
+    class C,H,I,J rules
+    class D,K,L,M choice
+```
 
-**Process nodes with zero incoming edges first**, then remove them and update dependencies.
+### Key Properties
 
-### 📊 Algorithm Steps
+| Property | Description | Importance |
+|----------|-------------|------------|
+| **DAG Only** | Works only on Directed Acyclic Graphs | ✅ Critical |
+| **Linear Order** | Produces sequence respecting dependencies | ✅ Essential |
+| **Multiple Solutions** | May have multiple valid orderings | ⚠️ Consider |
+| **Cycle Detection** | Can detect if topological sort is possible | ✅ Useful |
 
-1. **Calculate in-degrees** of all vertices
-2. **Enqueue vertices** with in-degree = 0
-3. **Process queue**: Remove vertex, add to result
-4. **Update neighbors**: Decrease their in-degrees
-5. **Repeat** until queue is empty
+---
 
-### 💻 Implementation
+## Kahn's Algorithm
+
+### BFS-Based Approach
+
+```mermaid
+flowchart TD
+    A["Kahn's Algorithm"] --> B["Calculate In-degrees"]
+    B --> C["Queue Zero In-degree Nodes"]
+    C --> D["Process Queue"]
+    D --> E["Remove Node"]
+    E --> F["Update Neighbors"]
+    F --> G["Add Zero In-degree to Queue"]
+    G --> H{"Queue Empty?"}
+    H -->|No| D
+    H -->|Yes| I["Check Cycle"]
+    I --> J["Return Result"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef algorithm fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef process fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef update fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef result fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    class A algorithm
+    class B,C,D,E process
+    class F,G update
+    class H,I,J result
+```
+
+### Implementation
 
 ```cpp
-vector<int> topologicalSort(int V, vector<vector<int>>& adj) {
-    // Step 1: Calculate in-degrees
-    vector<int> indegree(V, 0);
-    for (int u = 0; u < V; u++) {
-        for (int v : adj[u]) {
-            indegree[v]++;
-        }
-    }
-    
-    // Step 2: Initialize queue with zero in-degree vertices
-    queue<int> q;
-    for (int i = 0; i < V; i++) {
-        if (indegree[i] == 0) {
-            q.push(i);
-        }
-    }
-    
-    // Step 3: Process vertices
-    vector<int> topoOrder;
-    while (!q.empty()) {
-        int u = q.front();
-        q.pop();
-        topoOrder.push_back(u);
-        
-        // Step 4: Update neighbors
-        for (int v : adj[u]) {
-            indegree[v]--;
-            if (indegree[v] == 0) {
-                q.push(v);
+class KahnsAlgorithm {
+public:
+    vector<int> topologicalSort(int V, vector<vector<int>>& adj) {
+        // Calculate in-degrees
+        vector<int> indegree(V, 0);
+        for (int u = 0; u < V; u++) {
+            for (int v : adj[u]) {
+                indegree[v]++;
             }
         }
+        
+        // Initialize queue with zero in-degree vertices
+        queue<int> q;
+        for (int i = 0; i < V; i++) {
+            if (indegree[i] == 0) {
+                q.push(i);
+            }
+        }
+        
+        // Process vertices
+        vector<int> topoOrder;
+        while (!q.empty()) {
+            int u = q.front();
+            q.pop();
+            topoOrder.push_back(u);
+            
+            // Update neighbors
+            for (int v : adj[u]) {
+                indegree[v]--;
+                if (indegree[v] == 0) {
+                    q.push(v);
+                }
+            }
+        }
+        
+        // Check for cycles
+        return topoOrder.size() == V ? topoOrder : vector<int>();
     }
-    
-    return topoOrder;
-}
-```
-
-### 🔍 Step-by-Step Example
-
-```
-Graph: 0→1, 0→2, 1→3, 2→3
-
-Step 1: Calculate in-degrees
-indegree = [0, 1, 1, 2]
-
-Step 2: Queue vertices with in-degree 0
-queue = [0]
-
-Step 3: Process 0
-- Add 0 to result: [0]
-- Update neighbors: indegree[1]=0, indegree[2]=0
-- queue = [1, 2]
-
-Step 4: Process 1
-- Add 1 to result: [0, 1]  
-- Update neighbors: indegree[3]=1
-- queue = [2]
-
-Step 5: Process 2
-- Add 2 to result: [0, 1, 2]
-- Update neighbors: indegree[3]=0
-- queue = [3]
-
-Step 6: Process 3
-- Add 3 to result: [0, 1, 2, 3]
-- queue = []
-
-Result: [0, 1, 2, 3]
+};
 ```
 
 ---
 
-## 🌳 DFS-Based Approach
+## DFS-Based Approach
 
-<div align="center">
-<img src="https://media.geeksforgeeks.org/wp-content/uploads/20240731124259/DFS-Topological-Sort.webp" alt="DFS Topological Sort" width="650" height="350"/>
-</div>
+### Recursive Implementation
 
-### 🎯 Core Idea
+```mermaid
+flowchart TD
+    A["DFS Topological Sort"] --> B["Start DFS"]
+    B --> C["Visit Unvisited Nodes"]
+    C --> D["Recursively Visit Neighbors"]
+    D --> E["Add to Stack After Processing"]
+    E --> F["Continue DFS"]
+    F --> G{"All Nodes Visited?"}
+    G -->|No| C
+    G -->|Yes| H["Pop Stack for Result"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef dfs fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef visit fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef process fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef result fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    class A dfs
+    class B,C,F visit
+    class D,E process
+    class G,H result
+```
 
-**Use DFS and add vertices to result in reverse order of completion**.
-
-### 📊 Algorithm Steps
-
-1. **Perform DFS** on all unvisited vertices
-2. **After visiting all neighbors**, add vertex to stack
-3. **Pop from stack** to get topological order
-
-### 💻 Implementation
+### Implementation
 
 ```cpp
-class TopologicalSortDFS {
+class DFSTopologicalSort {
 private:
     void dfs(int u, vector<vector<int>>& adj, vector<bool>& visited, stack<int>& topoStack) {
         visited[u] = true;
@@ -262,147 +259,16 @@ public:
 };
 ```
 
-### 🔍 DFS Execution Trace
-
-```
-Graph: 0→1, 0→2, 1→3, 2→3
-
-DFS(0):
-  DFS(1):
-    DFS(3): stack = [3]
-  stack = [3, 1]
-  DFS(2):
-    3 already visited
-  stack = [3, 1, 2]
-stack = [3, 1, 2, 0]
-
-Pop stack: [0, 2, 1, 3]
-```
-
 ---
 
-## 🔍 Cycle Detection
+## Applications
 
-### 🎯 Using Kahn's Algorithm
-
-```cpp
-bool hasCycle(int V, vector<vector<int>>& adj) {
-    vector<int> topoOrder = topologicalSort(V, adj);
-    return topoOrder.size() != V;  // If size < V, cycle exists
-}
-```
-
-### 🎯 Using DFS (Three Colors)
+### Real-World Use Cases
 
 ```cpp
-class CycleDetection {
-private:
-    enum Color { WHITE, GRAY, BLACK };
-    
-    bool dfs(int u, vector<vector<int>>& adj, vector<Color>& color) {
-        color[u] = GRAY;  // Currently processing
-        
-        for (int v : adj[u]) {
-            if (color[v] == GRAY) {
-                return true;  // Back edge found - cycle detected
-            }
-            if (color[v] == WHITE && dfs(v, adj, color)) {
-                return true;
-            }
-        }
-        
-        color[u] = BLACK;  // Finished processing
-        return false;
-    }
-    
+class TopologicalSortApplications {
 public:
-    bool hasCycle(int V, vector<vector<int>>& adj) {
-        vector<Color> color(V, WHITE);
-        
-        for (int i = 0; i < V; i++) {
-            if (color[i] == WHITE) {
-                if (dfs(i, adj, color)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-};
-```
-
----
-
-## 🆚 Algorithm Comparison
-
-### 📊 Kahn's vs DFS Comparison
-
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th>Kahn's Algorithm (BFS)</th>
-<th>DFS-Based</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Approach</strong></td>
-<td>In-degree based</td>
-<td>Recursion based</td>
-</tr>
-<tr>
-<td><strong>Data Structure</strong></td>
-<td>Queue</td>
-<td>Stack (implicit/explicit)</td>
-</tr>
-<tr>
-<td><strong>Cycle Detection</strong></td>
-<td>Easy (count vertices)</td>
-<td>Requires color coding</td>
-</tr>
-<tr>
-<td><strong>Space Complexity</strong></td>
-<td>O(V)</td>
-<td>O(V) + recursion stack</td>
-</tr>
-<tr>
-<td><strong>Implementation</strong></td>
-<td>Iterative</td>
-<td>Recursive</td>
-</tr>
-<tr>
-<td><strong>Preferred For</strong></td>
-<td>Cycle detection, interviews</td>
-<td>Simple implementation</td>
-</tr>
-</tbody>
-</table>
-
-### 🎯 When to Use Which?
-
-```
-Use Kahn's Algorithm when:
-✓ Need cycle detection
-✓ Want iterative solution
-✓ Processing dependencies incrementally
-
-Use DFS when:
-✓ Simple implementation preferred
-✓ Part of larger DFS traversal
-✓ Memory constraints (no extra indegree array)
-```
-
----
-
-## 🎯 Applications
-
-### 🌐 Real-World Applications
-
-#### 1️⃣ Course Scheduling
-```cpp
-class CourseScheduler {
-public:
+    // Course Schedule II
     vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
         vector<vector<int>> adj(numCourses);
         vector<int> indegree(numCourses, 0);
@@ -436,59 +302,8 @@ public:
         
         return order.size() == numCourses ? order : vector<int>();
     }
-};
-```
-
-#### 2️⃣ Build System Dependencies
-```cpp
-class BuildSystem {
-public:
-    vector<string> getBuildOrder(vector<string>& projects, 
-                                vector<pair<string, string>>& dependencies) {
-        unordered_map<string, vector<string>> graph;
-        unordered_map<string, int> indegree;
-        
-        // Initialize
-        for (string& project : projects) {
-            indegree[project] = 0;
-        }
-        
-        // Build dependency graph
-        for (auto& dep : dependencies) {
-            graph[dep.first].push_back(dep.second);
-            indegree[dep.second]++;
-        }
-        
-        // Topological sort
-        queue<string> q;
-        for (auto& p : indegree) {
-            if (p.second == 0) {
-                q.push(p.first);
-            }
-        }
-        
-        vector<string> buildOrder;
-        while (!q.empty()) {
-            string current = q.front();
-            q.pop();
-            buildOrder.push_back(current);
-            
-            for (string& dependent : graph[current]) {
-                if (--indegree[dependent] == 0) {
-                    q.push(dependent);
-                }
-            }
-        }
-        
-        return buildOrder.size() == projects.size() ? buildOrder : vector<string>();
-    }
-};
-```
-
-#### 3️⃣ Task Scheduling
-```cpp
-class TaskScheduler {
-public:
+    
+    // Task Scheduling with Dependencies
     bool canFinish(int numTasks, vector<vector<int>>& dependencies) {
         vector<vector<int>> adj(numTasks);
         vector<int> indegree(numTasks, 0);
@@ -523,389 +338,311 @@ public:
 };
 ```
 
----
+### Application Areas
 
-## 🎓 Advanced Topics
-
-### 🔥 Topological Sort + Dynamic Programming
-
-#### Longest Path in DAG
-```cpp
-int longestPath(int V, vector<vector<pair<int, int>>>& adj) {
-    vector<int> topoOrder = topologicalSort(V, adj);
-    vector<int> dist(V, INT_MIN);
+```mermaid
+flowchart TD
+    A["Topological Sort Applications"] --> B["Academic"]
+    A --> C["Software Development"]
+    A --> D["Project Management"]
+    A --> E["System Design"]
     
-    // Initialize source
-    dist[topoOrder[0]] = 0;
+    B --> F["Course scheduling"]
+    B --> G["Prerequisite planning"]
     
-    // Process vertices in topological order
-    for (int u : topoOrder) {
-        if (dist[u] != INT_MIN) {
-            for (auto& edge : adj[u]) {
-                int v = edge.first;
-                int weight = edge.second;
-                dist[v] = max(dist[v], dist[u] + weight);
-            }
-        }
-    }
+    C --> H["Build systems"]
+    C --> I["Dependency resolution"]
+    C --> J["Package management"]
     
-    return *max_element(dist.begin(), dist.end());
-}
-```
-
-#### Counting Paths in DAG
-```cpp
-int countPaths(int V, vector<vector<int>>& adj, int source, int target) {
-    vector<int> topoOrder = topologicalSort(V, adj);
-    vector<int> pathCount(V, 0);
-    pathCount[source] = 1;
+    D --> K["Task scheduling"]
+    D --> L["Resource allocation"]
+    D --> M["Timeline planning"]
     
-    for (int u : topoOrder) {
-        for (int v : adj[u]) {
-            pathCount[v] += pathCount[u];
-        }
-    }
+    E --> N["Service dependencies"]
+    E --> O["Database migrations"]
+    E --> P["Configuration management"]
     
-    return pathCount[target];
-}
-```
-
-### 🎪 Lexicographically Smallest Topological Order
-
-```cpp
-vector<int> lexicographicallySmallest(int V, vector<vector<int>>& adj) {
-    vector<int> indegree(V, 0);
-    for (int u = 0; u < V; u++) {
-        for (int v : adj[u]) {
-            indegree[v]++;
-        }
-    }
-    
-    // Use min-heap instead of queue
-    priority_queue<int, vector<int>, greater<int>> pq;
-    for (int i = 0; i < V; i++) {
-        if (indegree[i] == 0) {
-            pq.push(i);
-        }
-    }
-    
-    vector<int> result;
-    while (!pq.empty()) {
-        int u = pq.top();
-        pq.pop();
-        result.push_back(u);
-        
-        for (int v : adj[u]) {
-            if (--indegree[v] == 0) {
-                pq.push(v);
-            }
-        }
-    }
-    
-    return result;
-}
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef applications fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef academic fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef software fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef project fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    classDef system fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    class A applications
+    class B,F,G academic
+    class C,H,I,J software
+    class D,K,L,M project
+    class E,N,O,P system
 ```
 
 ---
 
-## 🏆 Interview Problems
+## Interview Problems
 
-### ✅ Common LeetCode Problems
-
-1. **Course Schedule** (LeetCode 207)
-2. **Course Schedule II** (LeetCode 210)
-3. **Alien Dictionary** (LeetCode 269)
-4. **Minimum Height Trees** (LeetCode 310)
-5. **Parallel Courses** (LeetCode 1136)
-
-### 🔥 Sample Problem: Alien Dictionary
+### Common Problem Patterns
 
 ```cpp
-string alienOrder(vector<string>& words) {
-    unordered_map<char, unordered_set<char>> graph;
-    unordered_map<char, int> indegree;
-    
-    // Initialize indegree for all characters
-    for (string& word : words) {
-        for (char c : word) {
-            indegree[c] = 0;
-        }
-    }
-    
-    // Build graph from adjacent words
-    for (int i = 0; i < words.size() - 1; i++) {
-        string word1 = words[i], word2 = words[i + 1];
+class InterviewProblems {
+public:
+    // Alien Dictionary
+    string alienOrder(vector<string>& words) {
+        unordered_map<char, unordered_set<char>> graph;
+        unordered_map<char, int> indegree;
         
-        // Check for invalid case
-        if (word1.length() > word2.length() && 
-            word1.substr(0, word2.length()) == word2) {
-            return "";
+        // Initialize indegree for all characters
+        for (string& word : words) {
+            for (char c : word) {
+                indegree[c] = 0;
+            }
         }
         
-        // Find first different character
-        for (int j = 0; j < min(word1.length(), word2.length()); j++) {
-            if (word1[j] != word2[j]) {
-                if (graph[word1[j]].find(word2[j]) == graph[word1[j]].end()) {
-                    graph[word1[j]].insert(word2[j]);
-                    indegree[word2[j]]++;
+        // Build graph from adjacent words
+        for (int i = 0; i < words.size() - 1; i++) {
+            string word1 = words[i], word2 = words[i + 1];
+            
+            // Check for invalid case
+            if (word1.length() > word2.length() && 
+                word1.substr(0, word2.length()) == word2) {
+                return "";
+            }
+            
+            // Find first different character
+            for (int j = 0; j < min(word1.length(), word2.length()); j++) {
+                if (word1[j] != word2[j]) {
+                    if (graph[word1[j]].find(word2[j]) == graph[word1[j]].end()) {
+                        graph[word1[j]].insert(word2[j]);
+                        indegree[word2[j]]++;
+                    }
+                    break;
                 }
-                break;
             }
         }
-    }
-    
-    // Topological sort
-    queue<char> q;
-    for (auto& p : indegree) {
-        if (p.second == 0) {
-            q.push(p.first);
-        }
-    }
-    
-    string result;
-    while (!q.empty()) {
-        char c = q.front();
-        q.pop();
-        result += c;
         
-        for (char next : graph[c]) {
-            if (--indegree[next] == 0) {
-                q.push(next);
+        // Topological sort
+        queue<char> q;
+        for (auto& p : indegree) {
+            if (p.second == 0) {
+                q.push(p.first);
             }
         }
+        
+        string result;
+        while (!q.empty()) {
+            char c = q.front();
+            q.pop();
+            result += c;
+            
+            for (char next : graph[c]) {
+                if (--indegree[next] == 0) {
+                    q.push(next);
+                }
+            }
+        }
+        
+        return result.length() == indegree.size() ? result : "";
     }
     
-    return result.length() == indegree.size() ? result : "";
-}
+    // Minimum Height Trees
+    vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
+        if (n == 1) return {0};
+        
+        vector<vector<int>> graph(n);
+        vector<int> degree(n, 0);
+        
+        for (auto& edge : edges) {
+            graph[edge[0]].push_back(edge[1]);
+            graph[edge[1]].push_back(edge[0]);
+            degree[edge[0]]++;
+            degree[edge[1]]++;
+        }
+        
+        queue<int> leaves;
+        for (int i = 0; i < n; i++) {
+            if (degree[i] == 1) {
+                leaves.push(i);
+            }
+        }
+        
+        int remaining = n;
+        while (remaining > 2) {
+            int leafCount = leaves.size();
+            remaining -= leafCount;
+            
+            for (int i = 0; i < leafCount; i++) {
+                int leaf = leaves.front();
+                leaves.pop();
+                
+                for (int neighbor : graph[leaf]) {
+                    degree[neighbor]--;
+                    if (degree[neighbor] == 1) {
+                        leaves.push(neighbor);
+                    }
+                }
+            }
+        }
+        
+        vector<int> result;
+        while (!leaves.empty()) {
+            result.push_back(leaves.front());
+            leaves.pop();
+        }
+        
+        return result;
+    }
+};
 ```
 
 ---
 
-## ⏱️ Complexity Analysis
+## Best Practices
 
-### Time Complexity
+### Algorithm Selection Guidelines
 
-| Operation | Kahn's Algorithm | DFS-Based |
-|:----------|:----------------|:----------|
-| **Build Graph** | O(E) | O(E) |
-| **Calculate In-degrees** | O(V + E) | - |
-| **Traversal** | O(V + E) | O(V + E) |
-| **Overall** | **O(V + E)** | **O(V + E)** |
+```mermaid
+flowchart TD
+    A["Choose Topological Sort Algorithm"] --> B{"Need Cycle Detection?"}
+    B -->|"Yes"| C["Use Kahn's Algorithm"]
+    B -->|"No"| D{"Prefer Simplicity?"}
+    
+    D -->|"Yes"| E["Use DFS Approach"]
+    D -->|"No"| F["Use Kahn's Algorithm"]
+    
+    A --> G{"Memory Constraints?"}
+    G -->|"Tight"| H["DFS (No extra indegree array)"]
+    G -->|"Normal"| I["Either approach works"]
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px,color:#000
+    classDef selection fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    classDef kahns fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+    classDef dfs fill:#e8f5e8,stroke:#4caf50,stroke-width:2px,color:#000
+    classDef memory fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    class A selection
+    class B,C,F kahns
+    class D,E dfs
+    class G,H,I memory
+```
 
-### Space Complexity
-
-| Component | Kahn's Algorithm | DFS-Based |
-|:----------|:----------------|:----------|
-| **Adjacency List** | O(V + E) | O(V + E) |
-| **In-degree Array** | O(V) | - |
-| **Queue/Stack** | O(V) | O(V) |
-| **Recursion Stack** | - | O(V) |
-| **Overall** | **O(V + E)** | **O(V + E)** |
-
----
-
-## 🔄 Implementation Variations
-
-### 🎯 Using Adjacency Matrix
+### Common Pitfalls and Solutions
 
 ```cpp
-vector<int> topoSortMatrix(vector<vector<int>>& matrix) {
-    int V = matrix.size();
-    vector<int> indegree(V, 0);
+class BestPractices {
+public:
+    // ✅ Always check for cycles
+    bool isValidTopologicalSort(int V, vector<vector<int>>& adj) {
+        vector<int> result = topologicalSort(V, adj);
+        return result.size() == V; // If size < V, cycle exists
+    }
     
-    // Calculate in-degrees
-    for (int i = 0; i < V; i++) {
-        for (int j = 0; j < V; j++) {
-            if (matrix[i][j] == 1) {
-                indegree[j]++;
+    // ✅ Handle disconnected components
+    vector<int> robustTopologicalSort(int V, vector<vector<int>>& adj) {
+        vector<int> indegree(V, 0);
+        for (int u = 0; u < V; u++) {
+            for (int v : adj[u]) {
+                indegree[v]++;
             }
         }
-    }
-    
-    queue<int> q;
-    for (int i = 0; i < V; i++) {
-        if (indegree[i] == 0) {
-            q.push(i);
-        }
-    }
-    
-    vector<int> result;
-    while (!q.empty()) {
-        int u = q.front();
-        q.pop();
-        result.push_back(u);
         
-        for (int v = 0; v < V; v++) {
-            if (matrix[u][v] == 1) {
-                if (--indegree[v] == 0) {
+        queue<int> q;
+        for (int i = 0; i < V; i++) {
+            if (indegree[i] == 0) {
+                q.push(i);
+            }
+        }
+        
+        vector<int> result;
+        while (!q.empty()) {
+            int u = q.front();
+            q.pop();
+            result.push_back(u);
+            
+            for (int v : adj[u]) {
+                indegree[v]--;
+                if (indegree[v] == 0) {
                     q.push(v);
                 }
             }
         }
-    }
-    
-    return result;
-}
-```
-
-### 🎯 All Topological Orders
-
-```cpp
-void allTopologicalOrders(vector<vector<int>>& adj, vector<int>& indegree, 
-                         vector<int>& current, vector<vector<int>>& result) {
-    bool flag = false;
-    
-    for (int i = 0; i < adj.size(); i++) {
-        if (indegree[i] == 0) {
-            // Include this vertex
-            current.push_back(i);
-            
-            // Reduce indegree of neighbors
-            for (int neighbor : adj[i]) {
-                indegree[neighbor]--;
-            }
-            
-            indegree[i] = -1;  // Mark as visited
-            
-            allTopologicalOrders(adj, indegree, current, result);
-            
-            // Backtrack
-            indegree[i] = 0;
-            for (int neighbor : adj[i]) {
-                indegree[neighbor]++;
-            }
-            current.pop_back();
-            
-            flag = true;
-        }
-    }
-    
-    if (!flag) {
-        result.push_back(current);
-    }
-}
-```
-
----
-
-## 💎 Best Practices
-
-### ✅ Implementation Guidelines
-
-```
-✓ Always check if graph is DAG before sorting
-✓ Use Kahn's algorithm for cycle detection
-✓ Handle disconnected components properly
-✓ Consider lexicographical ordering when needed
-✓ Validate input for self-loops and multiple edges
-✓ Use appropriate data structures (queue vs priority_queue)
-```
-
-### 🔧 Common Pitfalls
-
-```
-✗ Forgetting to check for cycles
-✗ Not handling disconnected components
-✗ Using wrong data structure for specific requirements
-✗ Incorrect in-degree calculation
-✗ Not considering multiple valid orderings
-```
-
-### 🎯 Optimization Tips
-
-```cpp
-// Memory-efficient in-degree calculation
-vector<int> calculateIndegree(int V, vector<vector<int>>& adj) {
-    vector<int> indegree(V, 0);
-    for (int u = 0; u < V; u++) {
-        for (int v : adj[u]) {
-            indegree[v]++;
-        }
-    }
-    return indegree;
-}
-
-// Early termination for cycle detection
-bool hasCycleEarly(int V, vector<vector<int>>& adj) {
-    vector<int> indegree = calculateIndegree(V, adj);
-    queue<int> q;
-    
-    for (int i = 0; i < V; i++) {
-        if (indegree[i] == 0) {
-            q.push(i);
-        }
-    }
-    
-    int processed = 0;
-    while (!q.empty()) {
-        int u = q.front();
-        q.pop();
-        processed++;
         
-        for (int v : adj[u]) {
-            if (--indegree[v] == 0) {
-                q.push(v);
-            }
-        }
+        return result;
     }
     
-    return processed != V;
-}
+    // ✅ Lexicographically smallest ordering
+    vector<int> lexicographicallySmallest(int V, vector<vector<int>>& adj) {
+        vector<int> indegree(V, 0);
+        for (int u = 0; u < V; u++) {
+            for (int v : adj[u]) {
+                indegree[v]++;
+            }
+        }
+        
+        // Use min-heap instead of queue
+        priority_queue<int, vector<int>, greater<int>> pq;
+        for (int i = 0; i < V; i++) {
+            if (indegree[i] == 0) {
+                pq.push(i);
+            }
+        }
+        
+        vector<int> result;
+        while (!pq.empty()) {
+            int u = pq.top();
+            pq.pop();
+            result.push_back(u);
+            
+            for (int v : adj[u]) {
+                if (--indegree[v] == 0) {
+                    pq.push(v);
+                }
+            }
+        }
+        
+        return result;
+    }
+};
 ```
+
+### Performance Optimization Tips
+
+| Technique | Description | When to Use |
+|-----------|-------------|-------------|
+| **Early Termination** | Stop when cycle detected | Cycle detection focus |
+| **Priority Queue** | For lexicographical ordering | Specific ordering needed |
+| **Space Optimization** | Use DFS for memory constraints | Limited memory |
+| **Batch Processing** | Process multiple graphs together | Multiple instances |
 
 ---
 
-## 🎓 Key Takeaways
+## Summary
+
+**Topological Sort** is essential for dependency resolution and ordering problems in directed acyclic graphs. Key insights:
+
+### Essential Concepts
+- **DAG Requirement**: Only works on Directed Acyclic Graphs
+- **Linear Ordering**: Produces sequence respecting all dependencies
+- **Multiple Solutions**: May have multiple valid topological orderings
+- **Cycle Detection**: Can identify when topological sort is impossible
+
+### Core Algorithms
+- **Kahn's Algorithm**: BFS-based approach with in-degree tracking
+- **DFS Approach**: Recursive traversal with post-order processing
+- **Both O(V + E)**: Linear time complexity for both approaches
+- **Cycle Detection**: Built-in for Kahn's, requires extra logic for DFS
+
+### Best Practices
+- Always validate that the graph is a DAG before sorting
+- Choose Kahn's algorithm when cycle detection is important
+- Use DFS approach for simpler implementation
+- Consider lexicographical ordering when multiple solutions exist
+- Handle disconnected components properly
+
+> **Master's Insight**: Topological sort transforms dependency problems into linear sequences. The key is recognizing when dependencies form a DAG and choosing the right algorithm based on your specific requirements.
+
+---
 
 <div align="center">
 
-### 🌟 Master These Concepts
+**🔄 Master Topological Sort • Resolve Dependencies • Order Tasks Efficiently**
 
-</div>
-
-```
-1. 🔄 Topological Sort = Linear ordering respecting dependencies
-2. 📊 Kahn's Algorithm = BFS with in-degree tracking
-3. 🌳 DFS Approach = Recursion with post-order processing
-4. 🔍 Cycle Detection = Essential for validation
-5. 🎯 Applications = Course scheduling, build systems, task dependencies
-6. ⚡ Complexity = O(V + E) time, O(V) space
-7. 🎪 Variations = Lexicographical, all orders, longest paths
-8. 💡 DAG Requirement = Only works on directed acyclic graphs
-```
-
----
-
-## 📚 Practice Resources
-
-- **LeetCode**: Topological Sort tag problems
-- **GeeksforGeeks**: Graph algorithms section
-- **Codeforces**: Graph theory contests
-- **InterviewBit**: Dependency resolution problems
-
----
-
-## 🎯 Interview Tips
-
-1. **Understand Requirements**: DAG vs general graph
-2. **Choose Right Algorithm**: Kahn's for cycle detection, DFS for simplicity
-3. **Handle Edge Cases**: Empty graph, single vertex, cycles
-4. **Explain Applications**: Connect to real-world scenarios
-5. **Analyze Complexity**: Always mention time and space complexity
-6. **Code Cleanly**: Use meaningful variable names and comments
-
----
-
-<div align="center">
-
-### 🔥 One-Line Summary
-
-**Topological Sort = Linear ordering of DAG vertices respecting dependency constraints, essential for scheduling and dependency resolution**
-
----
-
-**💻 Master dependencies, master systems!**
-
-*"In the world of dependencies, topological sort is the key to proper ordering and conflict resolution."*
+*From Theory to Practice • Dependencies to Solutions • Understanding to Mastery*
 
 </div>
